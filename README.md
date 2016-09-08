@@ -1,6 +1,5 @@
 Recipe App
-SEG2105 
+SEG2105A
+-----
 Joel Faubert - 2560106
-
-
-It's a README huzzah :D
+Francisco Trindade - 7791605
