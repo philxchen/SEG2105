@@ -6,6 +6,6 @@ SEG2105A
 
 - Joel Faubert - 2560106
 
-- Francisco Trindade - 7791605
+- Francisco Trindade - 7791605 - ftrin010@uottawa.ca
 
 - Xuankai (Phil) Chen - 8219215
