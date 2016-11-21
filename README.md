@@ -12,7 +12,7 @@
 
 - Yananan Wang - 7598753 - ywang368@uottawa.ca
 
+Non-app files go to Deliverable folder.
 
 [Questions/Tasks](https://docs.google.com/a/uottawa.ca/document/d/1n7G0ezZN-zZ6YDHtu0oTuk_m5hXznxqeI3v8b2geQOI/edit?usp=sharing)
-
-Non-app files go to Deliverable folder.
+[Files in Google Drive](https://drive.google.com/drive/folders/0B5GHy9NkQvC9UVZTcWJ5ck1scWM?usp=sharing)
