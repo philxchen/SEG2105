@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import ca.uottawa.cookingwithgarzon.model.*;
-import ca.uottawa.cookingwithgarzon.helper.RecipeContract;
 
 /**
  * Helper class that facilitates interaction with the SQLite Database
@@ -36,6 +35,8 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
                     RecipeContract.Recipe.COLUMN_CUISINE + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for mealtype
                     RecipeContract.Recipe.COLUMN_MEALTYPE + INTEGER_TYPE + COMMA_SEP +
+                    // foreign key for recipeingredient
+                    RecipeContract.Recipe.COLUMN_RECIPE_INGREDIENT + INTEGER_TYPE + COMMA_SEP +
                     RecipeContract.Recipe.COLUMN_IMAGE + BLOB_TYPE + " )";
 
     private static final String SQL_CREATE_STEP_TABLE =
@@ -121,7 +122,7 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     /** CRUD */
 
     /** Create a recipe */
-    public long createRecipe(Recipe recipe, Step[] steps, RecipeIngredient ingredientList,
+    public long createRecipe(Recipe recipe, Step[] steps, RecipeIngredient[] recipeIngredients,
                              Cuisine cuisine, MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -133,16 +134,29 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         values.put(RecipeContract.Recipe.COLUMN_CUISINE, cuisine.get_id());
         values.put(RecipeContract.Recipe.COLUMN_MEALTYPE, type.get_id());
 
+        for (RecipeIngredient ingredient : recipeIngredients) {
+            values.put(RecipeContract.Recipe.COLUMN_RECIPE_INGREDIENT, ingredient.get_id());
+        }
+
         // insert row
         long recipe_id = db.insert(RecipeContract.Recipe.TABLE_NAME, null, values);
 
         return recipe_id;
     }
 
-    public long createRecipeIngredient(long recipe_id, int id) {
+
+    /**  create a recipeIngredient */
+    public long createRecipeIngredient(Recipe recipe, Ingredient ingredient, long qty, String unit) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID)
+        values.put(RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID, recipe.get_id());
+        values.put(RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID, ingredient.get_id());
+        values.put(RecipeContract.RecipeIngredient.COLUMN_QUANTITY, qty);
+        values.put(RecipeContract.RecipeIngredient.COLUMN_UNIT, unit);
+
+        long recipeIngredient_id = db.insert(RecipeContract.RecipeIngredient.TABLE_NAME, null, values);
+
+        return recipeIngredient_id;
     }
 }

@@ -16,7 +16,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public int get_id() {
+    public long get_id() {
         return _id;
     }
 
