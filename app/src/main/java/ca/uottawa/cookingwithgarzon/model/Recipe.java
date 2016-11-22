@@ -7,11 +7,11 @@ package ca.uottawa.cookingwithgarzon.model;
 
 public class Recipe {
 
-    private int _id;
+    private long _id;
     private String _name;
     private double _cost;
     private double _difficulty;
-    private int _serving;
+    private int _servings;
 
     public Recipe() {
     }
@@ -48,11 +48,11 @@ public class Recipe {
         this._difficulty = _difficulty;
     }
 
-    public int get_serving() {
-        return _serving;
+    public int get_servings() {
+        return _servings;
     }
 
-    public void set_serving(int _serving) {
-        this._serving = _serving;
+    public void set_servings(int _servings) {
+        this._servings = _servings;
     }
 }

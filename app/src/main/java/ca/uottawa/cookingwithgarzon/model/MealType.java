@@ -5,7 +5,7 @@ package ca.uottawa.cookingwithgarzon.model;
  */
 
 public class MealType {
-    private int _id;
+    private long _id;
     private String _name;
 
     public int get_id() {

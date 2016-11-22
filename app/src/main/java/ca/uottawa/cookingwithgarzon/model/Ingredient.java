@@ -5,14 +5,14 @@ package ca.uottawa.cookingwithgarzon.model;
  */
 
 public class Ingredient {
-    private int _id;
+    private long _id;
     private String _name;
     private double _price;
 
     public Ingredient() {
     }
 
-    public int get_id() {
+    public long get_id() {
         return _id;
     }
 

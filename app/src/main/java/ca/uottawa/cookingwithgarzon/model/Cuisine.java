@@ -5,10 +5,10 @@ package ca.uottawa.cookingwithgarzon.model;
  */
 
 public class Cuisine {
-    private int _id;
+    private long _id;
     private String name;
 
-    public int get_id() {
+    public long get_id() {
         return _id;
     }
 

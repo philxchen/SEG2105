@@ -121,23 +121,28 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     /** CRUD */
 
     /** Create a recipe */
-    public long createRecipe(Recipe recipe, int[] step, Ingredient[] ingredients,
-                             int cuisine, int mealtype) {
+    public long createRecipe(Recipe recipe, Step[] steps, RecipeIngredient ingredientList,
+                             Cuisine cuisine, MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(RecipeContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
-//        values.put(KEY_STATUS, todo.getStatus());
-//        values.put(KEY_CREATED_AT, getDateTime());
-//
-//        // insert row
-//        long todo_id = db.insert(TABLE_TODO, null, values);
-//
-//        // assigning tags to todo
-//        for (long tag_id : tag_ids) {
-//            createTodoTag(todo_id, tag_id);
-//        }
-//
-//        return todo_id;
-//    }
+        values.put(RecipeContract.Recipe.COLUMN_COST, recipe.get_cost());
+        values.put(RecipeContract.Recipe.COLUMN_DIFFICULTY, recipe.get_difficulty());
+        values.put(RecipeContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
+        values.put(RecipeContract.Recipe.COLUMN_CUISINE, cuisine.get_id());
+        values.put(RecipeContract.Recipe.COLUMN_MEALTYPE, type.get_id());
+
+        // insert row
+        long recipe_id = db.insert(RecipeContract.Recipe.TABLE_NAME, null, values);
+
+        return recipe_id;
+    }
+
+    public long createRecipeIngredient(long recipe_id, int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID)
+    }
 }
