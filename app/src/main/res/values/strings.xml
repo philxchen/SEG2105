@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CookingWithGarzon</string>
+    <string name="title_activity_browse_ingredient">BrowseIngredientActivity</string>
 </resources>
