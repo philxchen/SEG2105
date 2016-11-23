@@ -204,8 +204,8 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         String selectRecipeQuery = "SELECT * FROM " + RecipeContract.Recipe.TABLE_NAME + " WHERE "
                 + RecipeContract.Recipe._ID + " = " + recipe_id;
 
-        String selectRecipeIngredient = "SElECT * FROM " + RecipeContract.RecipeIngredient.TABLE_NAME +
-                " WHERE " + RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID + " = " + recipe_id;
+//        String selectRecipeIngredient = "SElECT * FROM " + RecipeContract.RecipeIngredient.TABLE_NAME +
+//                " WHERE " + RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID + " = " + recipe_id;
 
         Log.e(LOG, selectRecipeQuery);
 
@@ -220,13 +220,6 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         recipe.set_cost(c.getDouble((c.getColumnIndex((RecipeContract.Recipe.COLUMN_COST)))));
         recipe.set_difficulty(c.getDouble(c.getColumnIndex(RecipeContract.Recipe.COLUMN_DIFFICULTY)));
         recipe.set_servings(c.getInt(c.getColumnIndex(RecipeContract.Recipe.COLUMN_SERVINGS)));
-
-        c = db.rawQuery(selectRecipeIngredient, null);
-
-        if (c != null)
-            while (!c.isNull()) {
-
-            }
 
         return recipe;
     }
