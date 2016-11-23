@@ -1,5 +1,7 @@
 package ca.uottawa.cookingwithgarzon.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by joel on 22/11/16.
  * Java Recipe Object
@@ -12,10 +14,10 @@ public class Recipe {
     private double _cost;
     private double _difficulty;
     private int _servings;
-    private MealType _type;
-    private Cuisine _cuisine;
-    private RecipeIngredient[] _recipeIngredients;
-    private Step[] _steps;
+    private long _meal_type_id;
+    private long _cuisine_id;
+    private ArrayList<Long> _recipeIngredient_ids;
+    private ArrayList<Long> _step_ids;
 
     public Recipe() {
     }
@@ -24,7 +26,7 @@ public class Recipe {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(long _id) {
         this._id = _id;
     }
 
@@ -60,36 +62,36 @@ public class Recipe {
         this._servings = _servings;
     }
 
-    public Step[] get_steps() {
-        return _steps;
+    public ArrayList<Long> get_steps() {
+        return _step_ids;
     }
 
-    public void set_steps(Step[] _steps) {
-        this._steps = _steps;
+    public void set_steps(ArrayList<Long> _step_ids) {
+        this._step_ids = _step_ids;
     }
 
-    public MealType get_type() {
-        return _type;
+    public long get_meal_type_id() {
+        return _meal_type_id;
     }
 
-    public void set_type(MealType _type) {
-        this._type = _type;
+    public void set_meal_type_id(long _type_id) {
+        this._meal_type_id = _type_id;
     }
 
-    public Cuisine get_cuisine() {
-        return _cuisine;
+    public long get_cuisine_id() {
+        return _cuisine_id;
     }
 
-    public void set_cuisine(Cuisine _cuisine) {
-        this._cuisine = _cuisine;
+    public void set_cuisine_id(long _cuisine) {
+        this._cuisine_id = _cuisine_id;
     }
 
-    public RecipeIngredient[] get_recipeIngredients() {
-        return _recipeIngredients;
+    public ArrayList<Long> get_recipeIngredient_ids() {
+        return _recipeIngredient_ids;
     }
 
-    public void set_recipeIngredients(RecipeIngredient[] _recipeIngredients) {
-        this._recipeIngredients = _recipeIngredients;
+    public void set_recipeIngredients(ArrayList<Long> _recipeIngredient_ids) {
+        this._recipeIngredient_ids = _recipeIngredient_ids;
     }
 
 
