@@ -221,6 +221,12 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         recipe.set_difficulty(c.getDouble(c.getColumnIndex(RecipeContract.Recipe.COLUMN_DIFFICULTY)));
         recipe.set_servings(c.getInt(c.getColumnIndex(RecipeContract.Recipe.COLUMN_SERVINGS)));
 
+        long cuisine_id = c.getInt(c.getColumnIndex(RecipeContract.Recipe.COLUMN_CUISINE));
+        long type_id = c.getInt(c.getColumnIndex(RecipeContract.Recipe.COLUMN_MEALTYPE));
+
+        recipe.set_cuisine(getCuisine(cuisine_id));
+        recipe.set_type(getMealType(type_id));
+
         return recipe;
     }
 
@@ -245,7 +251,7 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         return ingredient;
     }
 
-    /** get an ingredient by id */
+    /** get a RecipeIngredient by id */
     public RecipeIngredient getRecipeIngredient(long recipeingredient_id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -261,9 +267,50 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         c.moveToFirst();
         RecipeIngredient recipeingredient = new RecipeIngredient();
         recipeingredient.set_id(c.getInt(c.getColumnIndex(RecipeContract.RecipeIngredient._ID)));
-        recipeingredient.set_quantity(c.getString(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_QUANTITY)));
-        recipeingredient.set_quantity(c.getString(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_QUANTITY)));
+        recipeingredient.set_quantity(c.getInt(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_QUANTITY)));
+        recipeingredient.set_unit(c.getString(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_UNIT)));
         return recipeingredient;
     }
+
+    /** get cuisine by id */
+    public Cuisine getCuisine(long cuisine_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectRecipeQuery = "SELECT * FROM " + RecipeContract.Cuisine.TABLE_NAME + " WHERE "
+                + RecipeContract.Cuisine._ID + " = " + cuisine_id;
+
+        Log.e(LOG, selectRecipeQuery);
+
+        Cursor c = db.rawQuery(selectRecipeQuery, null);
+
+        if (c == null) return null;
+
+        c.moveToFirst();
+        Cuisine cuisine = new Cuisine();
+        cuisine.set_id(c.getInt(c.getColumnIndex(RecipeContract.Cuisine._ID)));
+        cuisine.set_name(c.getString(c.getColumnIndex(RecipeContract.Cuisine.COLUMN_CUISINE_NAME)));
+        return cuisine;
+    }
+
+    /** get mealtype by id */
+    public MealType getMealType(long type_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectRecipeQuery = "SELECT * FROM " + RecipeContract.MealType.TABLE_NAME + " WHERE "
+                + RecipeContract.MealType._ID + " = " + type_id;
+
+        Log.e(LOG, selectRecipeQuery);
+
+        Cursor c = db.rawQuery(selectRecipeQuery, null);
+
+        if (c == null) return null;
+
+        c.moveToFirst();
+        MealType type = new MealType();
+        type.set_id(c.getInt(c.getColumnIndex(RecipeContract.MealType._ID)));
+        type.set_name(c.getString(c.getColumnIndex(RecipeContract.MealType.COLUMN_MEAL_TYPE_NAME)));
+        return type;
+    }
+
 
 }
