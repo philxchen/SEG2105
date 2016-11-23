@@ -224,4 +224,46 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         return recipe;
     }
 
+    /** get an ingredient by id */
+    public Ingredient getIngredient(long ingredient_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectRecipeQuery = "SELECT * FROM " + RecipeContract.Ingredient.TABLE_NAME + " WHERE "
+                + RecipeContract.Ingredient._ID + " = " + ingredient_id;
+
+        Log.e(LOG, selectRecipeQuery);
+
+        Cursor c = db.rawQuery(selectRecipeQuery, null);
+
+        if (c == null) return null;
+
+        c.moveToFirst();
+        Ingredient ingredient = new Ingredient();
+        ingredient.set_id(c.getInt(c.getColumnIndex(RecipeContract.Ingredient._ID)));
+        ingredient.set_name(c.getString(c.getColumnIndex(RecipeContract.Ingredient.COLUMN_INGREDIENT_NAME)));
+        ingredient.set_price(c.getDouble(c.getColumnIndex(RecipeContract.Ingredient.COLUMN_INGREDIENT_PRICE)));
+        return ingredient;
+    }
+
+    /** get an ingredient by id */
+    public RecipeIngredient getRecipeIngredient(long recipeingredient_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectRecipeQuery = "SELECT * FROM " + RecipeContract.RecipeIngredient.TABLE_NAME + " WHERE "
+                + RecipeContract.RecipeIngredient._ID + " = " + recipeingredient_id;
+
+        Log.e(LOG, selectRecipeQuery);
+
+        Cursor c = db.rawQuery(selectRecipeQuery, null);
+
+        if (c == null) return null;
+
+        c.moveToFirst();
+        RecipeIngredient recipeingredient = new RecipeIngredient();
+        recipeingredient.set_id(c.getInt(c.getColumnIndex(RecipeContract.RecipeIngredient._ID)));
+        recipeingredient.set_quantity(c.getString(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_QUANTITY)));
+        recipeingredient.set_quantity(c.getString(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_QUANTITY)));
+        return recipeingredient;
+    }
+
 }
