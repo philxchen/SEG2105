@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import ca.uottawa.cookingwithgarzon.model.*;
 
 /**
@@ -201,32 +203,53 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public Recipe getRecipe(long recipe_id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
+        // Query for retrieving recipe by recipe_id
         String selectRecipeQuery = "SELECT * FROM " + RecipeContract.Recipe.TABLE_NAME + " WHERE "
                 + RecipeContract.Recipe._ID + " = " + recipe_id;
 
-//        String selectRecipeIngredient = "SElECT * FROM " + RecipeContract.RecipeIngredient.TABLE_NAME +
-//                " WHERE " + RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID + " = " + recipe_id;
+        // Query for retrieving all recipeIngredients associated to recipe_id
+        String selectRecipeIngredient = "SElECT * FROM " + RecipeContract.RecipeIngredient.TABLE_NAME +
+                " WHERE " + RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID + " = " + recipe_id;
+
+        // Query for retrieving all steps associated to recipe_id
+        String selectStep = "SElECT * FROM " + RecipeContract.Step.TABLE_NAME +
+                " WHERE " + RecipeContract.Step.COLUMN_RECIPE+ " = " + recipe_id;
 
         Log.e(LOG, selectRecipeQuery);
 
         Cursor c = db.rawQuery(selectRecipeQuery, null);
-
-        if (c == null) return null;
-
-        c.moveToFirst();
+        if (!c.moveToFirst()) return null;
         Recipe recipe = new Recipe();
-        recipe.set_id(c.getInt(c.getColumnIndex(RecipeContract.Recipe._ID)));
+        recipe.set_id(c.getLong(c.getColumnIndex(RecipeContract.Recipe._ID)));
         recipe.set_name(c.getString(c.getColumnIndex(RecipeContract.Recipe.COLUMN_RECIPE_NAME)));
         recipe.set_cost(c.getDouble((c.getColumnIndex((RecipeContract.Recipe.COLUMN_COST)))));
         recipe.set_difficulty(c.getDouble(c.getColumnIndex(RecipeContract.Recipe.COLUMN_DIFFICULTY)));
         recipe.set_servings(c.getInt(c.getColumnIndex(RecipeContract.Recipe.COLUMN_SERVINGS)));
+        recipe.set_cuisine_id(c.getLong(c.getColumnIndex(RecipeContract.Recipe.COLUMN_CUISINE)));
+        recipe.set_meal_type_id(c.getLong(c.getColumnIndex(RecipeContract.Recipe.COLUMN_MEALTYPE)));
 
-        long cuisine_id = c.getInt(c.getColumnIndex(RecipeContract.Recipe.COLUMN_CUISINE));
-        long type_id = c.getInt(c.getColumnIndex(RecipeContract.Recipe.COLUMN_MEALTYPE));
+        // populate array list with recipeIngredient ids
+        c = db.rawQuery(selectRecipeIngredient, null);
+        ArrayList<Long> recipeIngredient_ids = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                long recipeIngredient_id = c.getLong(c.getColumnIndex(RecipeContract.RecipeIngredient._ID));
+                recipeIngredient_ids.add(recipeIngredient_id);
+            } while (c.moveToNext());
+        }
+        recipe.set_recipeIngredients(recipeIngredient_ids);
 
-        recipe.set_cuisine(getCuisine(cuisine_id));
-        recipe.set_type(getMealType(type_id));
-
+        // populate array list with step ids
+        c = db.rawQuery(selectStep, null);
+        ArrayList<Long> step_ids = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                long step_id = c.getLong(c.getColumnIndex(RecipeContract.Step._ID));
+                step_ids.add(step_id);
+            } while (c.moveToNext());
+        }
+        recipe.set_steps(step_ids);
+        c.close();
         return recipe;
     }
 

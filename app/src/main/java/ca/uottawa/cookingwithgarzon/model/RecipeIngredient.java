@@ -7,8 +7,7 @@ package ca.uottawa.cookingwithgarzon.model;
 public class RecipeIngredient {
     private long _id;
     private long _recipe_id;
-    private Recipe _recipe;
-    private Ingredient _ingredient;
+    private long _ingredient_id;
     private long _quantity;
     private String _unit;
 
@@ -31,20 +30,16 @@ public class RecipeIngredient {
         this._recipe_id = _recipe_id;
     }
 
-    public Recipe get_recipe() {
-        return _recipe;
+    public void set_recipe(long _recipe_id) {
+        this._recipe_id = _recipe_id;
     }
 
-    public void set_recipe(Recipe _recipe) {
-        this._recipe = _recipe;
+    public long get_ingredient_id() {
+        return _ingredient_id;
     }
 
-    public Ingredient get_ingredient() {
-        return _ingredient;
-    }
-
-    public void set_ingredient(Ingredient _ingredient) {
-        this._ingredient = _ingredient;
+    public void set_ingredient_id(long _ingredient_id) {
+        this._ingredient_id = _ingredient_id;
     }
 
     public long get_quantity() {
