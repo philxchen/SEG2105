@@ -6,7 +6,7 @@ package ca.uottawa.cookingwithgarzon.model;
 
 public class Cuisine {
     private long _id;
-    private String name;
+    private String _name;
 
     public long get_id() {
         return _id;
@@ -16,12 +16,12 @@ public class Cuisine {
         this._id = _id;
     }
 
-    public String getName() {
-        return name;
+    public String get_name() {
+        return _name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void set_name(String name) {
+        this._name = name;
     }
 
     public Cuisine() {

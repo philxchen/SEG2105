@@ -12,6 +12,10 @@ public class Recipe {
     private double _cost;
     private double _difficulty;
     private int _servings;
+    private MealType _type;
+    private Cuisine _cuisine;
+    private RecipeIngredient[] _recipeIngredients;
+    private Step[] _steps;
 
     public Recipe() {
     }
@@ -55,4 +59,38 @@ public class Recipe {
     public void set_servings(int _servings) {
         this._servings = _servings;
     }
+
+    public Step[] get_steps() {
+        return _steps;
+    }
+
+    public void set_steps(Step[] _steps) {
+        this._steps = _steps;
+    }
+
+    public MealType get_type() {
+        return _type;
+    }
+
+    public void set_type(MealType _type) {
+        this._type = _type;
+    }
+
+    public Cuisine get_cuisine() {
+        return _cuisine;
+    }
+
+    public void set_cuisine(Cuisine _cuisine) {
+        this._cuisine = _cuisine;
+    }
+
+    public RecipeIngredient[] get_recipeIngredients() {
+        return _recipeIngredients;
+    }
+
+    public void set_recipeIngredients(RecipeIngredient[] _recipeIngredients) {
+        this._recipeIngredients = _recipeIngredients;
+    }
+
+
 }
