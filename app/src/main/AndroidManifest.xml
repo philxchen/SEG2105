@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="ca.uottawa.cookingwithgarzon">
+    package="ca.uottawa.cookingwithgarzon">
 
     <application
         android:allowBackup="true"
@@ -10,11 +10,51 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Recipe"
+            android:label="@string/title_activity_recipe" />
+        <activity
+            android:name=".RecipeSearch"
+            android:label="@string/title_activity_recipe_search" />
+        <activity
+            android:name=".CreateRecipe"
+            android:label="@string/title_activity_create_recipe" />
+        <activity android:name=".RecipeRating" />
+        <activity
+            android:name=".FavoriteRecipe"
+            android:label="@string/title_activity_favorite_recipe" />
+        <activity android:name=".RecipePreview" />
+        <activity android:name=".RecipeDifficulty" />
+        <activity
+            android:name=".RecipeCuisine"
+            android:label="@string/title_activity_recipe_cuisine" />
+        <activity android:name=".CusineType" />
+        <activity
+            android:name=".RecipeMealType"
+            android:label="@string/title_activity_recipe_meal_type" />
+        <activity android:name=".MealType" />
+        <activity
+            android:name=".RecipeIngredient"
+            android:label="@string/title_activity_recipe_ingredient" />
+        <activity android:name=".IngredientQuantity" />
+        <activity android:name=".UnitType" />
+        <activity
+            android:name=".IngredientList"
+            android:label="@string/title_activity_ingredient_list" />
+        <activity android:name=".Ingredient" />
+        <activity
+            android:name=".RecipeInstruction"
+            android:label="@string/title_activity_recipe_instruction" />
+        <activity android:name=".InstructionStep" />
+        <activity
+            android:name=".ShoppingCart"
+            android:label="@string/title_activity_shopping_cart" />
+        <activity android:name=".CartIngredient"></activity>
     </application>
 
 </manifest>
