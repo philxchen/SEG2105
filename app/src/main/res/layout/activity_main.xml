@@ -5,17 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="ca.uottawa.cookingwithgarzon.MainActivity">
+    tools:context="ca.uottawa.cookingwithgarzon.MainActivity"
+    android:weightSum="1">
 
     <!--android:background="@drawable/recipe"-->
 
     <!--android:background="@drawable/ingredients"-->
 
     <ImageView
-        android:src="@drawable/Cooking_with_Garzon"
+        android:src="@drawable/cooking_with_garzon"
         android:layout_width="match_parent"
         android:layout_height="206dp"
         android:id="@+id/imageView" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.60" />
 
     <Button
         android:text="Search"
