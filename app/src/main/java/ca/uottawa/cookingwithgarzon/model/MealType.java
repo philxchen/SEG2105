@@ -8,7 +8,7 @@ public class MealType {
     private long _id;
     private String _name;
 
-    public int get_id() {
+    public long get_id() {
         return _id;
     }
 

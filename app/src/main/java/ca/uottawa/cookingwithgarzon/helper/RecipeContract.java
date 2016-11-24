@@ -25,6 +25,7 @@ public final class RecipeContract {
         public static final String COLUMN_IMAGE = "image";
         public static final String COLUMN_CUISINE = "cuisine";
         public static final String COLUMN_MEALTYPE = "mealtype";
+        public static final String COLUMN_RECIPE_INGREDIENT = "recipeingredient";
     }
 
     public static class Step implements BaseColumns {

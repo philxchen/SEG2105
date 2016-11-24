@@ -1,5 +1,7 @@
 package ca.uottawa.cookingwithgarzon.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by joel on 22/11/16.
  * Java Recipe Object
@@ -12,15 +14,19 @@ public class Recipe {
     private double _cost;
     private double _difficulty;
     private int _servings;
+    private long _meal_type_id;
+    private long _cuisine_id;
+    private ArrayList<Long> _recipeIngredient_ids;
+    private ArrayList<Long> _step_ids;
 
     public Recipe() {
     }
 
-    public int get_id() {
+    public long get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(long _id) {
         this._id = _id;
     }
 
@@ -55,4 +61,38 @@ public class Recipe {
     public void set_servings(int _servings) {
         this._servings = _servings;
     }
+
+    public ArrayList<Long> get_steps() {
+        return _step_ids;
+    }
+
+    public void set_steps(ArrayList<Long> _step_ids) {
+        this._step_ids = _step_ids;
+    }
+
+    public long get_meal_type_id() {
+        return _meal_type_id;
+    }
+
+    public void set_meal_type_id(long _type_id) {
+        this._meal_type_id = _type_id;
+    }
+
+    public long get_cuisine_id() {
+        return _cuisine_id;
+    }
+
+    public void set_cuisine_id(long _cuisine) {
+        this._cuisine_id = _cuisine_id;
+    }
+
+    public ArrayList<Long> get_recipeIngredient_ids() {
+        return _recipeIngredient_ids;
+    }
+
+    public void set_recipeIngredients(ArrayList<Long> _recipeIngredient_ids) {
+        this._recipeIngredient_ids = _recipeIngredient_ids;
+    }
+
+
 }

@@ -6,7 +6,7 @@ package ca.uottawa.cookingwithgarzon.model;
 
 public class Step {
     private int _id;
-    private String instruction;
+    private String _instruction;
     private int _stepNumber;
     private int _time;
 
@@ -21,12 +21,12 @@ public class Step {
         this._id = _id;
     }
 
-    public String getInstruction() {
-        return instruction;
+    public String get_instruction() {
+        return _instruction;
     }
 
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
+    public void set_instruction(String instruction) {
+        this._instruction = instruction;
     }
 
     public int get_stepNumber() {
