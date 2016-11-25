@@ -198,7 +198,6 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     /** get a recipe by id */
     public Recipe getRecipe(long recipe_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-
         // Query for retrieving recipe by recipe_id
         String selectRecipeQuery = "SELECT * FROM " + RecipeContract.Recipe.TABLE_NAME + " WHERE "
                 + RecipeContract.Recipe._ID + " = " + recipe_id;
