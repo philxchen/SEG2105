@@ -31,72 +31,72 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
 
     // SQL Statements for creating tables
     private static final String SQL_CREATE_RECIPE_TABLE =
-            "CREATE TABLE " + RecipeContract.Recipe.TABLE_NAME + " (" +
-                    RecipeContract.Recipe._ID + " INTEGER PRIMARY KEY," +
-                    RecipeContract.Recipe.COLUMN_RECIPE_NAME + REAL_TYPE + COMMA_SEP +
-                    RecipeContract.Recipe.COLUMN_COST + TEXT_TYPE + COMMA_SEP +
-                    RecipeContract.Recipe.COLUMN_DIFFICULTY + REAL_TYPE + COMMA_SEP +
-                    RecipeContract.Recipe.COLUMN_SERVINGS + INTEGER_TYPE + COMMA_SEP +
+            "CREATE TABLE " + dbContract.Recipe.TABLE_NAME + " (" +
+                    dbContract.Recipe._ID + " INTEGER PRIMARY KEY," +
+                    dbContract.Recipe.COLUMN_RECIPE_NAME + REAL_TYPE + COMMA_SEP +
+                    dbContract.Recipe.COLUMN_COST + TEXT_TYPE + COMMA_SEP +
+                    dbContract.Recipe.COLUMN_DIFFICULTY + REAL_TYPE + COMMA_SEP +
+                    dbContract.Recipe.COLUMN_SERVINGS + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for cuisine
-                    RecipeContract.Recipe.COLUMN_CUISINE + INTEGER_TYPE + COMMA_SEP +
+                    dbContract.Recipe.COLUMN_CUISINE + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for mealtype
-                    RecipeContract.Recipe.COLUMN_MEALTYPE + INTEGER_TYPE + COMMA_SEP +
+                    dbContract.Recipe.COLUMN_MEALTYPE + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for recipeingredient
-                    RecipeContract.Recipe.COLUMN_RECIPE_INGREDIENT + INTEGER_TYPE + COMMA_SEP +
-                    RecipeContract.Recipe.COLUMN_IMAGE + BLOB_TYPE + " )";
+                    dbContract.Recipe.COLUMN_RECIPE_INGREDIENT + INTEGER_TYPE + COMMA_SEP +
+                    dbContract.Recipe.COLUMN_IMAGE + BLOB_TYPE + " )";
 
     private static final String SQL_CREATE_STEP_TABLE =
-            "CREATE TABLE " + RecipeContract.Step.TABLE_NAME + " (" +
-                    RecipeContract.Step._ID + " INTEGER PRIMARY KEY," +
-                    RecipeContract.Step.COLUMN_INSTRUCTION + TEXT_TYPE + COMMA_SEP +
-                    RecipeContract.Step.COLUMN_NUMBER + INTEGER_TYPE + COMMA_SEP +
-                    RecipeContract.Step.COLUMN_TIME + INTEGER_TYPE +
+            "CREATE TABLE " + dbContract.Step.TABLE_NAME + " (" +
+                    dbContract.Step._ID + " INTEGER PRIMARY KEY," +
+                    dbContract.Step.COLUMN_INSTRUCTION + TEXT_TYPE + COMMA_SEP +
+                    dbContract.Step.COLUMN_NUMBER + INTEGER_TYPE + COMMA_SEP +
+                    dbContract.Step.COLUMN_TIME + INTEGER_TYPE +
                     // foreign key for recipe
-                    RecipeContract.Step.COLUMN_RECIPE + INTEGER_TYPE + " )";
+                    dbContract.Step.COLUMN_RECIPE + INTEGER_TYPE + " )";
 
     private static final String SQL_CREATE_INGREDIENT_TABLE =
-            "CREATE TABLE " + RecipeContract.Ingredient.TABLE_NAME + " (" +
-                    RecipeContract.Ingredient._ID + " INTEGER PRIMARY KEY," +
-                    RecipeContract.Ingredient.COLUMN_INGREDIENT_NAME + TEXT_TYPE + COMMA_SEP +
-                    RecipeContract.Ingredient.COLUMN_INGREDIENT_PRICE + REAL_TYPE + " )";
+            "CREATE TABLE " + dbContract.Ingredient.TABLE_NAME + " (" +
+                    dbContract.Ingredient._ID + " INTEGER PRIMARY KEY," +
+                    dbContract.Ingredient.COLUMN_INGREDIENT_NAME + TEXT_TYPE + COMMA_SEP +
+                    dbContract.Ingredient.COLUMN_INGREDIENT_PRICE + REAL_TYPE + " )";
 
     private static final String SQL_CREATE_RECIPEINGREDIENT_TABLE =
-            "CREATE TABLE " + RecipeContract.RecipeIngredient.TABLE_NAME + " (" +
-                    RecipeContract.RecipeIngredient._ID + " INTEGER PRIMARY KEY," +
-                    RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID + INTEGER_TYPE + COMMA_SEP +
-                    RecipeContract.RecipeIngredient.COLUMN_INGREDIENT_ID + INTEGER_TYPE + COMMA_SEP +
-                    RecipeContract.RecipeIngredient.COLUMN_QUANTITY + INTEGER_TYPE + COMMA_SEP +
-                    RecipeContract.RecipeIngredient.COLUMN_UNIT + TEXT_TYPE + " )";
+            "CREATE TABLE " + dbContract.RecipeIngredient.TABLE_NAME + " (" +
+                    dbContract.RecipeIngredient._ID + " INTEGER PRIMARY KEY," +
+                    dbContract.RecipeIngredient.COLUMN_RECIPE_ID + INTEGER_TYPE + COMMA_SEP +
+                    dbContract.RecipeIngredient.COLUMN_INGREDIENT_ID + INTEGER_TYPE + COMMA_SEP +
+                    dbContract.RecipeIngredient.COLUMN_QUANTITY + INTEGER_TYPE + COMMA_SEP +
+                    dbContract.RecipeIngredient.COLUMN_UNIT + TEXT_TYPE + " )";
 
     private static final String SQL_CREATE_CUISINE_TABLE =
-            "CREATE TABLE " + RecipeContract.Cuisine.TABLE_NAME + " (" +
-                    RecipeContract.Cuisine._ID + " INTEGER PRIMARY KEY," +
-                    RecipeContract.Cuisine.COLUMN_CUISINE_NAME + TEXT_TYPE + " )";
+            "CREATE TABLE " + dbContract.Cuisine.TABLE_NAME + " (" +
+                    dbContract.Cuisine._ID + " INTEGER PRIMARY KEY," +
+                    dbContract.Cuisine.COLUMN_CUISINE_NAME + TEXT_TYPE + " )";
 
     private static final String SQL_CREATE_MEALTYPE_TABLE =
-            "CREATE TABLE " + RecipeContract.MealType.TABLE_NAME + " (" +
-                    RecipeContract.MealType._ID + " INTEGER PRIMARY KEY," +
-                    RecipeContract.MealType.COLUMN_MEAL_TYPE_NAME + TEXT_TYPE + " )";
+            "CREATE TABLE " + dbContract.MealType.TABLE_NAME + " (" +
+                    dbContract.MealType._ID + " INTEGER PRIMARY KEY," +
+                    dbContract.MealType.COLUMN_MEAL_TYPE_NAME + TEXT_TYPE + " )";
 
 
     // SQL statements for deleting tables
     private static final String SQL_DELETE_STEP_TABLE =
-            "DROP TABLE IF EXISTS " + RecipeContract.Step.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + dbContract.Step.TABLE_NAME;
 
     private static final String SQL_DELETE_RECIPE_TABLE =
-            "DROP TABLE IF EXISTS " + RecipeContract.Recipe.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + dbContract.Recipe.TABLE_NAME;
 
     private static final String SQL_DELETE_INGREDIENT_TABLE =
-            "DROP TABLE IF EXISTS " + RecipeContract.Ingredient.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + dbContract.Ingredient.TABLE_NAME;
 
     private static final String SQL_DELETE_RECIPEINGREDIENT_TABLE =
-            "DROP TABLE IF EXISTS " + RecipeContract.RecipeIngredient.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + dbContract.RecipeIngredient.TABLE_NAME;
 
     private static final String SQL_DELETE_CUISINE_TABLE =
-            "DROP TABLE IF EXISTS " + RecipeContract.Cuisine.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + dbContract.Cuisine.TABLE_NAME;
 
     private static final String SQL_DELETE_MEALTYPE_TABLE =
-            "DROP TABLE IF EXISTS " + RecipeContract.MealType.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + dbContract.MealType.TABLE_NAME;
 
 
     public RecipeDbHelper(Context context) {
@@ -131,13 +131,13 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public long createRecipe(Recipe recipe, Cuisine cuisine, MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
-        values.put(RecipeContract.Recipe.COLUMN_COST, recipe.get_cost());
-        values.put(RecipeContract.Recipe.COLUMN_DIFFICULTY, recipe.get_difficulty());
-        values.put(RecipeContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
-        values.put(RecipeContract.Recipe.COLUMN_CUISINE, cuisine.get_id());
-        values.put(RecipeContract.Recipe.COLUMN_MEALTYPE, type.get_id());
-        long recipe_id = db.insert(RecipeContract.Recipe.TABLE_NAME, null, values);
+        values.put(dbContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
+        values.put(dbContract.Recipe.COLUMN_COST, recipe.get_cost());
+        values.put(dbContract.Recipe.COLUMN_DIFFICULTY, recipe.get_difficulty());
+        values.put(dbContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
+        values.put(dbContract.Recipe.COLUMN_CUISINE, cuisine.get_id());
+        values.put(dbContract.Recipe.COLUMN_MEALTYPE, type.get_id());
+        long recipe_id = db.insert(dbContract.Recipe.TABLE_NAME, null, values);
         return recipe_id;
     }
 
@@ -145,11 +145,11 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public long createRecipeIngredient(Recipe recipe, Ingredient ingredient, long qty, String unit) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID, recipe.get_id());
-        values.put(RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID, ingredient.get_id());
-        values.put(RecipeContract.RecipeIngredient.COLUMN_QUANTITY, qty);
-        values.put(RecipeContract.RecipeIngredient.COLUMN_UNIT, unit);
-        long recipeIngredient_id = db.insert(RecipeContract.RecipeIngredient.TABLE_NAME, null, values);
+        values.put(dbContract.RecipeIngredient.COLUMN_RECIPE_ID, recipe.get_id());
+        values.put(dbContract.RecipeIngredient.COLUMN_RECIPE_ID, ingredient.get_id());
+        values.put(dbContract.RecipeIngredient.COLUMN_QUANTITY, qty);
+        values.put(dbContract.RecipeIngredient.COLUMN_UNIT, unit);
+        long recipeIngredient_id = db.insert(dbContract.RecipeIngredient.TABLE_NAME, null, values);
         return recipeIngredient_id;
     }
 
@@ -157,9 +157,9 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public long createIngredient(Ingredient ingredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.Ingredient.COLUMN_INGREDIENT_NAME, ingredient.get_name());
-        values.put(RecipeContract.Ingredient.COLUMN_INGREDIENT_PRICE, ingredient.get_price());
-        long ingredient_id = db.insert(RecipeContract.Ingredient.TABLE_NAME, null, values);
+        values.put(dbContract.Ingredient.COLUMN_INGREDIENT_NAME, ingredient.get_name());
+        values.put(dbContract.Ingredient.COLUMN_INGREDIENT_PRICE, ingredient.get_price());
+        long ingredient_id = db.insert(dbContract.Ingredient.TABLE_NAME, null, values);
         return ingredient_id;
     }
 
@@ -167,8 +167,8 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public long createCuisine(Cuisine cuisine) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.Cuisine.COLUMN_CUISINE_NAME, cuisine.get_name());
-        long cuisine_id = db.insert(RecipeContract.Cuisine.TABLE_NAME, null, values);
+        values.put(dbContract.Cuisine.COLUMN_CUISINE_NAME, cuisine.get_name());
+        long cuisine_id = db.insert(dbContract.Cuisine.TABLE_NAME, null, values);
         return cuisine_id;
     }
 
@@ -176,8 +176,8 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public long createMealType(MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.MealType.COLUMN_MEAL_TYPE_NAME, type.get_name());
-        long type_id = db.insert(RecipeContract.MealType.TABLE_NAME, null, values);
+        values.put(dbContract.MealType.COLUMN_MEAL_TYPE_NAME, type.get_name());
+        long type_id = db.insert(dbContract.MealType.TABLE_NAME, null, values);
         return type_id;
     }
 
@@ -185,10 +185,10 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public long createStep(Step step) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.Step.COLUMN_INSTRUCTION, step.get_instruction());
-        values.put(RecipeContract.Step.COLUMN_NUMBER, step.get_stepNumber());
-        values.put(RecipeContract.Step.COLUMN_TIME, step.get_time());
-        long step_id = db.insert(RecipeContract.Step.TABLE_NAME, null, values);
+        values.put(dbContract.Step.COLUMN_INSTRUCTION, step.get_instruction());
+        values.put(dbContract.Step.COLUMN_NUMBER, step.get_stepNumber());
+        values.put(dbContract.Step.COLUMN_TIME, step.get_time());
+        long step_id = db.insert(dbContract.Step.TABLE_NAME, null, values);
         return step_id;
     }
 
@@ -199,20 +199,20 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public Recipe getRecipe(long recipe_id) {
         SQLiteDatabase db = this.getReadableDatabase();
         // Query for retrieving recipe by recipe_id
-        String selectRecipeQuery = "SELECT * FROM " + RecipeContract.Recipe.TABLE_NAME + " WHERE "
-                + RecipeContract.Recipe._ID + " = " + recipe_id;
+        String selectRecipeQuery = "SELECT * FROM " + dbContract.Recipe.TABLE_NAME + " WHERE "
+                + dbContract.Recipe._ID + " = " + recipe_id;
 
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
         if (!c.moveToFirst()) return null;
         Recipe recipe = new Recipe();
-        recipe.set_id(c.getLong(c.getColumnIndex(RecipeContract.Recipe._ID)));
-        recipe.set_name(c.getString(c.getColumnIndex(RecipeContract.Recipe.COLUMN_RECIPE_NAME)));
-        recipe.set_cost(c.getDouble((c.getColumnIndex((RecipeContract.Recipe.COLUMN_COST)))));
-        recipe.set_difficulty(c.getDouble(c.getColumnIndex(RecipeContract.Recipe.COLUMN_DIFFICULTY)));
-        recipe.set_servings(c.getInt(c.getColumnIndex(RecipeContract.Recipe.COLUMN_SERVINGS)));
-        recipe.set_cuisine_id(c.getLong(c.getColumnIndex(RecipeContract.Recipe.COLUMN_CUISINE)));
-        recipe.set_meal_type_id(c.getLong(c.getColumnIndex(RecipeContract.Recipe.COLUMN_MEALTYPE)));
+        recipe.set_id(c.getLong(c.getColumnIndex(dbContract.Recipe._ID)));
+        recipe.set_name(c.getString(c.getColumnIndex(dbContract.Recipe.COLUMN_RECIPE_NAME)));
+        recipe.set_cost(c.getDouble((c.getColumnIndex((dbContract.Recipe.COLUMN_COST)))));
+        recipe.set_difficulty(c.getDouble(c.getColumnIndex(dbContract.Recipe.COLUMN_DIFFICULTY)));
+        recipe.set_servings(c.getInt(c.getColumnIndex(dbContract.Recipe.COLUMN_SERVINGS)));
+        recipe.set_cuisine_id(c.getLong(c.getColumnIndex(dbContract.Recipe.COLUMN_CUISINE)));
+        recipe.set_meal_type_id(c.getLong(c.getColumnIndex(dbContract.Recipe.COLUMN_MEALTYPE)));
         c.close();
         return recipe;
     }
@@ -220,16 +220,16 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     /** get an ingredient by id */
     public Ingredient getIngredient(long ingredient_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectRecipeQuery = "SELECT * FROM " + RecipeContract.Ingredient.TABLE_NAME + " WHERE "
-                + RecipeContract.Ingredient._ID + " = " + ingredient_id;
+        String selectRecipeQuery = "SELECT * FROM " + dbContract.Ingredient.TABLE_NAME + " WHERE "
+                + dbContract.Ingredient._ID + " = " + ingredient_id;
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
         if (c == null) return null;
         c.moveToFirst();
         Ingredient ingredient = new Ingredient();
-        ingredient.set_id(c.getInt(c.getColumnIndex(RecipeContract.Ingredient._ID)));
-        ingredient.set_name(c.getString(c.getColumnIndex(RecipeContract.Ingredient.COLUMN_INGREDIENT_NAME)));
-        ingredient.set_price(c.getDouble(c.getColumnIndex(RecipeContract.Ingredient.COLUMN_INGREDIENT_PRICE)));
+        ingredient.set_id(c.getInt(c.getColumnIndex(dbContract.Ingredient._ID)));
+        ingredient.set_name(c.getString(c.getColumnIndex(dbContract.Ingredient.COLUMN_INGREDIENT_NAME)));
+        ingredient.set_price(c.getDouble(c.getColumnIndex(dbContract.Ingredient.COLUMN_INGREDIENT_PRICE)));
         c.close();
         return ingredient;
     }
@@ -237,16 +237,16 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     /** get a RecipeIngredient by id */
     public RecipeIngredient getRecipeIngredient(long recipeingredient_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectRecipeQuery = "SELECT * FROM " + RecipeContract.RecipeIngredient.TABLE_NAME + " WHERE "
-                + RecipeContract.RecipeIngredient._ID + " = " + recipeingredient_id;
+        String selectRecipeQuery = "SELECT * FROM " + dbContract.RecipeIngredient.TABLE_NAME + " WHERE "
+                + dbContract.RecipeIngredient._ID + " = " + recipeingredient_id;
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
         if (c == null) return null;
         c.moveToFirst();
         RecipeIngredient recipeingredient = new RecipeIngredient();
-        recipeingredient.set_id(c.getInt(c.getColumnIndex(RecipeContract.RecipeIngredient._ID)));
-        recipeingredient.set_quantity(c.getInt(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_QUANTITY)));
-        recipeingredient.set_unit(c.getString(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_UNIT)));
+        recipeingredient.set_id(c.getInt(c.getColumnIndex(dbContract.RecipeIngredient._ID)));
+        recipeingredient.set_quantity(c.getInt(c.getColumnIndex(dbContract.RecipeIngredient.COLUMN_QUANTITY)));
+        recipeingredient.set_unit(c.getString(c.getColumnIndex(dbContract.RecipeIngredient.COLUMN_UNIT)));
         c.close();
         return recipeingredient;
     }
@@ -254,15 +254,15 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     /** get cuisine by id */
     public Cuisine getCuisine(long cuisine_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectRecipeQuery = "SELECT * FROM " + RecipeContract.Cuisine.TABLE_NAME + " WHERE "
-                + RecipeContract.Cuisine._ID + " = " + cuisine_id;
+        String selectRecipeQuery = "SELECT * FROM " + dbContract.Cuisine.TABLE_NAME + " WHERE "
+                + dbContract.Cuisine._ID + " = " + cuisine_id;
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
         if (c == null) return null;
         c.moveToFirst();
         Cuisine cuisine = new Cuisine();
-        cuisine.set_id(c.getInt(c.getColumnIndex(RecipeContract.Cuisine._ID)));
-        cuisine.set_name(c.getString(c.getColumnIndex(RecipeContract.Cuisine.COLUMN_CUISINE_NAME)));
+        cuisine.set_id(c.getInt(c.getColumnIndex(dbContract.Cuisine._ID)));
+        cuisine.set_name(c.getString(c.getColumnIndex(dbContract.Cuisine.COLUMN_CUISINE_NAME)));
         c.close();
         return cuisine;
     }
@@ -270,15 +270,15 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     /** get mealtype by id */
     public MealType getMealType(long type_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectRecipeQuery = "SELECT * FROM " + RecipeContract.MealType.TABLE_NAME + " WHERE "
-                + RecipeContract.MealType._ID + " = " + type_id;
+        String selectRecipeQuery = "SELECT * FROM " + dbContract.MealType.TABLE_NAME + " WHERE "
+                + dbContract.MealType._ID + " = " + type_id;
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
         if (c == null) return null;
         c.moveToFirst();
         MealType type = new MealType();
-        type.set_id(c.getInt(c.getColumnIndex(RecipeContract.MealType._ID)));
-        type.set_name(c.getString(c.getColumnIndex(RecipeContract.MealType.COLUMN_MEAL_TYPE_NAME)));
+        type.set_id(c.getInt(c.getColumnIndex(dbContract.MealType._ID)));
+        type.set_name(c.getString(c.getColumnIndex(dbContract.MealType.COLUMN_MEAL_TYPE_NAME)));
         c.close();
         return type;
     }
@@ -287,8 +287,8 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public ArrayList<RecipeIngredient> getRecipeIngredients(long recipe_id) {
         SQLiteDatabase db = this.getReadableDatabase();
         // Query for retrieving all recipeIngredients associated to recipe_id
-        String selectRecipeIngredient = "SElECT * FROM " + RecipeContract.RecipeIngredient.TABLE_NAME +
-                " WHERE " + RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID + " = " + recipe_id;
+        String selectRecipeIngredient = "SElECT * FROM " + dbContract.RecipeIngredient.TABLE_NAME +
+                " WHERE " + dbContract.RecipeIngredient.COLUMN_RECIPE_ID + " = " + recipe_id;
 
         // populate array list with recipeIngredient objects
         Cursor c = db.rawQuery(selectRecipeIngredient, null);
@@ -296,9 +296,9 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 RecipeIngredient recipeIngredient = new RecipeIngredient();
-                recipeIngredient.set_id(c.getInt(c.getColumnIndex(RecipeContract.RecipeIngredient._ID)));
-                recipeIngredient.set_quantity(c.getInt(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_QUANTITY)));
-                recipeIngredient.set_unit(c.getString(c.getColumnIndex(RecipeContract.RecipeIngredient.COLUMN_UNIT)));
+                recipeIngredient.set_id(c.getInt(c.getColumnIndex(dbContract.RecipeIngredient._ID)));
+                recipeIngredient.set_quantity(c.getInt(c.getColumnIndex(dbContract.RecipeIngredient.COLUMN_QUANTITY)));
+                recipeIngredient.set_unit(c.getString(c.getColumnIndex(dbContract.RecipeIngredient.COLUMN_UNIT)));
                 recipeIngredients.add(recipeIngredient);
             } while (c.moveToNext());
         }
@@ -310,8 +310,8 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public ArrayList<Step> getRecipeSteps(long recipe_id) {
         SQLiteDatabase db = this.getReadableDatabase();
         // Query for retrieving all steps associated to recipe_id
-        String selectStep = "SElECT * FROM " + RecipeContract.Step.TABLE_NAME +
-                " WHERE " + RecipeContract.Step.COLUMN_RECIPE+ " = " + recipe_id;
+        String selectStep = "SElECT * FROM " + dbContract.Step.TABLE_NAME +
+                " WHERE " + dbContract.Step.COLUMN_RECIPE+ " = " + recipe_id;
 
         // populate array list with step ids
         Cursor c = db.rawQuery(selectStep, null);
@@ -319,10 +319,10 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Step step = new Step();
-                step.set_id(c.getLong(c.getColumnIndex(RecipeContract.Step._ID)));
-                step.set_instruction(c.getString((c.getColumnIndex(RecipeContract.Step.COLUMN_INSTRUCTION))));
-                step.set_stepNumber(c.getInt(c.getColumnIndex(RecipeContract.Step.COLUMN_NUMBER)));
-                step.set_time(c.getInt(c.getColumnIndex(RecipeContract.Step.COLUMN_TIME)));
+                step.set_id(c.getLong(c.getColumnIndex(dbContract.Step._ID)));
+                step.set_instruction(c.getString((c.getColumnIndex(dbContract.Step.COLUMN_INSTRUCTION))));
+                step.set_stepNumber(c.getInt(c.getColumnIndex(dbContract.Step.COLUMN_NUMBER)));
+                step.set_time(c.getInt(c.getColumnIndex(dbContract.Step.COLUMN_TIME)));
                 steps.add(step);
             } while (c.moveToNext());
         }
@@ -335,91 +335,91 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public boolean updateRecipe(Recipe recipe, Cuisine cuisine, MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
-        values.put(RecipeContract.Recipe.COLUMN_COST, recipe.get_cost());
-        values.put(RecipeContract.Recipe.COLUMN_DIFFICULTY, recipe.get_difficulty());
-        values.put(RecipeContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
-        values.put(RecipeContract.Recipe.COLUMN_CUISINE, cuisine.get_id());
-        values.put(RecipeContract.Recipe.COLUMN_MEALTYPE, type.get_id());
-        return db.update(RecipeContract.Recipe.TABLE_NAME, values, "_ID=" + recipe.get_id(), null) > 0;
+        values.put(dbContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
+        values.put(dbContract.Recipe.COLUMN_COST, recipe.get_cost());
+        values.put(dbContract.Recipe.COLUMN_DIFFICULTY, recipe.get_difficulty());
+        values.put(dbContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
+        values.put(dbContract.Recipe.COLUMN_CUISINE, cuisine.get_id());
+        values.put(dbContract.Recipe.COLUMN_MEALTYPE, type.get_id());
+        return db.update(dbContract.Recipe.TABLE_NAME, values, "_ID=" + recipe.get_id(), null) > 0;
     }
 
     public boolean updateIngredient(Ingredient ingredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.Ingredient.COLUMN_INGREDIENT_NAME, ingredient.get_name());
-        values.put(RecipeContract.Ingredient.COLUMN_INGREDIENT_PRICE, ingredient.get_price());
-        return db.update(RecipeContract.Ingredient.TABLE_NAME, values, "_ID=" + ingredient.get_id(), null) > 0;
+        values.put(dbContract.Ingredient.COLUMN_INGREDIENT_NAME, ingredient.get_name());
+        values.put(dbContract.Ingredient.COLUMN_INGREDIENT_PRICE, ingredient.get_price());
+        return db.update(dbContract.Ingredient.TABLE_NAME, values, "_ID=" + ingredient.get_id(), null) > 0;
     }
 
     public boolean updateRecipeIngredient(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID, recipeIngredient.get_recipe_id());
-        values.put(RecipeContract.RecipeIngredient.COLUMN_INGREDIENT_ID, recipeIngredient.get_ingredient_id());
-        values.put(RecipeContract.RecipeIngredient.COLUMN_QUANTITY, recipeIngredient.get_quantity());
-        values.put(RecipeContract.RecipeIngredient.COLUMN_UNIT, recipeIngredient.get_unit());
-        return db.update(RecipeContract.RecipeIngredient.TABLE_NAME, values, "_ID="+ recipeIngredient.get_id(), null) > 0;
+        values.put(dbContract.RecipeIngredient.COLUMN_RECIPE_ID, recipeIngredient.get_recipe_id());
+        values.put(dbContract.RecipeIngredient.COLUMN_INGREDIENT_ID, recipeIngredient.get_ingredient_id());
+        values.put(dbContract.RecipeIngredient.COLUMN_QUANTITY, recipeIngredient.get_quantity());
+        values.put(dbContract.RecipeIngredient.COLUMN_UNIT, recipeIngredient.get_unit());
+        return db.update(dbContract.RecipeIngredient.TABLE_NAME, values, "_ID="+ recipeIngredient.get_id(), null) > 0;
     }
 
     public boolean updateStep(Step step) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.Step.COLUMN_INSTRUCTION, step.get_instruction());
-        values.put(RecipeContract.Step.COLUMN_TIME, step.get_time());
-        values.put(RecipeContract.Step.COLUMN_NUMBER, step.get_stepNumber());
-        return db.update(RecipeContract.Step.TABLE_NAME, values, "_ID=" + step.get_id(), null) > 0;
+        values.put(dbContract.Step.COLUMN_INSTRUCTION, step.get_instruction());
+        values.put(dbContract.Step.COLUMN_TIME, step.get_time());
+        values.put(dbContract.Step.COLUMN_NUMBER, step.get_stepNumber());
+        return db.update(dbContract.Step.TABLE_NAME, values, "_ID=" + step.get_id(), null) > 0;
     }
 
     public boolean updateMealType(MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.MealType.COLUMN_MEAL_TYPE_NAME, type.get_name());
-        return db.update(RecipeContract.MealType.TABLE_NAME, values, "_ID=" + type.get_id(), null) > 0;
+        values.put(dbContract.MealType.COLUMN_MEAL_TYPE_NAME, type.get_name());
+        return db.update(dbContract.MealType.TABLE_NAME, values, "_ID=" + type.get_id(), null) > 0;
     }
 
     public boolean updateCuisine(Cuisine cuisine) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(RecipeContract.Cuisine.COLUMN_CUISINE_NAME, cuisine.get_name());
-        return db.update(RecipeContract.MealType.TABLE_NAME, values, "_ID=" + cuisine.get_id(), null) > 0;
+        values.put(dbContract.Cuisine.COLUMN_CUISINE_NAME, cuisine.get_name());
+        return db.update(dbContract.MealType.TABLE_NAME, values, "_ID=" + cuisine.get_id(), null) > 0;
     }
 
     /** Delete operations */
 
     public void deleteRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(RecipeContract.Step.TABLE_NAME, RecipeContract.Step.COLUMN_RECIPE +"="+ recipe.get_id(), null);
-        db.delete(RecipeContract.RecipeIngredient.TABLE_NAME, RecipeContract.RecipeIngredient.COLUMN_RECIPE_ID +"="+ recipe.get_id(), null);
-        db.delete(RecipeContract.Recipe.TABLE_NAME, "_ID=" + recipe.get_id(), null);
+        db.delete(dbContract.Step.TABLE_NAME, dbContract.Step.COLUMN_RECIPE +"="+ recipe.get_id(), null);
+        db.delete(dbContract.RecipeIngredient.TABLE_NAME, dbContract.RecipeIngredient.COLUMN_RECIPE_ID +"="+ recipe.get_id(), null);
+        db.delete(dbContract.Recipe.TABLE_NAME, "_ID=" + recipe.get_id(), null);
     }
 
     public void deleteIngredient(Ingredient ingredient) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(RecipeContract.RecipeIngredient.TABLE_NAME,
-                RecipeContract.RecipeIngredient.COLUMN_INGREDIENT_ID +"="+ ingredient.get_id(), null);
-        db.delete(RecipeContract.Ingredient.TABLE_NAME, "_ID="+ ingredient.get_id(), null);
+        db.delete(dbContract.RecipeIngredient.TABLE_NAME,
+                dbContract.RecipeIngredient.COLUMN_INGREDIENT_ID +"="+ ingredient.get_id(), null);
+        db.delete(dbContract.Ingredient.TABLE_NAME, "_ID="+ ingredient.get_id(), null);
     }
 
     public void deleteRecipeIngredient(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(RecipeContract.RecipeIngredient.TABLE_NAME, "_ID="+ recipeIngredient.get_id(), null);
+        db.delete(dbContract.RecipeIngredient.TABLE_NAME, "_ID="+ recipeIngredient.get_id(), null);
     }
 
     public void deleteStep(Step step) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(RecipeContract.Step.TABLE_NAME, "_ID="+ step.get_id(), null);
+        db.delete(dbContract.Step.TABLE_NAME, "_ID="+ step.get_id(), null);
     }
 
     public void deleteMealType(MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        db.delete(RecipeContract.MealType.TABLE_NAME, "_ID="+ type.get_id(), null);
+        db.delete(dbContract.MealType.TABLE_NAME, "_ID="+ type.get_id(), null);
     }
 
     public void deleteCuisine(Cuisine cuisine) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(RecipeContract.Cuisine.TABLE_NAME, "_ID="+ cuisine.get_id(), null);
+        db.delete(dbContract.Cuisine.TABLE_NAME, "_ID="+ cuisine.get_id(), null);
     }
 
 }
