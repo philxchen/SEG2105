@@ -1,10 +1,6 @@
 package ca.uottawa.cookingwithgarzon.model;
 
-import android.content.Context;
-
 import java.util.ArrayList;
-
-import ca.uottawa.cookingwithgarzon.helper.RecipeDbHelper;
 
 /**
  * Created by joel on 22/11/16.
