@@ -5,14 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
 
-import ca.uottawa.cookingwithgarzon.model.*;
+import ca.uottawa.cookingwithgarzon.model.Cuisine;
+import ca.uottawa.cookingwithgarzon.model.Ingredient;
+import ca.uottawa.cookingwithgarzon.model.MealType;
+import ca.uottawa.cookingwithgarzon.model.Recipe;
+import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
+import ca.uottawa.cookingwithgarzon.model.Step;
 
 /**
  * Helper class that facilitates interaction with the SQLite Database
