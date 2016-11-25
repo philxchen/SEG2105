@@ -9,11 +9,11 @@ import android.provider.BaseColumns;
  * Created by joel on 19/11/16.
  */
 
-public final class RecipeContract {
+public final class DbContract {
 
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.
-    private RecipeContract() {}
+    private DbContract() {}
 
     /* Inner classes that define table contents */
     public static class Recipe implements BaseColumns {

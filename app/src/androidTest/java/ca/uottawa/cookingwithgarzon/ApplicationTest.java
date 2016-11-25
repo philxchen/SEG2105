@@ -3,6 +3,9 @@ package ca.uottawa.cookingwithgarzon;
 import android.app.Application;
 import android.test.ApplicationTestCase;
 
+import ca.uottawa.cookingwithgarzon.helper.RecipeDbHelper;
+
+
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
