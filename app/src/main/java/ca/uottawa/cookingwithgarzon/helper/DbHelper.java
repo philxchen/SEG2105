@@ -19,12 +19,12 @@ import ca.uottawa.cookingwithgarzon.model.*;
  * Created by joel on 19/11/16.
  */
 
-public class RecipeDbHelper extends SQLiteOpenHelper {
+public class DbHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Recipe.db";
 
-    private static final String LOG = "RecipeDbHelper";
+    private static final String LOG = "DbHelper";
     private static final String TEXT_TYPE = " TEXT";
     private static final String REAL_TYPE = " REAL";
     private static final String INTEGER_TYPE = " INTEGER";
@@ -102,7 +102,7 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + DbContract.MealType.TABLE_NAME;
 
 
-    public RecipeDbHelper(Context context) {
+    public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public void onCreate(SQLiteDatabase db) {
