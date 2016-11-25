@@ -1,6 +1,10 @@
 package ca.uottawa.cookingwithgarzon.model;
 
+import android.content.Context;
+
 import java.util.ArrayList;
+
+import ca.uottawa.cookingwithgarzon.helper.RecipeDbHelper;
 
 /**
  * Created by joel on 22/11/16.
@@ -93,6 +97,5 @@ public class Recipe {
     public void set_recipeIngredients(ArrayList<Long> _recipeIngredient_ids) {
         this._recipeIngredient_ids = _recipeIngredient_ids;
     }
-
 
 }

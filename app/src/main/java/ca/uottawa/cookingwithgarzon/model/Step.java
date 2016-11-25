@@ -5,7 +5,7 @@ package ca.uottawa.cookingwithgarzon.model;
  */
 
 public class Step {
-    private int _id;
+    private long _id;
     private String _instruction;
     private int _stepNumber;
     private int _time;
@@ -13,11 +13,11 @@ public class Step {
     public Step() {
     }
 
-    public int get_id() {
+    public long get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(long _id) {
         this._id = _id;
     }
 
