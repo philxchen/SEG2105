@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SEG2105.iml" filepath="$PROJECT_DIR$/SEG2105.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CookingWithGarzon.iml" filepath="$PROJECT_DIR$/CookingWithGarzon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CookingWithGarzon.iml" filepath="$PROJECT_DIR$/CookingWithGarzon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
