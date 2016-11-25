@@ -5,9 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 import ca.uottawa.cookingwithgarzon.model.*;
 
@@ -420,6 +423,65 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
     public void deleteCuisine(Cuisine cuisine) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DbContract.Cuisine.TABLE_NAME, "_ID="+ cuisine.get_id(), null);
+    }
+
+    private ArrayList<Recipe> buildRecipeList(String query) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                Recipe recipe = new Recipe();
+                recipe.set_id(c.getLong(c.getColumnIndex(DbContract.Recipe._ID)));
+                recipe.set_name(c.getString(c.getColumnIndex(DbContract.Recipe.COLUMN_RECIPE_NAME)));
+                recipe.set_cost(c.getDouble((c.getColumnIndex((DbContract.Recipe.COLUMN_COST)))));
+                recipe.set_difficulty(c.getDouble(c.getColumnIndex(DbContract.Recipe.COLUMN_DIFFICULTY)));
+                recipe.set_servings(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_SERVINGS)));
+                recipe.set_cuisine_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_CUISINE)));
+                recipe.set_meal_type_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_MEALTYPE)));
+                recipes.add(recipe);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return recipes;
+    }
+
+    private String parseQueryString(String str) {
+
+        if (str.isEmpty()) return null;
+
+        ArrayList<String> select = new ArrayList<>();
+        ArrayList<String> selectnot = new ArrayList<>();
+        String[] args = str.split(" ");
+        ArrayList<String> params = new ArrayList<>();
+        for (int i=0; i< args.length; i++) {
+            if (args[i].toLowerCase().equals("and") && i != 0 && i+1 <= args.length) {
+                select.add(args[i+1]);
+                i++;
+            }
+            if (args[i].toLowerCase().equals("not") && i+1 <= args.length) {
+                selectnot.add(args[i+1]);
+                i++;
+            }
+            else {
+                select.add(args[i]);
+            }
+        }
+        StringBuilder query = new StringBuilder();
+        for (int j=0; j < select.size(); j++) {
+            query.append(" LIKE \'" + select.get(j) + "\'");
+            if (j < select.size() -1 ) {
+                query.append(" AND ");
+            }
+        }
+        for (int k=0; k < selectnot.size(); k++) {
+            query.append(" NOT LIKE \'" + selectnot.get(k) + "\'");
+            if (k < select.size() -1 ) {
+                query.append(" AND ");
+            }
+        }
+        return query.toString();
+
     }
 
 }
