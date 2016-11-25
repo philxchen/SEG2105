@@ -12,7 +12,7 @@
     <!--android:background="@drawable/ingredients"-->
 
     <ImageView
-        android:src="@drawable/Cooking_with_Garzon"
+        android:src="@drawable/cooking_with_garzon"
         android:layout_width="match_parent"
         android:layout_height="206dp"
         android:id="@+id/imageView" />
