@@ -1,9 +1,9 @@
 package ca.uottawa.cookingwithgarzon;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class CartIngredient extends AppCompatActivity {
+public class CartIngredient extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
