@@ -54,7 +54,7 @@
         <activity
             android:name=".ShoppingCart"
             android:label="@string/title_activity_shopping_cart" />
-        <activity android:name=".CartIngredient"></activity>
+        <activity android:name=".CartIngredient" />
     </application>
 
 </manifest>
