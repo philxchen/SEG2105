@@ -22,27 +22,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_search_black_24dp"
-        android:id="@+id/search" />
+        android:id="@+id/searchBtn" />
 
     <Button
         android:text="New Recipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_add_black_24dp"
-        android:id="@+id/createRecipeBtn"
-        android:onClick="onClickCreateRecipe" />
+        android:id="@+id/createRecipeBtn" />
 
     <Button
         android:text="Favourites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_stars_black_24dp"
-        android:id="@+id/fav" />
+        android:id="@+id/favouritesBtn" />
 
     <Button
-        android:text="Shopping List"
+        android:text="Shopping Cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_shopping_basket_black_24dp"
-        android:id="@+id/shop" />
+        android:id="@+id/shoppingCartBtn" />
 </LinearLayout>
