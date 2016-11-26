@@ -448,42 +448,84 @@ public class DbHelper extends SQLiteOpenHelper {
         return recipes;
     }
 
-    private String parseQueryString(String str) {
+    public ArrayList<Recipe> findRecipe(String name, String ingredient, String cuisine, String type) {
 
-        if (str.isEmpty()) return null;
-
-        ArrayList<String> select = new ArrayList<>();
-        ArrayList<String> selectnot = new ArrayList<>();
-        String[] args = str.split(" ");
-        ArrayList<String> params = new ArrayList<>();
-        for (int i=0; i< args.length; i++) {
-            if (args[i].toLowerCase().equals("and") && i != 0 && i+1 <= args.length) {
-                select.add(args[i+1]);
-                i++;
-            }
-            if (args[i].toLowerCase().equals("not") && i+1 <= args.length) {
-                selectnot.add(args[i+1]);
-                i++;
-            }
-            else {
-                select.add(args[i]);
-            }
-        }
         StringBuilder query = new StringBuilder();
-        for (int j=0; j < select.size(); j++) {
-            query.append(" LIKE \'" + select.get(j) + "\'");
-            if (j < select.size() -1 ) {
-                query.append(" AND ");
+        query.append("SELECT * FROM " + DbContract.Recipe.TABLE_NAME);
+        if (!name.isEmpty()) {
+            String[] args = name.split(" AND ");
+            query.append(" WHERE ");
+            for (int i = 0; i < args.length; ++i) {
+                query.append(DbContract.Recipe.COLUMN_RECIPE_NAME);
+                if (args[i].toLowerCase().startsWith("not")) {
+                    query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
+                } else {
+                    query.append(" LIKE \'" + args[i] + "\' ");
+                }
+                if (i + 1 < args.length) {
+                    query.append(" OR ");
+                }
             }
         }
-        for (int k=0; k < selectnot.size(); k++) {
-            query.append(" NOT LIKE \'" + selectnot.get(k) + "\'");
-            if (k < select.size() -1 ) {
-                query.append(" AND ");
+        if (!ingredient.isEmpty()) {
+            query.append(" INTERSECT SELECT * FROM "+ DbContract.Recipe.TABLE_NAME +
+                    " INNER JOIN " + DbContract.RecipeIngredient.TABLE_NAME +
+                    " ON " + DbContract.Recipe._ID+ "="+
+                    DbContract.RecipeIngredient.TABLE_NAME + "." +
+                    DbContract.RecipeIngredient.COLUMN_RECIPE_ID +
+                    " INNER JOIN " + DbContract.Ingredient.TABLE_NAME +
+                    " ON " + DbContract.Ingredient._ID + "=" +
+                    DbContract.RecipeIngredient.TABLE_NAME + "." +
+                    DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID + " WHERE ");
+            String[] args = ingredient.split(" AND ");
+            for (int i = 0; i < args.length; ++i) {
+                query.append(DbContract.Ingredient.COLUMN_INGREDIENT_NAME);
+                if (args[i].toLowerCase().startsWith("not")) {
+                    query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
+                } else {
+                    query.append(" LIKE \'" + args[i] + "\' ");
+                }
+                if (i + 1 < args.length) {
+                    query.append(" OR ");
+                }
             }
         }
-        return query.toString();
-
+        if (!cuisine.isEmpty()) {
+            query.append(" INTERSECT SELECT * FROM "+ DbContract.Recipe.TABLE_NAME +
+                    " INNER JOIN " + DbContract.Cuisine.TABLE_NAME +
+                    " ON " + DbContract.Recipe.COLUMN_CUISINE + "="+
+                    DbContract.Cuisine._ID + " WHERE ");
+            String[] args = ingredient.split(" AND ");
+            for (int i = 0; i < args.length; ++i) {
+                query.append(DbContract.Cuisine.COLUMN_CUISINE_NAME);
+                if (args[i].toLowerCase().startsWith("not")) {
+                    query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
+                } else {
+                    query.append(" LIKE \'" + args[i] + "\' ");
+                }
+                if (i + 1 < args.length) {
+                    query.append(" OR ");
+                }
+            }
+        }
+        if (!type.isEmpty()) {
+            query.append(" INTERSECT SELECT * FROM "+ DbContract.Recipe.TABLE_NAME +
+                    " INNER JOIN " + DbContract.MealType.TABLE_NAME +
+                    " ON " + DbContract.Recipe.COLUMN_MEALTYPE + "="+
+                    DbContract.MealType._ID + " WHERE ");
+            String[] args = ingredient.split(" AND ");
+            for (int i = 0; i < args.length; ++i) {
+                query.append(DbContract.MealType.COLUMN_MEAL_TYPE_NAME);
+                if (args[i].toLowerCase().startsWith("not")) {
+                    query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
+                } else {
+                    query.append(" LIKE \'" + args[i] + "\' ");
+                }
+                if (i + 1 < args.length) {
+                    query.append(" OR ");
+                }
+            }
+        }
+        return buildRecipeList(query.toString());
     }
-
 }
