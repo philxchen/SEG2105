@@ -1,13 +1,13 @@
 package ca.uottawa.cookingwithgarzon;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import ca.uottawa.cookingwithgarzon.helper.DbHelper;
+import ca.uottawa.cookingwithgarzon.model.*;
 
-import ca.uottawa.cookingwithgarzon.R;
+import java.util.ArrayList;
+
 
 public class SearchResult extends AppCompatActivity {
 
@@ -18,6 +18,15 @@ public class SearchResult extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final String name = savedInstanceState.getString("name");
+        final String ingredient = savedInstanceState.getString("ingredient");
+        final String cuisine = savedInstanceState.getString("cuisine");
+        final String type = savedInstanceState.getString("type");
+
+        DbHelper dbHelper = new DbHelper(this);
+
+        ArrayList<Recipe> result = dbHelper.findRecipe(name, ingredient, cuisine, type);
+
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -26,5 +35,8 @@ public class SearchResult extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+
+
     }
 }

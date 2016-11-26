@@ -20,7 +20,7 @@
             android:label="@string/title_activity_recipe_search"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Recipe"
+            android:name=".RecipeView"
             android:label="@string/title_activity_recipe"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RecipePreview" />
