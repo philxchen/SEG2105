@@ -8,10 +8,17 @@
     tools:context="ca.uottawa.cookingwithgarzon.CreateRecipe"
     tools:showIn="@layout/activity_create_recipe">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:ems="10"
+            android:id="@+id/editText5" />
+    </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
