@@ -1,4 +1,4 @@
-package ca.uottawa.cookingwithgarzon.helper;
+package ca.uottawa.cookingwithgarzon;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

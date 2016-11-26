@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_add_black_24dp"
         android:id="@+id/createRecipeBtn"
-        android:onClick="onClickCreateRecipe (MainActivity)" />
+        android:onClick="onClickCreateRecipe" />
 
     <Button
         android:text="Favourites"

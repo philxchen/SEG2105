@@ -70,7 +70,7 @@
             android:label="@string/title_activity_unit_type"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".helper.SearchResult"
+            android:name=".SearchResult"
             android:label="@string/title_activity_search_result"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
