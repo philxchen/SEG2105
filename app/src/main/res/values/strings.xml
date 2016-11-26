@@ -102,4 +102,5 @@
     <string name="title_activity_recipe_ingredient">RecipeIngredient</string>
     <string name="title_activity_ingredient_list">IngredientList</string>
     <string name="title_activity_unit_type">UnitType</string>
+    <string name="title_activity_search_result">SearchResult</string>
 </resources>
