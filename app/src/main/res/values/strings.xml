@@ -104,4 +104,8 @@
     <string name="title_activity_unit_type">Unit Type</string>
     <string name="title_activity_search_result">Search Result</string>
     <string name="title_activity_create_ingredient">CreateIngredient</string>
+
+    <string name="difficulty_prompt">Select Difficulty</string>
+    <string name="meal_type_prompt">Select Meal Type</string>
+    <string name="cuisine_type_prompt">Select Cuisine Type</string>
 </resources>

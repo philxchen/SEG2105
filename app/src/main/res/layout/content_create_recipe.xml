@@ -16,14 +16,19 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_height="100dp"
                 app:srcCompat="@drawable/ic_image_black_36dp"
-                android:id="@+id/imageView3"
+                android:id="@+id/createRecipeImage"
                 android:layout_weight="1"
-                android:layout_width="200dp" />
+                android:layout_width="250dp"
+                android:layout_height="125dp" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -37,14 +42,14 @@
                     android:inputType="textPersonName"
                     android:text="Enter recipe title here"
                     android:ems="10"
-                    android:id="@+id/editText5"
+                    android:id="@+id/createRecipeTitle"
                     android:textStyle="normal|italic"
                     android:textSize="24sp" />
 
                 <RatingBar
                     android:layout_width="279dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/CreateRecipeRatingBar"
+                    android:id="@+id/createRecipeRating"
                     android:numStars="@android:integer/config_mediumAnimTime"
                     android:stepSize=".5" />
 
@@ -55,17 +60,97 @@
         <Spinner
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:id="@+id/difficultSelect" />
+            android:prompt="@string/difficulty_prompt"
+            android:id="@+id/difficultySelect"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
 
         <Spinner
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:id="@+id/MealTypeSelect" />
+            android:prompt="@string/meal_type_prompt"
+            android:id="@+id/mealTypeSelect"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
 
         <Spinner
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:id="@+id/cuisineTypeSelect" />
+            android:prompt="@string/cuisine_type_prompt"
+            android:id="@+id/cuisineTypeSelect"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Ingredients"
+                android:layout_height="match_parent"
+                android:id="@+id/createRecipeIngredientTitle"
+                android:layout_weight="0.12"
+                android:textSize="24sp"
+                android:gravity="left|center"
+                android:paddingLeft="10dp"
+                android:layout_width="wrap_content" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_add_black_24dp"
+                android:id="@+id/addIngredientToRecipeBtn"
+                android:layout_weight="1"
+                app:backgroundTint="@android:color/holo_orange_dark"
+                android:paddingRight="10dp" />
+
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:id="@+id/listOfRecipeIngredient" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.12">
+
+            <TextView
+                android:text="Instructions"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/createRecipeInstructionTitle"
+                android:layout_weight="0.09"
+                android:textSize="24sp"
+                android:paddingLeft="10dp"
+                android:gravity="left|center" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_add_black_24dp"
+                android:id="@+id/addStepToRecipeBtn"
+                android:layout_weight="1"
+                app:backgroundTint="@android:color/holo_blue_light" />
+
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
+            android:id="@+id/listOfRecipeStep" />
 
     </LinearLayout>
 </ScrollView>
