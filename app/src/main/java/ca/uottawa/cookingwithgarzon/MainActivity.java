@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button createRecipeBtn = (Button) findViewById(R.id.createRecipeBtn);
+        final Button createBtn = (Button) findViewById(R.id.createBtn);
         final Button searchBtn = (Button) findViewById(R.id.searchBtn);
         final Button favouritesBtn = (Button) findViewById(R.id.favouritesBtn);
         final Button shoppingListBtn = (Button) findViewById(R.id.shoppingCartBtn);
@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        View.OnClickListener oclCreateRecipeBtn = new View.OnClickListener() {
+        View.OnClickListener oclCreateBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, CreateRecipe.class));
+                startActivity(new Intent(MainActivity.this, SelectCreateActivity.class));
             }
         };
 
@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener oclShoppingCartBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ShoppingCart.class));
+                startActivity(new Intent(MainActivity.this, ShoppingCartActivity.class));
             }
         };
 
         searchBtn.setOnClickListener(oclSearchBtn);
-        createRecipeBtn.setOnClickListener(oclCreateRecipeBtn);
+        createBtn.setOnClickListener(oclCreateBtn);
         favouritesBtn.setOnClickListener(oclFavouritesBtn);
         shoppingListBtn.setOnClickListener(oclShoppingCartBtn);
 

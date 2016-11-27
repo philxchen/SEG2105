@@ -25,11 +25,11 @@
         android:id="@+id/searchBtn" />
 
     <Button
-        android:text="New Recipe"
+        android:text="Create God"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_add_black_24dp"
-        android:id="@+id/createRecipeBtn" />
+        android:id="@+id/createBtn" />
 
     <Button
         android:text="Favourites"

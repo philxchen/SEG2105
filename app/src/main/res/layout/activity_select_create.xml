@@ -10,4 +10,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.uottawa.cookingwithgarzon.SelectCreateActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:weightSum="1">
+
+        <TextView
+            android:text="Create a Thing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/select_create_header"
+            android:layout_weight="0.06"
+            android:textSize="36sp"
+            tools:textAlignment="center" />
+
+        <Button
+            android:text="Create Recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/createRecipeBtn"
+            android:layout_weight="0.06" />
+
+        <Button
+            android:text="Create Ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/createIngredientBtn"
+            android:layout_weight="0.06" />
+    </LinearLayout>
 </RelativeLayout>
