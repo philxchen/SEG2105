@@ -67,8 +67,17 @@
         <activity
             android:name=".ShoppingCartActivity"
             android:label="@string/title_activity_shopping_cart"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SelectCreateActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SelectCreateActivity" />
+        <activity
+            android:name=".CreateIngredient"
+            android:label="@string/title_activity_create_ingredient"
+            android:parentActivityName=".SelectCreateActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.uottawa.cookingwithgarzon.SelectCreateActivity" />
+        </activity>
     </application>
 
 </manifest>
