@@ -52,26 +52,20 @@
 
         </LinearLayout>
 
-        <TextView
-            android:text="Select Difficulty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:textSize="24sp" />
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:id="@+id/difficultSelect" />
 
-        <TextView
-            android:text="Select Meal Type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:textSize="24sp" />
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:id="@+id/MealTypeSelect" />
 
-        <TextView
-            android:text="Select Cuisine Type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:textSize="24sp" />
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:id="@+id/cuisineTypeSelect" />
 
     </LinearLayout>
 </ScrollView>
