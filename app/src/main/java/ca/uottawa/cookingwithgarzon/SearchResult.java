@@ -1,5 +1,6 @@
 package ca.uottawa.cookingwithgarzon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,11 +18,11 @@ public class SearchResult extends AppCompatActivity {
         setContentView(R.layout.activity_search_result);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        final String name = savedInstanceState.getString("name");
-        final String ingredient = savedInstanceState.getString("ingredient");
-        final String cuisine = savedInstanceState.getString("cuisine");
-        final String type = savedInstanceState.getString("type");
+        Intent intent = getIntent();
+        final String name = intent.getStringExtra("name");
+        final String ingredient = intent.getStringExtra("ingredient");
+        final String cuisine = intent.getStringExtra("cuisine");
+        final String type = intent.getStringExtra("type");
 
         DbHelper dbHelper = new DbHelper(this);
 

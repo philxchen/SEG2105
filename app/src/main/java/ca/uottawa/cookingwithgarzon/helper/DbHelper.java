@@ -83,6 +83,15 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.MealType._ID + " INTEGER PRIMARY KEY," +
                     DbContract.MealType.COLUMN_MEAL_TYPE_NAME + TEXT_TYPE + " )";
 
+    private static final String SQL_CREATE_SHOPPINGCART_TABLE =
+            "CREATE TABLE " + DbContract.ShoppingCart.TABLE_NAME + " (" +
+                    DbContract.RecipeIngredient._ID + " INTEGER PRIMARY KEY )";
+
+    private static final String SQL_CREATE_SHOPPINGCARTINGREDIENT_TABLE =
+            "CREATE TABLE " + DbContract.ShoppingCartIngredient.TABLE_NAME + " (" +
+                    DbContract.ShoppingCartIngredient._ID + " INTEGER PRIMARY KEY, "+
+                    DbContract.ShoppingCartIngredient.COLUMN_SHOPPINGCART_ID + INTEGER_TYPE + COMMA_SEP +
+                    DbContract.ShoppingCartIngredient.COLUMN_RECIPEINGREDIENT_ID + INTEGER_TYPE + ")";
 
     // SQL statements for deleting tables
     private static final String SQL_DELETE_STEP_TABLE =
@@ -103,6 +112,11 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_MEALTYPE_TABLE =
             "DROP TABLE IF EXISTS " + DbContract.MealType.TABLE_NAME;
 
+    private static final String SQL_DELETE_SHOPPINGCART_TABLE =
+            "DROP TABLE IF EXISTS " + DbContract.ShoppingCart.TABLE_NAME;
+
+    private static final String SQL_DELETE_SHOPPINGCARTINGREDIENT_TABLE =
+            "DROP TABLE IF EXISTS " + DbContract.ShoppingCartIngredient.TABLE_NAME;
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -114,7 +128,10 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_STEP_TABLE);
         db.execSQL(SQL_CREATE_MEALTYPE_TABLE);
         db.execSQL(SQL_CREATE_CUISINE_TABLE);
+        db.execSQL(SQL_CREATE_SHOPPINGCART_TABLE);
+        db.execSQL(SQL_CREATE_SHOPPINGCARTINGREDIENT_TABLE);
     }
+
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Not sure when upgrade would be invoked. Just drop everything
         db.execSQL(SQL_DELETE_RECIPEINGREDIENT_TABLE);
@@ -123,6 +140,8 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_CUISINE_TABLE);
         db.execSQL(SQL_DELETE_MEALTYPE_TABLE);
         db.execSQL(SQL_DELETE_STEP_TABLE);
+        db.execSQL(SQL_DELETE_SHOPPINGCART_TABLE);
+        db.execSQL(SQL_DELETE_SHOPPINGCARTINGREDIENT_TABLE);
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -142,7 +161,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
         values.put(DbContract.Recipe.COLUMN_CUISINE, cuisine.get_id());
         values.put(DbContract.Recipe.COLUMN_MEALTYPE, type.get_id());
-        long recipe_id = db.insert(DbContract.Recipe.TABLE_NAME, null, values);
+        long recipe_id = db.insertOrThrow(DbContract.Recipe.TABLE_NAME, null, values);
         return recipe_id;
     }
 
@@ -154,7 +173,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.RecipeIngredient.COLUMN_RECIPE_ID, ingredient.get_id());
         values.put(DbContract.RecipeIngredient.COLUMN_QUANTITY, qty);
         values.put(DbContract.RecipeIngredient.COLUMN_UNIT, unit);
-        long recipeIngredient_id = db.insert(DbContract.RecipeIngredient.TABLE_NAME, null, values);
+        long recipeIngredient_id = db.insertOrThrow(DbContract.RecipeIngredient.TABLE_NAME, null, values);
         return recipeIngredient_id;
     }
 
@@ -164,7 +183,7 @@ public class DbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(DbContract.Ingredient.COLUMN_INGREDIENT_NAME, ingredient.get_name());
         values.put(DbContract.Ingredient.COLUMN_INGREDIENT_PRICE, ingredient.get_price());
-        long ingredient_id = db.insert(DbContract.Ingredient.TABLE_NAME, null, values);
+        long ingredient_id = db.insertOrThrow(DbContract.Ingredient.TABLE_NAME, null, values);
         return ingredient_id;
     }
 
@@ -173,7 +192,7 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Cuisine.COLUMN_CUISINE_NAME, cuisine.get_name());
-        long cuisine_id = db.insert(DbContract.Cuisine.TABLE_NAME, null, values);
+        long cuisine_id = db.insertOrThrow(DbContract.Cuisine.TABLE_NAME, null, values);
         return cuisine_id;
     }
 
@@ -182,7 +201,7 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.MealType.COLUMN_MEAL_TYPE_NAME, type.get_name());
-        long type_id = db.insert(DbContract.MealType.TABLE_NAME, null, values);
+        long type_id = db.insertOrThrow(DbContract.MealType.TABLE_NAME, null, values);
         return type_id;
     }
 
@@ -193,12 +212,19 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Step.COLUMN_INSTRUCTION, step.get_instruction());
         values.put(DbContract.Step.COLUMN_NUMBER, step.get_stepNumber());
         values.put(DbContract.Step.COLUMN_TIME, step.get_time());
-        long step_id = db.insert(DbContract.Step.TABLE_NAME, null, values);
+        long step_id = db.insertOrThrow(DbContract.Step.TABLE_NAME, null, values);
         return step_id;
     }
+//
+//    /** create a shopping cart */
+//    public long createShoppingCart(Shopping cart) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        long shoppingcart_id = db.insertOrThrow(DbContract.ShoppingCart.TABLE_NAME, null, values);
+//        return shoppingcart_id;
+//    }
 
-    /** create a grocery list */
-    // TODO
+
 
     /** get a recipe by id */
     public Recipe getRecipe(long recipe_id) {
@@ -452,13 +478,17 @@ public class DbHelper extends SQLiteOpenHelper {
 
         boolean started = false;
         StringBuilder query = new StringBuilder();
-        if (!name.isEmpty()) {
+
+        if (name == null || !name.isEmpty()) {
             started = true;
             String[] args = name.split(" AND ");
-            query.append("SELECT * FROM " + DbContract.Recipe.TABLE_NAME + " WHERE ");
+            query.append("SELECT " + DbContract.Recipe.TABLE_NAME +"."+
+                    DbContract.Recipe._ID +
+                    " FROM " + DbContract.Recipe.TABLE_NAME + " WHERE ");
 
             for (int i = 0; i < args.length; ++i) {
-                query.append(DbContract.Recipe.COLUMN_RECIPE_NAME);
+                query.append(DbContract.Recipe.TABLE_NAME +"."+
+                        DbContract.Recipe.COLUMN_RECIPE_NAME);
                 if (args[i].toLowerCase().startsWith("not")) {
                     query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
                 } else {
@@ -469,24 +499,31 @@ public class DbHelper extends SQLiteOpenHelper {
                 }
             }
         }
-        if (!ingredient.isEmpty()) {
+        if (ingredient == null || !ingredient.isEmpty()) {
             if (!started) {
                 started=true;
-                query.append("SELECT * FROM "+ DbContract.Recipe.TABLE_NAME);
+                query.append("SELECT " + DbContract.Recipe.TABLE_NAME +"."+
+                        DbContract.Recipe._ID +
+                        " FROM " + DbContract.Recipe.TABLE_NAME);
             } else {
-                query.append(" INTERSECT SELECT * FROM "+ DbContract.Recipe.TABLE_NAME);
+                query.append(" INTERSECT SELECT " + DbContract.Recipe.TABLE_NAME +"."+
+                        DbContract.Recipe._ID +
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
             }
             query.append(" INNER JOIN " + DbContract.RecipeIngredient.TABLE_NAME +
-                    " ON " + DbContract.Recipe._ID+ "="+
+                    " ON " + DbContract.Recipe.TABLE_NAME +"."+
+                    DbContract.Recipe._ID+ "="+
                     DbContract.RecipeIngredient.TABLE_NAME + "." +
                     DbContract.RecipeIngredient.COLUMN_RECIPE_ID +
                     " INNER JOIN " + DbContract.Ingredient.TABLE_NAME +
-                    " ON " + DbContract.Ingredient._ID + "=" +
+                    " ON " + DbContract.Ingredient.TABLE_NAME +"."+
+                    DbContract.Ingredient._ID + "=" +
                     DbContract.RecipeIngredient.TABLE_NAME + "." +
                     DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID + " WHERE ");
             String[] args = ingredient.split(" AND ");
             for (int i = 0; i < args.length; ++i) {
-                query.append(DbContract.Ingredient.COLUMN_INGREDIENT_NAME);
+                query.append(DbContract.Ingredient.TABLE_NAME +"." +
+                        DbContract.Ingredient.COLUMN_INGREDIENT_NAME);
                 if (args[i].toLowerCase().startsWith("not")) {
                     query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
                 } else {
@@ -497,19 +534,26 @@ public class DbHelper extends SQLiteOpenHelper {
                 }
             }
         }
-        if (!cuisine.isEmpty()) {
+        if (cuisine == null || !cuisine.isEmpty()) {
             if (!started) {
                 started=true;
-                query.append("SELECT * FROM "+ DbContract.Recipe.TABLE_NAME);
+                query.append("SELECT " + DbContract.Recipe.TABLE_NAME +"."+
+                        DbContract.Recipe._ID +
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
             } else {
-                query.append(" INTERSECT SELECT * FROM "+ DbContract.Recipe.TABLE_NAME);
+                query.append(" INTERSECT SELECT " + DbContract.Recipe.TABLE_NAME +"."+
+                        DbContract.Recipe._ID +
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
             }
             query.append(" INNER JOIN " + DbContract.Cuisine.TABLE_NAME +
-                    " ON " + DbContract.Recipe.COLUMN_CUISINE + "="+
+                    " ON " + DbContract.Recipe.TABLE_NAME +"."+
+                    DbContract.Recipe.COLUMN_CUISINE + "="+
+                    DbContract.Cuisine.TABLE_NAME +"."+
                     DbContract.Cuisine._ID + " WHERE ");
             String[] args = ingredient.split(" AND ");
             for (int i = 0; i < args.length; ++i) {
-                query.append(DbContract.Cuisine.COLUMN_CUISINE_NAME);
+                query.append(DbContract.Cuisine.TABLE_NAME +"."+
+                        DbContract.Cuisine.COLUMN_CUISINE_NAME);
                 if (args[i].toLowerCase().startsWith("not")) {
                     query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
                 } else {
@@ -520,18 +564,25 @@ public class DbHelper extends SQLiteOpenHelper {
                 }
             }
         }
-        if (!type.isEmpty()) {
+        if (type == null || !type.isEmpty()) {
             if (!started) {
-                query.append("SELECT * FROM "+ DbContract.Recipe.TABLE_NAME);
+                query.append("SELECT " + DbContract.Recipe.TABLE_NAME +"."+
+                        DbContract.Recipe._ID +
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
             } else {
-                query.append(" INTERSECT SELECT * FROM "+ DbContract.Recipe.TABLE_NAME);
+                query.append(" INTERSECT SELECT " + DbContract.Recipe.TABLE_NAME +"."+
+                        DbContract.Recipe._ID +
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
             }
             query.append(" INNER JOIN " + DbContract.MealType.TABLE_NAME +
-                    " ON " + DbContract.Recipe.COLUMN_MEALTYPE + "="+
+                    " ON " + DbContract.Recipe.TABLE_NAME +"."+
+                    DbContract.Recipe.COLUMN_MEALTYPE + "="+
+                    DbContract.MealType.TABLE_NAME +"."+
                     DbContract.MealType._ID + " WHERE ");
             String[] args = ingredient.split(" AND ");
             for (int i = 0; i < args.length; ++i) {
-                query.append(DbContract.MealType.COLUMN_MEAL_TYPE_NAME);
+                query.append(DbContract.MealType.TABLE_NAME +"."+
+                        DbContract.MealType.COLUMN_MEAL_TYPE_NAME);
                 if (args[i].toLowerCase().startsWith("not")) {
                     query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
                 } else {

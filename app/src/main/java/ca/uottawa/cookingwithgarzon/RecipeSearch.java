@@ -28,10 +28,10 @@ public class RecipeSearch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecipeSearch.this, SearchResult.class);
-                intent.putExtra("name", nameTxt.getText());
-                intent.putExtra("ingredient", ingredientTxt.getText());
-                intent.putExtra("cuisine", cuisineTxt.getText());
-                intent.putExtra("type", mealTypeTxt.getText());
+                intent.putExtra("name", nameTxt.getText().toString());
+                intent.putExtra("ingredient", ingredientTxt.getText().toString());
+                intent.putExtra("cuisine", cuisineTxt.getText().toString());
+                intent.putExtra("type", mealTypeTxt.getText().toString());
                 startActivity(intent);
             }
         };

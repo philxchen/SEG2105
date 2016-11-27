@@ -60,11 +60,16 @@ public final class DbContract {
         public static final String COLUMN_MEAL_TYPE_NAME = "name";
     }
 
-//    public static class GroceryList implements BaseColumns {
-//        public static final String TABLE_NAME = "groceryList";
-//        public static final String COLUMN_TITLE = "title";
-//        // public static final String COLUMN_SUBTITLE = "subtitle";
-//    }
+    public static class ShoppingCart implements BaseColumns {
+        public static final String TABLE_NAME = "shoppingcart";
+    }
+
+    public static class ShoppingCartIngredient implements BaseColumns {
+        public static final String TABLE_NAME = "shoppingcartingredient";
+        public static final String COLUMN_SHOPPINGCART_ID = "shoppingcart_id";
+        public static final String COLUMN_RECIPEINGREDIENT_ID = "recipeingredient_id";
+    }
+
 }
 
 
