@@ -13,8 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 
 public class ShoppingCartActivity extends AppCompatActivity {
@@ -35,7 +33,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-        IngredientArrayAdapter adapter = new IngredientArrayAdapter(this, getIngredients());
+        IngredientArrayAdapter adapter = new IngredientArrayAdapter(this, (new DbHelper(getApplicationContext())).getIngredients());
         ListView cartList = (ListView) findViewById(R.id.shopping_cart_list);
         cartList.setAdapter(adapter);
         cartList.setOnClickListener(new View.OnClickListener() {
@@ -44,38 +42,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private String[] getIngredients() {
-        DbHelper mDbHelper = new DbHelper(getApplicationContext());
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        String[] projection = {
-                Ingredient._ID,
-                Ingredient.COLUMN_INGREDIENT_NAME,
-                Ingredient.COLUMN_INGREDIENT_PRICE
-        };
-
-        String selection = Ingredient.COLUMN_INGREDIENT_NAME + " = ? ";
-
-        Cursor c = db.query(
-                Ingredient.TABLE_NAME,
-                projection,
-                selection,
-                null,
-                null,
-                null,
-                Ingredient.COLUMN_INGREDIENT_NAME + "DESC"
-        );
-
-        // add all ingredients to a list
-        final ArrayList<String> ingredients = new ArrayList<>();
-        c.moveToFirst();
-        while (!c.isLast()) {
-            ingredients.add(c.getString(c.getColumnIndexOrThrow(Ingredient.COLUMN_INGREDIENT_NAME)));
-            c.moveToNext();
-        }
-        return (String[]) ingredients.toArray();
     }
 
 }

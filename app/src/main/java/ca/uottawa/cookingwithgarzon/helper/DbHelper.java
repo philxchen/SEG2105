@@ -225,7 +225,6 @@ public class DbHelper extends SQLiteOpenHelper {
 //    }
 
 
-
     /** get a recipe by id */
     public Recipe getRecipe(long recipe_id) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -453,6 +452,10 @@ public class DbHelper extends SQLiteOpenHelper {
         db.delete(DbContract.Cuisine.TABLE_NAME, "_ID="+ cuisine.get_id(), null);
     }
 
+
+    /** Search operations */
+
+    /** Helper method to build result of recipe search */
     private ArrayList<Recipe> buildRecipeList(String query) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -474,6 +477,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return recipes;
     }
 
+    /** Algorithm for searching for recipes by name, ingredient, cuisine, type */
     public ArrayList<Recipe> findRecipe(String name, String ingredient, String cuisine, String type) {
 
         boolean started = false;
@@ -597,4 +601,64 @@ public class DbHelper extends SQLiteOpenHelper {
             query.append("SELECT * FROM " + DbContract.Recipe.TABLE_NAME);
         return buildRecipeList(query.toString());
     }
+
+
+    /** get list of ingredients */
+    public ArrayList<Ingredient> getIngredients() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + DbContract.Ingredient.TABLE_NAME;
+        Log.e(LOG, query);
+        Cursor c = db.rawQuery(query, null);
+        ArrayList<Ingredient> ingredients= new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                Ingredient ingredient = new Ingredient();
+                ingredient.set_id(c.getLong(c.getColumnIndex(DbContract.Ingredient._ID)));
+                ingredient.set_name(c.getString(c.getColumnIndex(DbContract.Ingredient.COLUMN_INGREDIENT_NAME)));
+                ingredient.set_price((c.getDouble(c.getColumnIndex(DbContract.Ingredient.COLUMN_INGREDIENT_PRICE))));
+                ingredients.add(ingredient);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return ingredients;
+    }
+
+    /** get list of cuisines */
+    public ArrayList<Cuisine> getCuisines() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + DbContract.Cuisine.TABLE_NAME;
+        Log.e(LOG, query);
+        Cursor c = db.rawQuery(query, null);
+        ArrayList<Cuisine> cuisines = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                Cuisine cuisine = new Cuisine();
+                cuisine.set_id(c.getLong(c.getColumnIndex(DbContract.Cuisine._ID)));
+                cuisine.set_name(c.getString(c.getColumnIndex(DbContract.Cuisine.COLUMN_CUISINE_NAME)));
+                cuisines.add(cuisine);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return cuisines;
+    }
+
+    /** get list of meal types */
+    public ArrayList<MealType> getMealTypes() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + DbContract.MealType.TABLE_NAME;
+        Log.e(LOG, query);
+        Cursor c = db.rawQuery(query, null);
+        ArrayList<MealType> mealtypes = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                MealType type = new MealType();
+                type.set_id(c.getLong(c.getColumnIndex(DbContract.MealType._ID)));
+                type.set_name(c.getString(c.getColumnIndex(DbContract.MealType.COLUMN_MEAL_TYPE_NAME)));
+                mealtypes.add(type);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return mealtypes;
+    }
+
 }
