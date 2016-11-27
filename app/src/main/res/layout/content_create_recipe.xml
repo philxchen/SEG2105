@@ -9,13 +9,13 @@
     tools:showIn="@layout/activity_create_recipe">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             app:srcCompat="@drawable/ic_image_black_36dp"
             android:id="@+id/imageView3" />
 
@@ -23,8 +23,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text="Enter recipe title here"
             android:ems="10"
-            android:id="@+id/editText5" />
+            android:id="@+id/editText5"
+            android:textStyle="normal|italic" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView" />
+
     </LinearLayout>
 </ScrollView>
