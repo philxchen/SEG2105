@@ -22,9 +22,12 @@ public class CreateIngredient extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_ingredient);
 
-        final Button saveBtn = (Button) findViewById(R.id.saveIngredientBtn);
-        final EditText nameTxt = (EditText) findViewById(R.id.ingredientTxt);
-        final EditText priceTxt = (EditText) findViewById(R.id.priceTxt);
+        final View content = View.inflate(this, R.layout.content_create_ingredient, null);
+        final Button saveBtn = (Button) content.findViewById(R.id.saveIngredientBtn);
+        final EditText nameTxt = (EditText) content.findViewById(R.id.ingredientTxt);
+        final EditText priceTxt = (EditText) content.findViewById(R.id.priceTxt);
+
+        nameTxt.setText("Test");
 
         View.OnClickListener oclSaveBtn= new View.OnClickListener() {
             @Override
