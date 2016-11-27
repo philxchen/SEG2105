@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ca.uottawa.cookingwithgarzon">
+          package="ca.uottawa.cookingwithgarzon">
 
     <application
         android:allowBackup="true"
@@ -10,70 +10,65 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".RecipeSearch"
             android:label="@string/title_activity_recipe_search"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".RecipeView"
+            android:name=".Recipe"
             android:label="@string/title_activity_recipe"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RecipePreview" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".RecipePreview"/>
         <activity
             android:name=".CreateRecipe"
             android:label="@string/title_activity_create_recipe"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".RecipeCuisine"
             android:label="@string/title_activity_recipe_cuisine"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CusineType" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".CusineType"/>
         <activity
             android:name=".RecipeMealType"
             android:label="@string/title_activity_recipe_meal_type"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MealType"
             android:label="@string/title_activity_meal_type"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".RecipeInstruction"
             android:label="@string/title_activity_recipe_instruction"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".InstructionStep" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".InstructionStep"/>
         <activity
             android:name=".FavoriteRecipe"
             android:label="@string/title_activity_favorite_recipe"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ShoppingCart"
-            android:label="@string/title_activity_shopping_cart"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CartIngredient" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".CartIngredient"/>
         <activity
             android:name=".RecipeIngredient"
             android:label="@string/title_activity_recipe_ingredient"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".IngredientQuantity" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".IngredientQuantity"/>
         <activity
             android:name=".IngredientList"
             android:label="@string/title_activity_ingredient_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Ingredient" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Ingredient"/>
         <activity
             android:name=".UnitType"
             android:label="@string/title_activity_unit_type"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".SearchResult"
-            android:label="@string/title_activity_search_result"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".RecipeSearch">
+            android:name=".ShoppingCartActivity"
+            android:label="@string/title_activity_shopping_cart"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
