@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +22,7 @@ public class CreateIngredient extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_ingredient);
-
-        final View content = View.inflate(this, R.layout.content_create_ingredient, null);
+        final View content = findViewById(R.id.content_create_ingredient);
         final Button saveBtn = (Button) content.findViewById(R.id.saveIngredientBtn);
         final EditText nameTxt = (EditText) content.findViewById(R.id.ingredientTxt);
         final EditText priceTxt = (EditText) content.findViewById(R.id.priceTxt);
