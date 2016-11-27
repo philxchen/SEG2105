@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">CookingWithGarzon</string>
-    <string name="title_activity_recipe_search">RecipeSearch</string>
+    <string name="app_name">Cooking With Garzon</string>
+    <string name="title_activity_recipe_search">Recipe Search</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -92,15 +92,15 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_recipe">Recipe</string>
-    <string name="title_activity_create_recipe">CreateRecipe</string>
-    <string name="title_activity_recipe_cuisine">RecipeCuisine</string>
-    <string name="title_activity_recipe_meal_type">RecipeMealType</string>
-    <string name="title_activity_meal_type">MealType</string>
-    <string name="title_activity_recipe_instruction">RecipeInstruction</string>
-    <string name="title_activity_favorite_recipe">FavoriteRecipe</string>
-    <string name="title_activity_shopping_cart">ShoppingCart</string>
-    <string name="title_activity_recipe_ingredient">RecipeIngredient</string>
-    <string name="title_activity_ingredient_list">IngredientList</string>
-    <string name="title_activity_unit_type">UnitType</string>
-    <string name="title_activity_search_result">SearchResult</string>
+    <string name="title_activity_create_recipe">Create Recipe</string>
+    <string name="title_activity_recipe_cuisine">Recipe Cuisine</string>
+    <string name="title_activity_recipe_meal_type">Recipe Meal Type</string>
+    <string name="title_activity_meal_type">Meal Type</string>
+    <string name="title_activity_recipe_instruction">Recipe Instruction</string>
+    <string name="title_activity_favorite_recipe">Favorite Recipe</string>
+    <string name="title_activity_shopping_cart">Shopping Cart</string>
+    <string name="title_activity_recipe_ingredient">Recipe Ingredient</string>
+    <string name="title_activity_ingredient_list">Ingredient List</string>
+    <string name="title_activity_unit_type">Unit Type</string>
+    <string name="title_activity_search_result">Search Result</string>
 </resources>
