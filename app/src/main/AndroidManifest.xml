@@ -20,8 +20,8 @@
             android:label="@string/title_activity_recipe_search"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Recipe"
-            android:label="@string/title_activity_recipe"
+            android:name=".RecipeView"
+            android:label="@string/title_activity_recipe_view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RecipePreview" />
         <activity
@@ -60,7 +60,6 @@
             android:name=".IngredientList"
             android:label="@string/title_activity_ingredient_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Ingredient" />
         <activity
             android:name=".UnitType"
             android:label="@string/title_activity_unit_type"

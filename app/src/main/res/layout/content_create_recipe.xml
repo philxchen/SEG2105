@@ -9,30 +9,69 @@
     tools:showIn="@layout/activity_create_recipe">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/ic_image_black_36dp"
-            android:id="@+id/imageView3" />
-
-        <EditText
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Enter recipe title here"
-            android:ems="10"
-            android:id="@+id/editText5"
-            android:textStyle="normal|italic" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/ic_image_black_36dp"
+                android:id="@+id/imageView3"
+                android:layout_weight="1"
+                android:layout_width="200dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Enter recipe title here"
+                    android:ems="10"
+                    android:id="@+id/editText5"
+                    android:textStyle="normal|italic"
+                    android:textSize="24sp" />
+
+                <RatingBar
+                    android:layout_width="279dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/CreateRecipeRatingBar"
+                    android:numStars="@android:integer/config_mediumAnimTime"
+                    android:stepSize=".5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
-            android:text="TextView"
+            android:text="Select Difficulty"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/textView" />
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:textSize="24sp" />
+
+        <TextView
+            android:text="Select Meal Type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textSize="24sp" />
+
+        <TextView
+            android:text="Select Cuisine Type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textSize="24sp" />
 
     </LinearLayout>
 </ScrollView>
