@@ -21,7 +21,7 @@ public class SelectCreateActivity extends AppCompatActivity {
         View.OnClickListener oclCreateIngredientBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, Ingredient.class));
+                startActivity(new Intent(SelectCreateActivity.this, CreateIngredient.class));
             }
         };
 

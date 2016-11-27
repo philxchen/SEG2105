@@ -24,6 +24,7 @@ public class CreateIngredient extends AppCompatActivity {
         final Button saveBtn = (Button) findViewById(R.id.saveIngredientBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.ingredientTxt);
         final EditText priceTxt = (EditText) findViewById(R.id.priceTxt);
+        
         View.OnClickListener oclSaveBtn= new View.OnClickListener() {
             @Override
             public void onClick(View view) {
