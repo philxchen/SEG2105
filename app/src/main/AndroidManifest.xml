@@ -13,7 +13,7 @@
             android:name=".IngredientSearchActivity"
             android:label="Find Ingredient" />
         <activity
-            android:name=".IngredientSearchResult"
+            android:name=".IngredientSearchResultActivity"
             android:label="Ingredient Search Result" />
 
         <activity android:name=".CuisineSearchActivity"

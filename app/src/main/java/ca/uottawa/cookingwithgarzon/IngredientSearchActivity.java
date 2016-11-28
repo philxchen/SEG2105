@@ -21,7 +21,7 @@ public class IngredientSearchActivity extends AppCompatActivity {
         View.OnClickListener oclSearchBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(IngredientSearchActivity.this, IngredientSearchResult.class);
+                Intent intent = new Intent(IngredientSearchActivity.this, IngredientSearchResultActivity.class);
                 intent.putExtra("name", ingredientNameTxt.getText().toString());
                 startActivity(intent);
             }
