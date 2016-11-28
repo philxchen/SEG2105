@@ -16,11 +16,13 @@ public class SelectCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_create);
 
-
+        //Create Buttons
         final Button createRecipeBtn = (Button) findViewById(R.id.createRecipeBtn);
         final Button createIngredientBtn = (Button) findViewById(R.id.createIngredientBtn);
+        final Button createMealBtn = (Button) findViewById(R.id.createMealBtn);
+        final Button createCuisineBtn = (Button) findViewById(R.id.createCuisineBtn);
 
-
+        //On-click Functions
         View.OnClickListener oclCreateIngredientBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,8 +37,25 @@ public class SelectCreateActivity extends AppCompatActivity {
             }
         };
 
+        View.OnClickListener oclCreateMealBtn = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SelectCreateActivity.this, CreateMealActivity.class));
+            }
+        };
+
+        View.OnClickListener oclCreateCuisineBtn = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SelectCreateActivity.this, CreateCuisineActivity.class));
+            }
+        };
+
+        //On-click Button Creation
         createRecipeBtn.setOnClickListener(oclCreateRecipeBtn);
         createIngredientBtn.setOnClickListener(oclCreateIngredientBtn);
+        createMealBtn.setOnClickListener(oclCreateMealBtn);
+        createCuisineBtn.setOnClickListener(oclCreateCuisineBtn);
     }
 
     @Override
