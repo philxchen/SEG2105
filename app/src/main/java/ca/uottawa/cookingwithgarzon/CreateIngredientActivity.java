@@ -1,6 +1,7 @@
 package ca.uottawa.cookingwithgarzon;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,8 +18,10 @@ public class CreateIngredientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_ingredient);
         final Button saveBtn = (Button) findViewById(R.id.saveIngredientBtn);
-        final EditText nameTxt = (EditText) findViewById(R.id.ingredientTxt);
+        final EditText nameTxt = (EditText) findViewById(R.id.nameTxt);
         final EditText priceTxt = (EditText) findViewById(R.id.priceTxt);
+
+        nameTxt.setText("Test");
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,9 +33,9 @@ public class CreateIngredientActivity extends AppCompatActivity {
                 newIngredient.set_price(price);
                 DbHelper db = new DbHelper(getApplicationContext());
                 db.createIngredient(newIngredient);
-                Snackbar.make(view, "Added "+ ingredientName, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                setResult(Activity.RESULT_OK);
+                Intent result = new Intent();
+                result.putExtra("result", "Added ingredient " + ingredientName);
+                setResult(Activity.RESULT_OK, result);
                 finish();
             }
         });

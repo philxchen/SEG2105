@@ -1,6 +1,7 @@
 package ca.uottawa.cookingwithgarzon;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,5 +35,14 @@ public class SelectCreateActivity extends AppCompatActivity {
 
         createRecipeBtn.setOnClickListener(oclCreateRecipeBtn);
         createIngredientBtn.setOnClickListener(oclCreateIngredientBtn);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            String message = data.getStringExtra("result");
+            Snackbar.make(findViewById(R.id.activity_select_create), message, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
     }
 }
