@@ -28,7 +28,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-        IngredientArrayAdapter adapter = new IngredientArrayAdapter(this, (new DbHelper(getApplicationContext())).getIngredients());
+        IngredientArrayAdapter adapter = new IngredientArrayAdapter(this, new DbHelper(getApplicationContext()).getIngredients());
         ListView cartList = (ListView) findViewById(R.id.shopping_cart_list);
         cartList.setAdapter(adapter);
         cartList.setOnClickListener(new View.OnClickListener() {
