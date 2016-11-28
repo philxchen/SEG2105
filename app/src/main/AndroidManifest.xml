@@ -74,5 +74,8 @@
         <activity
             android:name=".HelpActivity"
             android:label="Help" />
+        <activity android:name=".MealTypeSearchActivity" />
+        <activity android:name=".MealTypeSearchResultActivity"></activity>
     </application>
+
 </manifest>
