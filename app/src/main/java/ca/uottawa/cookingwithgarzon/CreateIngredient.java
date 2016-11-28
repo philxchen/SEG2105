@@ -1,5 +1,6 @@
 package ca.uottawa.cookingwithgarzon;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,7 +30,7 @@ public class CreateIngredient extends AppCompatActivity {
 
         nameTxt.setText("Test");
 
-        View.OnClickListener oclSaveBtn= new View.OnClickListener() {
+        saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String ingredientName = nameTxt.getText().toString();
@@ -39,10 +40,12 @@ public class CreateIngredient extends AppCompatActivity {
                 newIngredient.set_price(price);
                 DbHelper db = new DbHelper(getApplicationContext());
                 db.createIngredient(newIngredient);
+                Snackbar.make(view, "Added "+ ingredientName, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                setResult(Activity.RESULT_OK);
+                finish();
             }
-        };
-
-        saveBtn.setOnClickListener(oclSaveBtn);
+        });
 
     }
 
