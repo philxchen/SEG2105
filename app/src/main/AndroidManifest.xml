@@ -16,11 +16,13 @@
             android:name=".IngredientSearchResultActivity"
             android:label="Ingredient Search Result" />
 
-        <activity android:name=".CuisineSearchActivity"
+        <activity
+            android:name=".CuisineSearchActivity"
             android:label="Search for Cuisine"/>
 
-        <activity android:name=".CuisineSearchResultActivity"
-            android:label="Cuisine Search Result"/>
+        <activity
+            android:name=".CuisineSearchResultActivity"
+            android:label="Result"/>
 
         <activity
             android:name=".RecipeSearchActivity"
@@ -70,12 +72,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateMealActivity"></activity>
+        <activity
+            android:name=".CreateMealActivity"
+            android:label="Create Meal"/>
         <activity
             android:name=".HelpActivity"
             android:label="Help" />
-        <activity android:name=".MealTypeSearchActivity" />
-        <activity android:name=".MealTypeSearchResultActivity"></activity>
+        <activity
+            android:name=".MealTypeSearchActivity"
+            android:label="Search for Meal Type" />
+        <activity
+            android:name=".MealTypeSearchResultActivity"
+            android:label="Result" />
     </application>
 
 </manifest>
