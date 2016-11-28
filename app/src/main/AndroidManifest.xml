@@ -9,13 +9,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SelectSearchActivity" />
-        <activity android:name=".FindIngredientActivity" />
-        <activity android:name=".IngredientSearchResult" />
+        <activity
+            android:name=".FindIngredientActivity"
+            android:label="Find Ingredient" />
+        <activity
+            android:name=".IngredientSearchResult"
+            android:label="Result" />
         <activity
             android:name=".FindRecipeActivity"
             android:label="@string/title_activity_recipe_search"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RecipePreview" />
+        <activity
+            android:name=".RecipePreview"
+            android:label="Preview Recipe" />
         <activity
             android:name=".CreateRecipe"
             android:label="@string/title_activity_create_recipe"
@@ -24,7 +30,9 @@
             android:name=".RecipeInstruction"
             android:label="@string/title_activity_recipe_instruction"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".InstructionStep" />
+        <activity
+            android:name=".InstructionStep"
+            android:label="Steps" />
         <activity
             android:name=".FavoriteRecipe"
             android:label="@string/title_activity_favorite_recipe"
@@ -38,8 +46,12 @@
             android:label="@string/title_activity_shopping_cart"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SelectCreateActivity" />
-        <activity android:name=".CreateCuisineActivity" />
-        <activity android:name=".CreateIngredientActivity" />
+        <activity
+            android:name=".CreateCuisineActivity"
+            android:label="Create Cuisine" />
+        <activity
+            android:name=".CreateIngredientActivity"
+            android:label="Create Ingredient" />
         <activity
             android:name=".RecipeView"
             android:label="@string/title_activity_recipe_view"
@@ -52,6 +64,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateMealActivity"></activity>
+        <activity
+            android:name=".HelpActivity"
+            android:label="Help" />
     </application>
-
 </manifest>

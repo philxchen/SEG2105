@@ -15,12 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:text="Create Ingredient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/title" />
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:text="Price"
+            android:text="Price ($)"
             android:ems="10"
             android:id="@+id/priceTxt" />
 
