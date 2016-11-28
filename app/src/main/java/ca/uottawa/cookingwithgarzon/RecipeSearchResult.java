@@ -10,7 +10,7 @@ import ca.uottawa.cookingwithgarzon.model.*;
 import java.util.ArrayList;
 
 
-public class SearchResult extends AppCompatActivity {
+public class RecipeSearchResult extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

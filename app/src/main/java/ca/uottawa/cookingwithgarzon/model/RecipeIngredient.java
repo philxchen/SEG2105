@@ -10,6 +10,8 @@ public class RecipeIngredient {
     private long _ingredient_id;
     private long _quantity;
     private String _unit;
+    private Ingredient _ingredient;
+    private Recipe _recipe;
 
     public RecipeIngredient() {
     }
@@ -57,4 +59,5 @@ public class RecipeIngredient {
     public void set_unit(String _unit) {
         this._unit = _unit;
     }
+
 }
