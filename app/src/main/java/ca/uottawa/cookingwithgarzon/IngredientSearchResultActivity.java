@@ -15,7 +15,7 @@ import ca.uottawa.cookingwithgarzon.model.Ingredient;
 import ca.uottawa.cookingwithgarzon.adapter.IngredientArrayAdapter;
 
 
-public class IngredientSearchResult extends AppCompatActivity {
+public class IngredientSearchResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
