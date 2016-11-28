@@ -48,12 +48,5 @@
             android:id="@+id/findCuisineBtn"
             android:layout_weight="0.06" />
 
-        <Button
-            android:text="Find meal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/findMealBtn"
-            android:layout_weight="0.06" />
-
     </LinearLayout>
 </RelativeLayout>

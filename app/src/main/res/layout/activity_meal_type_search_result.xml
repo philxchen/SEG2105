@@ -10,10 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.uottawa.cookingwithgarzon.MealTypeSearchResultActivity">
 
-
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listview_mealtypes" />
-
+        tools:listitem="@layout/meal_type_item"/>
 </RelativeLayout>
