@@ -35,12 +35,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:text="Enter recipe title here"
                     android:ems="10"
                     android:id="@+id/createRecipeTitle"
                     android:textStyle="normal|italic"
                     android:textSize="24sp"
-                    android:paddingTop="25dp" />
+                    android:paddingTop="25dp"
+                    android:hint="Enter recipe title" />
 
                 <RatingBar
                     android:layout_width="wrap_content"
