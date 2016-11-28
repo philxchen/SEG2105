@@ -14,9 +14,9 @@
     tools:context="ca.uottawa.cookingwithgarzon.ShoppingCartActivity"
     tools:showIn="@layout/activity_shopping_cart">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/shopping_cart_list"
-        tools:listitem="@layout/shopping_cart_list_item"/>
+        tools:listitem="@layout/shopping_cart_list_item"
+        tools:text="Name"/>
 </RelativeLayout>
