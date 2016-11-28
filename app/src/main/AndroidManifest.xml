@@ -57,10 +57,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".IngredientQuantity" />
         <activity
-            android:name=".IngredientList"
-            android:label="@string/title_activity_ingredient_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".UnitType"
             android:label="@string/title_activity_unit_type"
             android:theme="@style/AppTheme.NoActionBar" />
