@@ -17,6 +17,6 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/shopping_cart_list"
-        />
+        tools:listitem="@layout/shopping_cart_list_item"
+        android:id="@+id/shopping_cart_list"/>
 </RelativeLayout>

@@ -1,10 +1,5 @@
 package ca.uottawa.cookingwithgarzon;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
-import ca.uottawa.cookingwithgarzon.helper.DbContract.Ingredient;
-
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
