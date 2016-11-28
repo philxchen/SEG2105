@@ -267,10 +267,10 @@ public class DbHelper extends SQLiteOpenHelper {
     /** get a RecipeIngredient by id */
     public RecipeIngredient getRecipeIngredient(long recipeingredient_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectRecipeQuery = "SELECT * FROM " + DbContract.RecipeIngredient.TABLE_NAME + " WHERE "
+        String query = "SELECT * FROM " + DbContract.RecipeIngredient.TABLE_NAME + " WHERE "
                 + DbContract.RecipeIngredient._ID + " = " + recipeingredient_id;
-        Log.e(LOG, selectRecipeQuery);
-        Cursor c = db.rawQuery(selectRecipeQuery, null);
+        Log.e(LOG, query);
+        Cursor c = db.rawQuery(query, null);
         if (c == null) return null;
         c.moveToFirst();
         RecipeIngredient recipeingredient = new RecipeIngredient();
@@ -329,6 +329,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 recipeIngredient.set_id(c.getInt(c.getColumnIndex(DbContract.RecipeIngredient._ID)));
                 recipeIngredient.set_quantity(c.getInt(c.getColumnIndex(DbContract.RecipeIngredient.COLUMN_QUANTITY)));
                 recipeIngredient.set_unit(c.getString(c.getColumnIndex(DbContract.RecipeIngredient.COLUMN_UNIT)));
+                recipeIngredient.set_recipe_id(c.getLong(c.getColumnIndex(DbContract.RecipeIngredient.COLUMN_RECIPE_ID)));
+                recipeIngredient.set_ingredient_id(c.getLong(c.getColumnIndex(DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID)));
                 recipeIngredients.add(recipeIngredient);
             } while (c.moveToNext());
         }

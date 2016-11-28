@@ -10,14 +10,16 @@ import android.widget.TextView;
 import java.util.List;
 
 import ca.uottawa.cookingwithgarzon.R;
-import ca.uottawa.cookingwithgarzon.model.Ingredient;
+import ca.uottawa.cookingwithgarzon.helper.DbContract;
+import ca.uottawa.cookingwithgarzon.model.Cuisine;
+import ca.uottawa.cookingwithgarzon.model.MealType;
 
 /**
  * Created by joel on 28/11/16.
  */
 
-public class IngredientArrayAdapter extends ArrayAdapter<Ingredient> {
-    public IngredientArrayAdapter(Context context, int resource, List<Ingredient> objects) {
+public class MealTypeArrayAdapter extends ArrayAdapter<MealType> {
+    public MealTypeArrayAdapter(Context context, int resource, List<MealType> objects) {
         super(context, resource, objects);
     }
 
@@ -25,17 +27,15 @@ public class IngredientArrayAdapter extends ArrayAdapter<Ingredient> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         // Get the data item for this position
-        Ingredient ingredient = getItem(position);
+        MealType type = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.ingredient_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.meal_type_item, parent, false);
         }
         // Lookup view for data population
-        TextView ingredientName = (TextView) convertView.findViewById(R.id.ingredient_item_name);
-        TextView ingredientPrice = (TextView) convertView.findViewById(R.id.ingredient_item_price);
+        TextView mealTypeName = (TextView) convertView.findViewById(R.id.meal_type_item_name);
         // Populate the data into the template view using the data object
-        ingredientName.setText(ingredient.get_name());
-        ingredientPrice.setText(((Double)ingredient.get_price()).toString());
+        mealTypeName.setText(type.get_name());
         // Return the completed view to render on screen
         return convertView;
 

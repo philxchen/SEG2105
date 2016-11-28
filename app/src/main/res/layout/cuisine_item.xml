@@ -4,17 +4,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Ingredient Name"
+        android:text="Cuisine Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ingredient_row_name"
+        android:id="@+id/cuisine_item_name"
         android:layout_margin="15dp" />
 
-    <TextView
-        android:text="Price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ingredient_row_price"
-        android:layout_weight="1"
-        android:layout_margin="15dp" />
 </LinearLayout>
