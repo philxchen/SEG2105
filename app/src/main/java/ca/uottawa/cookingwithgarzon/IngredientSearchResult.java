@@ -28,7 +28,7 @@ public class IngredientSearchResult extends AppCompatActivity {
 
         DbHelper dbHelper = new DbHelper(this);
 
-        ArrayList<Ingredient> result = dbHelper.getIngredients();
+        ArrayList<Ingredient> result = dbHelper.getIngredients(name);
         Snackbar.make(findViewById(R.id.activity_ingredient_search_result), "Found " + result.size() + " ingredients.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         IngredientArrayAdapter adapter = new IngredientArrayAdapter(this, R.layout.ingredient_item, result);
