@@ -12,7 +12,7 @@
         android:inputType="text"
         android:text="Name"
         android:ems="10"
-        android:id="@+id/ingredient_find_input"
+        android:id="@+id/ingredient_search_input"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:padding="5dp"

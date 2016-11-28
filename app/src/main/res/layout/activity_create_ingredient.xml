@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:text="Name"
+            android:hint="Name"
             android:ems="10"
             android:id="@+id/nameTxt" />
 
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:text="Price ($)"
+            android:hint="Price ($)"
             android:ems="10"
             android:id="@+id/priceTxt" />
 

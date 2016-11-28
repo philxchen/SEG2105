@@ -16,7 +16,7 @@ public class IngredientSearchActivity extends AppCompatActivity {
 
         Button searchBtn = (Button) findViewById(R.id.search_ingredient_button);
 
-        final EditText ingredientNameTxt = (EditText) findViewById(R.id.ingredient_find_input);
+        final EditText ingredientNameTxt = (EditText) findViewById(R.id.ingredient_search_input);
 
         View.OnClickListener oclSearchBtn = new View.OnClickListener() {
             @Override

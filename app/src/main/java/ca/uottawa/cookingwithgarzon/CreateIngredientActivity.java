@@ -21,8 +21,6 @@ public class CreateIngredientActivity extends AppCompatActivity {
         final EditText nameTxt = (EditText) findViewById(R.id.nameTxt);
         final EditText priceTxt = (EditText) findViewById(R.id.priceTxt);
 
-        nameTxt.setText("Test");
-
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,13 +30,11 @@ public class CreateIngredientActivity extends AppCompatActivity {
                 newIngredient.set_name(ingredientName);
                 newIngredient.set_price(price);
                 DbHelper db = new DbHelper(getApplicationContext());
-                Long id = db.createIngredient(newIngredient);
-                Snackbar.make(findViewById(R.id.activity_create_ingredient), "Created ingredient with id " + id, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-//                Intent result = new Intent();
-//                result.putExtra("result", "Added ingredient " + ingredientName);
-//                setResult(Activity.RESULT_OK, result);
-//                finish();
+                db.createIngredient(newIngredient);
+                Intent result = new Intent();
+                result.putExtra("result", "Added ingredient " + ingredientName);
+                setResult(Activity.RESULT_OK, result);
+                finish();
             }
         });
 
