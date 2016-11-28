@@ -22,14 +22,14 @@ public class SelectSearchActivity extends AppCompatActivity {
         findIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectSearchActivity.this, FindIngredientActivity.class));
+                startActivity(new Intent(SelectSearchActivity.this, IngredientSearchActivity.class));
             }
         });
 
         findRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectSearchActivity.this, FindRecipeActivity.class));
+                startActivity(new Intent(SelectSearchActivity.this, RecipeSearchActivity.class));
             }
         });
 

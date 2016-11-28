@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class FindRecipeActivity extends AppCompatActivity {
+public class RecipeSearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class FindRecipeActivity extends AppCompatActivity {
         View.OnClickListener oclSearchBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FindRecipeActivity.this, RecipeSearchResult.class);
+                Intent intent = new Intent(RecipeSearchActivity.this, RecipeSearchResult.class);
                 intent.putExtra("name", nameTxt.getText().toString());
                 intent.putExtra("ingredient", ingredientTxt.getText().toString());
                 intent.putExtra("cuisine", cuisineTxt.getText().toString());

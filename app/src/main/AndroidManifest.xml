@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SelectSearchActivity" />
         <activity
-            android:name=".FindIngredientActivity"
+            android:name=".IngredientSearchActivity"
             android:label="Find Ingredient" />
         <activity
             android:name=".IngredientSearchResult"
@@ -23,7 +23,7 @@
             android:label="Cuisine Search Result"/>
 
         <activity
-            android:name=".FindRecipeActivity"
+            android:name=".RecipeSearchActivity"
             android:label="@string/title_activity_recipe_search"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -34,7 +34,7 @@
             android:label="@string/title_activity_create_recipe"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RecipeInstruction"
+            android:name=".CreateRecipeInstructionActivity"
             android:label="@string/title_activity_recipe_instruction"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -45,7 +45,7 @@
             android:label="@string/title_activity_favorite_recipe"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RecipeIngredient"
+            android:name=".CreateRecipeIngredientActivity"
             android:label="@string/title_activity_recipe_ingredient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

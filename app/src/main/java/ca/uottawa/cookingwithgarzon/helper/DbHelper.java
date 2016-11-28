@@ -264,7 +264,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return ingredient;
     }
 
-    /** get a RecipeIngredient by id */
+    /** get a CreateRecipeIngredientActivity by id */
     public RecipeIngredient getRecipeIngredient(long recipeingredient_id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + DbContract.RecipeIngredient.TABLE_NAME + " WHERE "
