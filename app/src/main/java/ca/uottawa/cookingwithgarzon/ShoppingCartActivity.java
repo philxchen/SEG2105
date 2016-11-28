@@ -29,7 +29,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         });
 
         IngredientArrayAdapter adapter = new IngredientArrayAdapter(this, new DbHelper(getApplicationContext()).getIngredients());
-        ListView cartList = (ListView) findViewById(R.id.shopping_cart_list);
+        ListView cartList = (ListView) findViewById(R.id.content_shopping_cart);
         cartList.setAdapter(adapter);
         cartList.setOnClickListener(new View.OnClickListener() {
             @Override
