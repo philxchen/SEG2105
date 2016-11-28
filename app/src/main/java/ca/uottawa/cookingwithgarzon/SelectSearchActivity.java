@@ -17,25 +17,31 @@ public class SelectSearchActivity extends AppCompatActivity {
 
         final Button findRecipeBtn = (Button) findViewById(R.id.findRecipeBtn);
         final Button findIngredientBtn = (Button) findViewById(R.id.findIngredientBtn);
+        final Button findCuisineBtn = (Button) findViewById(R.id.findCuisineBtn);
 
-
-        View.OnClickListener oclFindIngredientBtn = new View.OnClickListener() {
+        findIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SelectSearchActivity.this, FindIngredientActivity.class));
             }
-        };
+        });
 
-        View.OnClickListener oclFindRecipeBtn = new View.OnClickListener() {
+        findRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SelectSearchActivity.this, FindRecipeActivity.class));
             }
-        };
+        });
 
-        findRecipeBtn.setOnClickListener(oclFindRecipeBtn);
-        findIngredientBtn.setOnClickListener(oclFindIngredientBtn);
+        findCuisineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SelectSearchActivity.this, CuisineSearchActivity.class));
+            }
+        });
+
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
