@@ -50,7 +50,6 @@
             android:name=".FavoriteRecipe"
             android:label="@string/title_activity_favorite_recipe"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CartIngredient" />
         <activity
             android:name=".RecipeIngredient"
             android:label="@string/title_activity_recipe_ingredient"
