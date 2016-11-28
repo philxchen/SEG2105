@@ -609,9 +609,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public ArrayList<Ingredient> getIngredients() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + DbContract.Ingredient.TABLE_NAME;
-        Log.e(LOG, query);
+        Log.e(LOG, "Searching: " +query);
         Cursor c = db.rawQuery(query, null);
-        ArrayList<Ingredient> ingredients= new ArrayList<>();
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
         if (c.moveToFirst()) {
             do {
                 Ingredient ingredient = new Ingredient();

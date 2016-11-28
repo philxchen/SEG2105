@@ -1,4 +1,4 @@
-package adapter;
+package ca.uottawa.cookingwithgarzon.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,8 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import ca.uottawa.cookingwithgarzon.R;
-import ca.uottawa.cookingwithgarzon.helper.DbContract;
-import ca.uottawa.cookingwithgarzon.model.Cuisine;
 import ca.uottawa.cookingwithgarzon.model.MealType;
 
 /**

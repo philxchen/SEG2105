@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
         View.OnClickListener oclSearchBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, RecipeSearch.class));
+                startActivity(new Intent(MainActivity.this, SelectSearchActivity.class));
             }
         };
 

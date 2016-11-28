@@ -1,4 +1,4 @@
-package adapter;
+package ca.uottawa.cookingwithgarzon.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -18,7 +18,7 @@ import ca.uottawa.cookingwithgarzon.model.Ingredient;
 
 public class IngredientArrayAdapter extends ArrayAdapter<Ingredient> {
     public IngredientArrayAdapter(Context context, int resource, List<Ingredient> objects) {
-        super(context, resource, objects);
+        super(context, R.layout.ingredient_item, objects);
     }
 
     @Override

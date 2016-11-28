@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="ca.uottawa.cookingwithgarzon.RecipeSearch">
+    tools:context="ca.uottawa.cookingwithgarzon.FindRecipeActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -14,7 +14,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:text="Name"
             android:ems="10"
             android:id="@+id/nameTxt"
@@ -28,8 +28,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:text="Ingredients"
+            android:selectAllOnFocus="true"
             android:ems="10"
             android:id="@+id/ingredientTxt"
             android:padding="5dp"
@@ -43,6 +44,7 @@
             android:inputType="text"
             android:text="Cuisine"
             android:ems="10"
+            android:selectAllOnFocus="true"
             android:id="@+id/cuisineTxt"
             android:padding="5dp"
             tools:gravity="center_vertical|fill_vertical"
@@ -55,6 +57,7 @@
             android:inputType="text"
             android:text="Meal"
             android:ems="10"
+            android:selectAllOnFocus="true"
             android:id="@+id/mealTypeTxt"
             android:padding="5dp"
             tools:gravity="center_vertical|fill_vertical"
@@ -65,7 +68,7 @@
             android:text="Get Cookin!"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/searchBtn"
+            android:id="@+id/search_recipe_button"
             android:layout_weight="1"
             android:padding="25dp"
             android:layout_gravity="center_vertical|center_horizontal"

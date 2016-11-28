@@ -29,9 +29,8 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_search_black_24dp"
             android:id="@+id/searchBtn" />
-
         <Button
-            android:text="Create God"
+            android:text="Create"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_add_black_24dp"
