@@ -78,7 +78,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ca.uottawa.cookingwithgarzon.SelectCreateActivity" />
         </activity>
-        <activity android:name=".CreateCuisineActivity"></activity>
+        <activity android:name=".CreateCuisineActivity" />
+        <activity android:name=".CreateIngredientActivity"></activity>
     </application>
 
 </manifest>
