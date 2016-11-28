@@ -39,7 +39,8 @@
                     android:ems="10"
                     android:id="@+id/createRecipeTitle"
                     android:textStyle="normal|italic"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:paddingTop="25dp" />
 
                 <RatingBar
                     android:layout_width="wrap_content"
@@ -74,7 +75,7 @@
             android:layout_height="30dp"
             android:prompt="@string/cuisine_type_prompt"
             android:id="@+id/cuisineTypeSelect"
-            android:paddingBottom="5dp"
+            android:paddingBottom="10dp"
             android:paddingTop="5dp" />
 
         <LinearLayout
