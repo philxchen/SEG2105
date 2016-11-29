@@ -65,7 +65,7 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
                 newRecipeIngredient.set_unit(unit);
                 newRecipeIngredient.set_recipe_id(recipe_id);
                 newRecipeIngredient.set_ingredient_id(ingredient_id);
-                DbHelper db = new DbHelper(getApplicationContext());
+                DbHelper db = DbHelper.getInstance(getApplicationContext());
                 db.createRecipeIngredient(newRecipeIngredient);
                 Intent result = new Intent();
                 result.putExtra("result", "Added recipe ingredient!");

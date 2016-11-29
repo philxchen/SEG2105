@@ -24,7 +24,7 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
     DbHelper dbHelper;
     public RecipeArrayAdapter(Context context, int resource, List<Recipe> objects) {
         super(context, resource, objects);
-        dbHelper = new DbHelper(getContext());
+        dbHelper = DbHelper.getInstance(getContext());
     }
 
     @Override

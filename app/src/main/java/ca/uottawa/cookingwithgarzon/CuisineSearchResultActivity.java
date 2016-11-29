@@ -24,7 +24,7 @@ public class CuisineSearchResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String name = intent.getStringExtra("name");
 
-        DbHelper dbHelper = new DbHelper(this);
+        DbHelper dbHelper = DbHelper.getInstance(this);
 
         ArrayList<Cuisine> result = dbHelper.getCuisines();
         Snackbar.make(findViewById(R.id.activity_cuisine_search_result), "Found " + result.size() + " meal types.", Snackbar.LENGTH_LONG)

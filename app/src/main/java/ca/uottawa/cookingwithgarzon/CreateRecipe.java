@@ -65,7 +65,7 @@ public class CreateRecipe extends AppCompatActivity {
         recipeIngredients_listView = (ListView) content.findViewById(R.id.listOfRecipeIngredient);
         recipeStep_listView = (ListView) content.findViewById(R.id.listOfRecipeStep);
 
-        dbHelper = new DbHelper(this);
+        dbHelper = DbHelper.getInstance(getApplicationContext());
         newRecipe = new Recipe();
         recipe_id = dbHelper.createRecipe(newRecipe);
 
@@ -137,7 +137,7 @@ public class CreateRecipe extends AppCompatActivity {
                 newRecipe.set_name(recipeTitleTxt.getText().toString());
                 newRecipe.set_servings(0);
                 dbHelper.updateRecipe(newRecipe);
-                Snackbar.make(view, "Saved!", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Saved recipe " + newRecipe.get_name(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -161,6 +161,7 @@ public class CreateRecipe extends AppCompatActivity {
             switch(resultCode) {
                 case 1:
                     recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
+                    recipeIngredientArrayAdapter.notifyDataSetChanged();
                     break;
             }
         }

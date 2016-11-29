@@ -27,7 +27,7 @@ public class CreateMealActivity extends AppCompatActivity {
                 String mealTypeName = nameTxt.getText().toString();
                 MealType newMeal = new MealType();
                 newMeal.set_name(mealTypeName);
-                DbHelper db = new DbHelper(getApplicationContext());
+                DbHelper db = DbHelper.getInstance(getApplicationContext());
                 db.createMealType(newMeal);
                 Intent result = new Intent();
                 result.putExtra("result", "Added meal type " + mealTypeName);

@@ -23,7 +23,7 @@ public class RecipeIngredientArrayAdapter extends ArrayAdapter<RecipeIngredient>
     DbHelper dbHelper;
     public RecipeIngredientArrayAdapter(Context context, int resource, List<RecipeIngredient> objects) {
         super(context, resource, objects);
-        dbHelper = new DbHelper(getContext());
+        dbHelper = DbHelper.getInstance(getContext());
     }
 
     @Override

@@ -29,7 +29,7 @@ public class CreateIngredientActivity extends AppCompatActivity {
                 ca.uottawa.cookingwithgarzon.model.Ingredient newIngredient = new ca.uottawa.cookingwithgarzon.model.Ingredient();
                 newIngredient.set_name(ingredientName);
                 newIngredient.set_price(price);
-                DbHelper db = new DbHelper(getApplicationContext());
+                DbHelper db = DbHelper.getInstance(getApplicationContext());
                 db.createIngredient(newIngredient);
                 Intent result = new Intent();
                 result.putExtra("result", "Added ingredient " + ingredientName);

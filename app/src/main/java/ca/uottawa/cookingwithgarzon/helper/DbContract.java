@@ -22,6 +22,7 @@ public final class DbContract {
         public static final String COLUMN_COST = "cost";
         public static final String COLUMN_DIFFICULTY = "difficulty";
         public static final String COLUMN_SERVINGS = "servings";
+        public static final String COLUMN_RATING = "rating";
         public static final String COLUMN_IMAGE = "image";
         public static final String COLUMN_CUISINE = "cuisine";
         public static final String COLUMN_MEALTYPE = "mealtype";

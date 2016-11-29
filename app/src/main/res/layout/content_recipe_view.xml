@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/content_recipe_view"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="ca.uottawa.cookingwithgarzon.RecipeView"
     tools:showIn="@layout/activity_recipe_view">
@@ -72,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    android:id="@+id/difficultyText"
+                    android:id="@+id/viewDifficultyText"
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp" />
 

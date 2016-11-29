@@ -27,7 +27,7 @@ public class CreateCuisineActivity extends Activity {
                 String cuisineName = nameTxt.getText().toString();
                 Cuisine newCuisine= new Cuisine();
                 newCuisine.set_name(cuisineName);
-                DbHelper db = new DbHelper(getApplicationContext());
+                DbHelper db = DbHelper.getInstance(getApplicationContext());
                 Long id = db.createCuisine(newCuisine);
                 Snackbar.make(findViewById(R.id.activity_create_cuisine), "Created cuisine with id " + id, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();

@@ -29,7 +29,7 @@ public class MealTypeSearchActivity extends Activity {
         Intent intent = getIntent();
         final String name = intent.getStringExtra("name");
 
-        DbHelper dbHelper = new DbHelper(this);
+        DbHelper dbHelper = DbHelper.getInstance(this);
 
         ArrayList<MealType> result = dbHelper.getMealTypes();
         Snackbar.make(findViewById(R.id.activity_meal_type_search_result), "Found " + result.size() + " cuisines.", Snackbar.LENGTH_LONG)

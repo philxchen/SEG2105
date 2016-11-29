@@ -32,7 +32,7 @@ public class RecipeSearchResult extends AppCompatActivity {
         final String cuisine = intent.getStringExtra("cuisine");
         final String type = intent.getStringExtra("type");
 
-        DbHelper dbHelper = new DbHelper(this);
+        DbHelper dbHelper = DbHelper.getInstance(getApplicationContext());
 
         ArrayList<Recipe> result = dbHelper.findRecipe(name, ingredient, cuisine, type);
         Snackbar.make(findViewById(R.id.activity_recipe_search_result), "Found " + result.size() + " recipes.", Snackbar.LENGTH_LONG)

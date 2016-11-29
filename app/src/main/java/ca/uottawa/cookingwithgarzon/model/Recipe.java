@@ -12,12 +12,12 @@ public class Recipe {
     private long _id;
     private String _name;
     private double _cost;
-    private double _difficulty;
+    private int _difficulty;
     private int _servings;
+    private int _rating;
     private long _meal_type_id;
     private long _cuisine_id;
-    private ArrayList<Long> _recipeIngredient_ids;
-    private ArrayList<Long> _step_ids;
+
 
     public Recipe() {
     }
@@ -46,11 +46,11 @@ public class Recipe {
         this._cost = _cost;
     }
 
-    public double get_difficulty() {
+    public int get_difficulty() {
         return _difficulty;
     }
 
-    public void set_difficulty(double _difficulty) {
+    public void set_difficulty(int _difficulty) {
         this._difficulty = _difficulty;
     }
 
@@ -60,14 +60,6 @@ public class Recipe {
 
     public void set_servings(int _servings) {
         this._servings = _servings;
-    }
-
-    public ArrayList<Long> get_steps() {
-        return _step_ids;
-    }
-
-    public void set_steps(ArrayList<Long> _step_ids) {
-        this._step_ids = _step_ids;
     }
 
     public long get_meal_type_id() {
@@ -86,12 +78,8 @@ public class Recipe {
         this._cuisine_id = _cuisine_id;
     }
 
-    public ArrayList<Long> get_recipeIngredient_ids() {
-        return _recipeIngredient_ids;
-    }
+    public int get_rating() {return _rating; }
 
-    public void set_recipeIngredients(ArrayList<Long> _recipeIngredient_ids) {
-        this._recipeIngredient_ids = _recipeIngredient_ids;
-    }
+    public void set_rating(int _rating) { this._rating = _rating; }
 
 }

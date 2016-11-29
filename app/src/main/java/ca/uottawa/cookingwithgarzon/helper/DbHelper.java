@@ -23,7 +23,8 @@ import ca.uottawa.cookingwithgarzon.model.Step;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    private static DbHelper mInstance = null;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "RecipeView.db";
 
     private static final String LOG = "DbHelper";
@@ -38,10 +39,11 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_RECIPE_TABLE =
             "CREATE TABLE " + DbContract.Recipe.TABLE_NAME + " (" +
                     DbContract.Recipe._ID + " INTEGER PRIMARY KEY," +
-                    DbContract.Recipe.COLUMN_RECIPE_NAME + REAL_TYPE + COMMA_SEP +
-                    DbContract.Recipe.COLUMN_COST + TEXT_TYPE + COMMA_SEP +
+                    DbContract.Recipe.COLUMN_RECIPE_NAME + TEXT_TYPE + COMMA_SEP +
+                    DbContract.Recipe.COLUMN_COST + REAL_TYPE + COMMA_SEP +
                     DbContract.Recipe.COLUMN_DIFFICULTY + INTEGER_TYPE + COMMA_SEP +
                     DbContract.Recipe.COLUMN_SERVINGS + INTEGER_TYPE + COMMA_SEP +
+                    DbContract.Recipe.COLUMN_RATING + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for cuisine
                     DbContract.Recipe.COLUMN_CUISINE + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for mealtype
@@ -118,9 +120,21 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_SHOPPINGCARTINGREDIENT_TABLE =
             "DROP TABLE IF EXISTS " + DbContract.ShoppingCartIngredient.TABLE_NAME;
 
-    public DbHelper(Context context) {
+    public static DbHelper getInstance(Context ctx) {
+
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (mInstance == null) {
+            mInstance = new DbHelper(ctx.getApplicationContext());
+        }
+        return mInstance;
+    }
+
+    private DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_RECIPE_TABLE);
         db.execSQL(SQL_CREATE_INGREDIENT_TABLE);
@@ -159,6 +173,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Recipe.COLUMN_COST, recipe.get_cost());
         values.put(DbContract.Recipe.COLUMN_DIFFICULTY, recipe.get_difficulty());
         values.put(DbContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
+        values.put(DbContract.Recipe.COLUMN_RATING, recipe.get_rating());
         values.put(DbContract.Recipe.COLUMN_CUISINE, recipe.get_cuisine_id());
         values.put(DbContract.Recipe.COLUMN_MEALTYPE, recipe.get_meal_type_id());
         long recipe_id = db.insertOrThrow(DbContract.Recipe.TABLE_NAME, null, values);
@@ -242,8 +257,9 @@ public class DbHelper extends SQLiteOpenHelper {
         recipe.set_id(c.getLong(c.getColumnIndex(DbContract.Recipe._ID)));
         recipe.set_name(c.getString(c.getColumnIndex(DbContract.Recipe.COLUMN_RECIPE_NAME)));
         recipe.set_cost(c.getDouble((c.getColumnIndex((DbContract.Recipe.COLUMN_COST)))));
-        recipe.set_difficulty(c.getDouble(c.getColumnIndex(DbContract.Recipe.COLUMN_DIFFICULTY)));
+        recipe.set_difficulty(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_DIFFICULTY)));
         recipe.set_servings(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_SERVINGS)));
+        recipe.set_rating(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_RATING)));
         recipe.set_cuisine_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_CUISINE)));
         recipe.set_meal_type_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_MEALTYPE)));
         c.close();
@@ -382,6 +398,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Recipe.COLUMN_COST, recipe.get_cost());
         values.put(DbContract.Recipe.COLUMN_DIFFICULTY, recipe.get_difficulty());
         values.put(DbContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
+        values.put(DbContract.Recipe.COLUMN_RATING, recipe.get_rating());
         values.put(DbContract.Recipe.COLUMN_CUISINE, recipe.get_cuisine_id());
         values.put(DbContract.Recipe.COLUMN_MEALTYPE, recipe.get_meal_type_id());
         return db.update(DbContract.Recipe.TABLE_NAME, values, "_ID=" + recipe.get_id(), null) > 0;
@@ -479,8 +496,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 recipe.set_id(c.getLong(c.getColumnIndex(DbContract.Recipe._ID)));
                 recipe.set_name(c.getString(c.getColumnIndex(DbContract.Recipe.COLUMN_RECIPE_NAME)));
                 recipe.set_cost(c.getDouble((c.getColumnIndex((DbContract.Recipe.COLUMN_COST)))));
-                recipe.set_difficulty(c.getDouble(c.getColumnIndex(DbContract.Recipe.COLUMN_DIFFICULTY)));
+                recipe.set_difficulty(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_DIFFICULTY)));
                 recipe.set_servings(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_SERVINGS)));
+                recipe.set_rating(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_RATING)));
                 recipe.set_cuisine_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_CUISINE)));
                 recipe.set_meal_type_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_MEALTYPE)));
                 recipes.add(recipe);
