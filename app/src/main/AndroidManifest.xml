@@ -51,7 +51,8 @@
             android:label="@string/title_activity_recipe_ingredient"/>
         <activity
             android:name=".ShoppingCartActivity"
-            android:label="@string/title_activity_shopping_cart"/>
+            android:label="@string/title_activity_shopping_cart"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SelectCreateActivity"
             android:label="@string/title_activity_select_search"/>
