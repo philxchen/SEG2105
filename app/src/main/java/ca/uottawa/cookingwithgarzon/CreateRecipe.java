@@ -55,21 +55,21 @@ public class CreateRecipe extends AppCompatActivity {
         //Difficulty Adapter
         HintAdapter difficultyAdapter = new HintAdapter(this, difficultyList, android.R.layout.simple_spinner_item);
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner difficultySpinner = (Spinner) findViewById(R.id.difficulty_select);
+        Spinner difficultySpinner = (Spinner) findViewById(R.id.difficultySelect);
         difficultySpinner.setAdapter(difficultyAdapter);
         difficultySpinner.setSelection(difficultyAdapter.getCount());
 
         //Meal Type Adapter
         HintAdapter mealTypeAdapter = new HintAdapter(this, mealTypeList, android.R.layout.simple_spinner_item);
         mealTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner mealTypeSpinner = (Spinner) findViewById(R.id.meal_type_select);
+        Spinner mealTypeSpinner = (Spinner) findViewById(R.id.mealTypeSelect);
         mealTypeSpinner.setAdapter(mealTypeAdapter);
         mealTypeSpinner.setSelection(mealTypeAdapter.getCount());
 
         //Cuisine Type Adapter
         HintAdapter cuisineTypeAdapter = new HintAdapter(this, cuisineTypeList, android.R.layout.simple_spinner_item);
         cuisineTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner cuisineTypeSpinner = (Spinner) findViewById(R.id.cuisine_select);
+        Spinner cuisineTypeSpinner = (Spinner) findViewById(R.id.cuisineTypeSelect);
         cuisineTypeSpinner.setAdapter(cuisineTypeAdapter);
         cuisineTypeSpinner.setSelection(cuisineTypeAdapter.getCount());
 
