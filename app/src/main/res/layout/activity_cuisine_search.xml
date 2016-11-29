@@ -10,25 +10,54 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Find a Cuisine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="36sp"
+            android:textAlignment="center"
+            android:layout_weight="0.05"
+            android:id="@+id/searchCuisineTitle"
+            android:paddingTop="20dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="62dp" />
+
+        <TextView
+            android:text="Search by..."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:id="@+id/searchCuisineText"
+            android:textAlignment="center"
+            android:layout_weight="0.05" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+
 
         <EditText
             android:layout_width="match_parent"
             android:inputType="text"
-            android:text="Name"
             android:ems="10"
             android:id="@+id/cuisine_search_input"
             android:maxLines="1"
             android:selectAllOnFocus="true"
-            android:padding="5dp"
+            android:textAlignment="center"
+            android:hint="Cuisine name"
+            android:paddingTop="10dp"
+            android:paddingBottom="30dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="25dp" />
+            android:layout_weight="1" />
 
         <Button
-            android:text="Search Cuisines"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:text="Find Cuisine"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
             android:id="@+id/search_cuisine_button"
             android:layout_weight="1"
             android:padding="25dp"

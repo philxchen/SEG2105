@@ -8,7 +8,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectSearchActivity" />
         <activity
             android:name=".IngredientSearchActivity"
             android:label="@string/title_activity_ingredient_search" />
@@ -28,16 +27,14 @@
             android:label="@string/title_activity_recipe_search"/>
         <activity
             android:name=".RecipeSearchResult"
-            android:label="@string/title_activity_recipe_search_Result"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/title_activity_recipe_search_Result"/>
 
         <activity
             android:name=".RecipePreview"
             android:label="@string/title_activity_recipe_preview"/>
         <activity
             android:name=".CreateRecipe"
-            android:label="@string/title_activity_create_recipe"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/title_activity_create_recipe"/>
         <activity
             android:name=".CreateRecipeInstructionActivity"
             android:label="@string/title_activity_recipe_instruction"/>
@@ -46,18 +43,16 @@
             android:label="@string/title_activity_instruction_step" />
         <activity
             android:name=".FavoriteRecipe"
-            android:label="@string/title_activity_favorite_recipe"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/title_activity_favorite_recipe"/>
         <activity
             android:name=".CreateRecipeIngredientActivity"
             android:label="@string/title_activity_recipe_ingredient"/>
         <activity
             android:name=".ShoppingCartActivity"
-            android:label="@string/title_activity_shopping_cart"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/title_activity_shopping_cart"/>
         <activity
             android:name=".SelectCreateActivity"
-            android:label="@string/title_activity_select_search"/>
+            android:label="@string/title_activity_select_create"/>
         <activity
             android:name=".CreateCuisineActivity"
             android:label="@string/title_activity_create_cuisine" />
@@ -68,24 +63,29 @@
             android:name=".RecipeView"
             android:label="@string/title_activity_recipe_view" />
         <activity
-            android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".CreateMealActivity"
             android:label="@string/title_activity_create_meal"/>
         <activity
             android:name=".HelpActivity"
             android:label="@string/title_activity_help" />
         <activity
-            android:name=".MealTypeSearchActivity"
-            android:label="@string/title_activity_meal_type_search" />
-        <activity
             android:name=".MealTypeSearchResultActivity"
-            android:label="@string/title_activity_meal_type_search" />
+            android:label="@string/title_activity_meal_type_search_result" />
+        <activity
+            android:name=".MealTypeSearchActivity"
+            android:label="@string/title_activity_meal_type_search"/>
+        <activity
+            android:name=".SelectSearchActivity"
+            android:label="@string/title_activity_select_search"/>
+        <activity
+            android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

@@ -112,12 +112,14 @@
     <string name="title_activity_cuisine_search">Search for Cuisine</string>
     <string name="title_activity_recipe_preview">Preview Recipe</string>
     <string name="title_activity_instruction_step">Steps</string>
-    <string name="title_activity_select_search">Create</string>
+    <string name="title_activity_select_search">Search</string>
     <string name="title_activity_create_cuisine">Create Cuisine</string>
     <string name="title_activity_create_meal">Create Meal</string>
     <string name="title_activity_help">Help</string>
     <string name="title_activity_meal_type_search">Search for Meal Type</string>
     <string name="title_activity_ingredient_search_result">Ingredient Search Result</string>
     <string name="title_activity_recipe_search_Result">Recipe Search Result</string>
+    <string name="title_activity_select_create">Create</string>
+    <string name="title_activity_meal_type_search_result">Meal Type Search Result</string>
 
 </resources>
