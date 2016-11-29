@@ -8,9 +8,22 @@
     android:fitsSystemWindows="true"
     tools:context="ca.uottawa.cookingwithgarzon.FavoriteRecipe">
 
-    <ListView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listview_recipes" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:text="Favourite Recipes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/favoriteRecipeHeader"
+            android:textSize="36sp"
+            android:textAlignment="center" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/favoriteListView" />
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
