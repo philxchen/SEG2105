@@ -1,32 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="ca.uottawa.cookingwithgarzon.IngredientSearchActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Find an Ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="36sp"
+            android:textAlignment="center"
+            android:layout_weight="0.05"
+            android:id="@+id/searchIngredientTitle"
+            android:paddingTop="20dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="62dp" />
+
+        <TextView
+            android:text="Search by..."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:id="@+id/searchIngredientText"
+            android:textAlignment="center"
+            android:layout_weight="0.05" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+
+
     <EditText
         android:layout_width="match_parent"
         android:inputType="text"
-        android:text="Name"
         android:ems="10"
         android:id="@+id/ingredient_search_input"
         android:maxLines="1"
         android:selectAllOnFocus="true"
-        android:padding="5dp"
+        android:textAlignment="center"
+        android:hint="Ingredient name"
+        android:paddingTop="10dp"
+        android:paddingBottom="30dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_margin="25dp" />
+        android:layout_weight="1" />
 
     <Button
         android:text="Find Ingredient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
         android:id="@+id/search_ingredient_button"
         android:layout_weight="1"
         android:padding="25dp"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_margin="15dp" />
-</android.widget.LinearLayout>
+
+  </LinearLayout>
+</android.support.design.widget.TextInputLayout>
