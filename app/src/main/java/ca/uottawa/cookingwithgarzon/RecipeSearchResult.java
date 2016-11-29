@@ -35,7 +35,7 @@ public class RecipeSearchResult extends AppCompatActivity {
         DbHelper dbHelper = new DbHelper(this);
 
         ArrayList<Recipe> result = dbHelper.findRecipe(name, ingredient, cuisine, type);
-        Snackbar.make(findViewById(R.id.activity_ingredient_search_result), "Found " + result.size() + " ingredients.", Snackbar.LENGTH_LONG)
+        Snackbar.make(findViewById(R.id.activity_recipe_search_result), "Found " + result.size() + " recipes.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         RecipeArrayAdapter adapter = new RecipeArrayAdapter(this, R.layout.recipe_item, result);
         ListView listView = (ListView) findViewById(R.id.listview_recipes);
