@@ -608,8 +608,14 @@ public class DbHelper extends SQLiteOpenHelper {
     /** get list of ingredients */
     public ArrayList<Ingredient> getIngredients(String str) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + DbContract.Ingredient.TABLE_NAME
-                + " WHERE " + DbContract.Ingredient.COLUMN_INGREDIENT_NAME + " LIKE \'" + str + "\'";
+        String query;
+        if (str == null || str.isEmpty()) {
+            query = "SELECT * FROM " + DbContract.Ingredient.TABLE_NAME;
+        }
+        else {
+            query = "SELECT * FROM " + DbContract.Ingredient.TABLE_NAME
+                    + " WHERE " + DbContract.Ingredient.COLUMN_INGREDIENT_NAME + " LIKE \'" + str + "\'";
+        }
         Log.e(LOG, "Searching: " +query);
         Cursor c = db.rawQuery(query, null);
         ArrayList<Ingredient> ingredients = new ArrayList<>();

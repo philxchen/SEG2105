@@ -17,20 +17,35 @@ import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 
 public class CreateRecipeIngredientActivity extends AppCompatActivity {
 
+
+    static final int PICK_INGREDIENT_REQUEST = 1;
+    private long ingredient_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipe_ingredient);
 
         final Button saveBtn = (Button) findViewById(R.id.saveRecipeIngredientBtn);
+        final Button getIngredientBtn = (Button) findViewById(R.id.chooseIngredientBtn);
         final EditText unitTxt = (EditText) findViewById(R.id.recipeIngredientUnitTxt);
         final EditText quantityTxt = (EditText) findViewById(R.id.recipeIngredientQuantityTxt);
         Intent intent = getIntent();
         final long recipe_id = Long.parseLong(intent.getStringExtra("recipe_id"));
-        final long ingredient_id = Long.parseLong(intent.getStringExtra("ingredient_id"));
+
+        getIngredientBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent getIngredientIntent = new Intent(CreateRecipeIngredientActivity.this, IngredientSearchActivity.class);
+                startActivityForResult(getIngredientIntent, PICK_INGREDIENT_REQUEST);
+            }
+        });
+
+
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String unit = unitTxt.getText().toString();
                 Long quantity = Long.parseLong(quantityTxt.getText().toString());
                 RecipeIngredient newRecipeIngredient = new RecipeIngredient();
@@ -46,5 +61,15 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == PICK_INGREDIENT_REQUEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                ingredient_id = data.getLongExtra("ingredient_id", 0);
+            }
+        }
     }
 }

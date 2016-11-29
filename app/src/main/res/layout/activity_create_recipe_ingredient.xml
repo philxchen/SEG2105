@@ -33,6 +33,37 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.17" />
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textAlignment="center"
+                android:hint="Ingredient"
+                android:id="@+id/recipeIngredientTxt"
+                android:textSize="24sp"
+                android:layout_weight="1"
+                android:layout_margin="5dp" />
+
+            <Button
+                android:text="Choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/chooseIngredientBtn"
+                android:layout_weight="1"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.17" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,6 +95,7 @@
             android:layout_height="57dp"
             android:id="@+id/saveRecipeIngredientBtn"
             android:layout_gravity="center_horizontal"  />
+
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

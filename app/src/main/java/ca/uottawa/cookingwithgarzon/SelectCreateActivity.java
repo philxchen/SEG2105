@@ -11,6 +11,11 @@ import static android.app.Activity.RESULT_OK;
 
 public class SelectCreateActivity extends AppCompatActivity {
 
+    final int CREATE_RECIPE_REQUEST = 1;
+    final int CREATE_INGREDIENT_REQUEST = 2;
+    final int CREATE_MEALTYPE_REQUEST = 3;
+    final int CREATE_CUISINE_REQUEST = 4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,28 +31,32 @@ public class SelectCreateActivity extends AppCompatActivity {
         createRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, CreateRecipe.class));
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateIngredientActivity.class),
+                        CREATE_INGREDIENT_REQUEST);
             }
         });
 
         createIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, CreateIngredientActivity.class));
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateRecipe.class),
+                        CREATE_RECIPE_REQUEST);
             }
         });
 
         createMealBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, CreateMealActivity.class));
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateMealActivity.class),
+                        CREATE_MEALTYPE_REQUEST);
             }
         });
 
         createCuisineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, CreateCuisineActivity.class));
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateCuisineActivity.class),
+                        CREATE_CUISINE_REQUEST);
             }
         });
     }
