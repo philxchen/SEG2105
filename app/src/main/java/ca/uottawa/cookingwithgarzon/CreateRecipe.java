@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import ca.uottawa.cookingwithgarzon.adapter.HintAdapter;
 
