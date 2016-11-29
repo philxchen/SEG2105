@@ -288,8 +288,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 + DbContract.Cuisine._ID + " = " + cuisine_id;
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
-        if (c == null) return null;
-        c.moveToFirst();
+        if (!c.moveToFirst()) return null;
         Cuisine cuisine = new Cuisine();
         cuisine.set_id(c.getInt(c.getColumnIndex(DbContract.Cuisine._ID)));
         cuisine.set_name(c.getString(c.getColumnIndex(DbContract.Cuisine.COLUMN_CUISINE_NAME)));
@@ -304,8 +303,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 + DbContract.MealType._ID + " = " + type_id;
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
-        if (c == null) return null;
-        c.moveToFirst();
+        if (!c.moveToFirst()) return null;
         MealType type = new MealType();
         type.set_id(c.getInt(c.getColumnIndex(DbContract.MealType._ID)));
         type.set_name(c.getString(c.getColumnIndex(DbContract.MealType.COLUMN_MEAL_TYPE_NAME)));
