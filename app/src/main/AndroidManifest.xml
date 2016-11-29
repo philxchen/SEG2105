@@ -23,11 +23,9 @@
         <activity
             android:name=".CuisineSearchResultActivity"
             android:label="@string/title_activity_cuisine_search_result"/>
-
         <activity
             android:name=".RecipeSearchActivity"
             android:label="@string/title_activity_recipe_search"/>
-
         <activity
             android:name=".RecipeSearchResult"
             android:label="@string/title_activity_recipe_search_Result"/>
@@ -63,8 +61,8 @@
             android:name=".CreateIngredientActivity"
             android:label="@string/title_activity_create_ingredient" />
         <activity
-            android:name=".RecipeView"/>
-            android:label="@string/title_activity_recipe_view"
+            android:name=".RecipeView"
+            android:label="@string/title_activity_recipe_view" />
         <activity
             android:name=".MainActivity">
             <intent-filter>

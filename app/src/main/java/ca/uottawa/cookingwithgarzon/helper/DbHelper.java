@@ -166,13 +166,13 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     /**  create a recipeIngredient */
-    public long createRecipeIngredient(Recipe recipe, Ingredient ingredient, long qty, String unit) {
+    public long createRecipeIngredient(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DbContract.RecipeIngredient.COLUMN_RECIPE_ID, recipe.get_id());
-        values.put(DbContract.RecipeIngredient.COLUMN_RECIPE_ID, ingredient.get_id());
-        values.put(DbContract.RecipeIngredient.COLUMN_QUANTITY, qty);
-        values.put(DbContract.RecipeIngredient.COLUMN_UNIT, unit);
+        values.put(DbContract.RecipeIngredient.COLUMN_RECIPE_ID, recipeIngredient.get_recipe_id());
+        values.put(DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID, recipeIngredient.get_ingredient_id());
+        values.put(DbContract.RecipeIngredient.COLUMN_QUANTITY, recipeIngredient.get_quantity());
+        values.put(DbContract.RecipeIngredient.COLUMN_UNIT, recipeIngredient.get_unit());
         long recipeIngredient_id = db.insertOrThrow(DbContract.RecipeIngredient.TABLE_NAME, null, values);
         return recipeIngredient_id;
     }
