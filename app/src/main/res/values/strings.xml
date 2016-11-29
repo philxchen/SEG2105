@@ -120,4 +120,23 @@
     <string name="title_activity_ingredient_search_result">Ingredient Search Result</string>
     <string name="title_activity_recipe_search_Result">Recipe Search Result</string>
 
+    <string-array name="difficulty_array">
+        <item>Select a difficulty level</item>
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+    <string-array name="meal_type_array">
+        <item>Select a meal type</item>
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+    </string-array>
+    <string-array name="cuisine_array">
+        <item>Select a cuisine</item>
+        <item>Canadian</item>
+        <item>American</item>
+        <item>Chinese</item>
+        <item>Indian</item>
+    </string-array>
 </resources>

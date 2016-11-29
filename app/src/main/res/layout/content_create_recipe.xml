@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                app:srcCompat="@drawable/ic_image_black_36dp"
+                android:src="@drawable/ic_image_black_36dp"
                 android:id="@+id/createRecipeImage"
                 android:layout_weight="1"
                 android:layout_width="250dp"
@@ -54,28 +54,28 @@
         </LinearLayout>
 
         <Spinner
-            android:layout_width="200dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:prompt="@string/difficulty_prompt"
-            android:id="@+id/difficultySelect"
+            android:id="@+id/difficulty_select"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:alwaysDrawnWithCache="false" />
 
         <Spinner
-            android:layout_width="200dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:prompt="@string/meal_type_prompt"
-            android:id="@+id/mealTypeSelect"
+            android:id="@+id/meal_type_select"
             android:paddingBottom="5dp"
             android:paddingTop="5dp" />
 
         <Spinner
-            android:layout_width="200dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:prompt="@string/cuisine_type_prompt"
-            android:id="@+id/cuisineTypeSelect"
-            android:paddingBottom="5dp"
+            android:id="@+id/cuisine_select"
+            android:paddingBottom="10dp"
             android:paddingTop="5dp" />
 
         <LinearLayout
@@ -102,7 +102,8 @@
                 android:id="@+id/addIngredientToRecipeBtn"
                 android:layout_weight="1"
                 app:backgroundTint="@android:color/holo_orange_dark"
-                android:paddingRight="10dp" />
+                android:paddingRight="10dp"
+                />
 
         </LinearLayout>
 
