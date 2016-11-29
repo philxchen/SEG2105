@@ -40,7 +40,7 @@
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_done_black_24dp"
-        app:backgroundTint="@android:color/holo_red_light" />
+        app:backgroundTint="@android:color/holo_blue_bright" />
 
     <include layout="@layout/content_create_recipe" />
 
