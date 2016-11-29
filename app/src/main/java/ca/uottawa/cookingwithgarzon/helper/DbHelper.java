@@ -152,15 +152,15 @@ public class DbHelper extends SQLiteOpenHelper {
     /** CRUD */
 
     /** Create a recipe */
-    public long createRecipe(Recipe recipe, Cuisine cuisine, MealType type) {
+    public long createRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
         values.put(DbContract.Recipe.COLUMN_COST, recipe.get_cost());
         values.put(DbContract.Recipe.COLUMN_DIFFICULTY, recipe.get_difficulty());
         values.put(DbContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
-        values.put(DbContract.Recipe.COLUMN_CUISINE, cuisine.get_id());
-        values.put(DbContract.Recipe.COLUMN_MEALTYPE, type.get_id());
+        values.put(DbContract.Recipe.COLUMN_CUISINE, recipe.get_cuisine_id());
+        values.put(DbContract.Recipe.COLUMN_MEALTYPE, recipe.get_meal_type_id());
         long recipe_id = db.insertOrThrow(DbContract.Recipe.TABLE_NAME, null, values);
         return recipe_id;
     }
@@ -364,15 +364,15 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /** Update operations */
 
-    public boolean updateRecipe(Recipe recipe, Cuisine cuisine, MealType type) {
+    public boolean updateRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
         values.put(DbContract.Recipe.COLUMN_COST, recipe.get_cost());
         values.put(DbContract.Recipe.COLUMN_DIFFICULTY, recipe.get_difficulty());
         values.put(DbContract.Recipe.COLUMN_SERVINGS, recipe.get_servings());
-        values.put(DbContract.Recipe.COLUMN_CUISINE, cuisine.get_id());
-        values.put(DbContract.Recipe.COLUMN_MEALTYPE, type.get_id());
+        values.put(DbContract.Recipe.COLUMN_CUISINE, recipe.get_cuisine_id());
+        values.put(DbContract.Recipe.COLUMN_MEALTYPE, recipe.get_meal_type_id());
         return db.update(DbContract.Recipe.TABLE_NAME, values, "_ID=" + recipe.get_id(), null) > 0;
     }
 

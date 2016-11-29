@@ -31,16 +31,16 @@ public class SelectCreateActivity extends AppCompatActivity {
         createRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(SelectCreateActivity.this, CreateIngredientActivity.class),
-                        CREATE_INGREDIENT_REQUEST);
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateRecipe.class),
+                        CREATE_RECIPE_REQUEST);
             }
         });
 
         createIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(SelectCreateActivity.this, CreateRecipe.class),
-                        CREATE_RECIPE_REQUEST);
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateIngredientActivity.class),
+                        CREATE_INGREDIENT_REQUEST);
             }
         });
 
