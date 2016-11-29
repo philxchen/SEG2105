@@ -28,7 +28,8 @@
             android:label="@string/title_activity_recipe_search"/>
         <activity
             android:name=".RecipeSearchResult"
-            android:label="@string/title_activity_recipe_search_Result"/>
+            android:label="@string/title_activity_recipe_search_Result"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".RecipePreview"
