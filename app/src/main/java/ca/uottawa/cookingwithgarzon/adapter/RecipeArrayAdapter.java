@@ -32,9 +32,11 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
 
         // Get the data item for this position
         Recipe recipe = getItem(position);
+        if (recipe == null) return null;
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.recipe_ingredient_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.recipe_item, parent, false);
         }
         // Lookup view for data population
         TextView recipeName = (TextView) convertView.findViewById(R.id.recipe_item_name);
@@ -46,8 +48,12 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
         Cuisine cuisine = dbHelper.getCuisine(recipe.get_cuisine_id());
         MealType type = dbHelper.getMealType(recipe.get_meal_type_id());
         recipeName.setText(recipe.get_name());
-        recipeCuisine.setText(cuisine.get_name());
-        recipeMealType.setText(type.get_name());
+        if (cuisine != null) {
+            recipeCuisine.setText(cuisine.get_name());
+        }
+        if (type != null) {
+            recipeMealType.setText(type.get_name());
+        }
         recipeServings.setText(((Integer)recipe.get_servings()).toString());
         // Return the completed view to render on screen
         return convertView;

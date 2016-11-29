@@ -234,7 +234,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
-        if (!c.moveToFirst()) return null;
+        if (!c.moveToFirst()) {
+            c.close();
+            return null;
+        }
         Recipe recipe = new Recipe();
         recipe.set_id(c.getLong(c.getColumnIndex(DbContract.Recipe._ID)));
         recipe.set_name(c.getString(c.getColumnIndex(DbContract.Recipe.COLUMN_RECIPE_NAME)));
@@ -254,8 +257,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 + DbContract.Ingredient._ID + " = " + ingredient_id;
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
-        if (c == null) return null;
-        c.moveToFirst();
+        if (!c.moveToFirst()) {
+            c.close();
+            return null;
+        }
         Ingredient ingredient = new Ingredient();
         ingredient.set_id(c.getInt(c.getColumnIndex(DbContract.Ingredient._ID)));
         ingredient.set_name(c.getString(c.getColumnIndex(DbContract.Ingredient.COLUMN_INGREDIENT_NAME)));
@@ -271,8 +276,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 + DbContract.RecipeIngredient._ID + " = " + recipeingredient_id;
         Log.e(LOG, query);
         Cursor c = db.rawQuery(query, null);
-        if (c == null) return null;
-        c.moveToFirst();
+        if (!c.moveToFirst()) {
+            c.close();
+            return null;
+        }
         RecipeIngredient recipeingredient = new RecipeIngredient();
         recipeingredient.set_id(c.getInt(c.getColumnIndex(DbContract.RecipeIngredient._ID)));
         recipeingredient.set_quantity(c.getInt(c.getColumnIndex(DbContract.RecipeIngredient.COLUMN_QUANTITY)));
@@ -288,7 +295,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 + DbContract.Cuisine._ID + " = " + cuisine_id;
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
-        if (!c.moveToFirst()) return null;
+        if (!c.moveToFirst()) {
+            c.close();
+            return null;
+        }
         Cuisine cuisine = new Cuisine();
         cuisine.set_id(c.getInt(c.getColumnIndex(DbContract.Cuisine._ID)));
         cuisine.set_name(c.getString(c.getColumnIndex(DbContract.Cuisine.COLUMN_CUISINE_NAME)));
@@ -303,7 +313,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 + DbContract.MealType._ID + " = " + type_id;
         Log.e(LOG, selectRecipeQuery);
         Cursor c = db.rawQuery(selectRecipeQuery, null);
-        if (!c.moveToFirst()) return null;
+        if (!c.moveToFirst()) {
+            c.close();
+            return null;
+        }
         MealType type = new MealType();
         type.set_id(c.getInt(c.getColumnIndex(DbContract.MealType._ID)));
         type.set_name(c.getString(c.getColumnIndex(DbContract.MealType.COLUMN_MEAL_TYPE_NAME)));
