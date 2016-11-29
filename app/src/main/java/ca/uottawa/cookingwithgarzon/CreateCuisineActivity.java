@@ -3,23 +3,21 @@ package ca.uottawa.cookingwithgarzon;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Cuisine;
 
-public class CreateCuisineActivity extends Activity {
+public class CreateCuisineActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_cuisine);
-
         final Button saveBtn = (Button) findViewById(R.id.saveCuisineBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createCuisineText);
 
@@ -40,24 +38,5 @@ public class CreateCuisineActivity extends Activity {
             }
         });
 
-        setContentView(R.layout.content_create_recipe);
-
-        Spinner difficultySpinner = (Spinner) findViewById(R.id.difficulty_select);
-        ArrayAdapter<CharSequence> difficultyAdapter = ArrayAdapter.createFromResource(this,
-                R.array.difficulty_array, android.R.layout.simple_spinner_item);
-        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        difficultySpinner.setAdapter(difficultyAdapter);
-
-        Spinner mealTypeSpinner = (Spinner) findViewById(R.id.meal_type_select);
-        ArrayAdapter<CharSequence> mealTypeAdapter = ArrayAdapter.createFromResource(this,
-                R.array.meal_type_array, android.R.layout.simple_spinner_item);
-        mealTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mealTypeSpinner.setAdapter(mealTypeAdapter);
-
-        Spinner cuisineSpinner = (Spinner) findViewById(R.id.cuisine_select);
-        ArrayAdapter<CharSequence> cuisineAdapter = ArrayAdapter.createFromResource(this,
-                R.array.cuisine_array, android.R.layout.simple_spinner_item);
-        cuisineAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cuisineSpinner.setAdapter(cuisineAdapter);
     }
 }
