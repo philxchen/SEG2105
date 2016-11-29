@@ -31,7 +31,7 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
         final EditText unitTxt = (EditText) findViewById(R.id.recipeIngredientUnitTxt);
         final EditText quantityTxt = (EditText) findViewById(R.id.recipeIngredientQuantityTxt);
         Intent intent = getIntent();
-        final long recipe_id = Long.parseLong(intent.getStringExtra("recipe_id"));
+        final long recipe_id = intent.getLongExtra("recipe_id", 0);
 
         getIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
