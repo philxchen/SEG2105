@@ -1,5 +1,6 @@
 package ca.uottawa.cookingwithgarzon;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -39,7 +40,12 @@ public class IngredientSearchActivity extends AppCompatActivity {
         if (requestCode == PICK_INGREDIENT_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
+                Intent result = new Intent();
                 ingredient_id = data.getLongExtra("ingredient_id", 0);
+                result.putExtra("ingredient_id", ingredient_id);
+                result.putExtra("ingredient_name", data.getStringExtra("ingredient_name"));
+                setResult(Activity.RESULT_OK, result);
+                finish();
             }
         }
     }
