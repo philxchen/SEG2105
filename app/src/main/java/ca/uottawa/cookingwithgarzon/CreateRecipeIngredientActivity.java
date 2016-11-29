@@ -10,10 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Recipe;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
+
+import static ca.uottawa.cookingwithgarzon.R.id.ingredientTxt;
+import static ca.uottawa.cookingwithgarzon.R.id.recipeIngredientTxt;
 
 public class CreateRecipeIngredientActivity extends AppCompatActivity {
 
@@ -21,17 +25,25 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
     static final int PICK_INGREDIENT_REQUEST = 1;
     private long ingredient_id;
 
+    private TextView recipeIngredientTxt;
+    private Button saveBtn;
+    private Button getIngredientBtn;
+    private EditText unitTxt;
+    private EditText quantityTxt;
+    private long recipe_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipe_ingredient);
 
-        final Button saveBtn = (Button) findViewById(R.id.saveRecipeIngredientBtn);
-        final Button getIngredientBtn = (Button) findViewById(R.id.chooseIngredientBtn);
-        final EditText unitTxt = (EditText) findViewById(R.id.recipeIngredientUnitTxt);
-        final EditText quantityTxt = (EditText) findViewById(R.id.recipeIngredientQuantityTxt);
+        recipeIngredientTxt = (TextView) findViewById(R.id.recipeIngredientTxt);
+        saveBtn = (Button) findViewById(R.id.saveRecipeIngredientBtn);
+        getIngredientBtn = (Button) findViewById(R.id.chooseIngredientBtn);
+        unitTxt = (EditText) findViewById(R.id.recipeIngredientUnitTxt);
+        quantityTxt = (EditText) findViewById(R.id.recipeIngredientQuantityTxt);
         Intent intent = getIntent();
-        final long recipe_id = intent.getLongExtra("recipe_id", 0);
+        recipe_id = intent.getLongExtra("recipe_id", 0);
 
         getIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +59,7 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String unit = unitTxt.getText().toString();
-                Long quantity = Long.parseLong(quantityTxt.getText().toString());
+                Long quantity = Long.parseLong(quantityTxt.getText().toString()); //TODO crash if null
                 RecipeIngredient newRecipeIngredient = new RecipeIngredient();
                 newRecipeIngredient.set_quantity(quantity);
                 newRecipeIngredient.set_unit(unit);
@@ -69,6 +81,8 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 ingredient_id = data.getLongExtra("ingredient_id", 0);
+                recipeIngredientTxt.setText(data.getStringExtra("ingredient_name"));
+
             }
         }
     }
