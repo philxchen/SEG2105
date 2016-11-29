@@ -45,7 +45,8 @@
             android:label="@string/title_activity_instruction_step" />
         <activity
             android:name=".FavoriteRecipe"
-            android:label="@string/title_activity_favorite_recipe"/>
+            android:label="@string/title_activity_favorite_recipe"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".CreateRecipeIngredientActivity"
             android:label="@string/title_activity_recipe_ingredient"/>
