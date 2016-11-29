@@ -104,8 +104,20 @@
     <string name="title_activity_unit_type">Unit Type</string>
     <string name="title_activity_search_result">Search Result</string>
     <string name="title_activity_create_ingredient">Create Ingredient</string>
-    <string name="title_activity_cuisine_search_result">Cuisine Types</string>
+    <string name="title_activity_cuisine_search_result">Cuisine Search Result</string>
     <string name="difficulty_prompt">Select Difficulty</string>
     <string name="meal_type_prompt">Select Meal Type</string>
     <string name="cuisine_type_prompt">Select Cuisine Type</string>
+    <string name="title_activity_ingredient_search">Search for Ingredient</string>
+    <string name="title_activity_cuisine_search">Search for Cuisine</string>
+    <string name="title_activity_recipe_preview">Preview Recipe</string>
+    <string name="title_activity_instruction_step">Steps</string>
+    <string name="title_activity_select_search">Create</string>
+    <string name="title_activity_create_cuisine">Create Cuisine</string>
+    <string name="title_activity_create_meal">Create Meal</string>
+    <string name="title_activity_help">Help</string>
+    <string name="title_activity_meal_type_search">Search for Meal Type</string>
+    <string name="title_activity_ingredient_search_result">Ingredient Search Result</string>
+    <string name="title_activity_recipe_search_Result">Recipe Search Result</string>
+
 </resources>

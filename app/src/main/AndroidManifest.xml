@@ -11,61 +11,62 @@
         <activity android:name=".SelectSearchActivity" />
         <activity
             android:name=".IngredientSearchActivity"
-            android:label="Find Ingredient" />
+            android:label="@string/title_activity_ingredient_search" />
         <activity
             android:name=".IngredientSearchResultActivity"
-            android:label="Ingredient Search Result" />
+            android:label="@string/title_activity_ingredient_search_result" />
 
         <activity
             android:name=".CuisineSearchActivity"
-            android:label="Search for Cuisine"/>
+            android:label="@string/title_activity_cuisine_search"/>
 
         <activity
             android:name=".CuisineSearchResultActivity"
-            android:label="Result"/>
+            android:label="@string/title_activity_cuisine_search_result"/>
 
         <activity
             android:name=".RecipeSearchActivity"
-            android:label="@string/title_activity_recipe_search"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_recipe_search"/>
+
+        <activity
+            android:name=".RecipeSearchResult"
+            android:label="@string/title_activity_recipe_search_Result"/>
+
         <activity
             android:name=".RecipePreview"
-            android:label="Preview Recipe" />
+            android:label="@string/title_activity_recipe_preview"/>
         <activity
             android:name=".CreateRecipe"
-            android:label="@string/title_activity_create_recipe"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_create_recipe"/>
         <activity
             android:name=".CreateRecipeInstructionActivity"
-            android:label="@string/title_activity_recipe_instruction"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_recipe_instruction"/>
         <activity
             android:name=".InstructionStep"
-            android:label="Steps" />
+            android:label="@string/title_activity_instruction_step" />
         <activity
             android:name=".FavoriteRecipe"
-            android:label="@string/title_activity_favorite_recipe"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_favorite_recipe"/>
         <activity
             android:name=".CreateRecipeIngredientActivity"
-            android:label="@string/title_activity_recipe_ingredient"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_recipe_ingredient"/>
         <activity
             android:name=".ShoppingCartActivity"
-            android:label="@string/title_activity_shopping_cart"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SelectCreateActivity" />
+            android:label="@string/title_activity_shopping_cart"/>
+        <activity
+            android:name=".SelectCreateActivity"
+            android:label="@string/title_activity_select_search"/>
         <activity
             android:name=".CreateCuisineActivity"
-            android:label="Create Cuisine" />
+            android:label="@string/title_activity_create_cuisine" />
         <activity
             android:name=".CreateIngredientActivity"
-            android:label="Create Ingredient" />
+            android:label="@string/title_activity_create_ingredient" />
         <activity
-            android:name=".RecipeView"
+            android:name=".RecipeView"/>
             android:label="@string/title_activity_recipe_view"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -74,16 +75,16 @@
         </activity>
         <activity
             android:name=".CreateMealActivity"
-            android:label="Create Meal"/>
+            android:label="@string/title_activity_create_meal"/>
         <activity
             android:name=".HelpActivity"
-            android:label="Help" />
+            android:label="@string/title_activity_help" />
         <activity
             android:name=".MealTypeSearchActivity"
-            android:label="Search for Meal Type" />
+            android:label="@string/title_activity_meal_type_search" />
         <activity
             android:name=".MealTypeSearchResultActivity"
-            android:label="Result" />
+            android:label="@string/title_activity_meal_type_search" />
     </application>
 
 </manifest>
