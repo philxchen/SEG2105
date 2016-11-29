@@ -138,7 +138,7 @@
                 app:srcCompat="@drawable/ic_add_black_24dp"
                 android:id="@+id/addStepToRecipeBtn"
                 android:layout_weight="1"
-                app:backgroundTint="@android:color/holo_blue_light" />
+                app:backgroundTint="@android:color/holo_orange_dark" />
 
         </LinearLayout>
 
