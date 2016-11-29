@@ -68,6 +68,7 @@ public class CreateRecipe extends AppCompatActivity {
         dbHelper = DbHelper.getInstance(getApplicationContext());
         newRecipe = new Recipe();
         recipe_id = dbHelper.createRecipe(newRecipe);
+        newRecipe.set_id(recipe_id);
 
         Snackbar.make(findViewById(R.id.activity_create_recipe), "New recipe with id: "+recipe_id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
@@ -136,6 +137,7 @@ public class CreateRecipe extends AppCompatActivity {
                 newRecipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
                 newRecipe.set_name(recipeTitleTxt.getText().toString());
                 newRecipe.set_servings(0);
+                newRecipe.set_rating(recipeRatingBar.getNumStars());
                 dbHelper.updateRecipe(newRecipe);
                 Snackbar.make(view, "Saved recipe " + newRecipe.get_name(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();

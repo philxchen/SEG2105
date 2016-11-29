@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/createRecipeRating"
                     android:numStars="5"
-                    android:stepSize=".5" />
+                    android:stepSize="1" />
 
             </LinearLayout>
 

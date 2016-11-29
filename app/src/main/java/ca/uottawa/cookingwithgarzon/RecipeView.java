@@ -62,23 +62,24 @@ public class RecipeView extends AppCompatActivity {
         Snackbar.make(findViewById(R.id.activity_recipe_view), "Loaded recipe id "+ recipe_id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
-
         Recipe recipe = dbHelper.getRecipe(recipe_id);
-        toolbar.setTitle(recipe.get_name());
-        recipeRating.setNumStars(recipe.get_rating());
+
+        getSupportActionBar().setTitle(recipe.get_name()); // Display recipe name in toolbar
+        recipeRating.setNumStars(5);
+        recipeRating.setRating(recipe.get_rating());
         String difficulty;
         switch(recipe.get_difficulty()) {
-            case 1:
-                difficulty = new String("easy");
-                break;
             case 2:
-                difficulty = new String("moderate");
+                difficulty = new String("Easy");
                 break;
             case 3:
-                difficulty = new String("hard");
+                difficulty = new String("Moderate");
+                break;
+            case 4:
+                difficulty = new String("Hard");
                 break;
             default:
-                difficulty = new String("easy");
+                difficulty = new String("Not rated");
                 break;
         }
         recipeDifficultyTxt.setText(difficulty);

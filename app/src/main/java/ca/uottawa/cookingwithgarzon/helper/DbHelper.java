@@ -391,7 +391,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /** Update operations */
 
-    public boolean updateRecipe(Recipe recipe) {
+    public void updateRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
@@ -401,7 +401,8 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Recipe.COLUMN_RATING, recipe.get_rating());
         values.put(DbContract.Recipe.COLUMN_CUISINE, recipe.get_cuisine_id());
         values.put(DbContract.Recipe.COLUMN_MEALTYPE, recipe.get_meal_type_id());
-        return db.update(DbContract.Recipe.TABLE_NAME, values, "_ID=" + recipe.get_id(), null) > 0;
+        db.update(DbContract.Recipe.TABLE_NAME, values,
+                DbContract.Recipe._ID +"="+ recipe.get_id(), null);
     }
 
     public boolean updateIngredient(Ingredient ingredient) {
@@ -409,7 +410,8 @@ public class DbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(DbContract.Ingredient.COLUMN_INGREDIENT_NAME, ingredient.get_name());
         values.put(DbContract.Ingredient.COLUMN_INGREDIENT_PRICE, ingredient.get_price());
-        return db.update(DbContract.Ingredient.TABLE_NAME, values, "_ID=" + ingredient.get_id(), null) > 0;
+        return db.update(DbContract.Ingredient.TABLE_NAME, values,
+                DbContract.Ingredient._ID +"="+ ingredient.get_id(), null) > 0;
     }
 
     public boolean updateRecipeIngredient(RecipeIngredient recipeIngredient) {
@@ -419,7 +421,8 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID, recipeIngredient.get_ingredient_id());
         values.put(DbContract.RecipeIngredient.COLUMN_QUANTITY, recipeIngredient.get_quantity());
         values.put(DbContract.RecipeIngredient.COLUMN_UNIT, recipeIngredient.get_unit());
-        return db.update(DbContract.RecipeIngredient.TABLE_NAME, values, "_ID="+ recipeIngredient.get_id(), null) > 0;
+        return db.update(DbContract.RecipeIngredient.TABLE_NAME, values,
+                DbContract.RecipeIngredient._ID +"="+ recipeIngredient.get_id(), null) > 0;
     }
 
     public boolean updateStep(Step step) {
@@ -428,21 +431,24 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Step.COLUMN_INSTRUCTION, step.get_instruction());
         values.put(DbContract.Step.COLUMN_TIME, step.get_time());
         values.put(DbContract.Step.COLUMN_NUMBER, step.get_stepNumber());
-        return db.update(DbContract.Step.TABLE_NAME, values, "_ID=" + step.get_id(), null) > 0;
+        return db.update(DbContract.Step.TABLE_NAME, values,
+                DbContract.Step._ID +"=" + step.get_id(), null) > 0;
     }
 
     public boolean updateMealType(MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.MealType.COLUMN_MEAL_TYPE_NAME, type.get_name());
-        return db.update(DbContract.MealType.TABLE_NAME, values, "_ID=" + type.get_id(), null) > 0;
+        return db.update(DbContract.MealType.TABLE_NAME, values,
+                DbContract.MealType._ID + "=" + type.get_id(), null) > 0;
     }
 
     public boolean updateCuisine(Cuisine cuisine) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Cuisine.COLUMN_CUISINE_NAME, cuisine.get_name());
-        return db.update(DbContract.MealType.TABLE_NAME, values, "_ID=" + cuisine.get_id(), null) > 0;
+        return db.update(DbContract.MealType.TABLE_NAME, values,
+                DbContract.Cuisine._ID + "=" + cuisine.get_id(), null) > 0;
     }
 
     /** Delete operations */
