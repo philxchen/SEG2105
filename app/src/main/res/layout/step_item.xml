@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Step Number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/step_item_number"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:text="Step Instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/step_item_instruction"
+        android:layout_margin="10dp" />
+
+    <!--<TextView-->
+        <!--android:text="Time"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/step_item_time"-->
+        <!--android:layout_margin="10dp" />-->
+
+
+</LinearLayout>
