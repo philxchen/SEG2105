@@ -40,7 +40,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Recipe._ID + " INTEGER PRIMARY KEY," +
                     DbContract.Recipe.COLUMN_RECIPE_NAME + REAL_TYPE + COMMA_SEP +
                     DbContract.Recipe.COLUMN_COST + TEXT_TYPE + COMMA_SEP +
-                    DbContract.Recipe.COLUMN_DIFFICULTY + REAL_TYPE + COMMA_SEP +
+                    DbContract.Recipe.COLUMN_DIFFICULTY + INTEGER_TYPE + COMMA_SEP +
                     DbContract.Recipe.COLUMN_SERVINGS + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for cuisine
                     DbContract.Recipe.COLUMN_CUISINE + INTEGER_TYPE + COMMA_SEP +
