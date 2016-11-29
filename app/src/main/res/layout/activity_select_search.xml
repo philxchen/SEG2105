@@ -19,37 +19,37 @@
         android:weightSum="1">
 
         <TextView
-            android:text="Find a Thing"
+            android:text="Find a..."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/select_create_header"
+            android:id="@+id/selectCreateHeader"
             android:layout_weight="0.06"
             android:textSize="36sp"
             tools:textAlignment="center" />
 
         <Button
-            android:text="Find Recipes"
+            android:text="Recipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/findRecipeBtn"
             android:layout_weight="0.06" />
 
         <Button
-            android:text="Find Ingredients"
+            android:text="Ingredient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/findIngredientBtn"
             android:layout_weight="0.06" />
 
         <Button
-            android:text="Find Cuisine"
+            android:text="Cuisine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/findCuisineBtn"
             android:layout_weight="0.06" />
 
         <Button
-            android:text="Find meal"
+            android:text="Meal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/findMealBtn"

@@ -10,8 +10,8 @@ public class RecipeIngredient {
     private long _ingredient_id;
     private long _quantity;
     private String _unit;
-    private Ingredient _ingredient;
-    private Recipe _recipe;
+//    private Ingredient _ingredient;
+//    private Recipe _recipe;
 
     public RecipeIngredient() {
     }

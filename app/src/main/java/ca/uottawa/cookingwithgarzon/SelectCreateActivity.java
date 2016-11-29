@@ -11,6 +11,11 @@ import static android.app.Activity.RESULT_OK;
 
 public class SelectCreateActivity extends AppCompatActivity {
 
+    final int CREATE_RECIPE_REQUEST = 1;
+    final int CREATE_INGREDIENT_REQUEST = 2;
+    final int CREATE_MEALTYPE_REQUEST = 3;
+    final int CREATE_CUISINE_REQUEST = 4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,39 +28,37 @@ public class SelectCreateActivity extends AppCompatActivity {
         final Button createCuisineBtn = (Button) findViewById(R.id.createCuisineBtn);
 
         //On-click Functions
-        View.OnClickListener oclCreateIngredientBtn = new View.OnClickListener() {
+        createRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, CreateIngredientActivity.class));
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateIngredientActivity.class),
+                        CREATE_INGREDIENT_REQUEST);
             }
-        };
+        });
 
-        View.OnClickListener oclCreateRecipeBtn = new View.OnClickListener() {
+        createIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, CreateRecipe.class));
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateRecipe.class),
+                        CREATE_RECIPE_REQUEST);
             }
-        };
+        });
 
-        View.OnClickListener oclCreateMealBtn = new View.OnClickListener() {
+        createMealBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, CreateMealActivity.class));
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateMealActivity.class),
+                        CREATE_MEALTYPE_REQUEST);
             }
-        };
+        });
 
-        View.OnClickListener oclCreateCuisineBtn = new View.OnClickListener() {
+        createCuisineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, CreateCuisineActivity.class));
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateCuisineActivity.class),
+                        CREATE_CUISINE_REQUEST);
             }
-        };
-
-        //On-click Button Creation
-        createRecipeBtn.setOnClickListener(oclCreateRecipeBtn);
-        createIngredientBtn.setOnClickListener(oclCreateIngredientBtn);
-        createMealBtn.setOnClickListener(oclCreateMealBtn);
-        createCuisineBtn.setOnClickListener(oclCreateCuisineBtn);
+        });
     }
 
     @Override

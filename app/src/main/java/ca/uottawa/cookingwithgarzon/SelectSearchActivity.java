@@ -14,11 +14,13 @@ public class SelectSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_search);
 
-
+        //Search Buttons
         final Button findRecipeBtn = (Button) findViewById(R.id.findRecipeBtn);
         final Button findIngredientBtn = (Button) findViewById(R.id.findIngredientBtn);
         final Button findCuisineBtn = (Button) findViewById(R.id.findCuisineBtn);
+        final Button findMealBtn = (Button) findViewById(R.id.findMealBtn);
 
+        //On-click functions for the search buttons
         findIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,6 +39,13 @@ public class SelectSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SelectSearchActivity.this, CuisineSearchActivity.class));
+            }
+        });
+
+        findMealBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SelectSearchActivity.this, MealTypeSearchActivity.class));
             }
         });
 

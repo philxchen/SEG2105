@@ -1,11 +1,14 @@
 package ca.uottawa.cookingwithgarzon;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListViewCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -34,16 +37,18 @@ public class IngredientSearchResultActivity extends AppCompatActivity {
         IngredientArrayAdapter adapter = new IngredientArrayAdapter(this, R.layout.ingredient_item, result);
         ListView listView = (ListView) findViewById(R.id.listview_ingredients);
         listView.setAdapter(adapter);
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                         int position, long id) {
+            Intent result = new Intent();
+                    Ingredient picked = (Ingredient) parent.getItemAtPosition(position);
+                    result.putExtra("ingredient_id", picked.get_id());
+                    result.putExtra("ingredient_name", picked.get_name());
+                    result.putExtra("result", "Added ingredient " + picked.get_name());
+                    setResult(Activity.RESULT_OK, result);
+                    finish();
+                }
+            });
     }
 }
