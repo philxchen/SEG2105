@@ -10,7 +10,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:text="Find a Recipe"
@@ -49,9 +49,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAlignment="center"
-            android:hint="Recipe name"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp" />
+            android:hint="Recipe name" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="0.05" />
 
         <EditText
             android:layout_width="match_parent"
@@ -63,9 +66,12 @@
             tools:gravity="center_vertical|fill_vertical"
             android:layout_weight="1"
             android:textAlignment="center"
-            android:hint="Ingredients"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp" />
+            android:hint="Ingredients" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="0.05" />
 
         <EditText
             android:layout_width="match_parent"
@@ -77,9 +83,11 @@
             tools:gravity="center_vertical|fill_vertical"
             android:layout_weight="1"
             android:textAlignment="center"
-            android:hint="Meal"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp" />
+            android:hint="Meal" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -91,13 +99,11 @@
             tools:gravity="center_vertical|fill_vertical"
             android:layout_weight="1"
             android:textAlignment="center"
-            android:hint="Cuisine"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp" />
+            android:hint="Cuisine" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="98dp" />
+            android:layout_height="90dp" />
 
         <Button
             android:text="Get Cooking!"
@@ -106,5 +112,10 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_height="80dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.20" />
     </LinearLayout>
 </android.support.design.widget.TextInputLayout>
