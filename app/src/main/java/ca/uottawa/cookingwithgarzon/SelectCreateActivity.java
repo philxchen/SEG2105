@@ -23,39 +23,33 @@ public class SelectCreateActivity extends AppCompatActivity {
         final Button createCuisineBtn = (Button) findViewById(R.id.createCuisineBtn);
 
         //On-click Functions
-        View.OnClickListener oclCreateIngredientBtn = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SelectCreateActivity.this, CreateIngredientActivity.class));
-            }
-        };
-
-        View.OnClickListener oclCreateRecipeBtn = new View.OnClickListener() {
+        createRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SelectCreateActivity.this, CreateRecipe.class));
             }
-        };
+        });
 
-        View.OnClickListener oclCreateMealBtn = new View.OnClickListener() {
+        createIngredientBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SelectCreateActivity.this, CreateIngredientActivity.class));
+            }
+        });
+
+        createMealBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SelectCreateActivity.this, CreateMealActivity.class));
             }
-        };
+        });
 
-        View.OnClickListener oclCreateCuisineBtn = new View.OnClickListener() {
+        createCuisineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SelectCreateActivity.this, CreateCuisineActivity.class));
             }
-        };
-
-        //On-click Button Creation
-        createRecipeBtn.setOnClickListener(oclCreateRecipeBtn);
-        createIngredientBtn.setOnClickListener(oclCreateIngredientBtn);
-        createMealBtn.setOnClickListener(oclCreateMealBtn);
-        createCuisineBtn.setOnClickListener(oclCreateCuisineBtn);
+        });
     }
 
     @Override
