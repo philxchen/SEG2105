@@ -58,7 +58,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -67,21 +69,24 @@
 
                 <TextView
                     android:text="Difficulty:"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="24sp"
                     android:id="@+id/difficultyText" />
 
                 <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
+                    android:text="Meal Type:"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="24sp"
                     android:id="@+id/mealText" />
 
                 <TextView
-                    android:text="TextView"
-                    android:layout_width="match_parent"
+                    android:text="Cusine Type:"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView3" />
+                    android:textSize="24sp"
+                    android:id="@+id/cuisineText" />
             </LinearLayout>
 
             <LinearLayout
@@ -90,22 +95,22 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView6" />
+                    android:textSize="24sp"
+                    android:id="@+id/viewRecipeDifficulty" />
 
                 <TextView
-                    android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView5" />
+                    android:textSize="24sp"
+                    android:id="@+id/viewRecipeMealType" />
 
                 <TextView
-                    android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView4" />
+                    android:textSize="24sp"
+                    android:id="@+id/viewRecipeCusineType" />
             </LinearLayout>
         </LinearLayout>
 
