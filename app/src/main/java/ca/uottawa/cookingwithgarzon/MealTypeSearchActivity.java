@@ -14,19 +14,17 @@ public class MealTypeSearchActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_type_search);
 
-        Button searchBtn = (Button) findViewById(R.id.search_ingredient_button);
+        Button searchBtn = (Button) findViewById(R.id.meal_type_search_button);
 
         final EditText mealTypeName = (EditText) findViewById(R.id.meal_type_search_input);
 
-        View.OnClickListener oclSearchBtn = new View.OnClickListener() {
+        searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MealTypeSearchActivity.this, MealTypeSearchResultActivity.class);
+                Intent intent = new Intent(MealTypeSearchActivity.this, MealTypeSearchActivity.class);
                 intent.putExtra("name", mealTypeName.getText().toString());
                 startActivity(intent);
             }
-        };
-
-        searchBtn.setOnClickListener(oclSearchBtn);
+        });
     }
 }
