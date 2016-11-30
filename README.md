@@ -20,3 +20,30 @@ Non-app files go to Deliverable folder.
 [Files in Google Drive](https://drive.google.com/drive/folders/0B5GHy9NkQvC9UVZTcWJ5ck1scWM?usp=sharing)
 
 [Links to external resources](https://docs.google.com/a/uottawa.ca/document/d/1G-dW5NNh9_1FJ63BDsbiVdTuJWOVhfTyIjl6F7u1LRA/edit?usp=sharing)
+
+-----
+TO-DO
+
+- Add "delete button" to Recipe Activity
+
+- Add "Help" page activity
+
+- Add "Help page button" to all pages, with custom text for the page it was clicked on.
+
+- Make sure no crashes exist from a click.
+
+- Add ingredient to recipe.
+
+- Add instruction step to recipe.
+
+- Add "favorite" column to recipe DB table.
+
+- Add "Add to shopping cart" button.
+
+- Add "Select image" page, with select from library and take photo features.
+
+- Add "Total Cost" to recipe
+
+- Add "Serving Size" to recipe
+
+- Add "Change serving size" to recipe
