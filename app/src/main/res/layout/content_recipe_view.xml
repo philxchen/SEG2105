@@ -58,7 +58,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -67,7 +67,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:text="Difficulty:"
@@ -100,25 +100,28 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    android:id="@+id/viewRecipeDifficulty" />
+                    android:id="@+id/viewRecipeDifficulty"
+                    android:text="Result" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    android:id="@+id/viewRecipeMealType" />
+                    android:id="@+id/viewRecipeMealType"
+                    android:text="Result" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    android:id="@+id/viewRecipeCusineType" />
+                    android:id="@+id/viewRecipeCusineType"
+                    android:text="Result" />
             </LinearLayout>
 
         </LinearLayout>
@@ -130,13 +133,31 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
-            <TextView
-                android:text="Ingredients"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:id="@+id/ingredientText"
-                android:paddingTop="10dp" />
+                android:weightSum="1"
+                android:layout_width="wrap_content">
+
+                <TextView
+                    android:text="Ingredients"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:id="@+id/ingredientText"
+                    android:paddingTop="10dp"
+                    android:layout_weight="0.78" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:clickable="true"
+                    app:fabSize="mini"
+                    app:srcCompat="@drawable/ic_shopping_basket_black_24dp"
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.78" />
+
+            </LinearLayout>
 
             <ListView
                 android:layout_width="match_parent"
