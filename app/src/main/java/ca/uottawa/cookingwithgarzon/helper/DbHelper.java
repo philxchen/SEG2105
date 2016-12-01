@@ -569,7 +569,7 @@ public class DbHelper extends SQLiteOpenHelper {
         boolean started = false;
         StringBuilder query = new StringBuilder();
 
-        if (name == null || !name.isEmpty()) {
+        if (name != null && !name.isEmpty()) {
             started = true;
             String[] args = name.split(" AND ");
             query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
@@ -578,16 +578,16 @@ public class DbHelper extends SQLiteOpenHelper {
                 query.append(DbContract.Recipe.TABLE_NAME +"."+
                         DbContract.Recipe.COLUMN_RECIPE_NAME);
                 if (args[i].toLowerCase().startsWith("not")) {
-                    query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
+                    query.append(" NOT LIKE \'%" + args[i].substring(4) + "%\' ");
                 } else {
-                    query.append(" LIKE \'" + args[i] + "\' ");
+                    query.append(" LIKE \'%" + args[i] + "%\' ");
                 }
                 if (i + 1 < args.length) {
                     query.append(" OR ");
                 }
             }
         }
-        if (ingredient == null || !ingredient.isEmpty()) {
+        if (ingredient != null && !ingredient.isEmpty()) {
             if (!started) {
                 started=true;
                 query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
@@ -611,16 +611,16 @@ public class DbHelper extends SQLiteOpenHelper {
                 query.append(DbContract.Ingredient.TABLE_NAME +"." +
                         DbContract.Ingredient.COLUMN_INGREDIENT_NAME);
                 if (args[i].toLowerCase().startsWith("not")) {
-                    query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
+                    query.append(" NOT LIKE \'%" + args[i].substring(4) + "%\' ");
                 } else {
-                    query.append(" LIKE \'" + args[i] + "\' ");
+                    query.append(" LIKE \'%" + args[i] + "%\' ");
                 }
                 if (i + 1 < args.length) {
                     query.append(" OR ");
                 }
             }
         }
-        if (cuisine == null || !cuisine.isEmpty()) {
+        if (cuisine != null && !cuisine.isEmpty()) {
             if (!started) {
                 started=true;
                 query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
@@ -634,22 +634,23 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Recipe.COLUMN_CUISINE + "="+
                     DbContract.Cuisine.TABLE_NAME +"."+
                     DbContract.Cuisine._ID + " WHERE ");
-            String[] args = ingredient.split(" AND ");
+            String[] args = cuisine.split(" AND ");
             for (int i = 0; i < args.length; ++i) {
                 query.append(DbContract.Cuisine.TABLE_NAME +"."+
                         DbContract.Cuisine.COLUMN_CUISINE_NAME);
                 if (args[i].toLowerCase().startsWith("not")) {
-                    query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
+                    query.append(" NOT LIKE \'%" + args[i].substring(4) + "%\' ");
                 } else {
-                    query.append(" LIKE \'" + args[i] + "\' ");
+                    query.append(" LIKE \'%" + args[i] + "%\' ");
                 }
                 if (i + 1 < args.length) {
                     query.append(" OR ");
                 }
             }
         }
-        if (type == null || !type.isEmpty()) {
+        if (type != null && !type.isEmpty()) {
             if (!started) {
+                started=true;
                 query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                         " FROM "+ DbContract.Recipe.TABLE_NAME);
             } else {
@@ -661,14 +662,14 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Recipe.COLUMN_MEALTYPE + "="+
                     DbContract.MealType.TABLE_NAME +"."+
                     DbContract.MealType._ID + " WHERE ");
-            String[] args = ingredient.split(" AND ");
+            String[] args = type.split(" AND ");
             for (int i = 0; i < args.length; ++i) {
                 query.append(DbContract.MealType.TABLE_NAME +"."+
                         DbContract.MealType.COLUMN_MEAL_TYPE_NAME);
                 if (args[i].toLowerCase().startsWith("not")) {
-                    query.append(" NOT LIKE \'" + args[i].substring(4) + "\' ");
+                    query.append(" NOT LIKE \'%" + args[i].substring(4) + "%\' ");
                 } else {
-                    query.append(" LIKE \'" + args[i] + "\' ");
+                    query.append(" LIKE \'%" + args[i] + "%\' ");
                 }
                 if (i + 1 < args.length) {
                     query.append(" OR ");

@@ -58,12 +58,19 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!ingredientPicked || quantityTxt.getText() == null) {
-                    String message = "You need to pick an ingredient and specify a quantity!";
+                if (!ingredientPicked ) {
+                    String message = "You need to pick an ingredient!";
                     Snackbar.make(findViewById(R.id.activity_create_recipe_ingredient), message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     return;
                 }
+                if (quantityTxt.getText() == null || quantityTxt.getText().toString().equals("")) {
+                    String message = "You need to specify a quantity!";
+                    Snackbar.make(findViewById(R.id.activity_create_recipe_ingredient), message, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    return;
+                }
+
                 String unit = unitTxt.getText().toString();
                 Long quantity = Long.parseLong(quantityTxt.getText().toString());
                 RecipeIngredient newRecipeIngredient = new RecipeIngredient();

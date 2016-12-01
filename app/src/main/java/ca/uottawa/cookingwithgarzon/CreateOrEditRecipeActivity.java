@@ -171,7 +171,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent pickType = new Intent(CreateOrEditRecipeActivity.this, MealTypeSearchActivity.class);
                 pickType.putExtra("recipe_id", recipe_id);
-                startActivityForResult(pickType, GET_CUISINE_REQUEST);
+                startActivityForResult(pickType, GET_MEALTYPE_REQUEST);
             }
         });
     }
@@ -229,9 +229,9 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                     String message = data.getStringExtra("result");
                     long cuisine_id = data.getLongExtra("cuisine_id", 0);
                     if (cuisine_id != 0) {
-                        recipe.set_cuisine_id(cuisine_id);
-                        String cuisine = data.getStringExtra("cuisine_name");
-                        cuisineTxt.setText(cuisine);
+                        cuisine = dbHelper.getCuisine(cuisine_id);
+                        recipe.set_cuisine_id(cuisine.get_id());
+                        cuisineTxt.setText(cuisine.get_name());
                     Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "Cuisine id " +
                             cuisine_id + " " + message,
                             Snackbar.LENGTH_LONG)
@@ -244,12 +244,13 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                     String message = data.getStringExtra("result");
                     long type_id = data.getLongExtra("type_id", 0);
                     if (type_id != 0) {
-                        recipe.set_meal_type_id(type_id);
-                        String type = data.getStringExtra("type_name");
-                        mealTypeTxt.setText(type);
-                        Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message,
+                        Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message
+                                +" mealtype id is " + data.getLongExtra("type_id", 0),
                                 Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                        mealtype = dbHelper.getMealType(type_id);
+                        recipe.set_meal_type_id(mealtype.get_id());
+                        mealTypeTxt.setText(mealtype.get_name());
                     }
                 }
                 break;
