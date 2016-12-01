@@ -53,3 +53,7 @@ X Add instruction step to recipe.
 - Add "Serving Size" to recipe
 
 - Add "Change serving size" to recipe
+
+- If ingredient search comes up empty, offer to create the ingredient.
+
+- Upon creation, return to previous page.
