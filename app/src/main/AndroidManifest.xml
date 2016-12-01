@@ -49,7 +49,7 @@
             android:name=".CreateRecipeInstructionActivity"
             android:label="@string/title_activity_recipe_instruction"/>
         <activity
-            android:name=".InstructionStep"
+            android:name=".CreateOrEditStepActivity"
             android:label="@string/title_activity_instruction_step" />
         <activity
             android:name=".FavoriteRecipe"
