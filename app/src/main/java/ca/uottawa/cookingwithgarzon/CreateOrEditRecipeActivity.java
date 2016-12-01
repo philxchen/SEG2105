@@ -12,6 +12,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +29,13 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
 
     final int GET_INGREDIENT_REQUEST = 1;
     final int GET_STEP_REQUEST = 2;
+    final int GET_CUISINE_REQUEST = 3;
+    final int GET_MEALTYPE_REQUEST = 4;
 
     private DbHelper dbHelper;
     private Recipe recipe;
+    private Cuisine cuisine;
+    private MealType mealtype;
     private long recipe_id;
     private ArrayList<RecipeIngredient> recipeIngredients = new ArrayList<>();
     private ArrayList<Step> steps = new ArrayList<>();
@@ -41,8 +49,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private FloatingActionButton newIngredientBtn;
     private FloatingActionButton newStepBtn;
     private Spinner difficultySpinner;
-    private Spinner mealTypeSpinner;
-    private Spinner cuisineTypeSpinner;
+    private TextView mealTypeTxt;
+    private TextView cuisineTxt;
     private boolean saved;
 
 
@@ -54,15 +62,15 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         View content = findViewById(R.id.content_create_recipe);
-        newIngredientBtn = (FloatingActionButton) content.findViewById(R.id.addIngredientToRecipeBtn);
-        newStepBtn = (FloatingActionButton) content.findViewById(R.id.addStepToRecipeBtn);
-        recipeTitleTxt = (EditText) content.findViewById(R.id.createRecipeTitle);
+        newIngredientBtn = (FloatingActionButton) content.findViewById(R.id.createRecipeAddIngredientBtn);
+        newStepBtn = (FloatingActionButton) content.findViewById(R.id.createRecipeAddStepBtn);
+        recipeTitleTxt = (EditText) content.findViewById(R.id.createRecipeTitleTxt);
         recipeRatingBar = (RatingBar) content.findViewById(R.id.createRecipeRating);
-        difficultySpinner = (Spinner) content.findViewById(R.id.difficultySelect);
-        mealTypeSpinner = (Spinner) content.findViewById(R.id.mealTypeSelect);
-        cuisineTypeSpinner = (Spinner) content.findViewById(R.id.cuisineTypeSelect);
-        recipeIngredients_listView = (ListView) content.findViewById(R.id.listOfRecipeIngredient);
-        step_listView = (ListView) content.findViewById(R.id.listOfRecipeStep);
+        difficultySpinner = (Spinner) content.findViewById(R.id.createRecipeDifficultySpinner);
+        mealTypeTxt = (TextView) content.findViewById(R.id.createRecipeMealTypeTxt);
+        cuisineTxt = (TextView) content.findViewById(R.id.createRecipeCuisineTxt);
+        recipeIngredients_listView = (ListView) content.findViewById(R.id.createRecipeIngredientList);
+        step_listView = (ListView) content.findViewById(R.id.createRecipeStepList);
 
         dbHelper = DbHelper.getInstance(getApplicationContext());
 
@@ -71,12 +79,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
 
         if (recipe_id != 0) {
             saved=true;
-            recipe = dbHelper.getRecipe(recipe_id);
-            recipeTitleTxt.setText(recipe.get_name());
-            recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
-            steps = dbHelper.getRecipeSteps(recipe_id);
-            Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "Editing recipe id: "+recipe_id, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            loadRecipe();
         }
         else {
             saved = false;
@@ -87,7 +90,6 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                     .setAction("Action", null).show();
 
         }
-
 
         recipeIngredientArrayAdapter = new RecipeIngredientArrayAdapter(this, R.layout.recipe_ingredient_item, recipeIngredients);
         recipeIngredients_listView.setAdapter(recipeIngredientArrayAdapter);
@@ -106,21 +108,6 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         difficultyList.add("Hard");
         difficultyList.add("Select Difficulty"); //Hint
 
-        //Meal Type List
-        List<String> mealTypeList = new ArrayList<>();
-
-
-        //INSERT LIST POPULATOR AND REMOVE LOREM IPSUM LINES
-        mealTypeList.add("Select Meal Type"); //Hint
-
-        //Cuisine Type List
-        List<String> cuisineTypeList = new ArrayList<>();
-        cuisineTypeList.add("Lorem");
-        cuisineTypeList.add("Ipsum");
-        //INSERT LIST POPULATOR AND REMOVE LOREM IPSUM LINES
-        cuisineTypeList.add("Select Cuisine"); //Hint
-
-
         /*
          * Spinner Object HintAdapters and Hint initialization
          */
@@ -130,20 +117,6 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
         difficultySpinner.setSelection(difficultyAdapter.getCount());
-
-        //Meal Type Adapter
-        HintAdapter mealTypeAdapter = new HintAdapter(this, mealTypeList, android.R.layout.simple_spinner_item);
-        mealTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mealTypeSpinner.setAdapter(mealTypeAdapter);
-        mealTypeSpinner.setSelection(mealTypeAdapter.getCount());
-
-        //Cuisine Type Adapter
-        HintAdapter cuisineTypeAdapter = new HintAdapter(this, cuisineTypeList, android.R.layout.simple_spinner_item);
-        cuisineTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cuisineTypeSpinner.setAdapter(cuisineTypeAdapter);
-        cuisineTypeSpinner.setSelection(cuisineTypeAdapter.getCount());
-
-
 
         //Floating Action Toolbar when submitting to the Database
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addRecipeBtn);
@@ -159,7 +132,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 recipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
                 recipe.set_name(recipeTitleTxt.getText().toString());
                 recipe.set_servings(0);
-                recipe.set_rating(recipeRatingBar.getNumStars());
+                recipe.set_rating((int)recipeRatingBar.getRating());
                 dbHelper.updateRecipe(recipe);
                 saved = true;
                 Snackbar.make(view, "Saved recipe " + recipe.get_name(), Snackbar.LENGTH_LONG)
@@ -185,6 +158,45 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 startActivityForResult(newIngredientIntent, GET_STEP_REQUEST);
             }
         });
+
+        cuisineTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickCuisine = new Intent(CreateOrEditRecipeActivity.this, CuisineSearchActivity.class);
+                pickCuisine.putExtra("recipe_id", recipe_id);
+                startActivityForResult(pickCuisine, GET_CUISINE_REQUEST);
+            }
+        });
+
+        mealTypeTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickType = new Intent(CreateOrEditRecipeActivity.this, MealTypeSearchActivity.class);
+                pickType.putExtra("recipe_id", recipe_id);
+                startActivityForResult(pickType, GET_CUISINE_REQUEST);
+            }
+        });
+    }
+
+    private void loadRecipe() {
+        recipe = dbHelper.getRecipe(recipe_id);
+        recipeTitleTxt.setText(recipe.get_name());
+        if (recipe.get_rating() != 0) {
+            recipeRatingBar.setRating(recipe.get_rating());
+        }
+        if (recipe.get_cuisine_id() != 0) {
+            cuisine = dbHelper.getCuisine(recipe.get_cuisine_id());
+            cuisineTxt.setText(cuisine.get_name());
+        }
+        if (recipe.get_meal_type_id() != 0) {
+            mealtype = dbHelper.getMealType(recipe.get_meal_type_id());
+            mealTypeTxt.setText(mealtype.get_name());
+        }
+
+        recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
+        steps = dbHelper.getRecipeSteps(recipe_id);
+        Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "Editing recipe id: "+recipe_id, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
     @Override
@@ -212,6 +224,34 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                     Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message
                             + " steps has size " + steps.size(), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+                }
+                break;
+            case GET_CUISINE_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    String message = data.getStringExtra("result");
+                    long cuisine_id = data.getLongExtra("cuisine_id", 0);
+                    if (cuisine_id != 0) {
+                        recipe.set_cuisine_id(cuisine_id);
+                        String cuisine = data.getStringExtra("cuisine_name");
+                        cuisineTxt.setText(cuisine);
+                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message,
+                            Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    }
+                }
+                break;
+            case GET_MEALTYPE_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    String message = data.getStringExtra("result");
+                    long type_id = data.getLongExtra("type_id", 0);
+                    if (type_id != 0) {
+                        recipe.set_meal_type_id(type_id);
+                        String type = data.getStringExtra("type_name");
+                        mealTypeTxt.setText(type);
+                        Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message,
+                                Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
                 }
                 break;
         }

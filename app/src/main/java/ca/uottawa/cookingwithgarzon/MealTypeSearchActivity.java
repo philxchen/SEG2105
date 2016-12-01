@@ -21,6 +21,7 @@ import static ca.uottawa.cookingwithgarzon.R.layout.meal_type_item;
 
 public class MealTypeSearchActivity extends Activity {
 
+    private final int GET_MEAL_TYPE_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,12 +37,24 @@ public class MealTypeSearchActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(MealTypeSearchActivity.this, MealTypeSearchResultActivity.class);
                 intent.putExtra("name", mealTypeNameTxt.getText().toString());
-                startActivity(intent);
+                startActivityForResult(intent, GET_MEAL_TYPE_REQUEST);
             }
         };
 
         searchBtn.setOnClickListener(oclSearchBtn);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case GET_MEAL_TYPE_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    setResult(Activity.RESULT_OK, data);
+                    finish();
+                }
+                break;
+        }
     }
 }
 
