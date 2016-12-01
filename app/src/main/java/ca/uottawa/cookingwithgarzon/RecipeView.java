@@ -91,7 +91,7 @@ public class RecipeView extends AppCompatActivity {
         ArrayList<RecipeIngredient> recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
 
         RecipeIngredientArrayAdapter recipeIngredientArrayAdapter =
-                new RecipeIngredientArrayAdapter(this, R.layout.recipe_item, recipeIngredients);
+                new RecipeIngredientArrayAdapter(this, R.layout.recipe_ingredient_item, recipeIngredients);
         viewRecipeIngredientList.setAdapter(recipeIngredientArrayAdapter);
 
         dbHelper.close();

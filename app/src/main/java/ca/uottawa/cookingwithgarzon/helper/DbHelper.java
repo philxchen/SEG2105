@@ -25,7 +25,7 @@ import ca.uottawa.cookingwithgarzon.model.Step;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static DbHelper mInstance = null;
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "RecipeView.db";
 
     private static final String LOG = "DbHelper";
@@ -58,7 +58,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Step._ID + " INTEGER PRIMARY KEY," +
                     DbContract.Step.COLUMN_INSTRUCTION + TEXT_TYPE + COMMA_SEP +
                     DbContract.Step.COLUMN_NUMBER + INTEGER_TYPE + COMMA_SEP +
-                    DbContract.Step.COLUMN_TIME + INTEGER_TYPE +
+                    DbContract.Step.COLUMN_TIME + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for recipe
                     DbContract.Step.COLUMN_RECIPE + INTEGER_TYPE + " )";
 

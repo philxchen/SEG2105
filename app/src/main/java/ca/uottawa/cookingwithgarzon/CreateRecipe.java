@@ -29,7 +29,7 @@ public class CreateRecipe extends AppCompatActivity {
     private DbHelper dbHelper;
     private Recipe newRecipe;
     private long recipe_id;
-    private ArrayList<RecipeIngredient> recipeIngredients;
+    private ArrayList<RecipeIngredient> recipeIngredients = new ArrayList<>();
     private ArrayList<Step> steps;
     private ListView recipeIngredients_listView;
     private ListView recipeStep_listView;
@@ -43,6 +43,7 @@ public class CreateRecipe extends AppCompatActivity {
     private Spinner difficultySpinner;
     private Spinner mealTypeSpinner;
     private Spinner cuisineTypeSpinner;
+    private boolean saved;
 
 
     @Override
@@ -65,6 +66,7 @@ public class CreateRecipe extends AppCompatActivity {
 
         dbHelper = DbHelper.getInstance(getApplicationContext());
         newRecipe = new Recipe();
+        saved = false;
         recipe_id = dbHelper.createRecipe(newRecipe);
         newRecipe.set_id(recipe_id);
 
@@ -72,9 +74,9 @@ public class CreateRecipe extends AppCompatActivity {
                 .setAction("Action", null).show();
 
 
-        recipeIngredients = new ArrayList<>();
         recipeIngredientArrayAdapter = new RecipeIngredientArrayAdapter(this, R.layout.recipe_ingredient_item, recipeIngredients);
         recipeIngredients_listView.setAdapter(recipeIngredientArrayAdapter);
+        ;
 
         /*
          * Spinner Object Lists
@@ -137,6 +139,7 @@ public class CreateRecipe extends AppCompatActivity {
                 newRecipe.set_servings(0);
                 newRecipe.set_rating(recipeRatingBar.getNumStars());
                 dbHelper.updateRecipe(newRecipe);
+                saved = true;
                 Snackbar.make(view, "Saved recipe " + newRecipe.get_name(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -157,10 +160,21 @@ public class CreateRecipe extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             String message = data.getStringExtra("result");
             recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
+            recipeIngredientArrayAdapter.clear();
+            recipeIngredientArrayAdapter.addAll(recipeIngredients);
             recipeIngredientArrayAdapter.notifyDataSetChanged();
             Snackbar.make(findViewById(R.id.activity_create_recipe), message
                     + " recipeIngredients has size " + recipeIngredients.size(), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        if (!saved) {
+            dbHelper.deleteRecipe(newRecipe);
+        }
+
+        // Otherwise defer to system default behavior.
+        super.onBackPressed();
     }
 }
