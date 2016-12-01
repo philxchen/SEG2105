@@ -128,10 +128,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                     return;
                 }
-                recipe.set_meal_type_id(1);
                 recipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
                 recipe.set_name(recipeTitleTxt.getText().toString());
-                recipe.set_servings(0);
                 recipe.set_rating((int)recipeRatingBar.getRating());
                 dbHelper.updateRecipe(recipe);
                 saved = true;
@@ -234,7 +232,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                         recipe.set_cuisine_id(cuisine_id);
                         String cuisine = data.getStringExtra("cuisine_name");
                         cuisineTxt.setText(cuisine);
-                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message,
+                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "Cuisine id " +
+                            cuisine_id + " " + message,
                             Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     }

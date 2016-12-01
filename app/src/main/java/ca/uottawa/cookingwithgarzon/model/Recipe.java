@@ -74,7 +74,7 @@ public class Recipe {
         return _cuisine_id;
     }
 
-    public void set_cuisine_id(long _cuisine) {
+    public void set_cuisine_id(long _cuisine_id) {
         this._cuisine_id = _cuisine_id;
     }
 

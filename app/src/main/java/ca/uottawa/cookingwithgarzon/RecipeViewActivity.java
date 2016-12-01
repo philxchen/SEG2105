@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import ca.uottawa.cookingwithgarzon.adapter.RecipeIngredientArrayAdapter;
 import ca.uottawa.cookingwithgarzon.adapter.StepArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
+import ca.uottawa.cookingwithgarzon.model.MealType;
 import ca.uottawa.cookingwithgarzon.model.Recipe;
+import ca.uottawa.cookingwithgarzon.model.Cuisine;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 import ca.uottawa.cookingwithgarzon.model.Step;
 
@@ -41,6 +43,12 @@ public class RecipeViewActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Button deleteBtn;
     private Recipe recipe;
+    private Cuisine cuisine;
+    private MealType mealType;
+    private ArrayList<RecipeIngredient> recipeIngredients = new ArrayList<>();
+    private ArrayList<Step> steps = new ArrayList<>();
+    private StepArrayAdapter stepArrayAdapter;
+    private RecipeIngredientArrayAdapter recipeIngredientArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +59,15 @@ public class RecipeViewActivity extends AppCompatActivity {
         View content = findViewById(R.id.content_recipe_view);
         recipeImage = (ImageView) content.findViewById(R.id.viewRecipeImage);
         recipeRating = (RatingBar) content.findViewById(R.id.viewRecipeRating);
-        recipeDifficultyTxt = (TextView) content.findViewById(R.id.viewDifficultyText);
-        recipeMealTypeTxt = (TextView) content.findViewById(R.id.viewRecipeMealType);
-        recipeCuisineTxt = (TextView) content.findViewById(R.id.viewRecipeCusineType);
+        recipeDifficultyTxt = (TextView) content.findViewById(R.id.viewRecipeDifficultyTxt);
+        recipeMealTypeTxt = (TextView) content.findViewById(R.id.viewRecipeMealTypeTxt);
+        recipeCuisineTxt = (TextView) content.findViewById(R.id.viewRecipeCuisineTxt);
         viewRecipeIngredientList = (ListView) content.findViewById(R.id.viewRecipeIngredientList);
         viewRecipeStepList = (ListView) content.findViewById(R.id.viewRecipeStepList);
         deleteBtn = (Button) content.findViewById(R.id.deleteRecipeBtn);
 
         Intent intent = getIntent();
-        dbHelper = DbHelper.getInstance(getApplicationContext());
         recipe_id = intent.getLongExtra("recipe_id", 0);
-        recipe = dbHelper.getRecipe(recipe_id);
         loadRecipe();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -83,13 +89,26 @@ public class RecipeViewActivity extends AppCompatActivity {
     }
 
     private void loadRecipe() {
+        dbHelper = DbHelper.getInstance(getApplicationContext());
+        recipe = dbHelper.getRecipe(recipe_id);
         Snackbar.make(findViewById(R.id.activity_recipe_view), "Loaded recipe id "+ recipe_id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
-
         getSupportActionBar().setTitle(recipe.get_name()); // Display recipe name in toolbar
+
         recipeRating.setNumStars(5);
-        recipeRating.setRating(recipe.get_rating());
+
+        if (recipe.get_rating() != 0) {
+            recipeRating.setRating(recipe.get_rating());
+        }
+        if (recipe.get_cuisine_id() != 0) {
+            cuisine = dbHelper.getCuisine(recipe.get_cuisine_id());
+            recipeCuisineTxt.setText(cuisine.get_name());
+        }
+        if (recipe.get_meal_type_id() != 0) {
+            mealType = dbHelper.getMealType(recipe.get_meal_type_id());
+            recipeMealTypeTxt.setText(mealType.get_name());
+        }
         String difficulty;
         switch(recipe.get_difficulty()) {
             case 2:
@@ -107,14 +126,16 @@ public class RecipeViewActivity extends AppCompatActivity {
         }
         recipeDifficultyTxt.setText(difficulty);
 
-        ArrayList<RecipeIngredient> recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
+        recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
 
-        RecipeIngredientArrayAdapter recipeIngredientArrayAdapter =
-                new RecipeIngredientArrayAdapter(this, R.layout.recipe_ingredient_item, recipeIngredients);
+        recipeIngredientArrayAdapter =
+                new RecipeIngredientArrayAdapter(this,
+                        R.layout.recipe_ingredient_item, recipeIngredients);
         viewRecipeIngredientList.setAdapter(recipeIngredientArrayAdapter);
 
-        ArrayList<Step> steps = dbHelper.getRecipeSteps(recipe_id);
-        StepArrayAdapter stepArrayAdapter = new StepArrayAdapter(this, R.layout.step_item, steps);
+        steps = dbHelper.getRecipeSteps(recipe_id);
+
+        stepArrayAdapter = new StepArrayAdapter(this, R.layout.step_item, steps);
         viewRecipeStepList.setAdapter(stepArrayAdapter);
 
         dbHelper.close();
