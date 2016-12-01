@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import ca.uottawa.cookingwithgarzon.helper.DbContract;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.MealType;
 
-public class CreateMealActivity extends AppCompatActivity {
+public class CreateOrEditMealTypeActivity extends AppCompatActivity {
+
+    private long mealtype_id;
+    private MealType mealtype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +23,28 @@ public class CreateMealActivity extends AppCompatActivity {
         final Button saveBtn = (Button) findViewById(R.id.saveMealBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createMealText);
 
+        Intent intent = getIntent();
+        mealtype_id = intent.getLongExtra("cuisine_id", 0);
+
+        if (mealtype_id != 0) {
+            DbHelper db = DbHelper.getInstance(getApplicationContext());
+            mealtype = db.getMealType(mealtype_id);
+            nameTxt.setText(mealtype.get_name());
+        }
+        else {
+            mealtype = new MealType();
+        }
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String mealTypeName = nameTxt.getText().toString();
-                MealType newMeal = new MealType();
-                newMeal.set_name(mealTypeName);
+                mealtype.set_name(mealTypeName);
                 DbHelper db = DbHelper.getInstance(getApplicationContext());
-                db.createMealType(newMeal);
+                db.createMealType(mealtype);
                 Intent result = new Intent();
                 result.putExtra("result", "Added meal type " + mealTypeName);
+                result.putExtra("type_id", mealtype.get_id());
+                result.putExtra("type_name", mealtype.get_name());
                 setResult(Activity.RESULT_OK, result);
                 finish();
             }

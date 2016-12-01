@@ -47,7 +47,7 @@ public class SelectCreateActivity extends AppCompatActivity {
         createMealBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(SelectCreateActivity.this, CreateMealActivity.class),
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateOrEditMealTypeActivity.class),
                         CREATE_MEALTYPE_REQUEST);
             }
         });
@@ -55,7 +55,7 @@ public class SelectCreateActivity extends AppCompatActivity {
         createCuisineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(SelectCreateActivity.this, CreateCuisineActivity.class),
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateOrEditCuisineActivity.class),
                         CREATE_CUISINE_REQUEST);
             }
         });

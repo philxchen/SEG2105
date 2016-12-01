@@ -69,7 +69,7 @@
             android:label="@string/title_activity_select_create"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".CreateCuisineActivity"
+            android:name=".CreateOrEditCuisineActivity"
             android:label="@string/title_activity_create_cuisine" />
         <activity
             android:name=".CreateIngredientActivity"
@@ -79,7 +79,7 @@
             android:label="@string/title_activity_recipe_view"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".CreateMealActivity"
+            android:name=".CreateOrEditMealTypeActivity"
             android:label="@string/title_activity_create_meal"/>
         <activity
             android:name=".HelpActivity"
