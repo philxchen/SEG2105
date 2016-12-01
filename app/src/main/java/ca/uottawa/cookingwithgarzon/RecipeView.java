@@ -16,8 +16,12 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
+import ca.uottawa.cookingwithgarzon.adapter.RecipeIngredientArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Recipe;
+import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 
 public class RecipeView extends AppCompatActivity {
 
@@ -84,6 +88,11 @@ public class RecipeView extends AppCompatActivity {
         }
         recipeDifficultyTxt.setText(difficulty);
 
+        ArrayList<RecipeIngredient> recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
+
+        RecipeIngredientArrayAdapter recipeIngredientArrayAdapter =
+                new RecipeIngredientArrayAdapter(this, R.layout.recipe_item, recipeIngredients);
+        viewRecipeIngredientList.setAdapter(recipeIngredientArrayAdapter);
 
         dbHelper.close();
 

@@ -158,14 +158,11 @@ public class CreateRecipe extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             String message = data.getStringExtra("result");
-            Snackbar.make(findViewById(R.id.activity_create_recipe), message, Snackbar.LENGTH_LONG)
+            recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
+            recipeIngredientArrayAdapter.notifyDataSetChanged();
+            Snackbar.make(findViewById(R.id.activity_create_recipe), message
+                    + " recipeIngredients has size " + recipeIngredients.size(), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-            switch(resultCode) {
-                case 1:
-                    recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
-                    recipeIngredientArrayAdapter.notifyDataSetChanged();
-                    break;
-            }
         }
     }
 }
