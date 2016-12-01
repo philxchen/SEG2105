@@ -19,12 +19,10 @@ import java.util.List;
 import ca.uottawa.cookingwithgarzon.adapter.HintAdapter;
 import ca.uottawa.cookingwithgarzon.adapter.RecipeIngredientArrayAdapter;
 import ca.uottawa.cookingwithgarzon.adapter.StepArrayAdapter;
-import ca.uottawa.cookingwithgarzon.helper.DbContract;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.*;
 
 public class CreateRecipe extends AppCompatActivity {
-
 
     final int GET_INGREDIENT_REQUEST = 1;
 
@@ -74,8 +72,8 @@ public class CreateRecipe extends AppCompatActivity {
                 .setAction("Action", null).show();
 
 
-        recipeIngredients = new ArrayList<RecipeIngredient>();
-        recipeIngredientArrayAdapter = new RecipeIngredientArrayAdapter(this, R.layout.recipe_item, recipeIngredients);
+        recipeIngredients = new ArrayList<>();
+        recipeIngredientArrayAdapter = new RecipeIngredientArrayAdapter(this, R.layout.recipe_ingredient_item, recipeIngredients);
         recipeIngredients_listView.setAdapter(recipeIngredientArrayAdapter);
 
         /*

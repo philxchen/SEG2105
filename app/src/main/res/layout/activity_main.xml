@@ -69,5 +69,15 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_shopping_basket_black_24dp"
             android:id="@+id/shoppingCartBtn" />
+
+        <Button
+            android:text="Clear Database"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/clearDbBtn"
+            android:layout_weight="0.21" />
     </LinearLayout>
+
 </RelativeLayout>

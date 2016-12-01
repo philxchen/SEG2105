@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import ca.uottawa.cookingwithgarzon.helper.DbHelper;
+
 public class MainActivity extends Activity {
 
     @Override
@@ -17,7 +19,7 @@ public class MainActivity extends Activity {
         final Button searchBtn = (Button) findViewById(R.id.searchBtn);
         final Button favouritesBtn = (Button) findViewById(R.id.favouritesBtn);
         final Button shoppingListBtn = (Button) findViewById(R.id.shoppingCartBtn);
-
+        final Button clearDbBtn = (Button) findViewById(R.id.clearDbBtn);
 
         View.OnClickListener oclSearchBtn = new View.OnClickListener() {
             @Override
@@ -47,9 +49,17 @@ public class MainActivity extends Activity {
             }
         };
 
+        View.OnClickListener oclClearDbBtn = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DbHelper.clearDatabase(getApplicationContext());
+            }
+        };
+
         searchBtn.setOnClickListener(oclSearchBtn);
         createBtn.setOnClickListener(oclCreateBtn);
         favouritesBtn.setOnClickListener(oclFavouritesBtn);
         shoppingListBtn.setOnClickListener(oclShoppingCartBtn);
+        clearDbBtn.setOnClickListener(oclClearDbBtn);
     }
 }

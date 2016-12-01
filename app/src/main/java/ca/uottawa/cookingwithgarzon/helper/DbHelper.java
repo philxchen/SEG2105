@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -162,6 +163,9 @@ public class DbHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
+    public static void clearDatabase(Context ctx) {
+        ctx.deleteDatabase(DATABASE_NAME);
+    }
 
     /** CRUD */
 
@@ -345,7 +349,7 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         // Query for retrieving all recipeIngredients associated to recipe_id
         String selectRecipeIngredient = "SElECT * FROM " + DbContract.RecipeIngredient.TABLE_NAME +
-                " WHERE " + DbContract.RecipeIngredient.COLUMN_RECIPE_ID + " = " + recipe_id;
+                " WHERE " + DbContract.RecipeIngredient.COLUMN_RECIPE_ID + "=" + recipe_id;
 
         // populate array list with recipeIngredient objects
         Cursor c = db.rawQuery(selectRecipeIngredient, null);
