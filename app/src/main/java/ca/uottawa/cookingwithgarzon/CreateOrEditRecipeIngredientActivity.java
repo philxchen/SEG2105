@@ -3,23 +3,19 @@ package ca.uottawa.cookingwithgarzon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
-import ca.uottawa.cookingwithgarzon.model.Recipe;
+import ca.uottawa.cookingwithgarzon.model.Ingredient;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 
-import static ca.uottawa.cookingwithgarzon.R.id.ingredientTxt;
-import static ca.uottawa.cookingwithgarzon.R.id.recipeIngredientTxt;
 
-public class CreateRecipeIngredientActivity extends AppCompatActivity {
+public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
 
 
     static final int PICK_INGREDIENT_REQUEST = 1;
@@ -31,7 +27,10 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
     private EditText unitTxt;
     private EditText quantityTxt;
     private long recipe_id;
+    private long recipe_ingredient_id;
     private boolean ingredientPicked=false;
+    private RecipeIngredient recipeIngredient;
+    private Ingredient ingredient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +44,24 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
         quantityTxt = (EditText) findViewById(R.id.recipeIngredientQuantityTxt);
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
+        recipe_ingredient_id = intent.getLongExtra("recipe_ingredient_id",0);
+
+        if (ingredient_id != 0) {
+            DbHelper db = DbHelper.getInstance(getApplicationContext());
+            recipeIngredient = db.getRecipeIngredient(recipe_ingredient_id);
+            ingredient = db.getIngredient(recipeIngredient.get_ingredient_id());
+            recipeIngredientTxt.setText(ingredient.get_name());
+            quantityTxt.setText(((Long)recipeIngredient.get_quantity()).toString());
+            unitTxt.setText(recipeIngredient.get_unit());
+        }
+        else {
+            recipeIngredient = new RecipeIngredient();
+        }
 
         getIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent getIngredientIntent = new Intent(CreateRecipeIngredientActivity.this, IngredientSearchActivity.class);
+                Intent getIngredientIntent = new Intent(CreateOrEditRecipeIngredientActivity.this, IngredientSearchActivity.class);
                 getIngredientIntent.putExtra("recipe_id", recipe_id);
                 startActivityForResult(getIngredientIntent, PICK_INGREDIENT_REQUEST);
             }
@@ -74,13 +86,12 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
 
                 String unit = unitTxt.getText().toString();
                 Long quantity = Long.parseLong(quantityTxt.getText().toString());
-                RecipeIngredient newRecipeIngredient = new RecipeIngredient();
-                newRecipeIngredient.set_quantity(quantity);
-                newRecipeIngredient.set_unit(unit);
-                newRecipeIngredient.set_recipe_id(recipe_id);
-                newRecipeIngredient.set_ingredient_id(ingredient_id);
+                recipeIngredient.set_quantity(quantity);
+                recipeIngredient.set_unit(unit);
+                recipeIngredient.set_recipe_id(recipe_id);
+                recipeIngredient.set_ingredient_id(ingredient_id);
                 DbHelper db = DbHelper.getInstance(getApplicationContext());
-                db.createRecipeIngredient(newRecipeIngredient);
+                db.createRecipeIngredient(recipeIngredient);
                 Intent result = new Intent();
                 result.putExtra("result", "Added recipe ingredient!");
                 setResult(Activity.RESULT_OK, result);
@@ -96,7 +107,9 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 ingredientPicked=true;
                 ingredient_id = data.getLongExtra("ingredient_id", 0);
-                recipeIngredientTxt.setText(data.getStringExtra("ingredient_name"));
+                DbHelper db = DbHelper.getInstance(getApplicationContext());
+                ingredient = db.getIngredient(ingredient_id);
+                recipeIngredientTxt.setText(ingredient.get_name());
 
             }
         }

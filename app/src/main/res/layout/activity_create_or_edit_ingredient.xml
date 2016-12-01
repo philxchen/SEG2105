@@ -20,7 +20,7 @@
         android:weightSum="1">
 
         <TextView
-            android:text="Create Ingredient"
+            android:text="Create or Edit Ingredient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="36sp"

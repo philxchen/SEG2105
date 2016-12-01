@@ -28,6 +28,7 @@ public class CuisineSearchResultActivity extends AppCompatActivity {
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         Intent intent = getIntent();
+        final long recipe_id = intent.getLongExtra("recipe_id", 0);
         final String name = intent.getStringExtra("name");
 
         DbHelper dbHelper = DbHelper.getInstance(this);
@@ -42,13 +43,26 @@ public class CuisineSearchResultActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent result = new Intent();
-                Cuisine picked = (Cuisine) parent.getItemAtPosition(position);
-                result.putExtra("cuisine_id", picked.get_id());
-                result.putExtra("cuisine_name", picked.get_name());
-                result.putExtra("result", "Picked cuisine " + picked.get_name());
-                setResult(Activity.RESULT_OK, result);
-                finish();
+                if (recipe_id == 0) {
+                    Intent result = new Intent(CuisineSearchResultActivity.this,
+                            CreateOrEditCuisineActivity.class);
+                    Cuisine picked = (Cuisine) parent.getItemAtPosition(position);
+                    result.putExtra("cuisine_id", picked.get_id());
+                    result.putExtra("cuisine_name", picked.get_name());
+                    result.putExtra("result", "Picked cuisine " + picked.get_name());
+                    result.putExtra("result", "Picked meal type " + picked.get_name());
+                    result.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(result);
+                    finish();
+                } else {
+                    Intent result = new Intent();
+                    Cuisine picked = (Cuisine) parent.getItemAtPosition(position);
+                    result.putExtra("cuisine_id", picked.get_id());
+                    result.putExtra("cuisine_name", picked.get_name());
+                    result.putExtra("result", "Picked cuisine " + picked.get_name());
+                    setResult(Activity.RESULT_OK, result);
+                    finish();
+                }
             }
         });
 

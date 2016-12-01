@@ -22,10 +22,12 @@ public class CreateOrEditCuisineActivity extends Activity {
         setContentView(R.layout.activity_create_or_edit_cuisine);
 
         final Button saveBtn = (Button) findViewById(R.id.saveCuisineBtn);
+        final Button deleteBtn = (Button) findViewById(R.id.deleteCuisineBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createCuisineText);
 
         Intent intent = getIntent();
         cuisine_id = intent.getLongExtra("cuisine_id", 0);
+        final long recipe_id = intent.getLongExtra("recipe_id", 0);
 
         if (cuisine_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
@@ -48,6 +50,15 @@ public class CreateOrEditCuisineActivity extends Activity {
                 result.putExtra("result", "Added cuisine " + cuisineName);
                 result.putExtra("cuisine_id", cuisine.get_id());
                 setResult(Activity.RESULT_OK, result);
+                finish();
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DbHelper db = DbHelper.getInstance(getApplicationContext());
+                db.deleteCuisine(cuisine);
                 finish();
             }
         });

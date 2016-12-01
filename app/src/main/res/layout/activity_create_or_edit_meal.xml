@@ -19,7 +19,7 @@
         android:weightSum="1">
 
         <TextView
-            android:text="Create Meal"
+            android:text="Create or Edit Meal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/createMealHeader"

@@ -1,5 +1,6 @@
 package ca.uottawa.cookingwithgarzon;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,14 +8,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +93,18 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
 
         recipeIngredientArrayAdapter = new RecipeIngredientArrayAdapter(this, R.layout.recipe_ingredient_item, recipeIngredients);
         recipeIngredients_listView.setAdapter(recipeIngredientArrayAdapter);
-
+        recipeIngredients_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                    Intent editRecipeIngredient =
+                            new Intent(CreateOrEditRecipeActivity.this, CreateOrEditRecipeIngredientActivity.class);
+                    RecipeIngredient picked = (RecipeIngredient) parent.getItemAtPosition(position);
+                    editRecipeIngredient.putExtra("recipe_ingredient_id", picked.get_id());
+                    editRecipeIngredient.putExtra("result", "Modifying ingredient " + picked.get_id());
+                    startActivityForResult(editRecipeIngredient, GET_INGREDIENT_REQUEST);
+                }
+        });
         stepArrayAdapter = new StepArrayAdapter(this, R.layout.step_item, steps);
         step_listView.setAdapter(stepArrayAdapter);
 
@@ -145,7 +156,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         newIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newIngredientIntent = new Intent(CreateOrEditRecipeActivity.this, CreateRecipeIngredientActivity.class);
+                Intent newIngredientIntent = new Intent(CreateOrEditRecipeActivity.this, CreateOrEditRecipeIngredientActivity.class);
                 newIngredientIntent.putExtra("recipe_id", recipe_id);
                 startActivityForResult(newIngredientIntent, GET_INGREDIENT_REQUEST);
             }

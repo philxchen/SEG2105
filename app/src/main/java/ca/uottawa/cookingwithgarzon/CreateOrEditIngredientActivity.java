@@ -53,6 +53,7 @@ public class CreateOrEditIngredientActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
