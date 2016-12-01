@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Created by joel on 22/11/16.
- * Java RecipeView Object
+ * Java RecipeViewActivity Object
  */
 
 public class Recipe {

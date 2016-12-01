@@ -6,9 +6,20 @@ package ca.uottawa.cookingwithgarzon.model;
 
 public class Step {
     private long _id;
+    private long _recipe_id;
+
+    public long get_recipe_id() {
+        return _recipe_id;
+    }
+
+    public void set_recipe_id(long _recipe_id) {
+        this._recipe_id = _recipe_id;
+    }
+
     private String _instruction;
     private int _stepNumber;
     private int _time;
+
 
     public Step() {
     }

@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import static android.app.Activity.RESULT_OK;
-
 public class SelectCreateActivity extends AppCompatActivity {
 
     final int CREATE_RECIPE_REQUEST = 1;
@@ -31,7 +29,7 @@ public class SelectCreateActivity extends AppCompatActivity {
         createRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(SelectCreateActivity.this, CreateRecipe.class),
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateOrEditRecipeActivity.class),
                         CREATE_RECIPE_REQUEST);
             }
         });

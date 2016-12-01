@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/activity_recipe_view"
-    tools:context="ca.uottawa.cookingwithgarzon.RecipeView">
+    tools:context="ca.uottawa.cookingwithgarzon.RecipeViewActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

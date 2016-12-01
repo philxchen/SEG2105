@@ -1,6 +1,5 @@
 package ca.uottawa.cookingwithgarzon;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import ca.uottawa.cookingwithgarzon.adapter.IngredientArrayAdapter;
 import ca.uottawa.cookingwithgarzon.adapter.RecipeArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.*;
@@ -44,7 +42,7 @@ public class RecipeSearchResult extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent intent = new Intent(RecipeSearchResult.this, RecipeView.class);
+                Intent intent = new Intent(RecipeSearchResult.this, RecipeViewActivity.class);
                 Recipe picked = (Recipe) parent.getItemAtPosition(position);
                 intent.putExtra("recipe_id", picked.get_id());
                 intent.putExtra("recipe_name", picked.get_name());

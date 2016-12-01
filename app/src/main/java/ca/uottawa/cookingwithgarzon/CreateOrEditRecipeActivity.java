@@ -7,7 +7,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,17 +21,18 @@ import ca.uottawa.cookingwithgarzon.adapter.StepArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.*;
 
-public class CreateRecipe extends AppCompatActivity {
+public class CreateOrEditRecipeActivity extends AppCompatActivity {
 
     final int GET_INGREDIENT_REQUEST = 1;
+    final int GET_STEP_REQUEST = 2;
 
     private DbHelper dbHelper;
-    private Recipe newRecipe;
+    private Recipe recipe;
     private long recipe_id;
     private ArrayList<RecipeIngredient> recipeIngredients = new ArrayList<>();
-    private ArrayList<Step> steps;
+    private ArrayList<Step> steps = new ArrayList<>();
     private ListView recipeIngredients_listView;
-    private ListView recipeStep_listView;
+    private ListView step_listView;
     private RecipeIngredientArrayAdapter recipeIngredientArrayAdapter;
     private StepArrayAdapter stepArrayAdapter;
     private ImageView image;
@@ -49,7 +49,7 @@ public class CreateRecipe extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_recipe);
+        setContentView(R.layout.activity_create_or_edit_recipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -62,21 +62,37 @@ public class CreateRecipe extends AppCompatActivity {
         mealTypeSpinner = (Spinner) content.findViewById(R.id.mealTypeSelect);
         cuisineTypeSpinner = (Spinner) content.findViewById(R.id.cuisineTypeSelect);
         recipeIngredients_listView = (ListView) content.findViewById(R.id.listOfRecipeIngredient);
-        recipeStep_listView = (ListView) content.findViewById(R.id.listOfRecipeStep);
+        step_listView = (ListView) content.findViewById(R.id.listOfRecipeStep);
 
         dbHelper = DbHelper.getInstance(getApplicationContext());
-        newRecipe = new Recipe();
-        saved = false;
-        recipe_id = dbHelper.createRecipe(newRecipe);
-        newRecipe.set_id(recipe_id);
 
-        Snackbar.make(findViewById(R.id.activity_create_recipe), "New recipe with id: "+recipe_id, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        Intent intent = getIntent();
+        recipe_id = intent.getLongExtra("recipe_id", 0);
+
+        if (recipe_id != 0) {
+            saved=true;
+            recipe = dbHelper.getRecipe(recipe_id);
+            recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
+            steps = dbHelper.getRecipeSteps(recipe_id);
+            Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "Editing recipe id: "+recipe_id, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+        else {
+            saved = false;
+            recipe = new Recipe();
+            recipe_id = dbHelper.createRecipe(recipe);
+            recipe.set_id(recipe_id);
+            Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "New recipe with id: "+recipe_id, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+        }
 
 
         recipeIngredientArrayAdapter = new RecipeIngredientArrayAdapter(this, R.layout.recipe_ingredient_item, recipeIngredients);
         recipeIngredients_listView.setAdapter(recipeIngredientArrayAdapter);
-        ;
+
+        stepArrayAdapter = new StepArrayAdapter(this, R.layout.step_item, steps);
+        step_listView.setAdapter(stepArrayAdapter);
 
         /*
          * Spinner Object Lists
@@ -138,14 +154,14 @@ public class CreateRecipe extends AppCompatActivity {
                             .setAction("Action", null).show();
                     return;
                 }
-                newRecipe.set_meal_type_id(1);
-                newRecipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
-                newRecipe.set_name(recipeTitleTxt.getText().toString());
-                newRecipe.set_servings(0);
-                newRecipe.set_rating(recipeRatingBar.getNumStars());
-                dbHelper.updateRecipe(newRecipe);
+                recipe.set_meal_type_id(1);
+                recipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
+                recipe.set_name(recipeTitleTxt.getText().toString());
+                recipe.set_servings(0);
+                recipe.set_rating(recipeRatingBar.getNumStars());
+                dbHelper.updateRecipe(recipe);
                 saved = true;
-                Snackbar.make(view, "Saved recipe " + newRecipe.get_name(), Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Saved recipe " + recipe.get_name(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -153,30 +169,57 @@ public class CreateRecipe extends AppCompatActivity {
         newIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newIngredientIntent = new Intent(CreateRecipe.this, CreateRecipeIngredientActivity.class);
+                Intent newIngredientIntent = new Intent(CreateOrEditRecipeActivity.this, CreateRecipeIngredientActivity.class);
                 newIngredientIntent.putExtra("recipe_id", recipe_id);
                 startActivityForResult(newIngredientIntent, GET_INGREDIENT_REQUEST);
+            }
+        });
+
+
+        newStepBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newIngredientIntent = new Intent(CreateOrEditRecipeActivity.this, CreateOrEditStepActivity.class);
+                newIngredientIntent.putExtra("recipe_id", recipe_id);
+                startActivityForResult(newIngredientIntent, GET_STEP_REQUEST);
             }
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            String message = data.getStringExtra("result");
-            recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
-            recipeIngredientArrayAdapter.clear();
-            recipeIngredientArrayAdapter.addAll(recipeIngredients);
-            recipeIngredientArrayAdapter.notifyDataSetChanged();
-            Snackbar.make(findViewById(R.id.activity_create_recipe), message
-                    + " recipeIngredients has size " + recipeIngredients.size(), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+        switch (requestCode) {
+            case GET_INGREDIENT_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    String message = data.getStringExtra("result");
+                    recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
+                    recipeIngredientArrayAdapter.clear();
+                    recipeIngredientArrayAdapter.addAll(recipeIngredients);
+                    recipeIngredientArrayAdapter.notifyDataSetChanged();
+                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message
+                            + " recipeIngredients has size " + recipeIngredients.size(), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+                break;
+            case GET_STEP_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    String message = data.getStringExtra("result");
+                    steps = dbHelper.getRecipeSteps(recipe_id);
+                    stepArrayAdapter.clear();
+                    stepArrayAdapter.addAll(steps);
+                    stepArrayAdapter.notifyDataSetChanged();
+                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message
+                            + " steps has size " + steps.size(), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+                break;
         }
     }
+
     @Override
     public void onBackPressed() {
         if (!saved) {
-            dbHelper.deleteRecipe(newRecipe);
+            dbHelper.deleteRecipe(recipe);
         }
 
         // Otherwise defer to system default behavior.

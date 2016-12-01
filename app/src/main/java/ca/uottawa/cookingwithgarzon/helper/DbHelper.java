@@ -26,7 +26,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static DbHelper mInstance = null;
     public static final int DATABASE_VERSION = 5;
-    public static final String DATABASE_NAME = "RecipeView.db";
+    public static final String DATABASE_NAME = "RecipeViewActivity.db";
 
     private static final String LOG = "DbHelper";
     private static final String TEXT_TYPE = " TEXT";
@@ -171,6 +171,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /** Create a recipe */
     public long createRecipe(Recipe recipe) {
+        if (recipe.get_id() != 0) {
+            return updateRecipe(recipe);
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
@@ -186,6 +189,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /**  create a recipeIngredient */
     public long createRecipeIngredient(RecipeIngredient recipeIngredient) {
+        if (recipeIngredient.get_id() != 0) {
+            return updateRecipeIngredient(recipeIngredient);
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.RecipeIngredient.COLUMN_RECIPE_ID, recipeIngredient.get_recipe_id());
@@ -198,6 +204,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /**  create an ingredient */
     public long createIngredient(Ingredient ingredient) {
+        if (ingredient.get_id() != 0) {
+            return updateIngredient(ingredient);
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Ingredient.COLUMN_INGREDIENT_NAME, ingredient.get_name());
@@ -208,6 +217,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /**  create a cuisine */
     public long createCuisine(Cuisine cuisine) {
+        if (cuisine.get_id() != 0) {
+            return updateCuisine(cuisine);
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Cuisine.COLUMN_CUISINE_NAME, cuisine.get_name());
@@ -217,6 +229,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /**  create a meal type */
     public long createMealType(MealType type) {
+        if (type.get_id() != 0) {
+            return updateMealType(type);
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.MealType.COLUMN_MEAL_TYPE_NAME, type.get_name());
@@ -226,11 +241,15 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /** create a step */
     public long createStep(Step step) {
+        if (step.get_id() != 0) {
+            return updateStep(step);
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Step.COLUMN_INSTRUCTION, step.get_instruction());
         values.put(DbContract.Step.COLUMN_NUMBER, step.get_stepNumber());
         values.put(DbContract.Step.COLUMN_TIME, step.get_time());
+        values.put(DbContract.Step.COLUMN_RECIPE, step.get_recipe_id());
         long step_id = db.insertOrThrow(DbContract.Step.TABLE_NAME, null, values);
         return step_id;
     }
@@ -306,6 +325,26 @@ public class DbHelper extends SQLiteOpenHelper {
         recipeingredient.set_unit(c.getString(c.getColumnIndex(DbContract.RecipeIngredient.COLUMN_UNIT)));
         c.close();
         return recipeingredient;
+    }
+
+    /** get a step by id */
+    public Step getStep(long step_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + DbContract.Step.TABLE_NAME + " WHERE "
+                + DbContract.Step._ID + " = " + step_id;
+        Log.e(LOG, query);
+        Cursor c = db.rawQuery(query, null);
+        if (!c.moveToFirst()) {
+            c.close();
+            return null;
+        }
+        Step step = new Step();
+        step.set_id(c.getInt(c.getColumnIndex(DbContract.Step._ID)));
+        step.set_time(c.getInt(c.getColumnIndex(DbContract.Step.COLUMN_TIME)));
+        step.set_stepNumber(c.getInt(c.getColumnIndex(DbContract.Step.COLUMN_NUMBER)));
+        step.set_instruction(c.getString(c.getColumnIndex(DbContract.Step.COLUMN_INSTRUCTION)));
+        c.close();
+        return step;
     }
 
     /** get cuisine by id */
@@ -395,7 +434,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /** Update operations */
 
-    public void updateRecipe(Recipe recipe) {
+    public long updateRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Recipe.COLUMN_RECIPE_NAME, recipe.get_name());
@@ -407,52 +446,58 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Recipe.COLUMN_MEALTYPE, recipe.get_meal_type_id());
         db.update(DbContract.Recipe.TABLE_NAME, values,
                 DbContract.Recipe._ID +"="+ recipe.get_id(), null);
+        return recipe.get_id();
     }
 
-    public boolean updateIngredient(Ingredient ingredient) {
+    public long updateIngredient(Ingredient ingredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Ingredient.COLUMN_INGREDIENT_NAME, ingredient.get_name());
         values.put(DbContract.Ingredient.COLUMN_INGREDIENT_PRICE, ingredient.get_price());
-        return db.update(DbContract.Ingredient.TABLE_NAME, values,
-                DbContract.Ingredient._ID +"="+ ingredient.get_id(), null) > 0;
+        db.update(DbContract.Ingredient.TABLE_NAME, values,
+                DbContract.Ingredient._ID +"="+ ingredient.get_id(), null);
+        return ingredient.get_id();
     }
 
-    public boolean updateRecipeIngredient(RecipeIngredient recipeIngredient) {
+    public long updateRecipeIngredient(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.RecipeIngredient.COLUMN_RECIPE_ID, recipeIngredient.get_recipe_id());
         values.put(DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID, recipeIngredient.get_ingredient_id());
         values.put(DbContract.RecipeIngredient.COLUMN_QUANTITY, recipeIngredient.get_quantity());
         values.put(DbContract.RecipeIngredient.COLUMN_UNIT, recipeIngredient.get_unit());
-        return db.update(DbContract.RecipeIngredient.TABLE_NAME, values,
-                DbContract.RecipeIngredient._ID +"="+ recipeIngredient.get_id(), null) > 0;
+        db.update(DbContract.RecipeIngredient.TABLE_NAME, values,
+                DbContract.RecipeIngredient._ID +"="+ recipeIngredient.get_id(), null);
+        return recipeIngredient.get_id();
     }
 
-    public boolean updateStep(Step step) {
+    public long updateStep(Step step) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Step.COLUMN_INSTRUCTION, step.get_instruction());
         values.put(DbContract.Step.COLUMN_TIME, step.get_time());
         values.put(DbContract.Step.COLUMN_NUMBER, step.get_stepNumber());
-        return db.update(DbContract.Step.TABLE_NAME, values,
-                DbContract.Step._ID +"=" + step.get_id(), null) > 0;
+        db.update(DbContract.Step.TABLE_NAME, values,
+                DbContract.Step._ID +"=" + step.get_id(), null);
+        return step.get_id();
     }
 
-    public boolean updateMealType(MealType type) {
+    public long updateMealType(MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.MealType.COLUMN_MEAL_TYPE_NAME, type.get_name());
-        return db.update(DbContract.MealType.TABLE_NAME, values,
-                DbContract.MealType._ID + "=" + type.get_id(), null) > 0;
+        db.update(DbContract.MealType.TABLE_NAME, values,
+                DbContract.MealType._ID + "=" + type.get_id(), null);
+        return type.get_id();
     }
 
-    public boolean updateCuisine(Cuisine cuisine) {
+    public long updateCuisine(Cuisine cuisine) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Cuisine.COLUMN_CUISINE_NAME, cuisine.get_name());
-        return db.update(DbContract.MealType.TABLE_NAME, values,
-                DbContract.Cuisine._ID + "=" + cuisine.get_id(), null) > 0;
+        db.update(DbContract.MealType.TABLE_NAME, values,
+                DbContract.Cuisine._ID + "=" + cuisine.get_id(), null);
+        return cuisine.get_id();
     }
 
     /** Delete operations */

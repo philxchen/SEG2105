@@ -62,24 +62,24 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
                     String message = "You need to pick an ingredient and specify a quantity!";
                     Snackbar.make(findViewById(R.id.activity_create_recipe_ingredient), message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                } else {
-                    String unit = unitTxt.getText().toString();
-                    Long quantity = Long.parseLong(quantityTxt.getText().toString()); //TODO crash if null
-                    RecipeIngredient newRecipeIngredient = new RecipeIngredient();
-                    newRecipeIngredient.set_quantity(quantity);
-                    newRecipeIngredient.set_unit(unit);
-                    newRecipeIngredient.set_recipe_id(recipe_id);
-                    newRecipeIngredient.set_ingredient_id(ingredient_id);
-                    DbHelper db = DbHelper.getInstance(getApplicationContext());
-                    db.createRecipeIngredient(newRecipeIngredient);
-                    Intent result = new Intent();
-                    result.putExtra("result", "Added recipe ingredient!");
-                    setResult(Activity.RESULT_OK, result);
-                    finish();
+                    return;
                 }
-            }
-        });
-    }
+                String unit = unitTxt.getText().toString();
+                Long quantity = Long.parseLong(quantityTxt.getText().toString());
+                RecipeIngredient newRecipeIngredient = new RecipeIngredient();
+                newRecipeIngredient.set_quantity(quantity);
+                newRecipeIngredient.set_unit(unit);
+                newRecipeIngredient.set_recipe_id(recipe_id);
+                newRecipeIngredient.set_ingredient_id(ingredient_id);
+                DbHelper db = DbHelper.getInstance(getApplicationContext());
+                db.createRecipeIngredient(newRecipeIngredient);
+                Intent result = new Intent();
+                result.putExtra("result", "Added recipe ingredient!");
+                setResult(Activity.RESULT_OK, result);
+                finish();
+        }
+    });
+}
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/content_recipe_view"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ca.uottawa.cookingwithgarzon.RecipeView"
+    tools:context="ca.uottawa.cookingwithgarzon.RecipeViewActivity"
     tools:showIn="@layout/activity_recipe_view">
 
     <LinearLayout

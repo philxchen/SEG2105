@@ -37,7 +37,7 @@ public class StepArrayAdapter extends ArrayAdapter<Step> {
         TextView stepNumber = (TextView) convertView.findViewById(R.id.step_item_number);
         TextView stepInstruction = (TextView) convertView.findViewById(R.id.step_item_instruction);
         // Populate the data into the template view using the data object
-        stepNumber.setText(step.get_stepNumber());
+        stepNumber.setText(((Integer)step.get_stepNumber()).toString());
         stepInstruction.setText(step.get_instruction());
         // Return the completed view to render on screen
         return convertView;

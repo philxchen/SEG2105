@@ -19,11 +19,13 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 import ca.uottawa.cookingwithgarzon.adapter.RecipeIngredientArrayAdapter;
+import ca.uottawa.cookingwithgarzon.adapter.StepArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Recipe;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
+import ca.uottawa.cookingwithgarzon.model.Step;
 
-public class RecipeView extends AppCompatActivity {
+public class RecipeViewActivity extends AppCompatActivity {
 
     private ImageView recipeImage;
     private RatingBar recipeRating;
@@ -50,18 +52,9 @@ public class RecipeView extends AppCompatActivity {
         viewRecipeIngredientList = (ListView) content.findViewById(R.id.viewRecipeIngredientList);
         viewRecipeStepList = (ListView) content.findViewById(R.id.viewRecipeStepList);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         Intent intent = getIntent();
         dbHelper = DbHelper.getInstance(getApplicationContext());
-        long recipe_id = intent.getLongExtra("recipe_id", 0);
+        final long recipe_id = intent.getLongExtra("recipe_id", 0);
 
         Snackbar.make(findViewById(R.id.activity_recipe_view), "Loaded recipe id "+ recipe_id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
@@ -94,7 +87,21 @@ public class RecipeView extends AppCompatActivity {
                 new RecipeIngredientArrayAdapter(this, R.layout.recipe_ingredient_item, recipeIngredients);
         viewRecipeIngredientList.setAdapter(recipeIngredientArrayAdapter);
 
+        ArrayList<Step> steps = dbHelper.getRecipeSteps(recipe_id);
+        StepArrayAdapter stepArrayAdapter = new StepArrayAdapter(this, R.layout.step_item, steps);
+        viewRecipeStepList.setAdapter(stepArrayAdapter);
+
         dbHelper.close();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent editIntent = new Intent(RecipeViewActivity.this, CreateOrEditRecipeActivity.class);
+                editIntent.putExtra("recipe_id", recipe_id);
+                startActivity(editIntent);
+            }
+        });
 
     }
 }

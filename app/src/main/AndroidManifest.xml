@@ -42,7 +42,7 @@
             android:name=".RecipePreview"
             android:label="@string/title_activity_recipe_preview"/>
         <activity
-            android:name=".CreateRecipe"
+            android:name=".CreateOrEditRecipeActivity"
             android:label="@string/title_activity_create_recipe"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
@@ -50,6 +50,7 @@
             android:label="@string/title_activity_recipe_instruction"/>
         <activity
             android:name=".CreateOrEditStepActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_instruction_step" />
         <activity
             android:name=".FavoriteRecipe"
@@ -72,7 +73,7 @@
             android:name=".CreateIngredientActivity"
             android:label="@string/title_activity_create_ingredient" />
         <activity
-            android:name=".RecipeView"
+            android:name=".RecipeViewActivity"
             android:label="@string/title_activity_recipe_view"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity

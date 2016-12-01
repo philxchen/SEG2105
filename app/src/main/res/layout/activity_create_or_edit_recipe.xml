@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/activity_create_recipe"
+    android:id="@+id/activity_create_or_edit_recipe"
     android:fitsSystemWindows="true"
-    tools:context="ca.uottawa.cookingwithgarzon.CreateRecipe">
+    tools:context="ca.uottawa.cookingwithgarzon.CreateOrEditRecipeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -43,6 +43,6 @@
         app:srcCompat="@drawable/ic_done_black_24dp"
         app:backgroundTint="@android:color/holo_blue_bright" />
 
-    <include layout="@layout/content_create_recipe" />
+    <include layout="@layout/content_create_or_edit_recipe" />
 
 </android.support.design.widget.CoordinatorLayout>

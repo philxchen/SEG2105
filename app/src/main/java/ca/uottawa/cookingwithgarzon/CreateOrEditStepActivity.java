@@ -27,7 +27,7 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
     private Button saveStepBtn;
     private long recipe_id;
     private long step_id;
-    private Step newStep;
+    private Step step;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,16 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
-        step_id = intent.getLongExtra("step_id", -1);
+        step_id = intent.getLongExtra("step_id", 0);
 
-        if (step_id != -1) {
+        if (step_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
             step = db.getStep(step_id);
+            stepInstructionTxt.setText(step.get_instruction());
+            stepTimeTxt.setText(step.get_time());
+        }
+        else {
+            step = new Step();
         }
 
 
@@ -53,38 +58,32 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (stepInstructionTxt.getText() == null || stepInstructionTxt.getText().toString().equals("")) {
                     String message = "You need to write an instruction for this step!";
-                    Snackbar.make(findViewById(R.id.activity_create_recipe_ingredient), message, Snackbar.LENGTH_LONG)
+                    Snackbar.make(findViewById(R.id.activity_create_or_edit_step), message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     return;
                 } else {
+                    int time;
                     String instruction = stepInstructionTxt.getText().toString();
-                    Long quantity = Long.parseLong(quantityTxt.getText().toString()); //TODO crash if null
-                    RecipeIngredient newRecipeIngredient = new RecipeIngredient();
-                    newRecipeIngredient.set_quantity(quantity);
-                    newRecipeIngredient.set_unit(unit);
-                    newRecipeIngredient.set_recipe_id(recipe_id);
-                    newRecipeIngredient.set_ingredient_id(ingredient_id);
+                    if (stepTimeTxt.getText() == null) {
+                        time = 0;
+                    }
+                    else {
+                        time = Integer.parseInt(stepTimeTxt.getText().toString());
+                    }
+                    step.set_instruction(instruction);
+                    step.set_time(time);
+                    step.set_stepNumber(1);
+                    step.set_recipe_id(recipe_id);
+
                     DbHelper db = DbHelper.getInstance(getApplicationContext());
-                    db.createRecipeIngredient(newRecipeIngredient);
+                    step_id = db.createStep(step);
                     Intent result = new Intent();
-                    result.putExtra("result", "Added recipe ingredient!");
+                    result.putExtra("step_id", step_id);
+                    result.putExtra("result", "Added recipe step!");
                     setResult(Activity.RESULT_OK, result);
                     finish();
                 }
             }
         });
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Check which request we're responding to
-        if (requestCode == PICK_INGREDIENT_REQUEST) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                ingredientPicked=true;
-                ingredient_id = data.getLongExtra("ingredient_id", 0);
-                recipeIngredientTxt.setText(data.getStringExtra("ingredient_name"));
-
-            }
-        }
     }
 }
