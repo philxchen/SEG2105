@@ -133,8 +133,12 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 recipe.set_rating((int)recipeRatingBar.getRating());
                 dbHelper.updateRecipe(recipe);
                 saved = true;
-                Snackbar.make(view, "Saved recipe " + recipe.get_name(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent finishedIntent = new Intent(CreateOrEditRecipeActivity.this, RecipeViewActivity.class);
+                finishedIntent.putExtra("recipe_id", recipe.get_id());
+                finishedIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                SelectCreateActivity.selectCreateActivity.finish();
+                startActivity(finishedIntent);
+                finish();
             }
         });
 

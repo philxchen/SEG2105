@@ -1,5 +1,6 @@
 package ca.uottawa.cookingwithgarzon;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +14,13 @@ public class SelectCreateActivity extends AppCompatActivity {
     final int CREATE_INGREDIENT_REQUEST = 2;
     final int CREATE_MEALTYPE_REQUEST = 3;
     final int CREATE_CUISINE_REQUEST = 4;
+    public static Activity selectCreateActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_create);
-
+        selectCreateActivity = this; // used to destroy this activity later.
         //Create Buttons
         final Button createRecipeBtn = (Button) findViewById(R.id.createRecipeBtn);
         final Button createIngredientBtn = (Button) findViewById(R.id.createIngredientBtn);
