@@ -31,6 +31,7 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
     private EditText unitTxt;
     private EditText quantityTxt;
     private long recipe_id;
+    private boolean ingredientPicked=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,20 +58,25 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String unit = unitTxt.getText().toString();
-                Long quantity = Long.parseLong(quantityTxt.getText().toString()); //TODO crash if null
-                RecipeIngredient newRecipeIngredient = new RecipeIngredient();
-                newRecipeIngredient.set_quantity(quantity);
-                newRecipeIngredient.set_unit(unit);
-                newRecipeIngredient.set_recipe_id(recipe_id);
-                newRecipeIngredient.set_ingredient_id(ingredient_id);
-                DbHelper db = DbHelper.getInstance(getApplicationContext());
-                db.createRecipeIngredient(newRecipeIngredient);
-                Intent result = new Intent();
-                result.putExtra("result", "Added recipe ingredient!");
-                setResult(Activity.RESULT_OK, result);
-                finish();
+                if (!ingredientPicked || quantityTxt.getText() == null) {
+                    String message = "You need to pick an ingredient and specify a quantity!";
+                    Snackbar.make(findViewById(R.id.activity_create_recipe_ingredient), message, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    String unit = unitTxt.getText().toString();
+                    Long quantity = Long.parseLong(quantityTxt.getText().toString()); //TODO crash if null
+                    RecipeIngredient newRecipeIngredient = new RecipeIngredient();
+                    newRecipeIngredient.set_quantity(quantity);
+                    newRecipeIngredient.set_unit(unit);
+                    newRecipeIngredient.set_recipe_id(recipe_id);
+                    newRecipeIngredient.set_ingredient_id(ingredient_id);
+                    DbHelper db = DbHelper.getInstance(getApplicationContext());
+                    db.createRecipeIngredient(newRecipeIngredient);
+                    Intent result = new Intent();
+                    result.putExtra("result", "Added recipe ingredient!");
+                    setResult(Activity.RESULT_OK, result);
+                    finish();
+                }
             }
         });
     }
@@ -80,6 +86,7 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
         if (requestCode == PICK_INGREDIENT_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
+                ingredientPicked=true;
                 ingredient_id = data.getLongExtra("ingredient_id", 0);
                 recipeIngredientTxt.setText(data.getStringExtra("ingredient_name"));
 

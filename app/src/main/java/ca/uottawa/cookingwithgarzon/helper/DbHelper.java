@@ -527,10 +527,8 @@ public class DbHelper extends SQLiteOpenHelper {
         if (name == null || !name.isEmpty()) {
             started = true;
             String[] args = name.split(" AND ");
-            query.append("SELECT " + DbContract.Recipe.TABLE_NAME +"."+
-                    DbContract.Recipe._ID +
+            query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                     " FROM " + DbContract.Recipe.TABLE_NAME + " WHERE ");
-
             for (int i = 0; i < args.length; ++i) {
                 query.append(DbContract.Recipe.TABLE_NAME +"."+
                         DbContract.Recipe.COLUMN_RECIPE_NAME);
@@ -547,12 +545,10 @@ public class DbHelper extends SQLiteOpenHelper {
         if (ingredient == null || !ingredient.isEmpty()) {
             if (!started) {
                 started=true;
-                query.append("SELECT " + DbContract.Recipe.TABLE_NAME +"."+
-                        DbContract.Recipe._ID +
+                query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                         " FROM " + DbContract.Recipe.TABLE_NAME);
             } else {
-                query.append(" INTERSECT SELECT " + DbContract.Recipe.TABLE_NAME +"."+
-                        DbContract.Recipe._ID +
+                query.append(" INTERSECT SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                         " FROM "+ DbContract.Recipe.TABLE_NAME);
             }
             query.append(" INNER JOIN " + DbContract.RecipeIngredient.TABLE_NAME +
@@ -582,12 +578,10 @@ public class DbHelper extends SQLiteOpenHelper {
         if (cuisine == null || !cuisine.isEmpty()) {
             if (!started) {
                 started=true;
-                query.append("SELECT " + DbContract.Recipe.TABLE_NAME +"."+
-                        DbContract.Recipe._ID +
+                query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                         " FROM "+ DbContract.Recipe.TABLE_NAME);
             } else {
-                query.append(" INTERSECT SELECT " + DbContract.Recipe.TABLE_NAME +"."+
-                        DbContract.Recipe._ID +
+                query.append(" INTERSECT SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                         " FROM "+ DbContract.Recipe.TABLE_NAME);
             }
             query.append(" INNER JOIN " + DbContract.Cuisine.TABLE_NAME +
@@ -611,12 +605,10 @@ public class DbHelper extends SQLiteOpenHelper {
         }
         if (type == null || !type.isEmpty()) {
             if (!started) {
-                query.append("SELECT " + DbContract.Recipe.TABLE_NAME +"."+
-                        DbContract.Recipe._ID +
+                query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                         " FROM "+ DbContract.Recipe.TABLE_NAME);
             } else {
-                query.append(" INTERSECT SELECT " + DbContract.Recipe.TABLE_NAME +"."+
-                        DbContract.Recipe._ID +
+                query.append(" INTERSECT SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                         " FROM "+ DbContract.Recipe.TABLE_NAME);
             }
             query.append(" INNER JOIN " + DbContract.MealType.TABLE_NAME +
@@ -639,7 +631,9 @@ public class DbHelper extends SQLiteOpenHelper {
             }
         }
         if (!started)
-            query.append("SELECT * FROM " + DbContract.Recipe.TABLE_NAME);
+            query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*" +
+                    " FROM " + DbContract.Recipe.TABLE_NAME);
+        Log.e(LOG, query.toString());
         return buildRecipeList(query.toString());
     }
 

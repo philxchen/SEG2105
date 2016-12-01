@@ -133,6 +133,11 @@ public class CreateRecipe extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (recipeTitleTxt.getText() == null || recipeTitleTxt.getText().toString().isEmpty()) {
+                    Snackbar.make(view, "You must name your recipe", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    return;
+                }
                 newRecipe.set_meal_type_id(1);
                 newRecipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
                 newRecipe.set_name(recipeTitleTxt.getText().toString());
