@@ -72,6 +72,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         if (recipe_id != 0) {
             saved=true;
             recipe = dbHelper.getRecipe(recipe_id);
+            recipeTitleTxt.setText(recipe.get_name());
             recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
             steps = dbHelper.getRecipeSteps(recipe_id);
             Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "Editing recipe id: "+recipe_id, Snackbar.LENGTH_LONG)

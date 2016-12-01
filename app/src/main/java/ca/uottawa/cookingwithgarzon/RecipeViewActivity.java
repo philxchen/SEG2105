@@ -27,6 +27,8 @@ import ca.uottawa.cookingwithgarzon.model.Step;
 
 public class RecipeViewActivity extends AppCompatActivity {
 
+    final int EDIT_RECIPE_REQUEST = 1;
+    private long recipe_id;
     private ImageView recipeImage;
     private RatingBar recipeRating;
     private TextView recipeDifficultyTxt;
@@ -54,8 +56,20 @@ public class RecipeViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         dbHelper = DbHelper.getInstance(getApplicationContext());
-        final long recipe_id = intent.getLongExtra("recipe_id", 0);
+        recipe_id = intent.getLongExtra("recipe_id", 0);
+        loadRecipe();
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent editIntent = new Intent(RecipeViewActivity.this, CreateOrEditRecipeActivity.class);
+                editIntent.putExtra("recipe_id", recipe_id);
+                startActivityForResult(editIntent, EDIT_RECIPE_REQUEST);
+            }
+        });
+    }
 
+    private void loadRecipe() {
         Snackbar.make(findViewById(R.id.activity_recipe_view), "Loaded recipe id "+ recipe_id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
@@ -92,16 +106,25 @@ public class RecipeViewActivity extends AppCompatActivity {
         viewRecipeStepList.setAdapter(stepArrayAdapter);
 
         dbHelper.close();
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent editIntent = new Intent(RecipeViewActivity.this, CreateOrEditRecipeActivity.class);
-                editIntent.putExtra("recipe_id", recipe_id);
-                startActivity(editIntent);
-            }
-        });
+    @Override
+    public void onResume() {
+        loadRecipe();
+        super.onResume();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case EDIT_RECIPE_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    String message = data.getStringExtra("result");
+                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    loadRecipe();
+                }
+                break;
+        }
     }
 }
