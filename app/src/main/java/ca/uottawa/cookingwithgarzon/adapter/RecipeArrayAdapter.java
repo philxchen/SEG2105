@@ -42,7 +42,6 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
         TextView recipeName = (TextView) convertView.findViewById(R.id.recipe_item_name);
         TextView recipeCuisine = (TextView) convertView.findViewById(R.id.recipe_item_cuisine);
         TextView recipeMealType = (TextView) convertView.findViewById(R.id.recipe_item_meal_type);
-        TextView recipeServings = (TextView) convertView.findViewById(R.id.recipe_item_servings);
 
         // Populate the data into the template view using the data object
         Cuisine cuisine = dbHelper.getCuisine(recipe.get_cuisine_id());
@@ -54,7 +53,7 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
         if (type != null) {
             recipeMealType.setText(type.get_name());
         }
-        recipeServings.setText(((Integer)recipe.get_servings()).toString());
+
         // Return the completed view to render on screen
         return convertView;
     }
