@@ -23,20 +23,25 @@ public class MealTypeSearchActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_type_search);
 
-        Intent intent = getIntent();
-        final String name = intent.getStringExtra("name");
+        Button searchBtn = (Button) findViewById(R.id.meal_type_search_button);
 
-        DbHelper dbHelper = DbHelper.getInstance(this);
+        final EditText mealTypeNameTxt = (EditText) findViewById(R.id.meal_type_search_input);
 
-        ArrayList<MealType> result = dbHelper.getMealTypes();
-        Snackbar.make(findViewById(R.id.activity_meal_type_search_result), "Found " + result.size() + " cuisines.", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-        MealTypeArrayAdapter adapter = new MealTypeArrayAdapter(this, meal_type_item, result);
-        ListView listView = (ListView) findViewById(R.id.listview_mealtypes);
-        listView.setAdapter(adapter);
+        View.OnClickListener oclSearchBtn = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MealTypeSearchActivity.this, MealTypeSearchResultActivity.class);
+                intent.putExtra("name", mealTypeNameTxt.getText().toString());
+                startActivity(intent);
+            }
+        };
+
+        searchBtn.setOnClickListener(oclSearchBtn);
+
     }
 }
 
