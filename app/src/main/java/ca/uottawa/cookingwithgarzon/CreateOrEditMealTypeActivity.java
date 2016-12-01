@@ -19,7 +19,7 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_meal);
+        setContentView(R.layout.activity_create_or_edit_meal);
         final Button saveBtn = (Button) findViewById(R.id.saveMealBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createMealText);
 

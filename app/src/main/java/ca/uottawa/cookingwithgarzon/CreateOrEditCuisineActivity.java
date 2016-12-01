@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Cuisine;
-import ca.uottawa.cookingwithgarzon.model.Step;
 
 public class CreateOrEditCuisineActivity extends Activity {
 
@@ -20,7 +19,7 @@ public class CreateOrEditCuisineActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_cuisine);
+        setContentView(R.layout.activity_create_or_edit_cuisine);
 
         final Button saveBtn = (Button) findViewById(R.id.saveCuisineBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createCuisineText);
