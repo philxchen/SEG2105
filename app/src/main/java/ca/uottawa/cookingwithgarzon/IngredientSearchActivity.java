@@ -21,17 +21,19 @@ public class IngredientSearchActivity extends AppCompatActivity {
         Button searchBtn = (Button) findViewById(R.id.search_ingredient_button);
 
         final EditText ingredientNameTxt = (EditText) findViewById(R.id.ingredient_search_input);
+        Intent intent = getIntent();
+
+        final long recipe_id = intent.getLongExtra("recipe_id", 0);
 
         searchBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(IngredientSearchActivity.this, IngredientSearchResultActivity.class);
-                intent.putExtra("name", ingredientNameTxt.getText().toString());
-                startActivityForResult(intent, PICK_INGREDIENT_REQUEST);
+                Intent searchIntent = new Intent(IngredientSearchActivity.this, IngredientSearchResultActivity.class);
+                searchIntent.putExtra("name", ingredientNameTxt.getText().toString());
+                searchIntent.putExtra("recipe_id", recipe_id);
+                startActivityForResult(searchIntent, PICK_INGREDIENT_REQUEST);
             }
         });
-
-
     }
 
     @Override

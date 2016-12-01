@@ -50,6 +50,7 @@ public class CreateRecipeIngredientActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent getIngredientIntent = new Intent(CreateRecipeIngredientActivity.this, IngredientSearchActivity.class);
+                getIngredientIntent.putExtra("recipe_id", recipe_id);
                 startActivityForResult(getIngredientIntent, PICK_INGREDIENT_REQUEST);
             }
         });

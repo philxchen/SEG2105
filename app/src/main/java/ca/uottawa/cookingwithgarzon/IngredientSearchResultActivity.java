@@ -28,7 +28,7 @@ public class IngredientSearchResultActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
         Intent intent = getIntent();
         final String name = intent.getStringExtra("name");
-
+        final long recipe_id = intent.getLongExtra("recipe_id", 0);
         DbHelper dbHelper = DbHelper.getInstance(this);
 
         ArrayList<Ingredient> result = dbHelper.getIngredients(name);
@@ -40,8 +40,18 @@ public class IngredientSearchResultActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                                         int position, long id) {
-            Intent result = new Intent();
+                                    int position, long id) {
+                if (recipe_id == 0) {
+                    Intent result = new Intent(IngredientSearchResultActivity.this, CreateOrEditIngredientActivity.class);
+                    Ingredient picked = (Ingredient) parent.getItemAtPosition(position);
+                    result.putExtra("ingredient_id", picked.get_id());
+                    result.putExtra("ingredient_name", picked.get_name());
+                    result.putExtra("result", "Editing ingredient " + picked.get_name());
+                    result.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(result);
+                    finish();
+                } else {
+                    Intent result = new Intent();
                     Ingredient picked = (Ingredient) parent.getItemAtPosition(position);
                     result.putExtra("ingredient_id", picked.get_id());
                     result.putExtra("ingredient_name", picked.get_name());
@@ -49,6 +59,7 @@ public class IngredientSearchResultActivity extends AppCompatActivity {
                     setResult(Activity.RESULT_OK, result);
                     finish();
                 }
-            });
+            }
+        });
     }
 }

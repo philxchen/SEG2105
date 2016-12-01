@@ -72,7 +72,7 @@
             android:name=".CreateOrEditCuisineActivity"
             android:label="@string/title_activity_create_cuisine" />
         <activity
-            android:name=".CreateIngredientActivity"
+            android:name=".CreateOrEditIngredientActivity"
             android:label="@string/title_activity_create_ingredient" />
         <activity
             android:name=".RecipeViewActivity"

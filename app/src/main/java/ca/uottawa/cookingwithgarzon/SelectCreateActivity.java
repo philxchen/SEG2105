@@ -39,7 +39,7 @@ public class SelectCreateActivity extends AppCompatActivity {
         createIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(SelectCreateActivity.this, CreateIngredientActivity.class),
+                startActivityForResult(new Intent(SelectCreateActivity.this, CreateOrEditIngredientActivity.class),
                         CREATE_INGREDIENT_REQUEST);
             }
         });

@@ -24,7 +24,7 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
         final EditText nameTxt = (EditText) findViewById(R.id.createMealText);
 
         Intent intent = getIntent();
-        mealtype_id = intent.getLongExtra("cuisine_id", 0);
+        mealtype_id = intent.getLongExtra("type_id", 0);
 
         if (mealtype_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());

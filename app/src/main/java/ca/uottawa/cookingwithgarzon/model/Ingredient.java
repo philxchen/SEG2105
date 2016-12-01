@@ -8,7 +8,6 @@ public class Ingredient {
     private long _id;
     private String _name;
     private double _price;
-    private int _difficulty;
 
     public Ingredient() {
     }
@@ -37,7 +36,4 @@ public class Ingredient {
         this._price = _price;
     }
 
-    public void set_difficulty(int _difficulty) {this._difficulty = _difficulty; }
-
-    public int get_difficulty() {return _difficulty; }
 }
