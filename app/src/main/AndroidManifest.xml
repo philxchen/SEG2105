@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SelectSearchActivity" />
+        <activity android:name=".SelectSearchActivity"
+            android:label="@string/title_activity_select_search"/>
         <activity
             android:name=".IngredientSearchActivity"
             android:label="@string/title_activity_ingredient_search" />
@@ -65,7 +66,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SelectCreateActivity"
-            android:label="@string/title_activity_select_search"/>
+            android:label="@string/title_activity_select_create"/>
         <activity
             android:name=".CreateCuisineActivity"
             android:label="@string/title_activity_create_cuisine" />
