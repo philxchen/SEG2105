@@ -15,8 +15,11 @@ import ca.uottawa.cookingwithgarzon.model.*;
 
 import java.util.ArrayList;
 
-
 public class RecipeSearchResult extends AppCompatActivity {
+private String name;
+private String ingredient;
+private String cuisine;
+private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +28,14 @@ public class RecipeSearchResult extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
-        final String name = intent.getStringExtra("name");
-        final String ingredient = intent.getStringExtra("ingredient");
-        final String cuisine = intent.getStringExtra("cuisine");
-        final String type = intent.getStringExtra("type");
+        name = intent.getStringExtra("name");
+        ingredient = intent.getStringExtra("ingredient");
+        cuisine = intent.getStringExtra("cuisine");
+        type = intent.getStringExtra("type");
+        loadResults();
+    }
 
+    private void loadResults() {
         DbHelper dbHelper = DbHelper.getInstance(getApplicationContext());
 
         ArrayList<Recipe> result = dbHelper.findRecipe(name, ingredient, cuisine, type);
@@ -53,4 +59,11 @@ public class RecipeSearchResult extends AppCompatActivity {
 
         dbHelper.close();
     }
+
+    @Override
+    public void onResume() {
+        loadResults();
+        super.onResume();
+    }
+
 }

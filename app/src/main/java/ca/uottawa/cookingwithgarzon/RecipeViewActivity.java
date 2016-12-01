@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.ToolbarWidgetWrapper;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -38,6 +39,8 @@ public class RecipeViewActivity extends AppCompatActivity {
     private ListView viewRecipeStepList;
     private DbHelper dbHelper;
     private Toolbar toolbar;
+    private Button deleteBtn;
+    private Recipe recipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +56,12 @@ public class RecipeViewActivity extends AppCompatActivity {
         recipeCuisineTxt = (TextView) content.findViewById(R.id.viewRecipeCusineType);
         viewRecipeIngredientList = (ListView) content.findViewById(R.id.viewRecipeIngredientList);
         viewRecipeStepList = (ListView) content.findViewById(R.id.viewRecipeStepList);
+        deleteBtn = (Button) content.findViewById(R.id.deleteRecipeBtn);
 
         Intent intent = getIntent();
         dbHelper = DbHelper.getInstance(getApplicationContext());
         recipe_id = intent.getLongExtra("recipe_id", 0);
+        recipe = dbHelper.getRecipe(recipe_id);
         loadRecipe();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,13 +72,20 @@ public class RecipeViewActivity extends AppCompatActivity {
                 startActivityForResult(editIntent, EDIT_RECIPE_REQUEST);
             }
         });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbHelper.deleteRecipe(recipe);
+                finish();
+            }
+        });
     }
 
     private void loadRecipe() {
         Snackbar.make(findViewById(R.id.activity_recipe_view), "Loaded recipe id "+ recipe_id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
-        Recipe recipe = dbHelper.getRecipe(recipe_id);
 
         getSupportActionBar().setTitle(recipe.get_name()); // Display recipe name in toolbar
         recipeRating.setNumStars(5);
@@ -122,6 +134,7 @@ public class RecipeViewActivity extends AppCompatActivity {
                     String message = data.getStringExtra("result");
                     Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+                    recipe = dbHelper.getRecipe(recipe_id);
                     loadRecipe();
                 }
                 break;

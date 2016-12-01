@@ -32,9 +32,13 @@ TO-DO
 
 - Make sure no crashes exist from a click.
 
-- Add ingredient to recipe.
+X Add ingredient to recipe.
 
-- Add instruction step to recipe.
+X Add instruction step to recipe.
+
+- Add cuisine to recipe
+
+- Add mealtype to recipe
 
 - Add "favorite" column to recipe DB table.
 

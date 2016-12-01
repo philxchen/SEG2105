@@ -186,5 +186,10 @@
                 android:id="@+id/viewRecipeStepList" />
         </LinearLayout>
 
+        <Button
+            android:text="Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteRecipeBtn"/>
     </LinearLayout>
 </LinearLayout>
