@@ -21,12 +21,15 @@ public class CuisineSearchActivity extends AppCompatActivity {
         Button searchBtn = (Button) findViewById(R.id.search_cuisine_button);
 
         final EditText cuisineNameTxt = (EditText) findViewById(R.id.cuisine_search_input);
+        Intent intent = getIntent();
+        final long recipe_id = intent.getLongExtra("recipe_id", 0);
 
         View.OnClickListener oclSearchBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CuisineSearchActivity.this, CuisineSearchResultActivity.class);
                 intent.putExtra("name", cuisineNameTxt.getText().toString());
+                intent.putExtra("recipe_id", recipe_id);
                 startActivityForResult(intent, GET_CUISINE_REQUEST);
             }
         };

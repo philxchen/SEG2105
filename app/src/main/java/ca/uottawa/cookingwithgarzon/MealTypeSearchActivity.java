@@ -32,11 +32,15 @@ public class MealTypeSearchActivity extends Activity {
 
         final EditText mealTypeNameTxt = (EditText) findViewById(R.id.meal_type_search_input);
 
+        Intent intent = getIntent();
+        final long recipe_id = intent.getLongExtra("recipe_id", 0);
+
         View.OnClickListener oclSearchBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MealTypeSearchActivity.this, MealTypeSearchResultActivity.class);
                 intent.putExtra("name", mealTypeNameTxt.getText().toString());
+                intent.putExtra("recipe_id", 0);
                 startActivityForResult(intent, GET_MEAL_TYPE_REQUEST);
             }
         };

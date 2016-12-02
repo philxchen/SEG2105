@@ -66,6 +66,7 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent getIngredientIntent = new Intent(CreateOrEditRecipeIngredientActivity.this, IngredientSearchActivity.class);
                 getIngredientIntent.putExtra("recipe_id", recipe_id);
+                // getIngredientIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivityForResult(getIngredientIntent, PICK_INGREDIENT_REQUEST);
             }
         });
