@@ -11,7 +11,6 @@ import java.util.List;
 
 import ca.uottawa.cookingwithgarzon.R;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
-import ca.uottawa.cookingwithgarzon.model.Ingredient;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 
 /**

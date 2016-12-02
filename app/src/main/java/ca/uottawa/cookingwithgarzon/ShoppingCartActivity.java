@@ -9,7 +9,6 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ca.uottawa.cookingwithgarzon.adapter.RecipeIngredientArrayAdapter;
 import ca.uottawa.cookingwithgarzon.adapter.ShoppingCartArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
