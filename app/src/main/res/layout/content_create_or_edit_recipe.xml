@@ -58,7 +58,7 @@
         </LinearLayout>
 
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:prompt="@string/difficulty_prompt"
             android:id="@+id/createRecipeDifficultySpinner"

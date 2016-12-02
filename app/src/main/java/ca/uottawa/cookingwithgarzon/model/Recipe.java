@@ -12,7 +12,7 @@ public class Recipe {
     private long _id;
     private String _name;
     private double _cost;
-    private int _difficulty;
+    private String _difficulty;
     private int _servings;
     private int _rating;
     private long _meal_type_id;
@@ -47,11 +47,11 @@ public class Recipe {
         this._cost = _cost;
     }
 
-    public int get_difficulty() {
+    public String get_difficulty() {
         return _difficulty;
     }
 
-    public void set_difficulty(int _difficulty) {
+    public void set_difficulty(String _difficulty) {
         this._difficulty = _difficulty;
     }
 

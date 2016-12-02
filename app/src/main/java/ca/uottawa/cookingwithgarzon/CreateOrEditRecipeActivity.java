@@ -83,6 +83,19 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         step_listView = (ListView) content.findViewById(R.id.createRecipeStepList);
         image = (ImageView) content.findViewById(R.id.createRecipeImage);
 
+        //Difficulty List
+        List<String> difficultyList = new ArrayList<>();
+        difficultyList.add("Easy");
+        difficultyList.add("Moderate");
+        difficultyList.add("Hard");
+        difficultyList.add("Select Difficulty"); //Hint
+
+        //Difficulty Adapter
+        HintAdapter difficultyAdapter = new HintAdapter(this, difficultyList, android.R.layout.simple_spinner_item);
+        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        difficultySpinner.setAdapter(difficultyAdapter);
+        difficultySpinner.setSelection(difficultyAdapter.getCount());
+
         dbHelper = DbHelper.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
@@ -134,26 +147,6 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             }
         });
 
-        /*
-         * Spinner Object Lists
-         */
-
-        //Difficulty List
-        List<String> difficultyList = new ArrayList<>();
-        difficultyList.add("Easy");
-        difficultyList.add("Moderate");
-        difficultyList.add("Hard");
-        difficultyList.add("Select Difficulty"); //Hint
-
-        /*
-         * Spinner Object HintAdapters and Hint initialization
-         */
-
-        //Difficulty Adapter
-        HintAdapter difficultyAdapter = new HintAdapter(this, difficultyList, android.R.layout.simple_spinner_item);
-        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        difficultySpinner.setAdapter(difficultyAdapter);
-        difficultySpinner.setSelection(difficultyAdapter.getCount());
 
         //Floating Action Toolbar when submitting to the Database
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addRecipeBtn);
@@ -175,7 +168,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                     return;
                 }
-                recipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
+                recipe.set_difficulty(difficultySpinner.getSelectedItem().toString());
                 recipe.set_name(recipeTitleTxt.getText().toString());
                 recipe.set_rating((int)recipeRatingBar.getRating());
                 if(addedPicture)
@@ -185,7 +178,6 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 Intent finishedIntent = new Intent(CreateOrEditRecipeActivity.this, RecipeViewActivity.class);
                 finishedIntent.putExtra("recipe_id", recipe.get_id());
                 finishedIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                SelectCreateActivity.selectCreateActivity.finish();
                 startActivity(finishedIntent);
                 finish();
             }
@@ -247,6 +239,17 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         }
         if(recipe.get_image() != null) {
             image.setImageBitmap(dbBitMap.getImage(recipe.get_image()));
+        }
+        switch(recipe.get_difficulty()) {
+            case "Easy":
+                difficultySpinner.setSelection(0);
+                break;
+            case "Moderate":
+                difficultySpinner.setSelection(1);
+                break;
+            case "Hard":
+                difficultySpinner.setSelection(2);
+                break;
         }
 
         recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);

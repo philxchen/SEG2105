@@ -25,8 +25,8 @@ import ca.uottawa.cookingwithgarzon.model.Step;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static DbHelper mInstance = null;
-    public static final int DATABASE_VERSION = 5;
-    public static final String DATABASE_NAME = "RecipeViewActivity.db";
+    public static final int DATABASE_VERSION = 6;
+    public static final String DATABASE_NAME = "recipe.db";
 
     private static final String LOG = "DbHelper";
     private static final String TEXT_TYPE = " TEXT";
@@ -42,7 +42,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Recipe._ID + " INTEGER PRIMARY KEY," +
                     DbContract.Recipe.COLUMN_RECIPE_NAME + TEXT_TYPE + COMMA_SEP +
                     DbContract.Recipe.COLUMN_COST + REAL_TYPE + COMMA_SEP +
-                    DbContract.Recipe.COLUMN_DIFFICULTY + INTEGER_TYPE + COMMA_SEP +
+                    DbContract.Recipe.COLUMN_DIFFICULTY + TEXT_TYPE + COMMA_SEP +
                     DbContract.Recipe.COLUMN_SERVINGS + INTEGER_TYPE + COMMA_SEP +
                     DbContract.Recipe.COLUMN_RATING + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for cuisine
@@ -281,7 +281,7 @@ public class DbHelper extends SQLiteOpenHelper {
         recipe.set_id(c.getLong(c.getColumnIndex(DbContract.Recipe._ID)));
         recipe.set_name(c.getString(c.getColumnIndex(DbContract.Recipe.COLUMN_RECIPE_NAME)));
         recipe.set_cost(c.getDouble((c.getColumnIndex((DbContract.Recipe.COLUMN_COST)))));
-        recipe.set_difficulty(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_DIFFICULTY)));
+        recipe.set_difficulty(c.getString(c.getColumnIndex(DbContract.Recipe.COLUMN_DIFFICULTY)));
         recipe.set_servings(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_SERVINGS)));
         recipe.set_rating(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_RATING)));
         recipe.set_cuisine_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_CUISINE)));
@@ -555,7 +555,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 recipe.set_id(c.getLong(c.getColumnIndex(DbContract.Recipe._ID)));
                 recipe.set_name(c.getString(c.getColumnIndex(DbContract.Recipe.COLUMN_RECIPE_NAME)));
                 recipe.set_cost(c.getDouble((c.getColumnIndex((DbContract.Recipe.COLUMN_COST)))));
-                recipe.set_difficulty(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_DIFFICULTY)));
+                recipe.set_difficulty(c.getString(c.getColumnIndex(DbContract.Recipe.COLUMN_DIFFICULTY)));
                 recipe.set_servings(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_SERVINGS)));
                 recipe.set_rating(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_RATING)));
                 recipe.set_cuisine_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_CUISINE)));

@@ -111,22 +111,7 @@ public class RecipeViewActivity extends AppCompatActivity {
             mealType = dbHelper.getMealType(recipe.get_meal_type_id());
             recipeMealTypeTxt.setText(mealType.get_name());
         }
-        String difficulty;
-        switch(recipe.get_difficulty()) {
-            case 2:
-                difficulty = new String("Easy");
-                break;
-            case 3:
-                difficulty = new String("Moderate");
-                break;
-            case 4:
-                difficulty = new String("Hard");
-                break;
-            default:
-                difficulty = new String("Not rated");
-                break;
-        }
-        recipeDifficultyTxt.setText(difficulty);
+        recipeDifficultyTxt.setText(recipe.get_difficulty());
 
         recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
 
