@@ -45,4 +45,18 @@
 
     <include layout="@layout/content_recipe_view" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="47dp"
+        android:layout_height="46dp"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_help"
+        android:id="@+id/floatingActionButton3"
+        app:backgroundTint="@android:color/transparent"
+        android:layout_gravity="bottom|left"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_anchor="@+id/app_bar"
+        app:layout_anchorGravity="top|right" />
+
 </android.support.design.widget.CoordinatorLayout>

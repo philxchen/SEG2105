@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_create_or_edit_step"
     android:layout_width="match_parent"
@@ -9,13 +10,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.uottawa.cookingwithgarzon.CreateOrEditStepActivity">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="1"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:weightSum="1">
+        android:layout_alignParentStart="true">
 
         <TextView
             android:text="Create or Edit Step"
@@ -46,20 +48,48 @@
             android:id="@+id/stepTimeTxt"
             android:textSize="24sp"/>
 
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33" />
+
         <Button
             android:text="Save"
             android:layout_width="138dp"
             android:layout_height="57dp"
             android:id="@+id/saveStepBtn"
-            android:layout_gravity="center_horizontal"  />
+            android:layout_gravity="center_horizontal" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.29" />
 
         <Button
             android:text="Delete"
             android:layout_width="138dp"
             android:layout_height="57dp"
             android:id="@+id/deleteStepBtn"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"/>
+            android:layout_gravity="center_horizontal" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.19" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_menu_help"
+            android:id="@+id/helpBtn"
+            android:layout_weight="0.05"
+            app:backgroundTint="@android:color/transparent"
+            android:layout_gravity="bottom|end" />
+
 
     </LinearLayout>
 

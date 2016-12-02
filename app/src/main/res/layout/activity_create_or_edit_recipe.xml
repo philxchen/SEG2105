@@ -30,20 +30,6 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                app:fabSize="mini"
-                app:srcCompat="@android:drawable/ic_menu_help"
-                android:id="@+id/helpBtn"
-                android:layout_weight="0.15"
-                app:backgroundTint="@android:color/transparent"
-                android:forceHasOverlappingRendering="false"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="end" />
-
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -58,5 +44,21 @@
         android:id="@+id/addRecipeBtn" />
 
     <include layout="@layout/content_create_or_edit_recipe" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="49dp"
+        android:layout_height="48dp"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_help"
+        android:id="@+id/helpBtn"
+        android:layout_weight="0.15"
+        app:backgroundTint="@android:color/transparent"
+        android:forceHasOverlappingRendering="false"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="bottom|left"
+        app:layout_anchor="@+id/app_bar"
+        app:layout_anchorGravity="top|right" />
 
 </android.support.design.widget.CoordinatorLayout>

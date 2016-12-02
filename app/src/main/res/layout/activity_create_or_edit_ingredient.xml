@@ -78,13 +78,14 @@
             android:textAlignment="center"
             android:layout_gravity="center_horizontal" />
 
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.11" />
+            android:layout_weight="0.14" />
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="54dp"
+            android:layout_width="57dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             app:fabSize="mini"
@@ -92,8 +93,6 @@
             android:id="@+id/helpBtn"
             android:layout_weight="0.07"
             app:backgroundTint="@android:color/transparent"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_gravity="bottom|end" />
     </LinearLayout>
 
