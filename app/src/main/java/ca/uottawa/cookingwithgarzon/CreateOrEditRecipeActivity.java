@@ -1,6 +1,5 @@
 package ca.uottawa.cookingwithgarzon;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -60,6 +59,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private TextView mealTypeTxt;
     private TextView cuisineTxt;
     private boolean saved;
+    private boolean addedPicture;
 
 
     @Override
@@ -68,6 +68,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_or_edit_recipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        addedPicture = false; //initialized for added image
 
         View content = findViewById(R.id.content_create_recipe);
         newIngredientBtn = (FloatingActionButton) content.findViewById(R.id.createRecipeAddIngredientBtn);
@@ -166,7 +168,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 recipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
                 recipe.set_name(recipeTitleTxt.getText().toString());
                 recipe.set_rating((int)recipeRatingBar.getRating());
-                recipe.set_image(dbBitMap.getBytes(((BitmapDrawable)image.getDrawable()).getBitmap()));
+                if(addedPicture)
+                    recipe.set_image(dbBitMap.getBytes(((BitmapDrawable)image.getDrawable()).getBitmap()));
                 dbHelper.updateRecipe(recipe);
                 saved = true;
                 Intent finishedIntent = new Intent(CreateOrEditRecipeActivity.this, RecipeViewActivity.class);
@@ -233,7 +236,6 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             mealTypeTxt.setText(mealtype.get_name());
         }
         if(recipe.get_image() != null) {
-            System.out.println("RECIPE IMAGE NOT NULL!!");
             image.setImageBitmap(dbBitMap.getImage(recipe.get_image()));
         }
 
@@ -307,6 +309,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     Bitmap photo = (Bitmap) data.getExtras().get("data");
                     image.setImageBitmap(photo);
+                    addedPicture = true;
                 }
                 break;
             case MODIFY_INGREDIENT_REQUEST:
