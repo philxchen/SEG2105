@@ -47,8 +47,8 @@
     <string name="createMealHelp"></string>
     <string name="createCuisineHelp"></string>
     <string name="createIngredientHelp"><b>Create or Edit Ingredient</b>
-        Add a new ingredient by specifying a name and its' price.
-        
+        Add a new ingredient by specifying a name and its\' price.
+
         </string>
     <string name="shoppingCartHelp"><b>Shopping Cart Screen Help</b>
         This list will simplify your trip to the grocery store!\n

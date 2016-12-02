@@ -661,7 +661,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         if (name != null && !name.isEmpty()) {
             started = true;
-            String[] args = name.split(" AND ");
+            String[] args = name.toLowerCase().split(" and ");
             query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                     " FROM " + DbContract.Recipe.TABLE_NAME + " WHERE ");
             for (int i = 0; i < args.length; ++i) {
@@ -696,7 +696,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Ingredient._ID + "=" +
                     DbContract.RecipeIngredient.TABLE_NAME + "." +
                     DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID + " WHERE ");
-            String[] args = ingredient.split(" AND ");
+            String[] args = ingredient.toLowerCase().split(" and ");
             for (int i = 0; i < args.length; ++i) {
                 query.append(DbContract.Ingredient.TABLE_NAME +"." +
                         DbContract.Ingredient.COLUMN_INGREDIENT_NAME);
@@ -724,7 +724,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Recipe.COLUMN_CUISINE + "="+
                     DbContract.Cuisine.TABLE_NAME +"."+
                     DbContract.Cuisine._ID + " WHERE ");
-            String[] args = cuisine.split(" AND ");
+            String[] args = cuisine.toLowerCase().split(" and ");
             for (int i = 0; i < args.length; ++i) {
                 query.append(DbContract.Cuisine.TABLE_NAME +"."+
                         DbContract.Cuisine.COLUMN_CUISINE_NAME);
@@ -752,7 +752,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Recipe.COLUMN_MEALTYPE + "="+
                     DbContract.MealType.TABLE_NAME +"."+
                     DbContract.MealType._ID + " WHERE ");
-            String[] args = type.split(" AND ");
+            String[] args = type.toLowerCase().split(" and ");
             for (int i = 0; i < args.length; ++i) {
                 query.append(DbContract.MealType.TABLE_NAME +"."+
                         DbContract.MealType.COLUMN_MEAL_TYPE_NAME);
