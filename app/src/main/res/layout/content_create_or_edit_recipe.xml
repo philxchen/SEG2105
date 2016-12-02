@@ -51,34 +51,62 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:numStars="5"
-                    android:stepSize="1" />
+                    android:stepSize="1"
+                    android:scaleX=".7"
+                    android:scaleY=".7" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <Spinner
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:prompt="@string/difficulty_prompt"
-            android:id="@+id/createRecipeDifficultySpinner"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:alwaysDrawnWithCache="false" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/createRecipeMealTypeTxt"
-            android:hint="@string/meal_type_prompt"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            <Spinner
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:prompt="@string/difficulty_prompt"
+                android:id="@+id/createRecipeDifficultySpinner"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:alwaysDrawnWithCache="false"
+                android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/createRecipeCuisineTxt"
-            android:hint="@string/cuisine_type_prompt"
-            android:layout_width="fill_parent"
+            <Switch
+                android:text="Favourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/favouritesSwitch"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="40dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/createRecipeMealTypeTxt"
+                android:hint="@string/meal_type_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/createRecipeCuisineTxt"
+                android:hint="@string/cuisine_type_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
