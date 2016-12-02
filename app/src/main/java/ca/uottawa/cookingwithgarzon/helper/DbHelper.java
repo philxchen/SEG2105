@@ -25,7 +25,7 @@ import ca.uottawa.cookingwithgarzon.model.Step;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static DbHelper mInstance = null;
-    public static final int DATABASE_VERSION = 7;
+    public static final int DATABASE_VERSION = 8;
     public static final String DATABASE_NAME = "recipe.db";
 
     private static final String LOG = "DbHelper";
