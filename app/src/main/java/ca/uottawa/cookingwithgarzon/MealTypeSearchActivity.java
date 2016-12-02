@@ -52,7 +52,7 @@ public class MealTypeSearchActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(MealTypeSearchActivity.this, HelpActivity.class);
-                helpIntent.putExtra("helpTextName", "mealTypeSearchHelp");
+                helpIntent.putExtra("helpTextName", "searchMealHelp");
                 startActivity(helpIntent);
             }
         });

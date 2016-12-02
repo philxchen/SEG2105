@@ -40,7 +40,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(RecipeSearchActivity.this, HelpActivity.class);
-                helpIntent.putExtra("helpTextName", "recipeSearchHelp");
+                helpIntent.putExtra("helpTextName", "searchRecipeHelp");
                 startActivity(helpIntent);
             }
         });

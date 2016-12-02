@@ -73,7 +73,7 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(CreateOrEditMealTypeActivity.this, HelpActivity.class);
-                helpIntent.putExtra("helpTextName", "createMealTypeHelp");
+                helpIntent.putExtra("helpTextName", "createMealHelp");
                 startActivity(helpIntent);
             }
         });

@@ -42,7 +42,7 @@ public class CuisineSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(CuisineSearchActivity.this, HelpActivity.class);
-                helpIntent.putExtra("helpTextName", "cuisineSearchHelp");
+                helpIntent.putExtra("helpTextName", "searchCuisineHelp");
                 startActivity(helpIntent);
             }
         });

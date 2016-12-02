@@ -65,7 +65,7 @@ public class SelectCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(SelectCreateActivity.this, HelpActivity.class);
-                helpIntent.putExtra("helpTextName", "selectCreateHelp");
+                helpIntent.putExtra("helpTextName", "createHelp");
                 startActivity(helpIntent);
             }
         });

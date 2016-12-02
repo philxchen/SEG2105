@@ -42,7 +42,7 @@ public class IngredientSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(IngredientSearchActivity.this, HelpActivity.class);
-                helpIntent.putExtra("helpTextName", "ingredientSearchHelp");
+                helpIntent.putExtra("helpTextName", "searchIngredientHelp");
                 startActivity(helpIntent);
             }
         });
