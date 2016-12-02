@@ -44,11 +44,21 @@
     <string name="searchCuisineHelp"></string>
     <string name="searchIngredientHelp"></string>
     <string name="createHelp"></string>
-    <string name="createMealHelp"></string>
-    <string name="createCuisineHelp"></string>
+    <string name="createMealHelp"><b>Create or Edit Meal Type</b>
+        Add a new Meal Type (Breakfast, Dinner, etc..) by specifying a name.
+        Save Button: Add or modify meal type.
+        Delete Button: Deletes meal type.
+    </string>
+    <string name="createCuisineHelp"><b>Create or Edit Cuisine</b>
+        Add a new cuisine by specifying a name.
+        Save Button: Add or modify cuisine.
+        Delete Button: Deletes cuisine.
+    </string>
     <string name="createIngredientHelp"><b>Create or Edit Ingredient</b>
         Add a new ingredient by specifying a name and its\' price.
-
+        Modify an existing ingredient by clicking on the name or price.
+        Save Button: Add or modify ingredient.
+        Delete Button: Deletes ingredient.
         </string>
     <string name="shoppingCartHelp"><b>Shopping Cart Screen Help</b>
         This list will simplify your trip to the grocery store!\n

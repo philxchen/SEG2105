@@ -81,5 +81,7 @@ public class MainActivity extends Activity {
         favouritesBtn.setOnClickListener(oclFavouritesBtn);
         shoppingListBtn.setOnClickListener(oclShoppingCartBtn);
         clearDbBtn.setOnClickListener(oclClearDbBtn);
+        clearDbBtn.setVisibility(View.INVISIBLE);
+        clearDbBtn.setClickable(false);
     }
 }
