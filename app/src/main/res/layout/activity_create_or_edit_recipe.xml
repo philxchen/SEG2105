@@ -117,51 +117,97 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1">
 
                     <TextView
-                        android:text="TextView"
+                        android:text="Meal Type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/mealTitle"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/createRecipeMealTypeTxt"
-                        android:hint="@string/meal_type_prompt"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:textSize="20sp" />
+                        android:textSize="24sp"
+                        android:textAlignment="center"
+                        android:hint="@string/meal_type_prompt" />
+
+                    <TextView
+                        android:text="Serving Size:"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/servingTitle"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:layout_marginTop="10dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:id="@+id/createRecipeServingTxt"
+                        android:hint="Input Serving Size"
+                        android:textAlignment="center"
+                        android:ems="10"
+                        android:textSize="20sp"
+                        android:singleLine="true" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1">
 
                     <TextView
-                        android:text="TextView"
-                        android:layout_width="wrap_content"
+                        android:text="Cuisine Type"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/cusineTitle"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/createRecipeCuisineTxt"
-                        android:hint="@string/cuisine_type_prompt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="24sp"
+                        android:textAlignment="center"
+                        android:hint="@string/cuisine_type_prompt" />
+
+                    <TextView
+                        android:text="Total Cost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/costTitle"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:text="Calculation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/createRecipeCostTxt"
+                        android:layout_weight="21.06"
+                        android:textAlignment="center"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -172,31 +218,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="Serving Size:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/servingTitle"
-                    android:layout_weight="1" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/createRecipeServingTxt"
-                    android:hint="Input Serving Size" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.03">
 
@@ -204,52 +228,27 @@
                         android:text="Ingredients"
                         android:layout_height="match_parent"
                         android:id="@+id/createRecipeIngredientTitle"
-                        android:layout_weight="1"
                         android:textSize="24sp"
                         android:gravity="left|center"
                         android:paddingLeft="10dp"
-                        android:layout_width="wrap_content" />
+                        android:layout_width="160dp" />
 
                     <Button
                         android:layout_width="48dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/createRecipeAddIngredientBtn"
                         android:background="@drawable/ic_add_black_24dp"
-                        android:layout_weight="0.10" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.03">
-
-                    <TextView
-                        android:text="Total Cost"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/costTitle"
-                        android:layout_weight="0.12"
-                        android:textAlignment="center"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:text="Calculation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/createRecipeCostTxt"
-                        android:layout_weight="0.12"
-                        android:textAlignment="center" />
+                        android:layout_weight="0.00" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:isScrollContainer="false"
                 android:dividerHeight="1dp"
-                android:id="@+id/createRecipeIngredientList" />
+                android:id="@+id/createRecipeIngredientList"
+                android:layout_height="126dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -260,13 +259,13 @@
 
                 <TextView
                     android:text="Instructions"
-                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/createRecipeInstructionTitle"
                     android:layout_weight="0.12"
                     android:textSize="24sp"
                     android:paddingLeft="10dp"
-                    android:gravity="left|center" />
+                    android:gravity="left|center"
+                    android:layout_width="140dp" />
 
                 <Button
                     android:layout_width="49dp"
@@ -278,7 +277,7 @@
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="193dp"
                 android:layout_weight="1"
                 android:paddingBottom="10dp"
                 android:paddingTop="5dp"

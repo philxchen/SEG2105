@@ -18,7 +18,7 @@
     <string name="title_activity_cuisine_search_result">Cuisine Search Result</string>
     <string name="difficulty_prompt">Select Difficulty</string>
     <string name="meal_type_prompt">Select Meal Type</string>
-    <string name="cuisine_type_prompt">Select Cuisine Type</string>
+    <string name="cuisine_type_prompt">Select Cuisine</string>
     <string name="title_activity_ingredient_search">Search for Ingredient</string>
     <string name="title_activity_cuisine_search">Search for Cuisine</string>
     <string name="title_activity_recipe_preview">Preview Recipe</string>

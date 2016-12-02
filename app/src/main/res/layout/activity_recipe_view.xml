@@ -64,9 +64,9 @@
             <ImageView
                 android:id="@+id/viewRecipeImage"
                 app:srcCompat="@drawable/ic_image_black_36dp"
-                android:layout_height="110dp"
                 android:layout_width="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_height="125dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -236,12 +236,12 @@
                 <TextView
                     android:text="Ingredients"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:id="@+id/ingredientText"
                     android:layout_weight="0.16"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content" />
 
                 <Button
                     android:text="Add to Cart"
@@ -250,7 +250,8 @@
                     android:id="@+id/addToCartBtn"
                     android:textSize="11sp"
                     android:layout_marginRight="10dp"
-                    android:gravity="bottom|left" />
+                    android:gravity="bottom|left"
+                    android:layout_marginTop="10dp" />
             </LinearLayout>
 
             <LinearLayout
