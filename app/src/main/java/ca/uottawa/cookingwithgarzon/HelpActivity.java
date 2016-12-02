@@ -42,6 +42,8 @@ public class HelpActivity extends Activity {
                 break;
             case "shoppingCartHelp":
                 break;
+            case "createRecipeHelp":
+                break;
         }
 
 

@@ -37,13 +37,8 @@
         Create Button: Will redirect you to create a Recipe, Cuisine, Meal Types or Ingredients.\n
         Favourites Button: Will redirect you to see your favourite recipes.\n
         Shopping Cart Button: Will redirect you to see your current shopping cart, which contains
-        ingredients added to the shopping cart.</string>
-    <string name="searchHelp"></string>
-    <string name="searchRecipeHelp"></string>
-    <string name="searchMealHelp"></string>
-    <string name="searchCuisineHelp"></string>
-    <string name="searchIngredientHelp"></string>
-    <string name="createHelp"></string>
+        ingredients added to the shopping cart.
+    </string>
     <string name="createMealHelp"><b>Create or Edit Meal Type</b>
         Add a new Meal Type (Breakfast, Dinner, etc..) by specifying a name.
         Save Button: Add or modify meal type.
@@ -59,13 +54,41 @@
         Modify an existing ingredient by clicking on the name or price.
         Save Button: Add or modify ingredient.
         Delete Button: Deletes ingredient.
-        </string>
+    </string>
     <string name="shoppingCartHelp"><b>Shopping Cart Screen Help</b>
         This list will simplify your trip to the grocery store!\n
         When viewing a recipe, click the Add to Shopping Cart button and the ingredients will
         appear here.\n
         Check them off as you put them in your cart by click on the check box.
         Clear (X) Button: Will clear ingredients from your shopping cart.
-
     </string>
+    <string name="searchHelp"><b>Search Screen Help</b>\n
+        Recipe Button: To find a Recipe.\n
+        Ingredient Button: To find an Ingredient.\n
+        Cuisine Button: To find a Cuisine.\n
+        Meal Button: To find a Meal Type.
+    </string>
+    <string name="searchRecipeHelp"><b>Search Recipe Help Screen</b>\n
+        You can fill some or all of the following search fields.\n
+        Recipe Name Field: Search for recipes by their name.\n
+        Ingredients Field: Search for recipes by the ingredients in the recipes.\n
+        Meal Field: Search for recipes by the meal type(s) they are associated with. \n
+        Cuisine Field: Search for recipes based on the cuisine type(s) they are associated with. \n\n
+        You can fill any field using boolean logic:\n
+        Multiple Items, use an \'and\' in-between each item. ex: \"Ham and egg\"\n
+        Omit an Item, use a \'not\' before the item to be omitted. ex: \"Not egg\"\n
+        Example using both: \"Ham and not egg\".
+    </string>
+    <string name="searchMealHelp"><b>Search Meal Screen Help</b>\n
+        Meal Type Field: Input which meal type to search here.
+    </string>
+    <string name="searchCuisineHelp"><b>Search Cuisine Screen Help</b>
+        Cuisine Name Field: Input which cuisine you would like to search for.
+    </string>
+    <string name="searchIngredientHelp"><b>Search Ingredient Screen Help</b>\n
+        Ingredient Name Field: Input which ingredient you would like to search for.
+    </string>
+    <string name="createHelp"><b>Create Screen Help</b>\n
+    </string>
+    <string name="createRecipeHelp"></string>
 </resources>
