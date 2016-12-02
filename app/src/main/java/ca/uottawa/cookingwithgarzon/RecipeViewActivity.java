@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import ca.uottawa.cookingwithgarzon.adapter.RecipeIngredientArrayAdapter;
 import ca.uottawa.cookingwithgarzon.adapter.StepArrayAdapter;
+import ca.uottawa.cookingwithgarzon.helper.DbBitMapUtility;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.MealType;
 import ca.uottawa.cookingwithgarzon.model.Recipe;
@@ -49,6 +50,7 @@ public class RecipeViewActivity extends AppCompatActivity {
     private ArrayList<Step> steps = new ArrayList<>();
     private StepArrayAdapter stepArrayAdapter;
     private RecipeIngredientArrayAdapter recipeIngredientArrayAdapter;
+    private DbBitMapUtility dbBitMap = new DbBitMapUtility();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +139,9 @@ public class RecipeViewActivity extends AppCompatActivity {
 
         stepArrayAdapter = new StepArrayAdapter(this, R.layout.step_item, steps);
         viewRecipeStepList.setAdapter(stepArrayAdapter);
+
+        if(recipe.get_image() != null)
+            recipeImage.setImageBitmap(dbBitMap.getImage(recipe.get_image()));
 
         dbHelper.close();
     }

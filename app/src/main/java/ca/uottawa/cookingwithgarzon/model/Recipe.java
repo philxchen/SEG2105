@@ -17,6 +17,7 @@ public class Recipe {
     private int _rating;
     private long _meal_type_id;
     private long _cuisine_id;
+    private byte[] _image;
 
 
     public Recipe() {
@@ -81,5 +82,9 @@ public class Recipe {
     public int get_rating() {return _rating; }
 
     public void set_rating(int _rating) { this._rating = _rating; }
+
+    public byte[] get_image() {return _image; }
+
+    public void set_image(byte[] image) {this._image = image;}
 
 }

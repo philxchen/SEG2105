@@ -2,6 +2,7 @@ package ca.uottawa.cookingwithgarzon;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.List;
 import ca.uottawa.cookingwithgarzon.adapter.HintAdapter;
 import ca.uottawa.cookingwithgarzon.adapter.RecipeIngredientArrayAdapter;
 import ca.uottawa.cookingwithgarzon.adapter.StepArrayAdapter;
+import ca.uottawa.cookingwithgarzon.helper.DbBitMapUtility;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.*;
 
@@ -32,7 +35,10 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     final int GET_CUISINE_REQUEST = 3;
     final int GET_MEALTYPE_REQUEST = 4;
 
+    private static final int CAMERA_REQUEST = 5;
+
     private DbHelper dbHelper;
+    private DbBitMapUtility dbBitMap = new DbBitMapUtility();
     private Recipe recipe;
     private Cuisine cuisine;
     private MealType mealtype;
@@ -71,6 +77,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         cuisineTxt = (TextView) content.findViewById(R.id.createRecipeCuisineTxt);
         recipeIngredients_listView = (ListView) content.findViewById(R.id.createRecipeIngredientList);
         step_listView = (ListView) content.findViewById(R.id.createRecipeStepList);
+        image = (ImageView) content.findViewById(R.id.createRecipeImage);
 
         dbHelper = DbHelper.getInstance(getApplicationContext());
 
@@ -142,6 +149,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 recipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
                 recipe.set_name(recipeTitleTxt.getText().toString());
                 recipe.set_rating((int)recipeRatingBar.getRating());
+                recipe.set_image(dbBitMap.getBytes(((BitmapDrawable)image.getDrawable()).getBitmap()));
                 dbHelper.updateRecipe(recipe);
                 saved = true;
                 Intent finishedIntent = new Intent(CreateOrEditRecipeActivity.this, RecipeViewActivity.class);
@@ -205,11 +213,22 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             mealtype = dbHelper.getMealType(recipe.get_meal_type_id());
             mealTypeTxt.setText(mealtype.get_name());
         }
+        if(recipe.get_image() != null) {
+            System.out.println("RECIPE IMAGE NOT NULL!!");
+            image.setImageBitmap(dbBitMap.getImage(recipe.get_image()));
+        }
+
 
         recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
         steps = dbHelper.getRecipeSteps(recipe_id);
         Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "Editing recipe id: "+recipe_id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+    }
+
+    //Helper method to set Recipe Image
+    public void takeImageFromCamera(View view){
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
     @Override
@@ -267,6 +286,12 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                         recipe.set_meal_type_id(mealtype.get_id());
                         mealTypeTxt.setText(mealtype.get_name());
                     }
+                }
+                break;
+            case CAMERA_REQUEST:
+                if(resultCode == RESULT_OK){
+                    Bitmap photo = (Bitmap) data.getExtras().get("data");
+                    image.setImageBitmap(photo);
                 }
                 break;
         }
