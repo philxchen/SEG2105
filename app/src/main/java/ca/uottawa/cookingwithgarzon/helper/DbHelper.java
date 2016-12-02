@@ -839,4 +839,8 @@ public class DbHelper extends SQLiteOpenHelper {
             return buildRecipeList(query.toString());
     }
 
+//    public void cleanRecipes(){
+//
+//    }
+
 }

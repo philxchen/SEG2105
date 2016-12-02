@@ -32,5 +32,20 @@
     <string name="title_activity_recipe_search_Result">Recipe Search Result</string>
     <string name="title_activity_select_create">Create</string>
     <string name="title_activity_meal_type_search_result">Meal Type Search Result</string>
-    <string name="testHelp">Here\'s some Lorem Ipsum.</string>
+    <string name="mainScreenHelp"><b>Main Screen Help</b>\n
+        Search Button: Will redirect you to search for a Recipe, Cuisine, Meal Types or Ingredients.\n
+        Create Button: Will redirect you to create a Recipe, Cuisine, Meal Types or Ingredients.\n
+        Favourites Button: Will redirect you to see your favourite recipes.\n
+        Shopping Cart Button: Will redirect you to see your current shopping cart, which contains
+        ingredients added to the shopping cart.</string>
+    <string name="searchHelp"></string>
+    <string name="searchRecipeHelp"></string>
+    <string name="searchMealHelp"></string>
+    <string name="searchCuisineHelp"></string>
+    <string name="searchIngredientHelp"></string>
+    <string name="createHelp"></string>
+    <string name="createMealHelp"></string>
+    <string name="createCuisineHelp"></string>
+    <string name="createIngredientHelp"></string>
+    <string name="shoppingCartHelp"></string>   
 </resources>
