@@ -147,7 +147,6 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_STEP_TABLE);
         db.execSQL(SQL_CREATE_MEALTYPE_TABLE);
         db.execSQL(SQL_CREATE_CUISINE_TABLE);
-//        db.execSQL(SQL_CREATE_SHOPPINGCART_TABLE);
         db.execSQL(SQL_CREATE_SHOPPINGCARTINGREDIENT_TABLE);
     }
 
@@ -159,7 +158,6 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_CUISINE_TABLE);
         db.execSQL(SQL_DELETE_MEALTYPE_TABLE);
         db.execSQL(SQL_DELETE_STEP_TABLE);
-//        db.execSQL(SQL_DELETE_SHOPPINGCART_TABLE);
         db.execSQL(SQL_DELETE_SHOPPINGCARTINGREDIENT_TABLE);
         onCreate(db);
     }
@@ -604,7 +602,11 @@ public class DbHelper extends SQLiteOpenHelper {
         db.delete(DbContract.ShoppingCartIngredient.TABLE_NAME, "_ID=" + recipeIngredient.get_id(), null);
     }
 
-
+    /** Clear table operations */
+    public void clearShoppingCartIngredient() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DbContract.ShoppingCartIngredient.TABLE_NAME, null, null);
+    }
 
     /** Search operations */
 

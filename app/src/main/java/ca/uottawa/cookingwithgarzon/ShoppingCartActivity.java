@@ -21,20 +21,23 @@ public class ShoppingCartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
 
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        final DbHelper dbHelper = DbHelper.getInstance(this);
+        final ArrayList<RecipeIngredient> recipeIngredients = dbHelper.getShoppingCartIngredients();
+        final ListView listView = (ListView) findViewById(R.id.shopping_cart_list);
+        listView.setAdapter(new ShoppingCartArrayAdapter(this, R.layout.shopping_cart_list_item, recipeIngredients));
+
+        final FloatingActionButton clearCartBtn = (FloatingActionButton) findViewById(R.id.clearCartBtn);
+        clearCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                dbHelper.clearShoppingCartIngredient();
+                recipeIngredients.clear();
+                listView.invalidateViews();
+                Snackbar.make(view, "Your cart cleared.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-
-        DbHelper dbHelper = DbHelper.getInstance(this);
-        ArrayList<RecipeIngredient> recipeIngredients = dbHelper.getShoppingCartIngredients();
-        ListView listView = (ListView) findViewById(R.id.shopping_cart_list);
-        listView.setAdapter(new ShoppingCartArrayAdapter(this, R.layout.shopping_cart_list_item, recipeIngredients));
-
     }
 
 }
