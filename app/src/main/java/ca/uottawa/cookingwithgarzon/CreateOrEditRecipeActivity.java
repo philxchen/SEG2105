@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -53,6 +54,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private StepArrayAdapter stepArrayAdapter;
     private ImageView image;
     private EditText recipeTitleTxt;
+    private EditText servingTxt;
     private RatingBar recipeRatingBar;
     private Switch favouriteSwitch;
     private FloatingActionButton newIngredientBtn;
@@ -60,8 +62,11 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private Spinner difficultySpinner;
     private TextView mealTypeTxt;
     private TextView cuisineTxt;
+    private TextView costTxt;
     private boolean saved;
     private boolean addedPicture;
+    private FloatingActionButton helpBtn;
+    private double cost;
 
 
     @Override
@@ -85,7 +90,9 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         step_listView = (ListView) content.findViewById(R.id.createRecipeStepList);
         image = (ImageView) content.findViewById(R.id.createRecipeImage);
         favouriteSwitch = (Switch) content.findViewById(R.id.favouritesSwitch);
-        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
+        helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
+        costTxt = (TextView) findViewById(R.id.createRecipeCostTxt);
+        servingTxt = (EditText) findViewById(R.id.createRecipeServingTxt);
 
         //Difficulty List
         List<String> difficultyList = new ArrayList<>();
@@ -172,6 +179,11 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                     return;
                 }
+                recipe.set_cost(cost);
+                if (servingTxt.getText() != null) {
+                    Integer servings = Integer.parseInt(servingTxt.getText().toString());
+                    recipe.set_servings(servings);
+                }
                 recipe.set_difficulty(difficultySpinner.getSelectedItem().toString());
                 recipe.set_name(recipeTitleTxt.getText().toString());
                 recipe.set_rating((int)recipeRatingBar.getRating());
@@ -251,6 +263,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private void loadRecipe() {
         recipe = dbHelper.getRecipe(recipe_id);
         recipeTitleTxt.setText(recipe.get_name());
+        servingPicker.setValue(recipe.get_servings());
+        costTxt.setText(((Double)recipe.get_cost()).toString());
         if (recipe.get_rating() != 0) {
             recipeRatingBar.setRating(recipe.get_rating());
         }
@@ -290,12 +304,23 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
+    private double calculateCost() {
+        cost = 0;
+        for (RecipeIngredient item : recipeIngredients) {
+            Ingredient i = dbHelper.getIngredient(item.get_ingredient_id());
+            cost += i.get_price();
+        }
+        return cost;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case GET_INGREDIENT_REQUEST:
                 if (resultCode == RESULT_OK) {
                     String message = data.getStringExtra("result");
+                    recipe.set_cost(calculateCost());
+                    costTxt.setText(((Double)recipe.get_cost()).toString());
                     recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
                     recipeIngredientArrayAdapter.clear();
                     recipeIngredientArrayAdapter.addAll(recipeIngredients);

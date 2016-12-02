@@ -30,8 +30,10 @@ public class RecipeViewActivity extends AppCompatActivity {
     final int EDIT_RECIPE_REQUEST = 1;
     private long recipe_id;
     private TextView recipeTitle;
+    private TextView recipeCostTxt;
     private ImageView recipeImage;
     private RatingBar recipeRating;
+    private TextView recipeServingsTxt;
     private TextView recipeDifficultyTxt;
     private TextView recipeMealTypeTxt;
     private TextView recipeCuisineTxt;
@@ -61,6 +63,8 @@ public class RecipeViewActivity extends AppCompatActivity {
         recipeCuisineTxt = (TextView) findViewById(R.id.viewRecipeCuisineTxt);
         viewRecipeIngredientList = (ListView) findViewById(R.id.viewRecipeIngredientList);
         viewRecipeStepList = (ListView) findViewById(R.id.viewRecipeStepList);
+        recipeCostTxt = (TextView) findViewById(R.id.viewRecipeCostTxt);
+        recipeServingsTxt = (TextView) findViewById(R.id.viewRecipeServingsTxt);
         deleteBtn = (Button) findViewById(R.id.deleteRecipeBtn);
         addAllIngToCartBtn = (Button) findViewById(R.id.addToCartBtn);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
@@ -115,7 +119,8 @@ public class RecipeViewActivity extends AppCompatActivity {
         recipe = dbHelper.getRecipe(recipe_id);
 
         recipeTitle.setText(recipe.get_name());
-
+        recipeCostTxt.setText(((Double)recipe.get_cost()).toString());
+        recipeServingsTxt.setText(((Integer)recipe.get_servings()).toString());
         recipeRating.setNumStars(5);
 
         if (recipe.get_rating() != 0) {
