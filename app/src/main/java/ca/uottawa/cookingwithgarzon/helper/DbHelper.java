@@ -673,7 +673,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     query.append(" LIKE \'%" + args[i] + "%\' ");
                 }
                 if (i + 1 < args.length) {
-                    query.append(" OR ");
+                    query.append(" AND ");
                 }
             }
         }
@@ -706,7 +706,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     query.append(" LIKE \'%" + args[i] + "%\' ");
                 }
                 if (i + 1 < args.length) {
-                    query.append(" OR ");
+                    query.append(" AND ");
                 }
             }
         }
@@ -734,7 +734,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     query.append(" LIKE \'%" + args[i] + "%\' ");
                 }
                 if (i + 1 < args.length) {
-                    query.append(" OR ");
+                    query.append(" AND ");
                 }
             }
         }
@@ -762,7 +762,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     query.append(" LIKE \'%" + args[i] + "%\' ");
                 }
                 if (i + 1 < args.length) {
-                    query.append(" OR ");
+                    query.append(" AND ");
                 }
             }
         }
