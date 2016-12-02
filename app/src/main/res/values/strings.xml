@@ -46,6 +46,16 @@
     <string name="createHelp"></string>
     <string name="createMealHelp"></string>
     <string name="createCuisineHelp"></string>
-    <string name="createIngredientHelp"></string>
-    <string name="shoppingCartHelp"></string>   
+    <string name="createIngredientHelp"><b>Create or Edit Ingredient</b>
+        Add a new ingredient by specifying a name and its' price.
+        
+        </string>
+    <string name="shoppingCartHelp"><b>Shopping Cart Screen Help</b>
+        This list will simplify your trip to the grocery store!\n
+        When viewing a recipe, click the Add to Shopping Cart button and the ingredients will
+        appear here.\n
+        Check them off as you put them in your cart by click on the check box.
+        Clear (X) Button: Will clear ingredients from your shopping cart.
+
+    </string>
 </resources>
