@@ -96,8 +96,9 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_SHOPPINGCARTINGREDIENT_TABLE =
             "CREATE TABLE " + DbContract.ShoppingCartIngredient.TABLE_NAME + " (" +
                     DbContract.ShoppingCartIngredient._ID + " INTEGER PRIMARY KEY, "+
-                    DbContract.ShoppingCartIngredient.COLUMN_SHOPPINGCART_ID + INTEGER_TYPE + COMMA_SEP +
-                    DbContract.ShoppingCartIngredient.COLUMN_RECIPEINGREDIENT_ID + INTEGER_TYPE + ")";
+                    DbContract.ShoppingCartIngredient.COLUMN_INGREDIENT_ID + INTEGER_TYPE + COMMA_SEP +
+                    DbContract.ShoppingCartIngredient.COLUMN_QUANTITY + INTEGER_TYPE + COMMA_SEP +
+                    DbContract.ShoppingCartIngredient.COLUMN_UNIT + INTEGER_TYPE + ")";
 
     // SQL statements for deleting tables
     private static final String SQL_DELETE_STEP_TABLE =
@@ -117,9 +118,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_MEALTYPE_TABLE =
             "DROP TABLE IF EXISTS " + DbContract.MealType.TABLE_NAME;
-
+/*
     private static final String SQL_DELETE_SHOPPINGCART_TABLE =
-            "DROP TABLE IF EXISTS " + DbContract.ShoppingCart.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + DbContract.ShoppingCart.TABLE_NAME;*/
 
     private static final String SQL_DELETE_SHOPPINGCARTINGREDIENT_TABLE =
             "DROP TABLE IF EXISTS " + DbContract.ShoppingCartIngredient.TABLE_NAME;
@@ -146,7 +147,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_STEP_TABLE);
         db.execSQL(SQL_CREATE_MEALTYPE_TABLE);
         db.execSQL(SQL_CREATE_CUISINE_TABLE);
-        db.execSQL(SQL_CREATE_SHOPPINGCART_TABLE);
+//        db.execSQL(SQL_CREATE_SHOPPINGCART_TABLE);
         db.execSQL(SQL_CREATE_SHOPPINGCARTINGREDIENT_TABLE);
     }
 
@@ -158,7 +159,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_CUISINE_TABLE);
         db.execSQL(SQL_DELETE_MEALTYPE_TABLE);
         db.execSQL(SQL_DELETE_STEP_TABLE);
-        db.execSQL(SQL_DELETE_SHOPPINGCART_TABLE);
+//        db.execSQL(SQL_DELETE_SHOPPINGCART_TABLE);
         db.execSQL(SQL_DELETE_SHOPPINGCARTINGREDIENT_TABLE);
         onCreate(db);
     }
