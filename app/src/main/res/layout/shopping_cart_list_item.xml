@@ -6,31 +6,44 @@
     android:rowCount="2"
     android:columnCount="2">
 
-    <TextView
-        android:text="Name"
-        android:layout_width="327dp"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/shopping_cart_ingredient_name"
-        android:textAppearance="@android:style/TextAppearance.Material.Headline"/>
+        android:layout_margin="10dp">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/shopping_cart_item_select"
-        android:layout_rowSpan="2"
-        android:gravity="end|center_vertical|start"
-        />
+        <TextView
+            android:text="Quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shopping_cart_ingredient_quantity"
+            android:textSize="20sp"
+            android:layout_marginRight="5dp" />
 
-    <TextView
-        android:text="Quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/shopping_cart_ingredient_quantity"/>
+        <TextView
+            android:text="Unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shopping_cart_ingredient_unit"
+            android:layout_weight="0.13"
+            android:textSize="20sp"
+            android:layout_marginRight="7dp" />
 
-    <TextView
-        android:text="Unit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/shopping_cart_ingredient_unit" />
+        <TextView
+            android:text="Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shopping_cart_ingredient_name"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:layout_weight="1" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shopping_cart_item_select"
+            android:layout_rowSpan="2"
+            android:gravity="center_vertical|end" />
+
+    </LinearLayout>
 
 </GridLayout>

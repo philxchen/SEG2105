@@ -109,7 +109,7 @@
             app:srcCompat="@android:drawable/ic_menu_help"
             android:id="@+id/helpBtn"
             android:layout_weight="0.06"
-            app:backgroundTint="@android:color/colorButtonNormal"
+            app:backgroundTint="?attr/colorButtonNormal"
             android:layout_gravity="bottom|end" />
 
     </LinearLayout>

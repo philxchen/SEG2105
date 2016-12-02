@@ -92,8 +92,9 @@
             app:srcCompat="@android:drawable/ic_menu_help"
             android:id="@+id/helpBtn"
             android:layout_weight="0.07"
-            app:backgroundTint="@android:color/colorButtonNormal"
-            android:layout_gravity="bottom|end" />
+            android:layout_gravity="bottom|end"
+            app:rippleColor="?attr/colorButtonNormal"
+            app:backgroundTint="?attr/colorButtonNormal" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
