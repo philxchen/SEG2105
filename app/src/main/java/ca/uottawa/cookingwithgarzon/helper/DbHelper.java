@@ -167,7 +167,8 @@ public class DbHelper extends SQLiteOpenHelper {
         ctx.deleteDatabase(DATABASE_NAME);
     }
 
-    /** CRUD */
+
+     /** CRUD */
 
     /**
      * Create methods
@@ -564,6 +565,13 @@ public class DbHelper extends SQLiteOpenHelper {
     /**
      * Delete operations
      */
+
+    public void deleteInvalidRecipes() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DbContract.Recipe.TABLE_NAME, DbContract.Recipe.COLUMN_RECIPE_NAME +"=\'\'", null);
+    }
+
+
     /** delete recipe. propagates to recipeIngredient and steps */
     public void deleteRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();

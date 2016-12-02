@@ -16,6 +16,14 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        /** if app crashes during recipe creation (Hopefully never) then invalid recipes may
+         * exist in database. Just delete them here to make sure.
+        */
+        DbHelper db = DbHelper.getInstance(getApplicationContext());
+        db.deleteInvalidRecipes();
+        db.close();
+
         final Button createBtn = (Button) findViewById(R.id.createBtn);
         final Button searchBtn = (Button) findViewById(R.id.searchBtn);
         final Button favouritesBtn = (Button) findViewById(R.id.favouritesBtn);
