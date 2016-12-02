@@ -53,7 +53,8 @@ public class CreateOrEditCuisineActivity extends Activity {
                 cuisine.set_name(cuisineName);
                 DbHelper db = DbHelper.getInstance(getApplicationContext());
                 Long id = db.createCuisine(cuisine);
-                Snackbar.make(findViewById(R.id.activity_create_cuisine), "Created cuisine with id " + id, Snackbar.LENGTH_LONG)
+                Snackbar.make(findViewById(R.id.activity_create_cuisine),
+                        "Created cuisine " + cuisine.get_name(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Intent result = new Intent();
                 result.putExtra("result", "Added cuisine " + cuisineName);

@@ -114,8 +114,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             recipe = new Recipe();
             recipe_id = dbHelper.createRecipe(recipe);
             recipe.set_id(recipe_id);
-            Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "New recipe with id: "+recipe_id, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+//            Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "New recipe with id: "+recipe_id, Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show();
 
         }
 
@@ -130,7 +130,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 RecipeIngredient picked = (RecipeIngredient) parent.getItemAtPosition(position);
                 editRecipeIngredient.putExtra("recipe_ingredient_id", picked.get_id());
                 editRecipeIngredient.putExtra("recipe_id", recipe.get_id());
-                editRecipeIngredient.putExtra("result", "Modifying ingredient " + picked.get_id());
+                editRecipeIngredient.putExtra("result", "Modifying ingredient");
                 startActivityForResult(editRecipeIngredient, MODIFY_INGREDIENT_REQUEST);
             }
         });
@@ -145,7 +145,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 Step picked = (Step) parent.getItemAtPosition(position);
                 editStepIngredient.putExtra("step_id", picked.get_id());
                 editStepIngredient.putExtra("recipe_id", recipe.get_id());
-                editStepIngredient.putExtra("result", "Modifying ingredient " + picked.get_id());
+                editStepIngredient.putExtra("result", "Modifying ingredient");
                 // editRecipeIngredient.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivityForResult(editStepIngredient, MODIFY_STEP_REQUEST);
             }
@@ -279,7 +279,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         favouriteSwitch.setChecked(recipe.get_favourite() > 0);
         recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
         steps = dbHelper.getRecipeSteps(recipe_id);
-        Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "Editing recipe id: "+recipe_id, Snackbar.LENGTH_LONG)
+        Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe),
+                "Editing recipe "+ recipe.get_name(), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 
@@ -299,7 +300,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                     recipeIngredientArrayAdapter.clear();
                     recipeIngredientArrayAdapter.addAll(recipeIngredients);
                     recipeIngredientArrayAdapter.notifyDataSetChanged();
-                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message, Snackbar.LENGTH_LONG)
+                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe),
+                            message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
                 break;
@@ -310,8 +312,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                     stepArrayAdapter.clear();
                     stepArrayAdapter.addAll(steps);
                     stepArrayAdapter.notifyDataSetChanged();
-                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message
-                            + " steps has size " + steps.size(), Snackbar.LENGTH_LONG)
+                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe),
+                            message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
                 break;
@@ -357,7 +359,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                     recipeIngredientArrayAdapter.clear();
                     recipeIngredientArrayAdapter.addAll(recipeIngredients);
                     recipeIngredientArrayAdapter.notifyDataSetChanged();
-                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), message, Snackbar.LENGTH_LONG)
+                    Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe),
+                            message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
                 break;

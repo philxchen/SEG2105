@@ -39,7 +39,8 @@ public class IngredientSearchResultActivity extends AppCompatActivity {
         dbHelper = DbHelper.getInstance(this);
 
         result = dbHelper.getIngredients(name);
-        Snackbar.make(findViewById(R.id.activity_ingredient_search_result), "Found " + result.size() + " ingredients.", Snackbar.LENGTH_LONG)
+        Snackbar.make(findViewById(R.id.activity_ingredient_search_result),
+                "Found " + result.size() + " ingredients.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         adapter = new IngredientArrayAdapter(this, R.layout.ingredient_item, result);
         ListView listView = (ListView) findViewById(R.id.listview_ingredients);

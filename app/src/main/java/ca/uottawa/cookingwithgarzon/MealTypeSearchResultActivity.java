@@ -43,7 +43,8 @@ public class MealTypeSearchResultActivity extends Activity {
         dbHelper = DbHelper.getInstance(this);
 
         result = dbHelper.getMealTypes();
-        Snackbar.make(findViewById(R.id.activity_meal_type_search_result), "Found " + result.size() + " meal types.", Snackbar.LENGTH_LONG)
+        Snackbar.make(findViewById(R.id.activity_meal_type_search_result),
+                "Found " + result.size() + " meal types.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         adapter = new MealTypeArrayAdapter(this, R.layout.meal_type_item, result);
         ListView listView = (ListView) findViewById(R.id.listview_mealtypes);

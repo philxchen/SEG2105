@@ -113,8 +113,6 @@ public class RecipeViewActivity extends AppCompatActivity {
     private void loadRecipe() {
         dbHelper = DbHelper.getInstance(getApplicationContext());
         recipe = dbHelper.getRecipe(recipe_id);
-        Snackbar.make(findViewById(R.id.activity_recipe_view), "Loaded recipe id "+ recipe_id, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
 
         recipeTitle.setText(recipe.get_name());
 

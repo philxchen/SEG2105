@@ -41,7 +41,8 @@ public class CuisineSearchResultActivity extends AppCompatActivity {
         dbHelper = DbHelper.getInstance(this);
 
         result = dbHelper.getCuisines();
-        Snackbar.make(findViewById(R.id.activity_cuisine_search_result), "Found " + result.size() + " cuisines.", Snackbar.LENGTH_LONG)
+        Snackbar.make(findViewById(R.id.activity_cuisine_search_result),
+                "Found " + result.size() + " cuisines.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         adapter = new CuisineArrayAdapter(this, R.layout.cuisine_item, result);
         ListView listView = (ListView) findViewById(R.id.listview_cuisines);
