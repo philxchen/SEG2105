@@ -1,5 +1,6 @@
 package ca.uottawa.cookingwithgarzon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -37,6 +38,15 @@ public class ShoppingCartActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ShoppingCartActivity.this, HelpActivity.class));
+            }
+        });
+
     }
 
 }

@@ -3,6 +3,7 @@ package ca.uottawa.cookingwithgarzon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -42,6 +43,7 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
         getIngredientBtn = (Button) findViewById(R.id.chooseIngredientBtn);
         unitTxt = (EditText) findViewById(R.id.recipeIngredientUnitTxt);
         quantityTxt = (EditText) findViewById(R.id.recipeIngredientQuantityTxt);
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);

@@ -2,6 +2,7 @@ package ca.uottawa.cookingwithgarzon;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class CreateOrEditIngredientActivity extends AppCompatActivity {
         final Button deleteBtn = (Button) findViewById(R.id.deleteIngredientBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.nameTxt);
         final EditText priceTxt = (EditText) findViewById(R.id.priceTxt);
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         Intent intent = getIntent();
         ingredient_id = intent.getLongExtra("ingredient_id", 0);
@@ -74,6 +76,13 @@ public class CreateOrEditIngredientActivity extends AppCompatActivity {
                 DbHelper db = DbHelper.getInstance(getApplicationContext());
                 db.deleteIngredient(ingredient);
                 finish();
+            }
+        });
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreateOrEditIngredientActivity.this, HelpActivity.class));
             }
         });
     }

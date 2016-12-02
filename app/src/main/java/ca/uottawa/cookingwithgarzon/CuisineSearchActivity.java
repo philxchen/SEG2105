@@ -3,6 +3,7 @@ package ca.uottawa.cookingwithgarzon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,6 +20,7 @@ public class CuisineSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cuisine_search);
 
         Button searchBtn = (Button) findViewById(R.id.search_cuisine_button);
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         final EditText cuisineNameTxt = (EditText) findViewById(R.id.cuisine_search_input);
         Intent intent = getIntent();
@@ -35,6 +37,13 @@ public class CuisineSearchActivity extends AppCompatActivity {
         };
 
         searchBtn.setOnClickListener(oclSearchBtn);
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CuisineSearchActivity.this, HelpActivity.class));
+            }
+        });
     }
 
     @Override

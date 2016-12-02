@@ -63,6 +63,7 @@ public class RecipeViewActivity extends AppCompatActivity {
         viewRecipeStepList = (ListView) findViewById(R.id.viewRecipeStepList);
         deleteBtn = (Button) findViewById(R.id.deleteRecipeBtn);
         addAllIngToCartBtn = (FloatingActionButton) findViewById(R.id.addToCartBtn);
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
@@ -97,7 +98,14 @@ public class RecipeViewActivity extends AppCompatActivity {
                         .setAction("Action", null)
                         .show();
             }
+        }); helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RecipeViewActivity.this, HelpActivity.class));
+            }
         });
+
+
     }
 
     private void loadRecipe() {

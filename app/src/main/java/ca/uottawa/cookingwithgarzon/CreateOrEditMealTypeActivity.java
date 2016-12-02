@@ -2,6 +2,7 @@ package ca.uottawa.cookingwithgarzon;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
         final Button saveBtn = (Button) findViewById(R.id.saveMealBtn);
         final Button deleteBtn = (Button) findViewById(R.id.deleteMealTypeBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createMealText);
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         Intent intent = getIntent();
         mealtype_id = intent.getLongExtra("type_id", 0);
@@ -64,6 +66,13 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
                 DbHelper db = DbHelper.getInstance(getApplicationContext());
                 db.deleteMealType(mealtype);
                 finish();
+            }
+        });
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreateOrEditMealTypeActivity.this, HelpActivity.class));
             }
         });
     }

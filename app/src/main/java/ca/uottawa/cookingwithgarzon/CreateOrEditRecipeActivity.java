@@ -85,6 +85,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         step_listView = (ListView) content.findViewById(R.id.createRecipeStepList);
         image = (ImageView) content.findViewById(R.id.createRecipeImage);
         favouriteSwitch = (Switch) content.findViewById(R.id.favouritesSwitch);
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         //Difficulty List
         List<String> difficultyList = new ArrayList<>();
@@ -234,6 +235,13 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 else {
                     recipe.set_favourite(0);
                 }
+            }
+        });
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreateOrEditRecipeActivity.this, HelpActivity.class));
             }
         });
     }

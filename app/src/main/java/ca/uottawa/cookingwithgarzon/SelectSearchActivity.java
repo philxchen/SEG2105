@@ -2,6 +2,7 @@ package ca.uottawa.cookingwithgarzon;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,6 +20,8 @@ public class SelectSearchActivity extends AppCompatActivity {
         final Button findIngredientBtn = (Button) findViewById(R.id.findIngredientBtn);
         final Button findCuisineBtn = (Button) findViewById(R.id.findCuisineBtn);
         final Button findMealBtn = (Button) findViewById(R.id.findMealBtn);
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
+
 
         //On-click functions for the search buttons
         findIngredientBtn.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +44,13 @@ public class SelectSearchActivity extends AppCompatActivity {
                 startActivity(new Intent(SelectSearchActivity.this, CuisineSearchActivity.class));
             }
         });
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SelectSearchActivity.this, HelpActivity.class));
+            }
+        });
+
 
         findMealBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,6 +3,7 @@ package ca.uottawa.cookingwithgarzon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -44,6 +45,7 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
         recipe_id = intent.getLongExtra("recipe_id", 0);
         step_id = intent.getLongExtra("step_id", 0);
         step_number = intent.getIntExtra("step_number", 1);
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         if (step_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
@@ -99,6 +101,13 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
                     setResult(Activity.RESULT_OK, result);
                     finish();
                 }
+        });
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreateOrEditStepActivity.this, HelpActivity.class));
+            }
         });
     }
 }

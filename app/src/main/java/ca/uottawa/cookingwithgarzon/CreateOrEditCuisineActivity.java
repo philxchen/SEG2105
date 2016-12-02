@@ -2,6 +2,7 @@ package ca.uottawa.cookingwithgarzon;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ public class CreateOrEditCuisineActivity extends Activity {
         final Button saveBtn = (Button) findViewById(R.id.saveCuisineBtn);
         final Button deleteBtn = (Button) findViewById(R.id.deleteCuisineBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createCuisineText);
+        final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         Intent intent = getIntent();
         cuisine_id = intent.getLongExtra("cuisine_id", 0);
@@ -66,6 +68,13 @@ public class CreateOrEditCuisineActivity extends Activity {
                 DbHelper db = DbHelper.getInstance(getApplicationContext());
                 db.deleteCuisine(cuisine);
                 finish();
+            }
+        });
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreateOrEditCuisineActivity.this, HelpActivity.class));
             }
         });
     }
