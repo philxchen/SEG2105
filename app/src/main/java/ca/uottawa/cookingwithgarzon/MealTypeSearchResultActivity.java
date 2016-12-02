@@ -59,7 +59,7 @@ public class MealTypeSearchResultActivity extends Activity {
                     result.putExtra("type_id", picked.get_id());
                     result.putExtra("type_name", picked.get_name());
                     result.putExtra("result", "Picked meal type " + picked.get_name());
-                    result.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    // result.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(result);
                     finish();
                 } else {

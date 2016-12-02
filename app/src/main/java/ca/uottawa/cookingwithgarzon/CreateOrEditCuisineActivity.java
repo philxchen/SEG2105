@@ -15,6 +15,7 @@ import ca.uottawa.cookingwithgarzon.model.Cuisine;
 public class CreateOrEditCuisineActivity extends Activity {
 
     private long cuisine_id;
+    private long recipe_id;
     private Cuisine cuisine;
 
     @Override
@@ -29,7 +30,7 @@ public class CreateOrEditCuisineActivity extends Activity {
 
         Intent intent = getIntent();
         cuisine_id = intent.getLongExtra("cuisine_id", 0);
-        final long recipe_id = intent.getLongExtra("recipe_id", 0);
+        recipe_id = intent.getLongExtra("recipe_id", 0);
 
         if (cuisine_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());

@@ -542,7 +542,7 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.Cuisine.COLUMN_CUISINE_NAME, cuisine.get_name());
-        db.update(DbContract.MealType.TABLE_NAME, values,
+        db.update(DbContract.Cuisine.TABLE_NAME, values,
                 DbContract.Cuisine._ID + "=" + cuisine.get_id(), null);
         return cuisine.get_id();
     }

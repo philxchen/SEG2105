@@ -20,6 +20,8 @@ import ca.uottawa.cookingwithgarzon.model.Cuisine;
 
 public class CuisineSearchResultActivity extends AppCompatActivity {
 
+    private final int MODIFY_CUISINE_REQUEST = 1;
+
     private ArrayList<Cuisine> result = new ArrayList<>();
     private FloatingActionButton createCuisineBtn;
     private long recipe_id;
@@ -55,8 +57,7 @@ public class CuisineSearchResultActivity extends AppCompatActivity {
                     result.putExtra("cuisine_id", picked.get_id());
                     result.putExtra("cuisine_name", picked.get_name());
                     result.putExtra("result", "Picked cuisine " + picked.get_name());
-                    result.putExtra("result", "Picked meal type " + picked.get_name());
-                    result.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    // result.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(result);
                     finish();
                 } else {
