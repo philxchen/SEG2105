@@ -40,7 +40,7 @@ public class MealTypeSearchActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(MealTypeSearchActivity.this, MealTypeSearchResultActivity.class);
                 intent.putExtra("name", mealTypeNameTxt.getText().toString());
-                intent.putExtra("recipe_id", 0);
+                intent.putExtra("recipe_id", recipe_id);
                 startActivityForResult(intent, GET_MEAL_TYPE_REQUEST);
             }
         };
