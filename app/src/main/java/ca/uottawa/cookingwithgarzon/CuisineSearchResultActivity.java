@@ -21,6 +21,7 @@ import ca.uottawa.cookingwithgarzon.model.Cuisine;
 public class CuisineSearchResultActivity extends AppCompatActivity {
 
     private ArrayList<Cuisine> result = new ArrayList<>();
+    private FloatingActionButton createCuisineBtn;
     private long recipe_id;
     private String name;
     CuisineArrayAdapter adapter;
@@ -31,8 +32,7 @@ public class CuisineSearchResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cuisine_search_result);
         Intent intent = getIntent();
-        final FloatingActionButton createCuisineBtn =
-                (FloatingActionButton) findViewById(R.id.mealTypeSearchCreateBtn);
+        createCuisineBtn = (FloatingActionButton) findViewById(R.id.cuisineSearchCreateBtn);
         recipe_id = intent.getLongExtra("recipe_id", 0);
         name = intent.getStringExtra("name");
 

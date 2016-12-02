@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class MealTypeSearchResultActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_type_search_result);
 
+        createMealTypeBtn = (FloatingActionButton) findViewById(R.id.mealTypeSearchCreateBtn);
+
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         recipe_id = intent.getLongExtra("recipe_id", 0);
@@ -42,7 +45,7 @@ public class MealTypeSearchResultActivity extends Activity {
         result = dbHelper.getMealTypes();
         Snackbar.make(findViewById(R.id.activity_meal_type_search_result), "Found " + result.size() + " meal types.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-        MealTypeArrayAdapter adapter = new MealTypeArrayAdapter(this, R.layout.meal_type_item, result);
+        adapter = new MealTypeArrayAdapter(this, R.layout.meal_type_item, result);
         ListView listView = (ListView) findViewById(R.id.listview_mealtypes);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
