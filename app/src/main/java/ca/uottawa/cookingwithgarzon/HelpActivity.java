@@ -19,11 +19,29 @@ public class HelpActivity extends Activity {
         String helpTextName = intent.getStringExtra("helpTextName");
 
         switch(helpTextName) {
-            case "createCuisineHelp":
-                helpTxt.setText(getString(R.string.testHelp));
+            case "mainScreenHelp":
+//                helpTxt.setText(getString(R.string.mainScreenHelp));
                 break;
-
-
+            case "searchHelp":
+                break;
+            case "searchRecipeHelp":
+                break;
+            case "searchMealHelp":
+                break;
+            case "searchCuisineHelp":
+                break;
+            case "searchIngredientHelp":
+                break;
+            case "createHelp":
+                break;
+            case "createMealHelp":
+                break;
+            case "createCuisineHelp":
+                break;
+            case "createIngredientHelp":
+                break;
+            case "shoppingCartHelp":
+                break;
         }
 
 
