@@ -32,63 +32,83 @@
     <string name="title_activity_recipe_search_Result">Recipe Search Result</string>
     <string name="title_activity_select_create">Create</string>
     <string name="title_activity_meal_type_search_result">Meal Type Search Result</string>
-    <string name="mainScreenHelp"><b>Main Screen Help</b>\n
-        Search Button: Will redirect you to search for a Recipe, Cuisine, Meal Types or Ingredients.\n
-        Create Button: Will redirect you to create a Recipe, Cuisine, Meal Types or Ingredients.\n
-        Favourites Button: Will redirect you to see your favourite recipes.\n
-        Shopping Cart Button: Will redirect you to see your current shopping cart, which contains
+    <string name="mainScreenHelp"><b>Main Screen Help</b>\n\n
+        -Search Button: Will redirect you to search for a Recipe, Cuisine, Meal Types or Ingredients.\n\n
+        -Create Button: Will redirect you to create a Recipe, Cuisine, Meal Types or Ingredients.\n\n
+        -Favourites Button: Will redirect you to see your favourite recipes.\n\n
+        -Shopping Cart Button: Will redirect you to see your current shopping cart, which contains
         ingredients added to the shopping cart.
     </string>
-    <string name="createMealHelp"><b>Create or Edit Meal Type</b>
-        Add a new Meal Type (Breakfast, Dinner, etc..) by specifying a name.
-        Save Button: Add or modify meal type.
-        Delete Button: Deletes meal type.
+    <string name="createMealHelp"><b>Create or Edit Meal Type</b>\n\n
+        -Add a new Meal Type (Breakfast, Dinner, etc..) by specifying a name.\n\n
+        -Save Button: Add or modify meal type.\n\n
+        -Delete Button: Deletes meal type.
     </string>
-    <string name="createCuisineHelp"><b>Create or Edit Cuisine</b>
-        Add a new cuisine by specifying a name.
-        Save Button: Add or modify cuisine.
-        Delete Button: Deletes cuisine.
+    <string name="createCuisineHelp"><b>Create or Edit Cuisine</b>\n\n
+        -Add a new cuisine by specifying a name.\n\n
+        -Save Button: Add or modify cuisine.\n\n
+        -Delete Button: Deletes cuisine.
     </string>
-    <string name="createIngredientHelp"><b>Create or Edit Ingredient</b>
-        Add a new ingredient by specifying a name and its\' price.
-        Modify an existing ingredient by clicking on the name or price.
-        Save Button: Add or modify ingredient.
-        Delete Button: Deletes ingredient.
+    <string name="createIngredientHelp"><b>Create or Edit Ingredient</b>\n\n
+        -Add a new ingredient by specifying a name and its\' price.\n\n
+        -Modify an existing ingredient by clicking on the name or price.\n\n
+        -Save Button: Add or modify ingredient.\n\n
+        -Delete Button: Deletes ingredient.
     </string>
-    <string name="shoppingCartHelp"><b>Shopping Cart Screen Help</b>
-        This list will simplify your trip to the grocery store!\n
+    <string name="shoppingCartHelp"><b>Shopping Cart Screen Help</b>\n\n
+        This list will simplify your trip to the grocery store!\n\n
         When viewing a recipe, click the Add to Shopping Cart button and the ingredients will
-        appear here.\n
-        Check them off as you put them in your cart by click on the check box.
-        Clear (X) Button: Will clear ingredients from your shopping cart.
+        appear here.\n\n
+        Check them off as you put them in your cart by click on the check box.\n\n
+        Clear (X) Button: Will clear ingredients from your shopping cart.\n\n
     </string>
-    <string name="searchHelp"><b>Search Screen Help</b>\n
-        Recipe Button: To find a Recipe.\n
-        Ingredient Button: To find an Ingredient.\n
-        Cuisine Button: To find a Cuisine.\n
-        Meal Button: To find a Meal Type.
+    <string name="searchHelp"><b>Search Screen Help</b>\n\n
+        -Recipe Button: To find a Recipe.\n\n
+        -Ingredient Button: To find an Ingredient.\n\n
+        -Cuisine Button: To find a Cuisine.\n\n
+        -Meal Button: To find a Meal Type.
     </string>
-    <string name="searchRecipeHelp"><b>Search Recipe Help Screen</b>\n
-        You can fill some or all of the following search fields.\n
-        Recipe Name Field: Search for recipes by their name.\n
-        Ingredients Field: Search for recipes by the ingredients in the recipes.\n
-        Meal Field: Search for recipes by the meal type(s) they are associated with. \n
-        Cuisine Field: Search for recipes based on the cuisine type(s) they are associated with. \n\n
-        You can fill any field using boolean logic:\n
-        Multiple Items, use an \'and\' in-between each item. ex: \"Ham and egg\"\n
-        Omit an Item, use a \'not\' before the item to be omitted. ex: \"Not egg\"\n
-        Example using both: \"Ham and not egg\".
+    <string name="searchRecipeHelp"><b>Search Recipe Help Screen</b>\n\n
+        You can fill some or all of the following search fields.\n\n
+        -Recipe Name Field: Search for recipes by their name.\n\n
+        -Ingredients Field: Search for recipes by the ingredients in the recipes.\n\n
+        -Meal Field: Search for recipes by the meal type(s) they are associated with. \n\n
+        -Cuisine Field: Search for recipes based on the cuisine type(s) they are associated with. \n\n\n
+        You can fill any field using boolean logic:\n\n
+        -Multiple Items, use an \'and\' in-between each item. ex: \"Ham and egg\"\n\n
+        -Omit an Item, use a \'not\' before the item to be omitted. ex: \"Not egg\"\n\n
+        -Example using both: \"Ham and not egg\".
     </string>
-    <string name="searchMealHelp"><b>Search Meal Screen Help</b>\n
-        Meal Type Field: Input which meal type to search here.
+    <string name="searchMealHelp"><b>Search Meal Screen Help</b>\n\n
+        -Meal Type Field: Input which meal type to search here.
     </string>
-    <string name="searchCuisineHelp"><b>Search Cuisine Screen Help</b>
-        Cuisine Name Field: Input which cuisine you would like to search for.
+    <string name="searchCuisineHelp"><b>Search Cuisine Screen Help</b>\n\n
+        -Cuisine Name Field: Input which cuisine you would like to search for.
     </string>
-    <string name="searchIngredientHelp"><b>Search Ingredient Screen Help</b>\n
-        Ingredient Name Field: Input which ingredient you would like to search for.
+    <string name="searchIngredientHelp"><b>Search Ingredient Screen Help</b>\n\n
+        -Ingredient Name Field: Input which ingredient you would like to search for.
     </string>
-    <string name="createHelp"><b>Create Screen Help</b>\n
+    <string name="createHelp"><b>Create Screen Help</b>\n\n
+        -Recipe Button: Click to create a recipe.\n\n
+        -Ingredient Button: Click to create an ingredient.\n\n
+        -Cuisine Button: Click to create a cuisine type.\n\n
+        -Meal Button: Click to create a meal type.
     </string>
-    <string name="createRecipeHelp"></string>
+    <string name="createRecipeHelp"><b>Create a Recipe Help</b>\n\n
+        -Image: Click on the image to open the camera and attach an image to the recipe.\n\n
+        -Select Difficulty: Set to \'Easy\', \'Moderate\',, or \'Hard\' to indicate difficulty of recipe.\n\n
+        -Favourite: Set the slider to add or remove the recipe from your favourite recipes.\n\n
+        -Select Meal Type: Select a meal type to associate to the recipe.\n\n
+        -Select Cuisine Type: Select a cuisine type to associate to the recipe. \n\n
+        -Ingredients: Click the \'+\' button to add ingredients to the recipe.\n\n
+        -Instructions: Click the \'+\' button to add steps to the recipe.\n\n
+        -Stars: Enter your rating of the recipe on a scale of 1 to 5. \n\n
+        -Checkmark Button: Click on the checkmark to save the recipe.
+    </string>
+    <string name="createOrEditStepHelp"><b>Create or Edit Step Help</b>\n\n
+        -Enter Instruction Field: Enter the instruction of the step.\n\n
+        -Estimated Time Field: Enter the estimated time to complete the step. \n\n
+        -Save Button: Save the step and return to the recipe associated with the step. \n\n
+        -Delete Step: Delete the step from the recipe and return.
+    </string>
 </resources>

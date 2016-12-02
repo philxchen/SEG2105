@@ -55,8 +55,15 @@ public class HelpActivity extends Activity {
             case "createRecipeHelp":
                 helpTxt.setText(getString(R.string.createRecipeHelp));
                 break;
+            case "createOrEditStepHelp":
+                helpTxt.setText(getString(R.string.createOrEditStepHelp));
+                break;
         }
+    }
 
-
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
     }
 }

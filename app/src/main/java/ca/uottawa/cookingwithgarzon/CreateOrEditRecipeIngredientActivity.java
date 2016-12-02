@@ -111,7 +111,7 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(CreateOrEditRecipeIngredientActivity.this, HelpActivity.class);
-                helpIntent.putExtra("helpTextName", "createRecipeIngredientHelp");
+                helpIntent.putExtra("helpTextName", "createIngredientHelp");
                 startActivity(helpIntent);
             }
         });
