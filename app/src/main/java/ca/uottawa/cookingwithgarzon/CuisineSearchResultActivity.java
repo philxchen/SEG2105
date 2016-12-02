@@ -3,8 +3,10 @@ package ca.uottawa.cookingwithgarzon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,25 +20,28 @@ import ca.uottawa.cookingwithgarzon.model.Cuisine;
 
 public class CuisineSearchResultActivity extends AppCompatActivity {
 
+    private ArrayList<Cuisine> result = new ArrayList<>();
+    private long recipe_id;
+    private String name;
+    CuisineArrayAdapter adapter;
+    DbHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cuisine_search_result);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
         Intent intent = getIntent();
-        final long recipe_id = intent.getLongExtra("recipe_id", 0);
-        final String name = intent.getStringExtra("name");
+        final FloatingActionButton createCuisineBtn =
+                (FloatingActionButton) findViewById(R.id.mealTypeSearchCreateBtn);
+        recipe_id = intent.getLongExtra("recipe_id", 0);
+        name = intent.getStringExtra("name");
 
-        DbHelper dbHelper = DbHelper.getInstance(this);
+        dbHelper = DbHelper.getInstance(this);
 
-        ArrayList<Cuisine> result = dbHelper.getCuisines();
+        result = dbHelper.getCuisines();
         Snackbar.make(findViewById(R.id.activity_cuisine_search_result), "Found " + result.size() + " cuisines.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-        CuisineArrayAdapter adapter = new CuisineArrayAdapter(this, R.layout.cuisine_item, result);
+        adapter = new CuisineArrayAdapter(this, R.layout.cuisine_item, result);
         ListView listView = (ListView) findViewById(R.id.listview_cuisines);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,6 +70,23 @@ public class CuisineSearchResultActivity extends AppCompatActivity {
                 }
             }
         });
+        createCuisineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent createCuisineIntent = new Intent(CuisineSearchResultActivity.this,
+                        CreateOrEditCuisineActivity.class);
+                startActivity(createCuisineIntent);
+            }
+        });
+    }
 
+    @Override
+    public void onResume() {
+        result = dbHelper.getCuisines();
+        adapter.clear();
+        adapter.addAll(result);
+        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
+        super.onResume();
     }
 }

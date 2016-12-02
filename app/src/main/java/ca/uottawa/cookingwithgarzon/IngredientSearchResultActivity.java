@@ -3,6 +3,7 @@ package ca.uottawa.cookingwithgarzon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListViewCompat;
@@ -20,21 +21,27 @@ import ca.uottawa.cookingwithgarzon.adapter.IngredientArrayAdapter;
 
 public class IngredientSearchResultActivity extends AppCompatActivity {
 
+    private DbHelper dbHelper;
+    private ArrayList<Ingredient> result = new ArrayList<>();
+    private IngredientArrayAdapter adapter;
+    private FloatingActionButton createIngredientBtn;
+    private String name;
+    private long recipe_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredient_search_result);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        createIngredientBtn = (FloatingActionButton) findViewById(R.id.ingredientSearchCreateBtn);
         Intent intent = getIntent();
-        final String name = intent.getStringExtra("name");
-        final long recipe_id = intent.getLongExtra("recipe_id", 0);
-        DbHelper dbHelper = DbHelper.getInstance(this);
+        name = intent.getStringExtra("name");
+        recipe_id = intent.getLongExtra("recipe_id", 0);
+        dbHelper = DbHelper.getInstance(this);
 
-        ArrayList<Ingredient> result = dbHelper.getIngredients(name);
+        result = dbHelper.getIngredients(name);
         Snackbar.make(findViewById(R.id.activity_ingredient_search_result), "Found " + result.size() + " ingredients.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-        IngredientArrayAdapter adapter = new IngredientArrayAdapter(this, R.layout.ingredient_item, result);
+        adapter = new IngredientArrayAdapter(this, R.layout.ingredient_item, result);
         ListView listView = (ListView) findViewById(R.id.listview_ingredients);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,5 +68,23 @@ public class IngredientSearchResultActivity extends AppCompatActivity {
                 }
             }
         });
+        createIngredientBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent createIngredientIntent = new Intent(IngredientSearchResultActivity.this,
+                        CreateOrEditIngredientActivity.class);
+                startActivity(createIngredientIntent);
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        result = dbHelper.getIngredients(name);
+        adapter.clear();
+        adapter.addAll(result);
+        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
+        super.onResume();
     }
 }

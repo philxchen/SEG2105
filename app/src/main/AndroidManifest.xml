@@ -42,15 +42,9 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".RecipePreview"
-            android:label="@string/title_activity_recipe_preview"/>
-        <activity
             android:name=".CreateOrEditRecipeActivity"
             android:label="@string/title_activity_create_recipe"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".CreateRecipeInstructionActivity"
-            android:label="@string/title_activity_recipe_instruction"/>
         <activity
             android:name=".CreateOrEditStepActivity"
             android:windowSoftInputMode="stateHidden"
