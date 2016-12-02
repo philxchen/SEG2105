@@ -37,13 +37,6 @@
             android:textAppearance="@android:style/TextAppearance.Material.Headline"
             android:layout_weight="1" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/shopping_cart_item_select"
-            android:layout_rowSpan="2"
-            android:gravity="center_vertical|end" />
-
     </LinearLayout>
 
 </GridLayout>
