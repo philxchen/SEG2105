@@ -42,10 +42,6 @@ X Add instruction step to recipe.
 
 - Add "favorite" column to recipe DB table.
 
-- Add "Add to shopping cart" button to Recipe to add all ingredients to cart.
-
-- Add "Clear shopping cart" button to Shopping cart to clear all items.
-
 - Add "Select image" page, with select from library and take photo features.
 
 - Add "Total Cost" to recipe
