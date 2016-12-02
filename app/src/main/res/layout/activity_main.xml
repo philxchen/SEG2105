@@ -89,7 +89,7 @@
             app:srcCompat="@android:drawable/ic_menu_help"
             android:id="@+id/helpBtn"
             android:layout_weight="0.15"
-            app:backgroundTint="@android:color/transparent"
+            app:backgroundTint="@android:color/black"
             android:forceHasOverlappingRendering="false"
             android:layout_gravity="bottom|right" />
     </LinearLayout>

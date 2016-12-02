@@ -24,11 +24,13 @@ Non-app files go to Deliverable folder.
 -----
 TO-DO
 
-- Add "delete button" to Recipe Activity
+X Add "delete button" to Recipe Activity
 
-- Add "Help" page activity
+X Add "Help" page activity
 
-- Add "Help page button" to all pages, with custom text for the page it was clicked on.
+X Add "Help page button" to all pages.
+
+- Custom Help text for the page it was clicked on.
 
 - Make sure no crashes exist from a click.
 
@@ -36,13 +38,15 @@ X Add ingredient to recipe.
 
 X Add instruction step to recipe.
 
-- Add cuisine to recipe
+X Add cuisine to recipe
 
-- Add mealtype to recipe
+X Add mealtype to recipe
 
-- Add "favorite" column to recipe DB table.
+X Add "favorite" column to recipe DB table.
 
-- Add "Select image" page, with select from library and take photo features.
+X Take picture with phone.
+
+- Add select from library.
 
 - Add "Total Cost" to recipe
 
@@ -50,6 +54,16 @@ X Add instruction step to recipe.
 
 - Add "Change serving size" to recipe
 
-- If ingredient search comes up empty, offer to create the ingredient.
+X If ingredient search comes up empty, offer to create the ingredient.
 
-- Upon creation, return to previous page.
+X Upon creation, return to previous page.
+
+X Add "Add to shopping cart" button to Recipe to add all ingredients to cart.
+
+X Add "Clear shopping cart" button to Shopping cart to clear all items.
+
+X Upon creation, return to previous page.
+
+- Change app icon
+
+- Fix: Cannot add multiple iterations of the same ingredients to shopping cart

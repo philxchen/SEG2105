@@ -75,7 +75,8 @@
             android:layout_weight="0.15"
             app:backgroundTint="@android:color/transparent"
             android:forceHasOverlappingRendering="false"
-            android:layout_gravity="bottom|right" />
+            android:layout_gravity="bottom|right"
+            app:rippleColor="?attr/colorButtonNormal" />
     </LinearLayout>
 
 </RelativeLayout>
