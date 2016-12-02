@@ -12,12 +12,13 @@ import android.widget.EditText;
 public class IngredientSearchActivity extends AppCompatActivity {
     static final int PICK_INGREDIENT_REQUEST = 1;
     private long ingredient_id;
+    public static Activity ingredientSearchActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredient_search);
-
+        ingredientSearchActivity = this;
         Button searchBtn = (Button) findViewById(R.id.search_ingredient_button);
 
         final EditText ingredientNameTxt = (EditText) findViewById(R.id.ingredient_search_input);

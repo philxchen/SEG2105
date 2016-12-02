@@ -42,15 +42,18 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
         getIngredientBtn = (Button) findViewById(R.id.chooseIngredientBtn);
         unitTxt = (EditText) findViewById(R.id.recipeIngredientUnitTxt);
         quantityTxt = (EditText) findViewById(R.id.recipeIngredientQuantityTxt);
+
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
-        recipe_ingredient_id = intent.getLongExtra("recipe_ingredient_id",0);
+        recipe_ingredient_id = intent.getLongExtra("recipe_ingredient_id", 0);
 
-        if (ingredient_id != 0) {
+        if (recipe_ingredient_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
             recipeIngredient = db.getRecipeIngredient(recipe_ingredient_id);
             ingredient = db.getIngredient(recipeIngredient.get_ingredient_id());
-            recipeIngredientTxt.setText(ingredient.get_name());
+            if (ingredient != null) {
+                recipeIngredientTxt.setText(ingredient.get_name());
+            }
             quantityTxt.setText(((Long)recipeIngredient.get_quantity()).toString());
             unitTxt.setText(recipeIngredient.get_unit());
         }

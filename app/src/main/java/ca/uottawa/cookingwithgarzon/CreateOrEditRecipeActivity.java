@@ -114,6 +114,18 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         });
         stepArrayAdapter = new StepArrayAdapter(this, R.layout.step_item, steps);
         step_listView.setAdapter(stepArrayAdapter);
+        step_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Intent editRecipeIngredient =
+                        new Intent(CreateOrEditRecipeActivity.this, CreateOrEditRecipeIngredientActivity.class);
+                RecipeIngredient picked = (RecipeIngredient) parent.getItemAtPosition(position);
+                editRecipeIngredient.putExtra("recipe_ingredient_id", picked.get_id());
+                editRecipeIngredient.putExtra("result", "Modifying ingredient " + picked.get_id());
+                startActivityForResult(editRecipeIngredient, GET_INGREDIENT_REQUEST);
+            }
+        });
 
         /*
          * Spinner Object Lists

@@ -323,6 +323,7 @@ public class DbHelper extends SQLiteOpenHelper {
         }
         RecipeIngredient recipeingredient = new RecipeIngredient();
         recipeingredient.set_id(c.getInt(c.getColumnIndex(DbContract.RecipeIngredient._ID)));
+        recipeingredient.set_ingredient_id(c.getInt(c.getColumnIndex(DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID)));
         recipeingredient.set_quantity(c.getInt(c.getColumnIndex(DbContract.RecipeIngredient.COLUMN_QUANTITY)));
         recipeingredient.set_unit(c.getString(c.getColumnIndex(DbContract.RecipeIngredient.COLUMN_UNIT)));
         c.close();
