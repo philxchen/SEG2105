@@ -19,10 +19,12 @@
             android:label="@string/title_activity_select_search"/>
         <activity
             android:name=".IngredientSearchActivity"
-            android:label="@string/title_activity_ingredient_search" />
+            android:label="@string/title_activity_ingredient_search"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".IngredientSearchResultActivity"
-            android:label="@string/title_activity_ingredient_search_result" />
+            android:label="@string/title_activity_ingredient_search_result"
+            android:launchMode="singleInstance" />
 
         <activity
             android:name=".CuisineSearchActivity"
@@ -59,7 +61,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".CreateOrEditRecipeIngredientActivity"
-            android:label="@string/title_activity_recipe_ingredient"/>
+            android:label="@string/title_activity_recipe_ingredient"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".ShoppingCartActivity"
             android:label="@string/title_activity_shopping_cart"
@@ -73,7 +76,8 @@
             android:label="@string/title_activity_create_cuisine" />
         <activity
             android:name=".CreateOrEditIngredientActivity"
-            android:label="@string/title_activity_create_ingredient" />
+            android:label="@string/title_activity_create_ingredient"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".RecipeViewActivity"
             android:label="@string/title_activity_recipe_view"

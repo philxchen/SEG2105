@@ -47,7 +47,6 @@ public class IngredientSearchResultActivity extends AppCompatActivity {
                     result.putExtra("ingredient_id", picked.get_id());
                     result.putExtra("ingredient_name", picked.get_name());
                     result.putExtra("result", "Editing ingredient " + picked.get_name());
-                    result.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(result);
                     IngredientSearchActivity.ingredientSearchActivity.finish();
                     finish();
