@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -57,8 +58,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private EditText servingTxt;
     private RatingBar recipeRatingBar;
     private Switch favouriteSwitch;
-    private FloatingActionButton newIngredientBtn;
-    private FloatingActionButton newStepBtn;
+    private Button newIngredientBtn;
+    private Button newStepBtn;
     private Spinner difficultySpinner;
     private TextView mealTypeTxt;
     private TextView cuisineTxt;
@@ -66,30 +67,27 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private boolean saved;
     private boolean addedPicture;
     private FloatingActionButton helpBtn;
-    private double cost;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_or_edit_recipe);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         addedPicture = false; //initialized for added image
 
-        View content = findViewById(R.id.content_create_recipe);
-        newIngredientBtn = (FloatingActionButton) content.findViewById(R.id.createRecipeAddIngredientBtn);
-        newStepBtn = (FloatingActionButton) content.findViewById(R.id.createRecipeAddStepBtn);
-        recipeTitleTxt = (EditText) content.findViewById(R.id.createRecipeTitleTxt);
-        recipeRatingBar = (RatingBar) content.findViewById(R.id.createRecipeRating);
-        difficultySpinner = (Spinner) content.findViewById(R.id.createRecipeDifficultySpinner);
-        mealTypeTxt = (TextView) content.findViewById(R.id.createRecipeMealTypeTxt);
-        cuisineTxt = (TextView) content.findViewById(R.id.createRecipeCuisineTxt);
-        recipeIngredients_listView = (ListView) content.findViewById(R.id.createRecipeIngredientList);
-        step_listView = (ListView) content.findViewById(R.id.createRecipeStepList);
-        image = (ImageView) content.findViewById(R.id.createRecipeImage);
-        favouriteSwitch = (Switch) content.findViewById(R.id.favouritesSwitch);
+        newIngredientBtn = (Button) findViewById(R.id.createRecipeAddIngredientBtn);
+        newStepBtn = (Button) findViewById(R.id.createRecipeAddStepBtn);
+        recipeTitleTxt = (EditText) findViewById(R.id.createRecipeTitleTxt);
+        recipeRatingBar = (RatingBar) findViewById(R.id.createRecipeRating);
+        difficultySpinner = (Spinner) findViewById(R.id.createRecipeDifficultySpinner);
+        mealTypeTxt = (TextView) findViewById(R.id.createRecipeMealTypeTxt);
+        cuisineTxt = (TextView) findViewById(R.id.createRecipeCuisineTxt);
+        recipeIngredients_listView = (ListView) findViewById(R.id.createRecipeIngredientList);
+        step_listView = (ListView) findViewById(R.id.createRecipeStepList);
+        image = (ImageView) findViewById(R.id.createRecipeImage);
+        favouriteSwitch = (Switch) findViewById(R.id.favouritesSwitch);
         helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
         costTxt = (TextView) findViewById(R.id.createRecipeCostTxt);
         servingTxt = (EditText) findViewById(R.id.createRecipeServingTxt);
@@ -179,8 +177,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                     return;
                 }
-                recipe.set_cost(cost);
-                if (servingTxt.getText() != null) {
+                if (servingTxt.getText() != null && !servingTxt.getText().toString().equals("")) {
                     Integer servings = Integer.parseInt(servingTxt.getText().toString());
                     recipe.set_servings(servings);
                 }
@@ -263,7 +260,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private void loadRecipe() {
         recipe = dbHelper.getRecipe(recipe_id);
         recipeTitleTxt.setText(recipe.get_name());
-        servingPicker.setValue(recipe.get_servings());
+        servingTxt.setText(recipe.get_servings());
         costTxt.setText(((Double)recipe.get_cost()).toString());
         if (recipe.get_rating() != 0) {
             recipeRatingBar.setRating(recipe.get_rating());
@@ -305,7 +302,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     }
 
     private double calculateCost() {
-        cost = 0;
+        double cost = 0;
         for (RecipeIngredient item : recipeIngredients) {
             Ingredient i = dbHelper.getIngredient(item.get_ingredient_id());
             cost += i.get_price();
@@ -319,12 +316,12 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             case GET_INGREDIENT_REQUEST:
                 if (resultCode == RESULT_OK) {
                     String message = data.getStringExtra("result");
-                    recipe.set_cost(calculateCost());
-                    costTxt.setText(((Double)recipe.get_cost()).toString());
                     recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
                     recipeIngredientArrayAdapter.clear();
                     recipeIngredientArrayAdapter.addAll(recipeIngredients);
                     recipeIngredientArrayAdapter.notifyDataSetChanged();
+                    recipe.set_cost(calculateCost());
+                    costTxt.setText(((Double)recipe.get_cost()).toString());
                     Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe),
                             message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();

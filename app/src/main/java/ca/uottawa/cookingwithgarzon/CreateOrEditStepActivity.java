@@ -69,14 +69,11 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
                 } else {
                     int time;
                     String instruction = stepInstructionTxt.getText().toString();
-                    if (stepTimeTxt.getText() == null) {
-                        time = 0;
-                    }
-                    else {
+                    if (stepTimeTxt.getText() != null && !stepTimeTxt.getText().toString().equals("")) {
                         time = Integer.parseInt(stepTimeTxt.getText().toString());
+                    step.set_time(time);
                     }
                     step.set_instruction(instruction);
-                    step.set_time(time);
                     step.set_stepNumber(step_number +1);
                     step.set_recipe_id(recipe_id);
 

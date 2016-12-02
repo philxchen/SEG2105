@@ -25,8 +25,6 @@ private String type;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_search_result);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         ingredient = intent.getStringExtra("ingredient");
