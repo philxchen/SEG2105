@@ -29,6 +29,7 @@ public class RecipeViewActivity extends AppCompatActivity {
 
     final int EDIT_RECIPE_REQUEST = 1;
     private long recipe_id;
+    private TextView recipeTitle;
     private ImageView recipeImage;
     private RatingBar recipeRating;
     private TextView recipeDifficultyTxt;
@@ -37,7 +38,6 @@ public class RecipeViewActivity extends AppCompatActivity {
     private ListView viewRecipeIngredientList;
     private ListView viewRecipeStepList;
     private DbHelper dbHelper;
-    private Toolbar toolbar;
     private Button deleteBtn;
     private FloatingActionButton addAllIngToCartBtn;
     private Recipe recipe;
@@ -53,18 +53,16 @@ public class RecipeViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_view);
-        toolbar = (Toolbar) findViewById(R.id.recipeViewToolbar);
-        setSupportActionBar(toolbar);
-        View content = findViewById(R.id.content_recipe_view);
-        recipeImage = (ImageView) content.findViewById(R.id.viewRecipeImage);
-        recipeRating = (RatingBar) content.findViewById(R.id.viewRecipeRating);
-        recipeDifficultyTxt = (TextView) content.findViewById(R.id.viewRecipeDifficultyTxt);
-        recipeMealTypeTxt = (TextView) content.findViewById(R.id.viewRecipeMealTypeTxt);
-        recipeCuisineTxt = (TextView) content.findViewById(R.id.viewRecipeCuisineTxt);
-        viewRecipeIngredientList = (ListView) content.findViewById(R.id.viewRecipeIngredientList);
-        viewRecipeStepList = (ListView) content.findViewById(R.id.viewRecipeStepList);
-        deleteBtn = (Button) content.findViewById(R.id.deleteRecipeBtn);
-        addAllIngToCartBtn = (FloatingActionButton) content.findViewById(R.id.addToCartBtn);
+        recipeTitle = (TextView) findViewById(R.id.viewRecipeTitle);
+        recipeImage = (ImageView) findViewById(R.id.viewRecipeImage);
+        recipeRating = (RatingBar) findViewById(R.id.viewRecipeRating);
+        recipeDifficultyTxt = (TextView) findViewById(R.id.viewRecipeDifficultyTxt);
+        recipeMealTypeTxt = (TextView) findViewById(R.id.viewRecipeMealTypeTxt);
+        recipeCuisineTxt = (TextView) findViewById(R.id.viewRecipeCuisineTxt);
+        viewRecipeIngredientList = (ListView) findViewById(R.id.viewRecipeIngredientList);
+        viewRecipeStepList = (ListView) findViewById(R.id.viewRecipeStepList);
+        deleteBtn = (Button) findViewById(R.id.deleteRecipeBtn);
+        addAllIngToCartBtn = (FloatingActionButton) findViewById(R.id.addToCartBtn);
 
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
@@ -108,7 +106,7 @@ public class RecipeViewActivity extends AppCompatActivity {
         Snackbar.make(findViewById(R.id.activity_recipe_view), "Loaded recipe id "+ recipe_id, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
-        getSupportActionBar().setTitle(recipe.get_name()); // Display recipe name in toolbar
+        recipeTitle.setText(recipe.get_name());
 
         recipeRating.setNumStars(5);
 
