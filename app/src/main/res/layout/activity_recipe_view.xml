@@ -51,7 +51,7 @@
         android:clickable="true"
         app:fabSize="mini"
         app:srcCompat="@android:drawable/ic_menu_help"
-        android:id="@+id/floatingActionButton3"
+        android:id="@+id/helpBtn"
         app:backgroundTint="@android:color/transparent"
         android:layout_gravity="bottom|left"
         android:layout_marginTop="10dp"
