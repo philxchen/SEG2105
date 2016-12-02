@@ -29,7 +29,6 @@
         <activity
             android:name=".CuisineSearchActivity"
             android:label="@string/title_activity_cuisine_search"/>
-    git
         <activity
             android:name=".CuisineSearchResultActivity"
             android:label="@string/title_activity_cuisine_search_result"/>
@@ -43,7 +42,8 @@
 
         <activity
             android:name=".CreateOrEditRecipeActivity"
-            android:label="@string/title_activity_create_recipe"/>
+            android:label="@string/title_activity_create_recipe"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".CreateOrEditStepActivity"
             android:windowSoftInputMode="stateHidden"
