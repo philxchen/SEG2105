@@ -192,9 +192,10 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         newStepBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newIngredientIntent = new Intent(CreateOrEditRecipeActivity.this, CreateOrEditStepActivity.class);
-                newIngredientIntent.putExtra("recipe_id", recipe.get_id());
-                startActivityForResult(newIngredientIntent, GET_STEP_REQUEST);
+                Intent newStepIntent = new Intent(CreateOrEditRecipeActivity.this, CreateOrEditStepActivity.class);
+                newStepIntent.putExtra("recipe_id", recipe.get_id());
+                newStepIntent.putExtra("step_number", steps.size());
+                startActivityForResult(newStepIntent, GET_STEP_REQUEST);
             }
         });
 

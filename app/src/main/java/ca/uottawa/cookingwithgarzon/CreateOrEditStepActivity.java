@@ -25,9 +25,11 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
     private EditText stepInstructionTxt;
     private EditText stepTimeTxt;
     private Button saveStepBtn;
+    private Button deleteStepBtn;
     private long recipe_id;
     private long step_id;
     private Step step;
+    private int step_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,11 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
         stepInstructionTxt = (EditText) findViewById(R.id.stepInstructionTxt);
         stepTimeTxt = (EditText) findViewById(R.id.stepTimeTxt);
         saveStepBtn = (Button) findViewById(R.id.saveStepBtn);
-
+        deleteStepBtn = (Button) findViewById(R.id.deleteStepBtn);
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
         step_id = intent.getLongExtra("step_id", 0);
+        step_number = intent.getIntExtra("step_number", 1);
 
         if (step_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
@@ -72,7 +75,7 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
                     }
                     step.set_instruction(instruction);
                     step.set_time(time);
-                    step.set_stepNumber(1);
+                    step.set_stepNumber(step_number +1);
                     step.set_recipe_id(recipe_id);
 
                     DbHelper db = DbHelper.getInstance(getApplicationContext());
@@ -84,6 +87,15 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
                     finish();
                 }
             }
+        });
+
+        deleteStepBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    DbHelper db = DbHelper.getInstance(getApplicationContext());
+                    db.deleteStep(step);
+                    finish();
+                }
         });
     }
 }
