@@ -112,7 +112,7 @@
                     android:clickable="true"
                     app:fabSize="mini"
                     app:srcCompat="@drawable/ic_shopping_basket_black_24dp"
-                    android:id="@+id/floatingActionButton"
+                    android:id="@+id/addToCartBtn"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="1" />

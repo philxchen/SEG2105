@@ -263,10 +263,7 @@ public class DbHelper extends SQLiteOpenHelper {
     /**
      * create a shoppingCart
      */
-    public long createShoppingCart(RecipeIngredient recipeIngredient) {
-        if (recipeIngredient.get_id() != 0) {
-            return updateShoppingCart(recipeIngredient);
-        }
+    public long createShoppingCartIngredient(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DbContract.ShoppingCartIngredient.COLUMN_INGREDIENT_ID, recipeIngredient.get_ingredient_id());
@@ -411,7 +408,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public ArrayList<RecipeIngredient> getRecipeIngredients(long recipe_id) {
         SQLiteDatabase db = this.getReadableDatabase();
         // Query for retrieving all recipeIngredients associated to recipe_id
-        String selectRecipeIngredient = "SElECT * FROM " + DbContract.RecipeIngredient.TABLE_NAME +
+        String selectRecipeIngredient = "SELECT * FROM " + DbContract.RecipeIngredient.TABLE_NAME +
                 " WHERE " + DbContract.RecipeIngredient.COLUMN_RECIPE_ID + "=" + recipe_id;
 
         // populate array list with recipeIngredient objects
@@ -436,7 +433,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public ArrayList<Step> getRecipeSteps(long recipe_id) {
         SQLiteDatabase db = this.getReadableDatabase();
         // Query for retrieving all steps associated to recipe_id
-        String selectStep = "SElECT * FROM " + DbContract.Step.TABLE_NAME +
+        String selectStep = "SELECT * FROM " + DbContract.Step.TABLE_NAME +
                 " WHERE " + DbContract.Step.COLUMN_RECIPE+ " = " + recipe_id;
 
         // populate array list with step ids
@@ -457,12 +454,12 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * get all items in shopping cart by ingredient_id
+     * get all items in shopping cart
      */
     public ArrayList<RecipeIngredient> getShoppingCartIngredients() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectShoppingCartIngredients = "SElECT * FROM " + DbContract.ShoppingCartIngredient.TABLE_NAME;
-
+        String selectShoppingCartIngredients = "SELECT * FROM " + DbContract.ShoppingCartIngredient.TABLE_NAME;
+        Log.e(LOG, selectShoppingCartIngredients);
         // populate array list with ingredient ids
         Cursor c = db.rawQuery(selectShoppingCartIngredients, null);
         ArrayList<RecipeIngredient> ingredients = new ArrayList<>();
@@ -470,6 +467,7 @@ public class DbHelper extends SQLiteOpenHelper {
             do {
                 RecipeIngredient recipeIngredient = new RecipeIngredient();
                 recipeIngredient.set_id(c.getInt(c.getColumnIndex(DbContract.ShoppingCartIngredient._ID)));
+                recipeIngredient.set_ingredient_id(c.getInt(c.getColumnIndex(DbContract.ShoppingCartIngredient.COLUMN_INGREDIENT_ID)));
                 recipeIngredient.set_quantity(c.getInt(c.getColumnIndex(DbContract.ShoppingCartIngredient.COLUMN_QUANTITY)));
                 recipeIngredient.set_unit(c.getString(c.getColumnIndex(DbContract.ShoppingCartIngredient.COLUMN_UNIT)));
                 ingredients.add(recipeIngredient);

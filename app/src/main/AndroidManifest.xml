@@ -59,8 +59,7 @@
             android:launchMode="singleInstance" />
         <activity
             android:name=".ShoppingCartActivity"
-            android:label="@string/title_activity_shopping_cart"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/title_activity_shopping_cart" />
         <activity
             android:name=".SelectCreateActivity"
             android:label="@string/title_activity_select_create"

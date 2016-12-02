@@ -2,20 +2,16 @@ package ca.uottawa.cookingwithgarzon;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.ToolbarWidgetWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -43,6 +39,7 @@ public class RecipeViewActivity extends AppCompatActivity {
     private DbHelper dbHelper;
     private Toolbar toolbar;
     private Button deleteBtn;
+    private FloatingActionButton addAllIngToCartBtn;
     private Recipe recipe;
     private Cuisine cuisine;
     private MealType mealType;
@@ -67,6 +64,7 @@ public class RecipeViewActivity extends AppCompatActivity {
         viewRecipeIngredientList = (ListView) content.findViewById(R.id.viewRecipeIngredientList);
         viewRecipeStepList = (ListView) content.findViewById(R.id.viewRecipeStepList);
         deleteBtn = (Button) content.findViewById(R.id.deleteRecipeBtn);
+        addAllIngToCartBtn = (FloatingActionButton) content.findViewById(R.id.addToCartBtn);
 
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
@@ -86,6 +84,20 @@ public class RecipeViewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 dbHelper.deleteRecipe(recipe);
                 finish();
+            }
+        });
+
+        addAllIngToCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (RecipeIngredient ingredient : recipeIngredients) {
+                    dbHelper.createShoppingCartIngredient(ingredient);
+                }
+                Snackbar.make(findViewById(R.id.activity_recipe_view),
+                        "Added all ingredients to your cart.",
+                        Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show();
             }
         });
     }

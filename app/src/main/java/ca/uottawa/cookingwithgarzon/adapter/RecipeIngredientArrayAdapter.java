@@ -42,7 +42,7 @@ public class RecipeIngredientArrayAdapter extends ArrayAdapter<RecipeIngredient>
         // Populate the data into the template view using the data object
         Ingredient ingredient = dbHelper.getIngredient(recipeIngredient.get_ingredient_id());
         recipeIngredientName.setText(ingredient.get_name());
-        recipeIngredientQuantity.setText(((Long)recipeIngredient.get_quantity()).toString());
+        recipeIngredientQuantity.setText(String.valueOf(recipeIngredient.get_quantity()));
         recipeIngredientUnit.setText(recipeIngredient.get_unit());
         // Return the completed view to render on screen
         return convertView;

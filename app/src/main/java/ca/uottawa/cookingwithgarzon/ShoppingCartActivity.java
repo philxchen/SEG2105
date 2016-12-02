@@ -10,6 +10,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import ca.uottawa.cookingwithgarzon.adapter.RecipeIngredientArrayAdapter;
+import ca.uottawa.cookingwithgarzon.adapter.ShoppingCartArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 
@@ -32,8 +33,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         DbHelper dbHelper = DbHelper.getInstance(this);
         ArrayList<RecipeIngredient> recipeIngredients = dbHelper.getShoppingCartIngredients();
         ListView listView = (ListView) findViewById(R.id.shopping_cart_list);
-        listView.setAdapter(new RecipeIngredientArrayAdapter(this, R.layout.shopping_cart_list_item, recipeIngredients));
-
+        listView.setAdapter(new ShoppingCartArrayAdapter(this, R.layout.shopping_cart_list_item, recipeIngredients));
 
     }
 

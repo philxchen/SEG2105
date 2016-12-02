@@ -22,7 +22,7 @@ public class ShoppingCartArrayAdapter extends ArrayAdapter<RecipeIngredient> {
 
     DbHelper dbHelper;
     public ShoppingCartArrayAdapter(Context context, int resource, List<RecipeIngredient> ingredients) {
-        super(context, R.layout.shopping_cart_list_item);
+        super(context, resource, ingredients);
         dbHelper = DbHelper.getInstance(getContext());
     }
 
@@ -38,8 +38,9 @@ public class ShoppingCartArrayAdapter extends ArrayAdapter<RecipeIngredient> {
         TextView ingredientUnit = (TextView) convertView.findViewById(R.id.shopping_cart_ingredient_unit);
 
         RecipeIngredient recipeIngredient = dbHelper.getRecipeIngredient(ingredient.get_id());
-        ingredientQuantity.setText(((Long)recipeIngredient.get_quantity()).toString());
+        ingredientName.setText(dbHelper.getIngredient(recipeIngredient.get_ingredient_id()).get_name());
+        ingredientQuantity.setText(String.valueOf(recipeIngredient.get_quantity()));
         ingredientUnit.setText(recipeIngredient.get_unit());
-        return null;
+        return convertView;
     }
 }
