@@ -129,7 +129,7 @@
                         android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView2"
+                        android:id="@+id/mealTitle"
                         android:layout_weight="1" />
 
                     <TextView
@@ -152,7 +152,7 @@
                         android:text="TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView3"
+                        android:id="@+id/cusineTitle"
                         android:layout_weight="1" />
 
                     <TextView
@@ -176,7 +176,7 @@
                     android:text="Serving Size:"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView6"
+                    android:id="@+id/servingTitle"
                     android:layout_weight="1" />
 
                 <EditText
@@ -228,9 +228,10 @@
                         android:text="Total Cost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView5"
+                        android:id="@+id/costTitle"
                         android:layout_weight="0.12"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:text="Calculation"
@@ -260,7 +261,7 @@
                 <TextView
                     android:text="Instructions"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/createRecipeInstructionTitle"
                     android:layout_weight="0.12"
                     android:textSize="24sp"

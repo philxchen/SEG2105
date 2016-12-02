@@ -179,6 +179,58 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="3dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="194dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Serving Size"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/servingTitle"
+                        android:textAlignment="center"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:text="# Servings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/viewRecipeServingTxt"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Total Cost $"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/costTitle"
+                        android:textAlignment="center"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/viewRecipeCostTxt"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:text="Cost $" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
@@ -194,10 +246,11 @@
                 <Button
                     android:text="Add to Cart"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="36dp"
                     android:id="@+id/addToCartBtn"
                     android:textSize="11sp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:gravity="bottom|left" />
             </LinearLayout>
 
             <LinearLayout
@@ -210,7 +263,7 @@
                     android:id="@+id/viewRecipeIngredientList"
                     android:layout_width="match_parent"
                     android:nestedScrollingEnabled="false"
-                    android:layout_height="60dp" />
+                    android:layout_height="126dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -238,21 +291,22 @@
                 <ListView
                     android:id="@+id/viewRecipeStepList"
                     android:layout_width="match_parent"
-                    android:layout_height="91dp" />
+                    android:layout_height="193dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginTop="100dp"
+                android:gravity="center">
 
                 <Button
                     android:text="Delete"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/deleteRecipeBtn"
-                    android:layout_weight="1" />
+                    android:id="@+id/deleteRecipeBtn" />
             </LinearLayout>
 
         </LinearLayout>
