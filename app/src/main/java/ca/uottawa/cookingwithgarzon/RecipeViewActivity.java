@@ -39,7 +39,7 @@ public class RecipeViewActivity extends AppCompatActivity {
     private ListView viewRecipeStepList;
     private DbHelper dbHelper;
     private Button deleteBtn;
-    private FloatingActionButton addAllIngToCartBtn;
+    private Button addAllIngToCartBtn;
     private Recipe recipe;
     private Cuisine cuisine;
     private MealType mealType;
@@ -62,7 +62,7 @@ public class RecipeViewActivity extends AppCompatActivity {
         viewRecipeIngredientList = (ListView) findViewById(R.id.viewRecipeIngredientList);
         viewRecipeStepList = (ListView) findViewById(R.id.viewRecipeStepList);
         deleteBtn = (Button) findViewById(R.id.deleteRecipeBtn);
-        addAllIngToCartBtn = (FloatingActionButton) findViewById(R.id.addToCartBtn);
+        addAllIngToCartBtn = (Button) findViewById(R.id.addToCartBtn);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         Intent intent = getIntent();

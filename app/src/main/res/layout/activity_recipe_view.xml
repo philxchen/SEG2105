@@ -191,15 +191,13 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp" />
 
-                <android.support.design.widget.FloatingActionButton
-                    android:clickable="true"
-                    app:fabSize="mini"
-                    app:srcCompat="@drawable/ic_shopping_basket_black_24dp"
+                <Button
+                    android:text="Add to Cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/addToCartBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="bottom" />
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.16" />
             </LinearLayout>
 
             <LinearLayout
