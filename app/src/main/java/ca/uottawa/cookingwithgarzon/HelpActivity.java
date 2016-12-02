@@ -20,9 +20,10 @@ public class HelpActivity extends Activity {
 
         switch(helpTextName) {
             case "mainScreenHelp":
-//                helpTxt.setText(getString(R.string.mainScreenHelp));
+                helpTxt.setText(getString(R.string.mainScreenHelp));
                 break;
             case "searchHelp":
+                helpTxt.setText(getString(R.string.searchHelp));
                 break;
             case "searchRecipeHelp":
                 break;

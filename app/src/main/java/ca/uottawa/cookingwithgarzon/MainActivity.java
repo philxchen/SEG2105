@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(MainActivity.this, HelpActivity.class);
-                helpIntent.putExtra("helpTextName", "recipeSearchHelp");
+                helpIntent.putExtra("helpTextName", "mainScreenHelp");
                 startActivity(helpIntent);
             }
         });

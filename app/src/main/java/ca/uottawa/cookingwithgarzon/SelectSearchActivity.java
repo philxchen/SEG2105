@@ -48,7 +48,7 @@ public class SelectSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(SelectSearchActivity.this, HelpActivity.class);
-                helpIntent.putExtra("helpTextName", "selectSearchHelp");
+                helpIntent.putExtra("helpTextName", "searchHelp");
                 startActivity(helpIntent);
             }
         });
