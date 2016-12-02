@@ -46,7 +46,7 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
             step = db.getStep(step_id);
             stepInstructionTxt.setText(step.get_instruction());
-            stepTimeTxt.setText(step.get_time());
+            stepTimeTxt.setText(((Integer)step.get_time()).toString());
         }
         else {
             step = new Step();
