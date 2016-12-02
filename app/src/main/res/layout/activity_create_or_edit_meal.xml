@@ -53,6 +53,20 @@
             android:layout_height="57dp"
             android:id="@+id/saveMealBtn"
             android:textAlignment="center"
+            android:layout_gravity="center_horizontal"/>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.29" />
+
+        <Button
+            android:text="Delete"
+            android:layout_width="138dp"
+            android:layout_height="57dp"
+            android:id="@+id/deleteMealTypeBtn"
+            android:textAlignment="center"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 

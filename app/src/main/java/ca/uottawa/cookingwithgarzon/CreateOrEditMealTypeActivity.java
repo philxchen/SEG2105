@@ -21,6 +21,7 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_or_edit_meal);
         final Button saveBtn = (Button) findViewById(R.id.saveMealBtn);
+        final Button deleteBtn = (Button) findViewById(R.id.deleteMealTypeBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createMealText);
 
         Intent intent = getIntent();
@@ -50,5 +51,13 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
             }
         });
 
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DbHelper db = DbHelper.getInstance(getApplicationContext());
+                db.deleteMealType(mealtype);
+                finish();
+            }
+        });
     }
 }
