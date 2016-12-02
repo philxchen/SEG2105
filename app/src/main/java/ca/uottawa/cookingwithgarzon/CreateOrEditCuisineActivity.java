@@ -74,7 +74,9 @@ public class CreateOrEditCuisineActivity extends Activity {
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreateOrEditCuisineActivity.this, HelpActivity.class));
+                Intent helpIntent = new Intent(CreateOrEditCuisineActivity.this, HelpActivity.class);
+                helpIntent.putExtra("helpTextName", "createCuisineHelp");
+                startActivity(helpIntent);
             }
         });
     }
