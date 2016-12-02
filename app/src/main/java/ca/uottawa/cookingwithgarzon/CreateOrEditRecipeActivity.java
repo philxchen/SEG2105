@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.graphics.Bitmap;
 
@@ -53,6 +54,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private ImageView image;
     private EditText recipeTitleTxt;
     private RatingBar recipeRatingBar;
+    private Switch favouriteSwitch;
     private FloatingActionButton newIngredientBtn;
     private FloatingActionButton newStepBtn;
     private Spinner difficultySpinner;
@@ -82,6 +84,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         recipeIngredients_listView = (ListView) content.findViewById(R.id.createRecipeIngredientList);
         step_listView = (ListView) content.findViewById(R.id.createRecipeStepList);
         image = (ImageView) content.findViewById(R.id.createRecipeImage);
+        favouriteSwitch = (Switch) content.findViewById(R.id.favouritesSwitch);
 
         //Difficulty List
         List<String> difficultyList = new ArrayList<>();
@@ -221,6 +224,18 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 startActivityForResult(pickType, GET_MEALTYPE_REQUEST);
             }
         });
+
+        favouriteSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (favouriteSwitch.isChecked()) {
+                    recipe.set_favourite(1);
+                }
+                else {
+                    recipe.set_favourite(0);
+                }
+            }
+        });
     }
 
     private void loadRecipe() {
@@ -251,7 +266,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 difficultySpinner.setSelection(2);
                 break;
         }
-
+        favouriteSwitch.setChecked(recipe.get_favourite() > 0);
         recipeIngredients = dbHelper.getRecipeIngredients(recipe_id);
         steps = dbHelper.getRecipeSteps(recipe_id);
         Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe), "Editing recipe id: "+recipe_id, Snackbar.LENGTH_LONG)
