@@ -63,8 +63,8 @@ public class RecipeViewActivity extends AppCompatActivity {
         recipeCuisineTxt = (TextView) findViewById(R.id.viewRecipeCuisineTxt);
         viewRecipeIngredientList = (ListView) findViewById(R.id.viewRecipeIngredientList);
         viewRecipeStepList = (ListView) findViewById(R.id.viewRecipeStepList);
-        // recipeCostTxt = (TextView) findViewById(R.id.viewRecipeCostTxt);
-        // recipeServingsTxt = (TextView) findViewById(R.id.viewRecipeServingTxt);
+        recipeCostTxt = (TextView) findViewById(R.id.viewRecipeCostTxt);
+        recipeServingsTxt = (TextView) findViewById(R.id.viewRecipeServingTxt);
         deleteBtn = (Button) findViewById(R.id.deleteRecipeBtn);
         addAllIngToCartBtn = (Button) findViewById(R.id.addToCartBtn);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);

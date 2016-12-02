@@ -568,7 +568,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void deleteInvalidRecipes() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(DbContract.Recipe.TABLE_NAME, DbContract.Recipe.COLUMN_RECIPE_NAME +"=\'\'", null);
+        db.delete(DbContract.Recipe.TABLE_NAME, DbContract.Recipe.COLUMN_RECIPE_NAME +" is null", null);
     }
 
 

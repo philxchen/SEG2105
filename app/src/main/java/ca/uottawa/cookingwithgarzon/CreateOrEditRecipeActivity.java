@@ -260,7 +260,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private void loadRecipe() {
         recipe = dbHelper.getRecipe(recipe_id);
         recipeTitleTxt.setText(recipe.get_name());
-        servingTxt.setText(recipe.get_servings());
+        servingTxt.setText(((Integer)recipe.get_servings()).toString());
         costTxt.setText(((Double)recipe.get_cost()).toString());
         if (recipe.get_rating() != 0) {
             recipeRatingBar.setRating(recipe.get_rating());
