@@ -104,6 +104,15 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
                 finish();
         }
     });
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent helpIntent = new Intent(CreateOrEditRecipeIngredientActivity.this, HelpActivity.class);
+                helpIntent.putExtra("helpTextName", "createRecipeIngredientHelp");
+                startActivity(helpIntent);
+            }
+        });
 }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

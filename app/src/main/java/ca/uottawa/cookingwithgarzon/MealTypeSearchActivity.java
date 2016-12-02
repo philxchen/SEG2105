@@ -51,7 +51,9 @@ public class MealTypeSearchActivity extends Activity {
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MealTypeSearchActivity.this, HelpActivity.class));
+                Intent helpIntent = new Intent(MealTypeSearchActivity.this, HelpActivity.class);
+                helpIntent.putExtra("helpTextName", "mealTypeSearchHelp");
+                startActivity(helpIntent);
             }
         });
 

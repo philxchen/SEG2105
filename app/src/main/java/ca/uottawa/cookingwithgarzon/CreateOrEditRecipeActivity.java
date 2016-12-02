@@ -241,7 +241,9 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreateOrEditRecipeActivity.this, HelpActivity.class));
+                Intent helpIntent = new Intent(CreateOrEditRecipeActivity.this, HelpActivity.class);
+                helpIntent.putExtra("helpTextName", "createRecipeHelp");
+                startActivity(helpIntent);
             }
         });
     }

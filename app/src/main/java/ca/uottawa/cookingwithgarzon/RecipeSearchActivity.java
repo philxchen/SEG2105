@@ -39,7 +39,9 @@ public class RecipeSearchActivity extends AppCompatActivity {
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RecipeSearchActivity.this, HelpActivity.class));
+                Intent helpIntent = new Intent(RecipeSearchActivity.this, HelpActivity.class);
+                helpIntent.putExtra("helpTextName", "recipeSearchHelp");
+                startActivity(helpIntent);
             }
         });
     }
