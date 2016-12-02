@@ -101,6 +101,19 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.22" />
 
+        <Button
+            android:text="Delete"
+            android:layout_width="138dp"
+            android:layout_height="57dp"
+            android:id="@+id/deleteRecipeIngredientBtn"
+            android:layout_gravity="center_horizontal"  />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.22" />
+
         <android.support.design.widget.FloatingActionButton
             android:layout_width="70dp"
             android:layout_height="wrap_content"

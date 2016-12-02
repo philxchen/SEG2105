@@ -25,6 +25,7 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
     private TextView recipeIngredientTxt;
     private Button saveBtn;
     private Button getIngredientBtn;
+    private Button deleteBtn;
     private EditText unitTxt;
     private EditText quantityTxt;
     private long recipe_id;
@@ -40,6 +41,7 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
 
         recipeIngredientTxt = (TextView) findViewById(R.id.recipeIngredientTxt);
         saveBtn = (Button) findViewById(R.id.saveRecipeIngredientBtn);
+        deleteBtn = (Button) findViewById(R.id.deleteRecipeIngredientBtn);
         getIngredientBtn = (Button) findViewById(R.id.chooseIngredientBtn);
         unitTxt = (EditText) findViewById(R.id.recipeIngredientUnitTxt);
         quantityTxt = (EditText) findViewById(R.id.recipeIngredientQuantityTxt);
@@ -102,8 +104,8 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
                 result.putExtra("result", "Added recipe ingredient!");
                 setResult(Activity.RESULT_OK, result);
                 finish();
-        }
-    });
+            }
+        });
 
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +115,21 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
                 startActivity(helpIntent);
             }
         });
-}
+
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DbHelper db = DbHelper.getInstance(getApplicationContext());
+                db.deleteRecipeIngredient(recipeIngredient);
+                Intent result = new Intent();
+                result.putExtra("result", "Deleted recipe ingredient!");
+                setResult(Activity.RESULT_OK, result);
+                finish();
+            }
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to

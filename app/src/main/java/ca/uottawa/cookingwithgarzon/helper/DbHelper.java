@@ -24,10 +24,13 @@ import ca.uottawa.cookingwithgarzon.model.Step;
 
 public class DbHelper extends SQLiteOpenHelper {
 
+    // singleton storing reference to db
     private static DbHelper mInstance = null;
-    public static final int DATABASE_VERSION = 8;
-    public static final String DATABASE_NAME = "recipe.db";
 
+    public static final int DATABASE_VERSION = 8; //
+
+    // constants used to simplify dbHelper
+    private static final String DATABASE_NAME = "recipe.db";
     private static final String LOG = "DbHelper";
     private static final String TEXT_TYPE = " TEXT";
     private static final String REAL_TYPE = " REAL";
@@ -87,12 +90,6 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.MealType._ID + " INTEGER PRIMARY KEY," +
                     DbContract.MealType.COLUMN_MEAL_TYPE_NAME + TEXT_TYPE + " )";
 
-/*
-    private static final String SQL_CREATE_SHOPPINGCART_TABLE =
-            "CREATE TABLE " + DbContract.ShoppingCart.TABLE_NAME + " (" +
-                    DbContract.RecipeIngredient._ID + " INTEGER PRIMARY KEY )";
-*/
-
     private static final String SQL_CREATE_SHOPPINGCARTINGREDIENT_TABLE =
             "CREATE TABLE " + DbContract.ShoppingCartIngredient.TABLE_NAME + " (" +
                     DbContract.ShoppingCartIngredient._ID + " INTEGER PRIMARY KEY, "+
@@ -118,9 +115,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_MEALTYPE_TABLE =
             "DROP TABLE IF EXISTS " + DbContract.MealType.TABLE_NAME;
-/*
-    private static final String SQL_DELETE_SHOPPINGCART_TABLE =
-            "DROP TABLE IF EXISTS " + DbContract.ShoppingCart.TABLE_NAME;*/
 
     private static final String SQL_DELETE_SHOPPINGCARTINGREDIENT_TABLE =
             "DROP TABLE IF EXISTS " + DbContract.ShoppingCartIngredient.TABLE_NAME;
@@ -136,10 +130,13 @@ public class DbHelper extends SQLiteOpenHelper {
         return mInstance;
     }
 
+    // Constructor is private. Must invoke static method getInstance()
     private DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+
+    // DB create/upgrade/downgrade methods
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_RECIPE_TABLE);
         db.execSQL(SQL_CREATE_INGREDIENT_TABLE);
@@ -165,11 +162,16 @@ public class DbHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
+    // deletes database content for testing
     public static void clearDatabase(Context ctx) {
         ctx.deleteDatabase(DATABASE_NAME);
     }
 
     /** CRUD */
+
+    /**
+     * Create methods
+     */
 
     /** Create a recipe */
     public long createRecipe(Recipe recipe) {
@@ -258,9 +260,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return step_id;
     }
 
-    /**
-     * create a shoppingCart
-     */
+    /** create a shoppingCart item */
     public long createShoppingCartIngredient(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -270,6 +270,10 @@ public class DbHelper extends SQLiteOpenHelper {
         return db.insertOrThrow(DbContract.ShoppingCartIngredient.TABLE_NAME, null, values);
     }
 
+
+    /**
+     * Get items from database
+     */
 
     /** get a recipe by id */
     public Recipe getRecipe(long recipe_id) {
@@ -471,6 +475,7 @@ public class DbHelper extends SQLiteOpenHelper {
      * Update operations
      */
 
+    /** update recipe */
     public long updateRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -488,6 +493,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return recipe.get_id();
     }
 
+    /** update an ingredient */
     public long updateIngredient(Ingredient ingredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -498,6 +504,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return ingredient.get_id();
     }
 
+    /** update recipe Ingredient */
     public long updateRecipeIngredient(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -510,6 +517,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return recipeIngredient.get_id();
     }
 
+    /** update a step */
     public long updateStep(Step step) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -521,6 +529,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return step.get_id();
     }
 
+    /** update a meal type */
     public long updateMealType(MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -530,6 +539,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return type.get_id();
     }
 
+    /** update a cuisine */
     public long updateCuisine(Cuisine cuisine) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -539,6 +549,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return cuisine.get_id();
     }
 
+    /** update a shopping cart */
     public long updateShoppingCart(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -553,7 +564,7 @@ public class DbHelper extends SQLiteOpenHelper {
     /**
      * Delete operations
      */
-
+    /** delete recipe. propagates to recipeIngredient and steps */
     public void deleteRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DbContract.Step.TABLE_NAME, DbContract.Step.COLUMN_RECIPE +"="+ recipe.get_id(), null);
@@ -561,6 +572,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.delete(DbContract.Recipe.TABLE_NAME, "_ID=" + recipe.get_id(), null);
     }
 
+    /** deletes ingredient propagates to recipeIngredient */
     public void deleteIngredient(Ingredient ingredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DbContract.RecipeIngredient.TABLE_NAME,
@@ -568,30 +580,29 @@ public class DbHelper extends SQLiteOpenHelper {
         db.delete(DbContract.Ingredient.TABLE_NAME, "_ID="+ ingredient.get_id(), null);
     }
 
+    /** delete a recipe ingredient */
     public void deleteRecipeIngredient(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DbContract.RecipeIngredient.TABLE_NAME, "_ID="+ recipeIngredient.get_id(), null);
     }
 
+    /** delete a recipe step */
     public void deleteStep(Step step) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DbContract.Step.TABLE_NAME, "_ID="+ step.get_id(), null);
     }
 
+    /** delete a meal type */
     public void deleteMealType(MealType type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         db.delete(DbContract.MealType.TABLE_NAME, "_ID="+ type.get_id(), null);
     }
 
+    /** deletea cuisine */
     public void deleteCuisine(Cuisine cuisine) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DbContract.Cuisine.TABLE_NAME, "_ID="+ cuisine.get_id(), null);
-    }
-
-    public void deleteShoppingCartIngredient(RecipeIngredient recipeIngredient) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(DbContract.ShoppingCartIngredient.TABLE_NAME, "_ID=" + recipeIngredient.get_id(), null);
     }
 
     /** Clear table operations */
@@ -626,7 +637,15 @@ public class DbHelper extends SQLiteOpenHelper {
         return recipes;
     }
 
-    /** Algorithm for searching for recipes by name, ingredient, cuisine, type */
+    /** Algorithm for searching for recipes by name, ingredient, cuisine, type
+     *
+     * takes arguments recipe name, recipe ingredients, cuisine and meal type
+     * tokenizes search string by "AND" and checks for NOT
+     * builds SQL query with intersection of tables, joins where appropriate
+     *
+     * joel 28-11-2016
+     *
+     * */
     public ArrayList<Recipe> findRecipe(String name, String ingredient, String cuisine, String type) {
 
         boolean started = false;
