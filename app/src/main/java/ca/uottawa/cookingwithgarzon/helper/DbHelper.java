@@ -269,14 +269,6 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.ShoppingCartIngredient.COLUMN_UNIT, recipeIngredient.get_unit());
         return db.insertOrThrow(DbContract.ShoppingCartIngredient.TABLE_NAME, null, values);
     }
-//
-//    /** create a shopping cart */
-//    public long createShoppingCart(Shopping cart) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//        long shoppingcart_id = db.insertOrThrow(DbContract.ShoppingCart.TABLE_NAME, null, values);
-//        return shoppingcart_id;
-//    }
 
 
     /** get a recipe by id */

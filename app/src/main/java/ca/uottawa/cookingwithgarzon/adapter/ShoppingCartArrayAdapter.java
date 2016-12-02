@@ -11,6 +11,7 @@ import java.util.List;
 
 import ca.uottawa.cookingwithgarzon.R;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
+import ca.uottawa.cookingwithgarzon.model.Ingredient;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 
 /**
@@ -27,7 +28,7 @@ public class ShoppingCartArrayAdapter extends ArrayAdapter<RecipeIngredient> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        RecipeIngredient ingredient = getItem(position);
+        RecipeIngredient recipeIngredient = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.shopping_cart_list_item, parent, false);
@@ -36,8 +37,8 @@ public class ShoppingCartArrayAdapter extends ArrayAdapter<RecipeIngredient> {
         TextView ingredientQuantity = (TextView) convertView.findViewById(R.id.shopping_cart_ingredient_quantity);
         TextView ingredientUnit = (TextView) convertView.findViewById(R.id.shopping_cart_ingredient_unit);
 
-        RecipeIngredient recipeIngredient = dbHelper.getRecipeIngredient(ingredient.get_id());
-        ingredientName.setText(dbHelper.getIngredient(recipeIngredient.get_ingredient_id()).get_name());
+        Ingredient ingredient = dbHelper.getIngredient(recipeIngredient.get_ingredient_id());
+        ingredientName.setText(ingredient.get_name());
         ingredientQuantity.setText(String.valueOf(recipeIngredient.get_quantity()));
         ingredientUnit.setText(recipeIngredient.get_unit());
         return convertView;
