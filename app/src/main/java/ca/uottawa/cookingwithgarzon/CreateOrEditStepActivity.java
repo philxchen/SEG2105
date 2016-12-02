@@ -94,6 +94,9 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
             public void onClick(View view) {
                     DbHelper db = DbHelper.getInstance(getApplicationContext());
                     db.deleteStep(step);
+                    Intent result = new Intent();
+                    result.putExtra("step_deleted", 1);
+                    setResult(Activity.RESULT_OK, result);
                     finish();
                 }
         });

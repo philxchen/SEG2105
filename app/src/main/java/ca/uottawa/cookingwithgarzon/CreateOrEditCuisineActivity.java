@@ -40,6 +40,12 @@ public class CreateOrEditCuisineActivity extends Activity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (nameTxt.getText() == null || nameTxt.getText().toString().trim().equals("")) {
+                    Snackbar.make(findViewById(R.id.activity_create_cuisine), "You must enter " +
+                            "a name for the cuisine.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    return;
+                }
                 String cuisineName = nameTxt.getText().toString();
                 cuisine.set_name(cuisineName);
                 DbHelper db = DbHelper.getInstance(getApplicationContext());

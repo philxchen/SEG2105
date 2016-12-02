@@ -165,6 +165,16 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                     return;
                 }
+                if (recipeIngredients.size() == 0 ) {
+                    Snackbar.make(view, "You probably need some ingredients", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    return;
+                }
+                if (steps.size() == 0 ) {
+                    Snackbar.make(view, "A recipe without steps?", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    return;
+                }
                 recipe.set_difficulty(difficultySpinner.getSelectedItemPosition());
                 recipe.set_name(recipeTitleTxt.getText().toString());
                 recipe.set_rating((int)recipeRatingBar.getRating());

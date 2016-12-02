@@ -2,6 +2,7 @@ package ca.uottawa.cookingwithgarzon;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,8 +41,21 @@ public class CreateOrEditIngredientActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (nameTxt.getText() == null || nameTxt.getText().toString().trim().equals("")) {
+                    Snackbar.make(findViewById(R.id.activity_create_cuisine), "You must enter " +
+                            "a name for the ingredient.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    return;
+                }
                 String ingredientName = nameTxt.getText().toString();
-                Double price = Double.parseDouble(priceTxt.getText().toString());
+
+                Double price;
+                if (priceTxt.getText() == null || priceTxt.getText().toString().trim().equals("")) {
+                    price = 0.0;
+                }
+                else {
+                    price = Double.parseDouble(priceTxt.getText().toString());
+                }
                 ingredient.set_name(ingredientName);
                 ingredient.set_price(price);
                 DbHelper db = DbHelper.getInstance(getApplicationContext());
