@@ -25,7 +25,7 @@ import ca.uottawa.cookingwithgarzon.model.Step;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static DbHelper mInstance = null;
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NAME = "recipe.db";
 
     private static final String LOG = "DbHelper";
@@ -51,6 +51,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Recipe.COLUMN_MEALTYPE + INTEGER_TYPE + COMMA_SEP +
                     // foreign key for recipeingredient
                     DbContract.Recipe.COLUMN_RECIPE_INGREDIENT + INTEGER_TYPE + COMMA_SEP +
+                    DbContract.Recipe.COLUMN_FAVOURITE + INTEGER_TYPE + COMMA_SEP +
                     DbContract.Recipe.COLUMN_IMAGE + BLOB_TYPE + " )";
 
     private static final String SQL_CREATE_STEP_TABLE =
@@ -183,6 +184,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Recipe.COLUMN_RATING, recipe.get_rating());
         values.put(DbContract.Recipe.COLUMN_CUISINE, recipe.get_cuisine_id());
         values.put(DbContract.Recipe.COLUMN_MEALTYPE, recipe.get_meal_type_id());
+        values.put(DbContract.Recipe.COLUMN_FAVOURITE, recipe.get_favourite());
         values.put(DbContract.Recipe.COLUMN_IMAGE, recipe.get_image());
         long recipe_id = db.insertOrThrow(DbContract.Recipe.TABLE_NAME, null, values);
         return recipe_id;
@@ -286,6 +288,7 @@ public class DbHelper extends SQLiteOpenHelper {
         recipe.set_rating(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_RATING)));
         recipe.set_cuisine_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_CUISINE)));
         recipe.set_meal_type_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_MEALTYPE)));
+        recipe.set_favourite(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_FAVOURITE)));
         recipe.set_image(c.getBlob(c.getColumnIndex(DbContract.Recipe.COLUMN_IMAGE)));
         c.close();
         return recipe;
@@ -447,6 +450,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Recipe.COLUMN_RATING, recipe.get_rating());
         values.put(DbContract.Recipe.COLUMN_CUISINE, recipe.get_cuisine_id());
         values.put(DbContract.Recipe.COLUMN_MEALTYPE, recipe.get_meal_type_id());
+        values.put(DbContract.Recipe.COLUMN_FAVOURITE, recipe.get_favourite());
         values.put(DbContract.Recipe.COLUMN_IMAGE, recipe.get_image());
         db.update(DbContract.Recipe.TABLE_NAME, values,
                 DbContract.Recipe._ID +"="+ recipe.get_id(), null);
@@ -560,6 +564,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 recipe.set_rating(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_RATING)));
                 recipe.set_cuisine_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_CUISINE)));
                 recipe.set_meal_type_id(c.getLong(c.getColumnIndex(DbContract.Recipe.COLUMN_MEALTYPE)));
+                recipe.set_favourite(c.getInt(c.getColumnIndex(DbContract.Recipe.COLUMN_FAVOURITE)));
                 recipes.add(recipe);
             } while (c.moveToNext());
         }
@@ -751,6 +756,14 @@ public class DbHelper extends SQLiteOpenHelper {
         }
         c.close();
         return mealtypes;
+    }
+
+    public ArrayList<Recipe> getFavourites() {
+            String query = "SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
+                        " FROM " + DbContract.Recipe.TABLE_NAME + " WHERE " +
+                    DbContract.Recipe.COLUMN_FAVOURITE + "=1";
+            Log.e(LOG, query.toString());
+            return buildRecipeList(query.toString());
     }
 
 }

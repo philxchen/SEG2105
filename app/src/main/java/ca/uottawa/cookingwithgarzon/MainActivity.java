@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
         View.OnClickListener oclFavouritesBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, FavoriteRecipe.class));
+                startActivity(new Intent(MainActivity.this, FavouriteRecipeActivity.class));
             }
         };
 

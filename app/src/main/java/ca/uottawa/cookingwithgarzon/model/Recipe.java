@@ -18,10 +18,19 @@ public class Recipe {
     private long _meal_type_id;
     private long _cuisine_id;
     private byte[] _image;
-
+    private int _favourite;
 
     public Recipe() {
     }
+
+    public int get_favourite() {
+        return _favourite;
+    }
+
+    public void set_favourite(int _favourite) {
+        this._favourite = _favourite;
+    }
+
 
     public long get_id() {
         return _id;

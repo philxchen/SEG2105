@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/activity_favorite_recipe_result"
     android:fitsSystemWindows="true"
-    tools:context="ca.uottawa.cookingwithgarzon.FavoriteRecipe">
+    tools:context="ca.uottawa.cookingwithgarzon.FavouriteRecipeActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -24,6 +24,6 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/favoriteListView" />
+            android:id="@+id/favouriteListView" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
