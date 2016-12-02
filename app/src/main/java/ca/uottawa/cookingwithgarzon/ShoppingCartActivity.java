@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import ca.uottawa.cookingwithgarzon.adapter.RecipeIngredientArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
+import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 
 public class ShoppingCartActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,29 +29,12 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView cartList = (RecyclerView) findViewById(R.id.shopping_cart_list);
-        cartList.setAdapter(new RecyclerView.Adapter() {
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                return null;
-            }
+        DbHelper dbHelper = DbHelper.getInstance(this);
+        ArrayList<RecipeIngredient> recipeIngredients = dbHelper.getShoppingCartIngredients();
+        ListView listView = (ListView) findViewById(R.id.shopping_cart_list);
+        listView.setAdapter(new RecipeIngredientArrayAdapter(this, R.layout.shopping_cart_list_item, recipeIngredients));
 
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-            }
-
-            @Override
-            public int getItemCount() {
-                return 0;
-            }
-        });
-        cartList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
 }

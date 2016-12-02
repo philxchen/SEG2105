@@ -10,7 +10,7 @@
         android:text="Name"
         android:layout_width="327dp"
         android:layout_height="wrap_content"
-        android:id="@+id/ingredient_name"
+        android:id="@+id/shopping_cart_ingredient_name"
         android:textAppearance="@android:style/TextAppearance.Material.Headline"/>
 
     <CheckBox
@@ -22,9 +22,15 @@
         />
 
     <TextView
-        android:text="Price"
+        android:text="Quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ingredient_price"/>
+        android:id="@+id/shopping_cart_ingredient_quantity"/>
+
+    <TextView
+        android:text="Unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shopping_cart_ingredient_unit" />
 
 </GridLayout>

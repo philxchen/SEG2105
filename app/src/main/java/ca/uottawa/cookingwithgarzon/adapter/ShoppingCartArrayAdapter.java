@@ -1,10 +1,45 @@
 package ca.uottawa.cookingwithgarzon.adapter;
 
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import java.util.List;
+
+import ca.uottawa.cookingwithgarzon.R;
+import ca.uottawa.cookingwithgarzon.helper.DbHelper;
+import ca.uottawa.cookingwithgarzon.model.Ingredient;
+import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 
 /**
  * Created by philxchen on 12/1/16.
  */
 
-public class ShoppingCartArrayAdapter extends ArrayAdapter {
+public class ShoppingCartArrayAdapter extends ArrayAdapter<RecipeIngredient> {
+
+    DbHelper dbHelper;
+    public ShoppingCartArrayAdapter(Context context, int resource, List<RecipeIngredient> ingredients) {
+        super(context, R.layout.shopping_cart_list_item);
+        dbHelper = DbHelper.getInstance(getContext());
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        RecipeIngredient ingredient = getItem(position);
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.shopping_cart_list_item, parent, false);
+        }
+        TextView ingredientName = (TextView) convertView.findViewById(R.id.shopping_cart_ingredient_name);
+        TextView ingredientQuantity = (TextView) convertView.findViewById(R.id.shopping_cart_ingredient_quantity);
+        TextView ingredientUnit = (TextView) convertView.findViewById(R.id.shopping_cart_ingredient_unit);
+
+        RecipeIngredient recipeIngredient = dbHelper.getRecipeIngredient(ingredient.get_id());
+        ingredientQuantity.setText(((Long)recipeIngredient.get_quantity()).toString());
+        ingredientUnit.setText(recipeIngredient.get_unit());
+        return null;
+    }
 }

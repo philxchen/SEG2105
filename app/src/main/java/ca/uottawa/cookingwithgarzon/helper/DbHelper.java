@@ -87,9 +87,11 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.MealType._ID + " INTEGER PRIMARY KEY," +
                     DbContract.MealType.COLUMN_MEAL_TYPE_NAME + TEXT_TYPE + " )";
 
+/*
     private static final String SQL_CREATE_SHOPPINGCART_TABLE =
             "CREATE TABLE " + DbContract.ShoppingCart.TABLE_NAME + " (" +
                     DbContract.RecipeIngredient._ID + " INTEGER PRIMARY KEY )";
+*/
 
     private static final String SQL_CREATE_SHOPPINGCARTINGREDIENT_TABLE =
             "CREATE TABLE " + DbContract.ShoppingCartIngredient.TABLE_NAME + " (" +
@@ -255,6 +257,21 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DbContract.Step.COLUMN_RECIPE, step.get_recipe_id());
         long step_id = db.insertOrThrow(DbContract.Step.TABLE_NAME, null, values);
         return step_id;
+    }
+
+    /**
+     * create a shoppingCart
+     */
+    public long createShoppingCart(RecipeIngredient recipeIngredient) {
+        if (recipeIngredient.get_id() != 0) {
+            return updateShoppingCart(recipeIngredient);
+        }
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DbContract.ShoppingCartIngredient.COLUMN_INGREDIENT_ID, recipeIngredient.get_ingredient_id());
+        values.put(DbContract.ShoppingCartIngredient.COLUMN_QUANTITY, recipeIngredient.get_quantity());
+        values.put(DbContract.ShoppingCartIngredient.COLUMN_UNIT, recipeIngredient.get_unit());
+        return db.insertOrThrow(DbContract.ShoppingCartIngredient.TABLE_NAME, null, values);
     }
 //
 //    /** create a shopping cart */
@@ -438,7 +455,32 @@ public class DbHelper extends SQLiteOpenHelper {
         return steps;
     }
 
-    /** Update operations */
+    /**
+     * get all items in shopping cart by ingredient_id
+     */
+    public ArrayList<RecipeIngredient> getShoppingCartIngredients() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectShoppingCartIngredients = "SElECT * FROM " + DbContract.ShoppingCartIngredient.TABLE_NAME;
+
+        // populate array list with ingredient ids
+        Cursor c = db.rawQuery(selectShoppingCartIngredients, null);
+        ArrayList<RecipeIngredient> ingredients = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                RecipeIngredient recipeIngredient = new RecipeIngredient();
+                recipeIngredient.set_id(c.getInt(c.getColumnIndex(DbContract.ShoppingCartIngredient._ID)));
+                recipeIngredient.set_quantity(c.getInt(c.getColumnIndex(DbContract.ShoppingCartIngredient.COLUMN_QUANTITY)));
+                recipeIngredient.set_unit(c.getString(c.getColumnIndex(DbContract.ShoppingCartIngredient.COLUMN_UNIT)));
+                ingredients.add(recipeIngredient);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return ingredients;
+    }
+
+    /**
+     * Update operations
+     */
 
     public long updateRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -508,7 +550,20 @@ public class DbHelper extends SQLiteOpenHelper {
         return cuisine.get_id();
     }
 
-    /** Delete operations */
+    public long updateShoppingCart(RecipeIngredient recipeIngredient) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DbContract.ShoppingCartIngredient.COLUMN_INGREDIENT_ID, recipeIngredient.get_ingredient_id());
+        values.put(DbContract.ShoppingCartIngredient.COLUMN_QUANTITY, recipeIngredient.get_quantity());
+        values.put(DbContract.ShoppingCartIngredient.COLUMN_UNIT, recipeIngredient.get_unit());
+        db.update(DbContract.ShoppingCartIngredient.TABLE_NAME, values,
+                DbContract.ShoppingCartIngredient._ID + "=" + recipeIngredient.get_id(), null);
+        return recipeIngredient.get_id();
+    }
+
+    /**
+     * Delete operations
+     */
 
     public void deleteRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -544,6 +599,12 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DbContract.Cuisine.TABLE_NAME, "_ID="+ cuisine.get_id(), null);
     }
+
+    public void deleteShoppingCartIngredient(RecipeIngredient recipeIngredient) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DbContract.ShoppingCartIngredient.TABLE_NAME, "_ID=" + recipeIngredient.get_id(), null);
+    }
+
 
 
     /** Search operations */
