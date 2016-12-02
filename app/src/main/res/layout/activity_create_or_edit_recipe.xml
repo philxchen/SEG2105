@@ -30,18 +30,32 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@android:drawable/ic_menu_help"
+                android:id="@+id/helpBtn"
+                android:layout_weight="0.15"
+                app:backgroundTint="@android:color/transparent"
+                android:forceHasOverlappingRendering="false"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="end" />
+
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addRecipeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_done_black_24dp"
-        app:backgroundTint="@android:color/holo_blue_bright" />
+        app:backgroundTint="@android:color/holo_blue_bright"
+        android:id="@+id/addRecipeBtn" />
 
     <include layout="@layout/content_create_or_edit_recipe" />
 

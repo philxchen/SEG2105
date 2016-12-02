@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_select_create"
     android:layout_width="match_parent"
@@ -32,27 +33,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/createRecipeBtn"
-            android:layout_weight="0.06" />
+            android:layout_weight="0.06"
+            android:layout_marginTop="10dp" />
 
         <Button
             android:text="Ingredient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/createIngredientBtn"
-            android:layout_weight="0.06" />
+            android:layout_weight="0.06"
+            android:layout_marginTop="10dp" />
 
         <Button
             android:text="Cuisine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/createCuisineBtn"
-            android:layout_weight="0.06" />
+            android:layout_weight="0.06"
+            android:layout_marginTop="10dp" />
 
         <Button
             android:text="Meal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/createMealBtn"
-            android:layout_weight="0.06" />
+            android:layout_weight="0.06"
+            android:layout_marginTop="10dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.49" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_menu_help"
+            android:id="@+id/helpBtn"
+            android:layout_weight="0.15"
+            app:backgroundTint="@android:color/transparent"
+            android:forceHasOverlappingRendering="false"
+            android:layout_gravity="bottom|right" />
     </LinearLayout>
+
 </RelativeLayout>
