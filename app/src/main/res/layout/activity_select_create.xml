@@ -45,18 +45,18 @@
             android:layout_marginTop="10dp" />
 
         <Button
-            android:text="Cuisine"
+            android:text="Meal Type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/createCuisineBtn"
+            android:id="@+id/createMealBtn"
             android:layout_weight="0.06"
             android:layout_marginTop="10dp" />
 
         <Button
-            android:text="Meal"
+            android:text="Cuisine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/createMealBtn"
+            android:id="@+id/createCuisineBtn"
             android:layout_weight="0.06"
             android:layout_marginTop="10dp" />
 
