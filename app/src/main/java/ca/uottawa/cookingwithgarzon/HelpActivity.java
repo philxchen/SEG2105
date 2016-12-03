@@ -58,6 +58,9 @@ public class HelpActivity extends Activity {
             case "createOrEditStepHelp":
                 helpTxt.setText(getString(R.string.createOrEditStepHelp));
                 break;
+            case "recipeViewHelp":
+                helpTxt.setText(getString(R.string.recipeViewHelp));
+                break;
         }
     }
 

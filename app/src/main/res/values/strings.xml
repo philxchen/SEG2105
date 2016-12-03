@@ -111,4 +111,8 @@
         -Save Button: Save the step and return to the recipe associated with the step. \n\n
         -Delete Step: Delete the step from the recipe and return.
     </string>
+    <string name="recipeViewHelp"><b>Recipe View Help Screen</b>\n\n
+        -Edit Button: Press to edit the recipe. \n\n
+        -Add to Cart Button: Press to add the ingredients to the cart.
+    </string>
 </resources>
