@@ -8,10 +8,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RatingBar;
@@ -155,7 +157,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 startActivityForResult(editStepIngredient, MODIFY_STEP_REQUEST);
             }
         });
-
+        setListViewHeightBasedOnChildren(step_listView);
+        setListViewHeightBasedOnChildren(recipeIngredients_listView);
 
         //Floating Action Toolbar when submitting to the Database
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addRecipeBtn);
@@ -321,6 +324,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                     recipeIngredientArrayAdapter.addAll(recipeIngredients);
                     recipeIngredientArrayAdapter.notifyDataSetChanged();
                     recipe.set_cost(calculateCost());
+                    setListViewHeightBasedOnChildren(recipeIngredients_listView);
+
                     costTxt.setText(((Double)recipe.get_cost()).toString());
                     Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe),
                             message, Snackbar.LENGTH_LONG)
@@ -334,6 +339,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                     stepArrayAdapter.clear();
                     stepArrayAdapter.addAll(steps);
                     stepArrayAdapter.notifyDataSetChanged();
+                    setListViewHeightBasedOnChildren(step_listView);
+
                     Snackbar.make(findViewById(R.id.activity_create_or_edit_recipe),
                             message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
@@ -408,5 +415,29 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
 
         // Otherwise defer to system default behavior.
         super.onBackPressed();
+    }
+
+    /**** Method for Setting the Height of the ListView dynamically.
+     **** Hack to fix the issue of not showing all the items of the ListView
+     **** when placed inside a ScrollView  ****/
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
     }
 }
