@@ -808,9 +808,10 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     /** get list of cuisines */
-    public ArrayList<Cuisine> getCuisines() {
+    public ArrayList<Cuisine> getCuisines(String str) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + DbContract.Cuisine.TABLE_NAME;
+        String query = "SELECT * FROM " + DbContract.Cuisine.TABLE_NAME + " WHERE " +
+                DbContract.Cuisine.COLUMN_CUISINE_NAME + " LIKE \'%" + str + "%\'";
         Log.e(LOG, query);
         Cursor c = db.rawQuery(query, null);
         ArrayList<Cuisine> cuisines = new ArrayList<>();
@@ -827,9 +828,10 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     /** get list of meal types */
-    public ArrayList<MealType> getMealTypes() {
+    public ArrayList<MealType> getMealTypes(String str) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + DbContract.MealType.TABLE_NAME;
+        String query = "SELECT * FROM " + DbContract.MealType.TABLE_NAME +" WHERE " +
+                DbContract.MealType.COLUMN_MEAL_TYPE_NAME+ " LIKE \'%" + str + "%\'";
         Log.e(LOG, query);
         Cursor c = db.rawQuery(query, null);
         ArrayList<MealType> mealtypes = new ArrayList<>();

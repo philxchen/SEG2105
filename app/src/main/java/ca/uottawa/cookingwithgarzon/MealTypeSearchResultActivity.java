@@ -42,7 +42,7 @@ public class MealTypeSearchResultActivity extends Activity {
 
         dbHelper = DbHelper.getInstance(this);
 
-        result = dbHelper.getMealTypes();
+        result = dbHelper.getMealTypes(name);
         Snackbar.make(findViewById(R.id.activity_meal_type_search_result),
                 "Found " + result.size() + " meal types.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
@@ -86,10 +86,9 @@ public class MealTypeSearchResultActivity extends Activity {
 
     @Override
     public void onResume() {
-        result = dbHelper.getMealTypes();
+        result = dbHelper.getMealTypes(name);
         adapter.clear();
         adapter.addAll(result);
-        adapter.notifyDataSetChanged();
         adapter.notifyDataSetChanged();
         super.onResume();
     }
