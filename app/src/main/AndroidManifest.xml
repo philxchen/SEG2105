@@ -19,12 +19,10 @@
             android:label="@string/title_activity_select_search"/>
         <activity
             android:name=".IngredientSearchActivity"
-            android:label="@string/title_activity_ingredient_search"
-            android:launchMode="singleInstance" />
+            android:label="@string/title_activity_ingredient_search"/>
         <activity
             android:name=".IngredientSearchResultActivity"
-            android:label="@string/title_activity_ingredient_search_result"
-            android:launchMode="singleInstance" />
+            android:label="@string/title_activity_ingredient_search_result"/>
 
         <activity
             android:name=".CuisineSearchActivity"
@@ -50,30 +48,25 @@
             android:label="@string/title_activity_instruction_step" />
         <activity
             android:name=".FavouriteRecipeActivity"
-            android:label="@string/title_activity_favorite_recipe"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/title_activity_favorite_recipe"/>
         <activity
             android:name=".CreateOrEditRecipeIngredientActivity"
-            android:label="@string/title_activity_recipe_ingredient"
-            android:launchMode="singleInstance" />
+            android:label="@string/title_activity_recipe_ingredient"/>
         <activity
             android:name=".ShoppingCartActivity"
             android:label="@string/title_activity_shopping_cart" />
         <activity
             android:name=".SelectCreateActivity"
-            android:label="@string/title_activity_select_create"
-            android:launchMode="singleInstance" />
+            android:label="@string/title_activity_select_create"/>
         <activity
             android:name=".CreateOrEditCuisineActivity"
             android:label="@string/title_activity_create_cuisine" />
         <activity
             android:name=".CreateOrEditIngredientActivity"
-            android:label="@string/title_activity_create_ingredient"
-            android:launchMode="singleInstance" />
+            android:label="@string/title_activity_create_ingredient"/>
         <activity
             android:name=".RecipeViewActivity"
-            android:label="@string/title_activity_recipe_view"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/title_activity_recipe_view"/>
         <activity
             android:name=".CreateOrEditMealTypeActivity"
             android:label="@string/title_activity_create_meal"/>
