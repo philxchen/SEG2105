@@ -575,9 +575,15 @@ public class DbHelper extends SQLiteOpenHelper {
     /** delete recipe. propagates to recipeIngredient and steps */
     public void deleteRecipe(Recipe recipe) {
         SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<RecipeIngredient> ingredients = getRecipeIngredients(recipe.get_id());
         db.delete(DbContract.Step.TABLE_NAME, DbContract.Step.COLUMN_RECIPE +"="+ recipe.get_id(), null);
         db.delete(DbContract.RecipeIngredient.TABLE_NAME, DbContract.RecipeIngredient.COLUMN_RECIPE_ID +"="+ recipe.get_id(), null);
         db.delete(DbContract.Recipe.TABLE_NAME, "_ID=" + recipe.get_id(), null);
+        for (RecipeIngredient ingredient : ingredients) {
+            db.delete(DbContract.ShoppingCartIngredient.TABLE_NAME,
+                    DbContract.ShoppingCartIngredient.COLUMN_INGREDIENT_ID + "=" + ingredient.get_ingredient_id(),
+                    null);
+        }
     }
 
     /** deletes ingredient propagates to recipeIngredient */
