@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import ca.uottawa.cookingwithgarzon.model.Cuisine;
 import ca.uottawa.cookingwithgarzon.model.Ingredient;
@@ -168,7 +170,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
-     /** CRUD */
+    /** CRUD */
 
     /**
      * Create methods
@@ -660,30 +662,69 @@ public class DbHelper extends SQLiteOpenHelper {
      * joel 28-11-2016
      *
      * */
-    public ArrayList<Recipe> findRecipe(String name, String ingredient, String cuisine, String type) {
+    public ArrayList<Recipe> findRecipe(String name, String ingredient, String cuisine, String meal) {
 
         boolean started = false;
         StringBuilder query = new StringBuilder();
+        List<String> nameArgs = new ArrayList<>();
+        List<String> notNameArgs = new ArrayList<>();
+        List<String> ingArgs = new ArrayList<>();
+        List<String> notIngArgs = new ArrayList<>();
+        List<String> cuisineArgs = new ArrayList<>();
+        List<String> notCuisineArgs = new ArrayList<>();
+        List<String> mealArgs = new ArrayList<>();
+        List<String> notMealArgs = new ArrayList<>();
 
-        if (name != null && !name.isEmpty()) {
+
+        String[] args = name.trim().toLowerCase().split(" and ");
+        for (int i = 0; i < args.length; ++i) {
+            if (args[i].toLowerCase().startsWith("not ")) {
+                notNameArgs.add(args[i].substring(4));
+            } else if (!args[i].equals("")) {
+                nameArgs.add(args[i]);
+            }
+        }
+        args = ingredient.trim().toLowerCase().split(" and ");
+        for (int i = 0; i < args.length; ++i) {
+            if (args[i].toLowerCase().startsWith("not ")) {
+                notIngArgs.add(args[i].substring(4));
+            } else if (!args[i].equals("")) {
+                ingArgs.add(args[i]);
+            }
+        }
+
+        args = cuisine.trim().toLowerCase().split(" and ");
+        for (int i = 0; i < args.length; ++i) {
+            if (args[i].toLowerCase().startsWith("not ")) {
+                notCuisineArgs.add(args[i].substring(4));
+            } else if (!args[i].equals("")) {
+                cuisineArgs.add(args[i]);
+            }
+        }
+
+        args = meal.trim().toLowerCase().split(" and ");
+        for (int i = 0; i < args.length; ++i) {
+            if (args[i].toLowerCase().startsWith("not ")) {
+                notMealArgs.add(args[i].substring(4));
+            } else if (!args[i].equals("")) {
+                mealArgs.add(args[i]);
+            }
+        }
+
+        if (!nameArgs.isEmpty()) {
             started = true;
-            String[] args = name.toLowerCase().split(" and ");
             query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
                     " FROM " + DbContract.Recipe.TABLE_NAME + " WHERE ");
-            for (int i = 0; i < args.length; ++i) {
+            for (int i = 0; i < nameArgs.size(); i ++ ) {
                 query.append(DbContract.Recipe.TABLE_NAME +"."+
                         DbContract.Recipe.COLUMN_RECIPE_NAME);
-                if (args[i].toLowerCase().startsWith("not")) {
-                    query.append(" NOT LIKE \'%" + args[i].substring(4) + "%\' ");
-                } else {
-                    query.append(" LIKE \'%" + args[i] + "%\' ");
-                }
-                if (i + 1 < args.length) {
+                query.append(" LIKE \'%" + nameArgs.get(i) + "%\' ");
+                if (i + 1 < nameArgs.size()) {
                     query.append(" AND ");
                 }
             }
         }
-        if (ingredient != null && !ingredient.isEmpty()) {
+        if (!ingArgs.isEmpty()) {
             if (!started) {
                 started=true;
                 query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
@@ -702,21 +743,16 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Ingredient._ID + "=" +
                     DbContract.RecipeIngredient.TABLE_NAME + "." +
                     DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID + " WHERE ");
-            String[] args = ingredient.toLowerCase().split(" and ");
-            for (int i = 0; i < args.length; ++i) {
+            for (int i = 0; i < ingArgs.size(); ++i) {
                 query.append(DbContract.Ingredient.TABLE_NAME +"." +
                         DbContract.Ingredient.COLUMN_INGREDIENT_NAME);
-                if (args[i].toLowerCase().startsWith("not")) {
-                    query.append(" NOT LIKE \'%" + args[i].substring(4) + "%\' ");
-                } else {
-                    query.append(" LIKE \'%" + args[i] + "%\' ");
-                }
-                if (i + 1 < args.length) {
+                query.append(" LIKE \'%" + ingArgs.get(i) + "%\' ");
+                if (i + 1 < ingArgs.size()) {
                     query.append(" AND ");
                 }
             }
         }
-        if (cuisine != null && !cuisine.isEmpty()) {
+        if (!cuisineArgs.isEmpty()) {
             if (!started) {
                 started=true;
                 query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
@@ -730,21 +766,16 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Recipe.COLUMN_CUISINE + "="+
                     DbContract.Cuisine.TABLE_NAME +"."+
                     DbContract.Cuisine._ID + " WHERE ");
-            String[] args = cuisine.toLowerCase().split(" and ");
-            for (int i = 0; i < args.length; ++i) {
+            for (int i = 0; i < cuisineArgs.size(); ++i) {
                 query.append(DbContract.Cuisine.TABLE_NAME +"."+
                         DbContract.Cuisine.COLUMN_CUISINE_NAME);
-                if (args[i].toLowerCase().startsWith("not")) {
-                    query.append(" NOT LIKE \'%" + args[i].substring(4) + "%\' ");
-                } else {
-                    query.append(" LIKE \'%" + args[i] + "%\' ");
-                }
-                if (i + 1 < args.length) {
+                    query.append(" LIKE \'%" + cuisineArgs.get(i) + "%\' ");
+                if (i + 1 < cuisineArgs.size()) {
                     query.append(" AND ");
                 }
             }
         }
-        if (type != null && !type.isEmpty()) {
+        if (!mealArgs.isEmpty()) {
             if (!started) {
                 started=true;
                 query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
@@ -758,16 +789,11 @@ public class DbHelper extends SQLiteOpenHelper {
                     DbContract.Recipe.COLUMN_MEALTYPE + "="+
                     DbContract.MealType.TABLE_NAME +"."+
                     DbContract.MealType._ID + " WHERE ");
-            String[] args = type.toLowerCase().split(" and ");
-            for (int i = 0; i < args.length; ++i) {
+            for (int i = 0; i < mealArgs.size(); ++i) {
                 query.append(DbContract.MealType.TABLE_NAME +"."+
                         DbContract.MealType.COLUMN_MEAL_TYPE_NAME);
-                if (args[i].toLowerCase().startsWith("not")) {
-                    query.append(" NOT LIKE \'%" + args[i].substring(4) + "%\' ");
-                } else {
-                    query.append(" LIKE \'%" + args[i] + "%\' ");
-                }
-                if (i + 1 < args.length) {
+                    query.append(" LIKE \'%" + mealArgs.get(i) + "%\' ");
+                if (i + 1 < mealArgs.size()) {
                     query.append(" AND ");
                 }
             }
@@ -775,6 +801,96 @@ public class DbHelper extends SQLiteOpenHelper {
         if (!started)
             query.append("SELECT " + DbContract.Recipe.TABLE_NAME +".*" +
                     " FROM " + DbContract.Recipe.TABLE_NAME);
+
+        started = false;
+
+        if (!notNameArgs.isEmpty()) {
+            started = true;
+            query.append(" EXCEPT SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
+                    " FROM " + DbContract.Recipe.TABLE_NAME + " WHERE ");
+            for (int i = 0; i < notNameArgs.size(); i ++ ) {
+                query.append(DbContract.Recipe.TABLE_NAME +"."+
+                        DbContract.Recipe.COLUMN_RECIPE_NAME);
+                query.append(" LIKE \'%" + notNameArgs.get(i) + "%\' ");
+                if (i + 1 < notNameArgs.size()) {
+                    query.append(" AND ");
+                }
+            }
+        }
+        if (!notIngArgs.isEmpty()) {
+            if (!started) {
+                started=true;
+                query.append(" EXCEPT SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
+                        " FROM " + DbContract.Recipe.TABLE_NAME);
+            } else {
+                query.append(" UNION SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
+            }
+            query.append(" INNER JOIN " + DbContract.RecipeIngredient.TABLE_NAME +
+                    " ON " + DbContract.Recipe.TABLE_NAME +"."+
+                    DbContract.Recipe._ID+ "="+
+                    DbContract.RecipeIngredient.TABLE_NAME + "." +
+                    DbContract.RecipeIngredient.COLUMN_RECIPE_ID +
+                    " INNER JOIN " + DbContract.Ingredient.TABLE_NAME +
+                    " ON " + DbContract.Ingredient.TABLE_NAME +"."+
+                    DbContract.Ingredient._ID + "=" +
+                    DbContract.RecipeIngredient.TABLE_NAME + "." +
+                    DbContract.RecipeIngredient.COLUMN_INGREDIENT_ID + " WHERE ");
+            for (int i = 0; i < notIngArgs.size(); ++i) {
+                query.append(DbContract.Ingredient.TABLE_NAME +"." +
+                        DbContract.Ingredient.COLUMN_INGREDIENT_NAME);
+                query.append(" LIKE \'%" + notIngArgs.get(i) + "%\' ");
+                if (i + 1 < notIngArgs.size()) {
+                    query.append(" AND ");
+                }
+            }
+        }
+        if (!notCuisineArgs.isEmpty()) {
+            if (!started) {
+                started=true;
+                query.append(" EXCEPT SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
+            } else {
+                query.append(" UNION SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
+            }
+            query.append(" INNER JOIN " + DbContract.Cuisine.TABLE_NAME +
+                    " ON " + DbContract.Recipe.TABLE_NAME +"."+
+                    DbContract.Recipe.COLUMN_CUISINE + "="+
+                    DbContract.Cuisine.TABLE_NAME +"."+
+                    DbContract.Cuisine._ID + " WHERE ");
+            for (int i = 0; i < notCuisineArgs.size(); ++i) {
+                query.append(DbContract.Cuisine.TABLE_NAME +"."+
+                        DbContract.Cuisine.COLUMN_CUISINE_NAME);
+                query.append(" LIKE \'%" + notCuisineArgs.get(i) + "%\' ");
+                if (i + 1 < notCuisineArgs.size()) {
+                    query.append(" AND ");
+                }
+            }
+        }
+        if (!notMealArgs.isEmpty()) {
+            if (!started) {
+                started=true;
+                query.append(" EXCEPT SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
+            } else {
+                query.append(" UNION SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
+                        " FROM "+ DbContract.Recipe.TABLE_NAME);
+            }
+            query.append(" INNER JOIN " + DbContract.MealType.TABLE_NAME +
+                    " ON " + DbContract.Recipe.TABLE_NAME +"."+
+                    DbContract.Recipe.COLUMN_MEALTYPE + "="+
+                    DbContract.MealType.TABLE_NAME +"."+
+                    DbContract.MealType._ID + " WHERE ");
+            for (int i = 0; i < notMealArgs.size(); ++i) {
+                query.append(DbContract.MealType.TABLE_NAME +"."+
+                        DbContract.MealType.COLUMN_MEAL_TYPE_NAME);
+                query.append(" LIKE \'%" + notMealArgs.get(i) + "%\' ");
+                if (i + 1 < notMealArgs.size()) {
+                    query.append(" AND ");
+                }
+            }
+        }
         Log.e(LOG, query.toString());
         return buildRecipeList(query.toString());
     }
@@ -848,11 +964,11 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Recipe> getFavourites() {
-            String query = "SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
-                        " FROM " + DbContract.Recipe.TABLE_NAME + " WHERE " +
-                    DbContract.Recipe.COLUMN_FAVOURITE + "=1";
-            Log.e(LOG, query.toString());
-            return buildRecipeList(query.toString());
+        String query = "SELECT " + DbContract.Recipe.TABLE_NAME +".*"+
+                " FROM " + DbContract.Recipe.TABLE_NAME + " WHERE " +
+                DbContract.Recipe.COLUMN_FAVOURITE + "=1";
+        Log.e(LOG, query.toString());
+        return buildRecipeList(query.toString());
     }
 
 //    public void cleanRecipes(){
