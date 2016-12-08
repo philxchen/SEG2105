@@ -90,7 +90,7 @@
                         android:scaleY=".7" />
 
                     <Spinner
-                        android:layout_width="135dp"
+                        android:layout_width="217dp"
                         android:layout_height="wrap_content"
                         android:prompt="@string/difficulty_prompt"
                         android:id="@+id/createRecipeDifficultySpinner"
@@ -283,7 +283,8 @@
                     android:background="@drawable/ic_add_black_24dp" />
 
             </LinearLayout>
-        <LinearLayout
+
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -297,14 +298,16 @@
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
                 android:paddingBottom="10dp"
-                android:paddingTop="5dp" />
+                android:paddingTop="5dp" /><![CDATA[
+
+            android:cacheColorHint="#00000000" />
+        ]]>
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="69dp" />
 
-                android:cacheColorHint="#00000000" />
-        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
