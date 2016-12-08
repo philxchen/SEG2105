@@ -13,8 +13,13 @@ import android.widget.EditText;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.MealType;
 
+/**
+ * Activity class to create or edit a meal type
+ */
+
 public class CreateOrEditMealTypeActivity extends AppCompatActivity {
 
+    //Instance variables
     private long mealtype_id;
     private MealType mealtype;
 
@@ -22,14 +27,18 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_or_edit_meal);
+
+        //Objects in the activity
         final Button saveBtn = (Button) findViewById(R.id.saveMealBtn);
         final Button deleteBtn = (Button) findViewById(R.id.deleteMealTypeBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createMealText);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
+        //Obtaining the intent
         Intent intent = getIntent();
         mealtype_id = intent.getLongExtra("type_id", 0);
 
+        //Displays an existing meal type if editing, else a blank page to create a new meal type
         if (mealtype_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
             mealtype = db.getMealType(mealtype_id);
@@ -38,6 +47,10 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
         else {
             mealtype = new MealType();
         }
+
+        /** On-click listeners **/
+
+        //Creates a new meal type if creating, or edits the information of an existing meal type in the database
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +73,7 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
             }
         });
 
+        //Deletes the meal type currently being editing in the database
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +83,7 @@ public class CreateOrEditMealTypeActivity extends AppCompatActivity {
             }
         });
 
+        //Opens a help page for the respective activity
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

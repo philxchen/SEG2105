@@ -15,13 +15,17 @@ import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Ingredient;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 
+/**
+ * Activity class for creating a new recipe ingredient or editing an already existing recipe ingredient
+ */
 
 public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
 
-
+    //Class variables
     static final int PICK_INGREDIENT_REQUEST = 1;
-    private long ingredient_id;
 
+    //Instance variables
+    private long ingredient_id;
     private TextView recipeIngredientTxt;
     private Button saveBtn;
     private Button getIngredientBtn;
@@ -39,6 +43,7 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipe_ingredient);
 
+        //Objects in the activity
         recipeIngredientTxt = (TextView) findViewById(R.id.recipeIngredientTxt);
         saveBtn = (Button) findViewById(R.id.saveRecipeIngredientBtn);
         deleteBtn = (Button) findViewById(R.id.deleteRecipeIngredientBtn);
@@ -47,10 +52,12 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
         quantityTxt = (EditText) findViewById(R.id.recipeIngredientQuantityTxt);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
+        //Get intent
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
         recipe_ingredient_id = intent.getLongExtra("recipe_ingredient_id", 0);
 
+        //Load recipe from database if editing, else creates a blank page to create a new recipe
         if (recipe_ingredient_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
             recipeIngredient = db.getRecipeIngredient(recipe_ingredient_id);
@@ -65,6 +72,9 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
             recipeIngredient = new RecipeIngredient();
         }
 
+        /** On click listeners **/
+
+        //Redirects user to search and pick a new ingredient to add to recipe
         getIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +85,7 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
             }
         });
 
-
+        //Saves the recipe in the database if creating, else updates the existing recipe in the database
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +117,7 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
             }
         });
 
+        //Opens a help page for the respective
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +127,7 @@ public class CreateOrEditRecipeIngredientActivity extends AppCompatActivity {
             }
         });
 
-
+        //Deletes the recipe ingredient from the recipe
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

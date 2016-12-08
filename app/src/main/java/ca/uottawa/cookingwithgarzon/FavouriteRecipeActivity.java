@@ -15,6 +15,10 @@ import ca.uottawa.cookingwithgarzon.adapter.RecipeArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Recipe;
 
+/**
+ * Activity class for displaying the favourite recipes
+ */
+
 public class FavouriteRecipeActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +28,7 @@ public class FavouriteRecipeActivity extends AppCompatActivity {
         loadResults();
     }
 
+    //Displays all the favourite recipes and sets an onclick listener to open up recipe for all displayed
     private void loadResults() {
         DbHelper dbHelper = DbHelper.getInstance(getApplicationContext());
 

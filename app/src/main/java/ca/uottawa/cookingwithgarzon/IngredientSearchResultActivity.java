@@ -18,9 +18,13 @@ import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Ingredient;
 import ca.uottawa.cookingwithgarzon.adapter.IngredientArrayAdapter;
 
+/**
+ * Activity class for Ingredient search result
+ */
 
 public class IngredientSearchResultActivity extends AppCompatActivity {
 
+    //Instance variables
     private DbHelper dbHelper;
     private ArrayList<Ingredient> result = new ArrayList<>();
     private IngredientArrayAdapter adapter;
@@ -38,6 +42,10 @@ public class IngredientSearchResultActivity extends AppCompatActivity {
         recipe_id = intent.getLongExtra("recipe_id", 0);
         dbHelper = DbHelper.getInstance(this);
 
+        /*
+        Displays results of the search query, and creates a list array that for each object
+        allows the user to click on it and display the ingredient
+         */
         result = dbHelper.getIngredients(name);
         Snackbar.make(findViewById(R.id.activity_ingredient_search_result),
                 "Found " + result.size() + " ingredients.", Snackbar.LENGTH_LONG)
@@ -69,6 +77,8 @@ public class IngredientSearchResultActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //Button when pressed sends user to create a new ingredient
         createIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

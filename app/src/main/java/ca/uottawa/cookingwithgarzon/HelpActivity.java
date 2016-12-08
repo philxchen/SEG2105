@@ -2,9 +2,12 @@ package ca.uottawa.cookingwithgarzon;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TextView;
+
+/**
+ * Activity class for the help pages
+ */
 
 public class HelpActivity extends Activity {
 
@@ -13,9 +16,11 @@ public class HelpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
+        //Retrieves intent
         Intent intent = getIntent();
         final TextView helpTxt = (TextView) findViewById(R.id.helpTextView);
 
+        //Sets the text of the activity based on the activity the help button was pressed from
         String helpTextName = intent.getStringExtra("helpTextName");
 
         switch(helpTextName) {

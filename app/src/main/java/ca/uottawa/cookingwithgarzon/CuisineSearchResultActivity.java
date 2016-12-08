@@ -17,11 +17,16 @@ import ca.uottawa.cookingwithgarzon.adapter.CuisineArrayAdapter;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Cuisine;
 
+/**
+ * Activty class for the result of searching for a cuisine
+ */
 
 public class CuisineSearchResultActivity extends AppCompatActivity {
 
+    //Class variables
     private final int MODIFY_CUISINE_REQUEST = 1;
 
+    //Instance variables
     private ArrayList<Cuisine> result = new ArrayList<>();
     private FloatingActionButton createCuisineBtn;
     private long recipe_id;
@@ -40,6 +45,7 @@ public class CuisineSearchResultActivity extends AppCompatActivity {
 
         dbHelper = DbHelper.getInstance(this);
 
+        //Displays result of all the recipes from the database
         result = dbHelper.getCuisines(name);
         Snackbar.make(findViewById(R.id.activity_cuisine_search_result),
                 "Found " + result.size() + " cuisines.", Snackbar.LENGTH_LONG)
@@ -72,6 +78,8 @@ public class CuisineSearchResultActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //Sends user to create a new cuisine
         createCuisineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

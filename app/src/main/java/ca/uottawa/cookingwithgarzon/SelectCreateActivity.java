@@ -9,8 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Activity class to select activities to create recipes, meal types, etc...
+ */
+
 public class SelectCreateActivity extends AppCompatActivity {
 
+    //Class variables
     final int CREATE_RECIPE_REQUEST = 1;
     final int CREATE_INGREDIENT_REQUEST = 2;
     final int CREATE_MEALTYPE_REQUEST = 3;

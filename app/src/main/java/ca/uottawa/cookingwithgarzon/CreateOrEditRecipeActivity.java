@@ -32,8 +32,13 @@ import ca.uottawa.cookingwithgarzon.helper.DbBitMapUtility;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.*;
 
+/**
+ * Activity class to create a new recipe or edit an existing one
+ */
+
 public class CreateOrEditRecipeActivity extends AppCompatActivity {
 
+    //Class variables
     private final int GET_INGREDIENT_REQUEST = 1;
     private final int GET_STEP_REQUEST = 2;
     private final int GET_CUISINE_REQUEST = 3;
@@ -42,7 +47,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
     private final int MODIFY_INGREDIENT_REQUEST = 6;
     private final int MODIFY_STEP_REQUEST = 7;
 
-
+    //Instance variables
     private DbHelper dbHelper;
     private DbBitMapUtility dbBitMap = new DbBitMapUtility();
     private Recipe recipe;
@@ -79,6 +84,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
 
         addedPicture = false; //initialized for added image
 
+        //Objects in acivity
         newIngredientBtn = (Button) findViewById(R.id.createRecipeAddIngredientBtn);
         newStepBtn = (Button) findViewById(R.id.createRecipeAddStepBtn);
         recipeTitleTxt = (EditText) findViewById(R.id.createRecipeTitleTxt);
@@ -107,11 +113,14 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         difficultySpinner.setAdapter(difficultyAdapter);
         difficultySpinner.setSelection(difficultyAdapter.getCount());
 
+        //Initializes database instance
         dbHelper = DbHelper.getInstance(getApplicationContext());
 
+        //Gets Intenet
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
 
+        //Loads existing recipe if editing, else creates a blank page to create new recipe
         if (recipe_id != 0) {
             saved=true;
             loadRecipe();
@@ -126,6 +135,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
 
         }
 
+        //Creates intent to add ingredients to the recipe
         recipeIngredientArrayAdapter = new RecipeIngredientArrayAdapter(this, R.layout.recipe_ingredient_item, recipeIngredients);
         recipeIngredients_listView.setAdapter(recipeIngredientArrayAdapter);
         recipeIngredients_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -141,6 +151,8 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
                 startActivityForResult(editRecipeIngredient, MODIFY_INGREDIENT_REQUEST);
             }
         });
+
+        //Creates intent to add a step to the recipe
         stepArrayAdapter = new StepArrayAdapter(this, R.layout.step_item, steps);
         step_listView.setAdapter(stepArrayAdapter);
         step_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -199,6 +211,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             }
         });
 
+        //Directs user to add a new ingredient to recipe
         newIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -209,7 +222,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             }
         });
 
-
+        //Directs user to add a new step to recipe
         newStepBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -220,6 +233,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             }
         });
 
+        //Directs user to add new cuisine to recipe
         cuisineTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -229,6 +243,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             }
         });
 
+        //Directs user to add a new meal type to recipe
         mealTypeTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -238,6 +253,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             }
         });
 
+        //Switch to add or remove recipe form favourites
         favouriteSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -250,6 +266,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
             }
         });
 
+        //Help button, opens help page for respective activity
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -260,6 +277,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         });
     }
 
+    //Loads recipe from database to page, helper function
     private void loadRecipe() {
         recipe = dbHelper.getRecipe(recipe_id);
         recipeTitleTxt.setText(recipe.get_name());
@@ -304,6 +322,7 @@ public class CreateOrEditRecipeActivity extends AppCompatActivity {
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
+    //Calculates the cost of the recipe
     private double calculateCost() {
         double cost = 0;
         for (RecipeIngredient item : recipeIngredients) {

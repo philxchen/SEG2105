@@ -20,23 +20,33 @@ import ca.uottawa.cookingwithgarzon.model.MealType;
 
 import static ca.uottawa.cookingwithgarzon.R.layout.meal_type_item;
 
+/**
+ * Activity class to search for meal type from database
+ */
+
 public class MealTypeSearchActivity extends Activity {
 
+    //Class Variables
     private final int GET_MEAL_TYPE_REQUEST = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_type_search);
 
+        //Activity objects
         Button searchBtn = (Button) findViewById(R.id.meal_type_search_button);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         final EditText mealTypeNameTxt = (EditText) findViewById(R.id.meal_type_search_input);
 
+        //Gets intent
         Intent intent = getIntent();
         final long recipe_id = intent.getLongExtra("recipe_id", 0);
 
+
+        //Creates onclick search button, to search for meal types
         View.OnClickListener oclSearchBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +58,8 @@ public class MealTypeSearchActivity extends Activity {
         };
 
         searchBtn.setOnClickListener(oclSearchBtn);
+
+        //Sends user to help page based on respective activity
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

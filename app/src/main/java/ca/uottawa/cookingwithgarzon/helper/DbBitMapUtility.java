@@ -6,7 +6,8 @@ import android.graphics.BitmapFactory;
 import java.io.ByteArrayOutputStream;
 
 /**
- * Created by francisco on 01/12/16.
+ * This class is a utility class in order to store the images taken for Recipe as a byte array.
+ * So it can be properly stored int the database, and pulled out as a 'blob'
  */
 
 public class DbBitMapUtility {

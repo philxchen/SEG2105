@@ -9,6 +9,10 @@ import android.support.design.widget.FloatingActionButton;
 
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 
+/**
+ * Activity class for the main activity
+ */
+
 public class MainActivity extends Activity {
 
     @Override
@@ -24,6 +28,7 @@ public class MainActivity extends Activity {
         db.deleteInvalidRecipes();
         db.close();
 
+        //Objects in the activity
         final Button createBtn = (Button) findViewById(R.id.createBtn);
         final Button searchBtn = (Button) findViewById(R.id.searchBtn);
         final Button favouritesBtn = (Button) findViewById(R.id.favouritesBtn);
@@ -31,7 +36,9 @@ public class MainActivity extends Activity {
         final Button clearDbBtn = (Button) findViewById(R.id.clearDbBtn);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
+        /** Onclick listeners for the buttons **/
 
+        //Sends user to search menu
         View.OnClickListener oclSearchBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +46,7 @@ public class MainActivity extends Activity {
             }
         };
 
+        //Sends user to create stage
         View.OnClickListener oclCreateBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +54,7 @@ public class MainActivity extends Activity {
             }
         };
 
+        //Sends user to favourites activity
         View.OnClickListener oclFavouritesBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +62,7 @@ public class MainActivity extends Activity {
             }
         };
 
+        //Sends user to shopping cart activity
         View.OnClickListener oclShoppingCartBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +70,7 @@ public class MainActivity extends Activity {
             }
         };
 
+        //Clears database: NOTE: Not visible currently on screen
         View.OnClickListener oclClearDbBtn = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,6 +78,7 @@ public class MainActivity extends Activity {
             }
         };
 
+        //Sends user to help page for respective activity
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

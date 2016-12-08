@@ -10,8 +10,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * Activity class to search for ingredients
+ */
+
 public class IngredientSearchActivity extends AppCompatActivity {
+    //Class variables
     static final int PICK_INGREDIENT_REQUEST = 1;
+
+    //Instance variables
     private long ingredient_id;
     public static Activity ingredientSearchActivity;
 
@@ -20,14 +27,18 @@ public class IngredientSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredient_search);
         ingredientSearchActivity = this;
+
+        //Activity objects
         Button searchBtn = (Button) findViewById(R.id.search_ingredient_button);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
         final EditText ingredientNameTxt = (EditText) findViewById(R.id.ingredient_search_input);
-        Intent intent = getIntent();
 
+        //Gets intent
+        Intent intent = getIntent();
         final long recipe_id = intent.getLongExtra("recipe_id", 0);
 
+        //Searches for ingredients based on the search query
         searchBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,6 +49,7 @@ public class IngredientSearchActivity extends AppCompatActivity {
             }
         });
 
+        //Opens up help page for respective activity
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

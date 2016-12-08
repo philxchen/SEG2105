@@ -12,8 +12,13 @@ import android.widget.EditText;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Cuisine;
 
+/**
+ * Activity for creating a new cuisine or editing a previously existing cuisine
+ */
+
 public class CreateOrEditCuisineActivity extends Activity {
 
+    //Class variables
     private long cuisine_id;
     private long recipe_id;
     private Cuisine cuisine;
@@ -23,15 +28,18 @@ public class CreateOrEditCuisineActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_or_edit_cuisine);
 
+        //Objects in Activity
         final Button saveBtn = (Button) findViewById(R.id.saveCuisineBtn);
         final Button deleteBtn = (Button) findViewById(R.id.deleteCuisineBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.createCuisineText);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
+        //Get information from intent
         Intent intent = getIntent();
         cuisine_id = intent.getLongExtra("cuisine_id", 0);
         recipe_id = intent.getLongExtra("recipe_id", 0);
 
+        //Load existing cuisine from database if editing a cuisine
         if (cuisine_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
             cuisine = db.getCuisine(cuisine_id);
@@ -40,6 +48,10 @@ public class CreateOrEditCuisineActivity extends Activity {
         else {
             cuisine = new Cuisine();
         }
+
+        /** On click listeners **/
+
+        //Save button, save information into database, overwrite information if existing cuisine
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +76,7 @@ public class CreateOrEditCuisineActivity extends Activity {
             }
         });
 
+        //Deletes existing cuisine from database
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,6 +86,7 @@ public class CreateOrEditCuisineActivity extends Activity {
             }
         });
 
+        //Launches help page for respective activity
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

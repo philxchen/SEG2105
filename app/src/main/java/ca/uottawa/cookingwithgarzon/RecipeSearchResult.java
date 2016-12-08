@@ -15,16 +15,24 @@ import ca.uottawa.cookingwithgarzon.model.*;
 
 import java.util.ArrayList;
 
+/**
+ * Activity class that will display the results of the search for recipe query
+ */
+
 public class RecipeSearchResult extends AppCompatActivity {
-private String name;
-private String ingredient;
-private String cuisine;
-private String type;
+
+    //Instance Variables
+    private String name;
+    private String ingredient;
+    private String cuisine;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_search_result);
+
+        //Gets Intent
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         ingredient = intent.getStringExtra("ingredient");
@@ -33,6 +41,7 @@ private String type;
         loadResults();
     }
 
+    //Loads result of the query from the search recipe
     private void loadResults() {
         DbHelper dbHelper = DbHelper.getInstance(getApplicationContext());
 

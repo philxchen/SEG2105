@@ -27,9 +27,16 @@ import ca.uottawa.cookingwithgarzon.model.Cuisine;
 import ca.uottawa.cookingwithgarzon.model.RecipeIngredient;
 import ca.uottawa.cookingwithgarzon.model.Step;
 
+/**
+ * Activity class, to view selected recipe
+ */
+
 public class RecipeViewActivity extends AppCompatActivity {
 
+    //Class variables
     final int EDIT_RECIPE_REQUEST = 1;
+
+    //Instance variables
     private long recipe_id;
     private TextView recipeTitle;
     private TextView recipeCostTxt;
@@ -57,6 +64,8 @@ public class RecipeViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_view);
+
+        //Activity OBjects
         recipeTitle = (TextView) findViewById(R.id.viewRecipeTitle);
         recipeImage = (ImageView) findViewById(R.id.viewRecipeImage);
         recipeRating = (RatingBar) findViewById(R.id.viewRecipeRating);
@@ -71,6 +80,7 @@ public class RecipeViewActivity extends AppCompatActivity {
         addAllIngToCartBtn = (Button) findViewById(R.id.addToCartBtn);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
+        //Gets intent
         Intent intent = getIntent();
         recipe_id = intent.getLongExtra("recipe_id", 0);
         loadRecipe();
@@ -84,6 +94,7 @@ public class RecipeViewActivity extends AppCompatActivity {
             }
         });
 
+        //Deletes the recipe from the database
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +103,7 @@ public class RecipeViewActivity extends AppCompatActivity {
             }
         });
 
+        //Adds the recipe ingredients to the cart
         addAllIngToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,7 +116,10 @@ public class RecipeViewActivity extends AppCompatActivity {
                         .setAction("Action", null)
                         .show();
             }
-        }); helpBtn.setOnClickListener(new View.OnClickListener() {
+        });
+
+        //Opens a help page for the respective class
+        helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent helpIntent = new Intent(RecipeViewActivity.this, HelpActivity.class);
@@ -116,6 +131,7 @@ public class RecipeViewActivity extends AppCompatActivity {
 
     }
 
+    //Loads recipe from database and displays the recipe
     private void loadRecipe() {
         dbHelper = DbHelper.getInstance(getApplicationContext());
         recipe = dbHelper.getRecipe(recipe_id);

@@ -8,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Activity class to direct the user to search for recipes, meal types, etc...
+ */
+
 public class SelectSearchActivity extends AppCompatActivity {
 
     @Override

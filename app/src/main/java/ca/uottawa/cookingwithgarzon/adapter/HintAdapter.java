@@ -8,7 +8,10 @@ import java.util.List;
  * To be able to set hints in the spinner classes
  * Workaround found here: https://yakivmospan.wordpress.com/2014/03/31/spinner-hint/
  *
- * IMPORTANT: When setting object list, set the hint to be the last object!!!
+ * IMPORTANT: When setting object list, set the hint to be the last object!!!'
+ *
+ * Allows a spinner to first display a hint, to let the user know what the spinner is for.
+ * The hint will not appear in the spinner selecction.
  */
 
 

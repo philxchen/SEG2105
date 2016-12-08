@@ -13,8 +13,13 @@ import android.widget.EditText;
 import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Ingredient;
 
+/**
+ * Activity class for creating a new ingredient, or editing an existing ingredient from the database
+ */
+
 public class CreateOrEditIngredientActivity extends AppCompatActivity {
 
+    //Instance variables
     private long ingredient_id;
     private Ingredient ingredient;
 
@@ -22,15 +27,19 @@ public class CreateOrEditIngredientActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_or_edit_ingredient);
+
+        //Objects in activity
         final Button saveBtn = (Button) findViewById(R.id.saveIngredientBtn);
         final Button deleteBtn = (Button) findViewById(R.id.deleteIngredientBtn);
         final EditText nameTxt = (EditText) findViewById(R.id.nameTxt);
         final EditText priceTxt = (EditText) findViewById(R.id.priceTxt);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
+        //Retrieving intent
         Intent intent = getIntent();
         ingredient_id = intent.getLongExtra("ingredient_id", 0);
 
+        //Inputs the information if editing an existing ingredient, else creates a blank page for a new ingredient
         if (ingredient_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
             ingredient = db.getIngredient(ingredient_id);
@@ -40,6 +49,10 @@ public class CreateOrEditIngredientActivity extends AppCompatActivity {
         else {
             ingredient = new Ingredient();
         }
+
+        /** On click listeners **/
+
+        //Save button, saves the new ingredient to the database, else updates information of existing ingredient
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +83,7 @@ public class CreateOrEditIngredientActivity extends AppCompatActivity {
             }
         });
 
+        //Deletes the existing ingredient from the database
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +93,7 @@ public class CreateOrEditIngredientActivity extends AppCompatActivity {
             }
         });
 
+        //Opens a help page for the respective activity
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

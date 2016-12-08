@@ -18,11 +18,16 @@ import ca.uottawa.cookingwithgarzon.model.Step;
 import static ca.uottawa.cookingwithgarzon.R.id.recipeIngredientTxt;
 import static ca.uottawa.cookingwithgarzon.R.id.stepInstructionTxt;
 
+/**
+ * Activity class for Creating or editing a step in a recipe
+ */
+
 public class CreateOrEditStepActivity extends AppCompatActivity {
 
-
+    //Class variables
     static final int PICK_STEP_REQUEST = 1;
 
+    //Instance variables
     private EditText stepInstructionTxt;
     private EditText stepTimeTxt;
     private Button saveStepBtn;
@@ -37,6 +42,7 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_or_edit_step);
 
+        //Acitivty objects
         stepInstructionTxt = (EditText) findViewById(R.id.stepInstructionTxt);
         stepTimeTxt = (EditText) findViewById(R.id.stepTimeTxt);
         saveStepBtn = (Button) findViewById(R.id.saveStepBtn);
@@ -47,6 +53,7 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
         step_number = intent.getIntExtra("step_number", 1);
         final FloatingActionButton helpBtn = (FloatingActionButton) findViewById(R.id.helpBtn);
 
+        //Loads an existing step from the database, else creates blank page to enter a new step
         if (step_id != 0) {
             DbHelper db = DbHelper.getInstance(getApplicationContext());
             step = db.getStep(step_id);
@@ -57,7 +64,7 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
             step = new Step();
         }
 
-
+        //Saves the recipe step into the database or edits an existing step
         saveStepBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +95,7 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
             }
         });
 
+        //Deletes the step from the recipe and database
         deleteStepBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +108,7 @@ public class CreateOrEditStepActivity extends AppCompatActivity {
                 }
         });
 
+        //Opens up a help page for the respective activity
         helpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

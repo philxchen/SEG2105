@@ -19,8 +19,13 @@ import ca.uottawa.cookingwithgarzon.helper.DbHelper;
 import ca.uottawa.cookingwithgarzon.model.Ingredient;
 import ca.uottawa.cookingwithgarzon.model.MealType;
 
+/**
+ * Activity class fo meal type search results
+ */
+
 public class MealTypeSearchResultActivity extends Activity {
 
+    //Instance variables
     private DbHelper dbHelper;
     private ArrayList<MealType> result = new ArrayList<>();
     private MealTypeArrayAdapter adapter;
@@ -34,14 +39,17 @@ public class MealTypeSearchResultActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_type_search_result);
 
+        //Activity objects
         createMealTypeBtn = (FloatingActionButton) findViewById(R.id.mealTypeSearchCreateBtn);
 
+        //Gets intent
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         recipe_id = intent.getLongExtra("recipe_id", 0);
 
         dbHelper = DbHelper.getInstance(this);
 
+        //Display the results of the search query
         result = dbHelper.getMealTypes(name);
         Snackbar.make(findViewById(R.id.activity_meal_type_search_result),
                 "Found " + result.size() + " meal types.", Snackbar.LENGTH_LONG)
@@ -74,6 +82,8 @@ public class MealTypeSearchResultActivity extends Activity {
                 }
             }
         });
+
+        //Sends user to create a new meal type
         createMealTypeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
